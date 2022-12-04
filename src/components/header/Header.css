@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: red;
+}
+
+.header-logo {
+  background-color: aliceblue;
+  flex: 0.25;
+}
+
+.header-nav {
+  display: flex;
+  flex-direction: row;
+  background-color: aqua;
+  flex: 0.5;
+}
+.header-nav > button {
+  display: flex;
+  align-items: center;
+}
+
+.header-profile {
+  background-color: aquamarine;
+  flex: 0.25;
+}
