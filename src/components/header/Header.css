@@ -36,3 +36,11 @@ header {
   align-items: center;
   justify-content: center;
 }
+.header-profile > button {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}

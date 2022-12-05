@@ -46,7 +46,8 @@ const Header = () => {
       </nav>
       <div className="header-profile">
         <button>
-          <Avatar />
+          <Avatar sx={{ width: 36, height: 36 }} />
+          <span style={{ marginLeft: "7px" }}>Muhsin TT</span>
         </button>
       </div>
     </header>
