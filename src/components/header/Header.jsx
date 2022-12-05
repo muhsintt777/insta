@@ -13,19 +13,19 @@ const Header = () => {
       <nav className="header-nav">
         <button>
           <HomeOutlinedIcon sx={{ color: blue[500] }} />
-          <span>Homepage</span>
+          <span style={{ marginLeft: "5px" }}>Homepage</span>
         </button>
         <button>
           <HomeOutlinedIcon sx={{ color: blue[500] }} />
-          <span>Connections</span>
+          <span style={{ marginLeft: "5px" }}>Connections</span>
         </button>
         <button>
           <HomeOutlinedIcon sx={{ color: blue[500] }} />
-          <span>Messages</span>
+          <span style={{ marginLeft: "5px" }}>Messages</span>
         </button>
         <button>
           <HomeOutlinedIcon sx={{ color: blue[500] }} />
-          <span>Notifications</span>
+          <span style={{ marginLeft: "5px" }}>Notifications</span>
         </button>
       </nav>
       <div className="header-profile">
