@@ -2,6 +2,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: white;
+  padding: 10px 0px;
 }
 
 .header-logo {

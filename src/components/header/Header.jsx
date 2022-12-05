@@ -1,8 +1,11 @@
 import React from "react";
 import "./Header.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
+import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
-import { Avatar } from "@mui/material";
+import { Avatar, Badge } from "@mui/material";
 
 const Header = () => {
   return (
@@ -12,20 +15,33 @@ const Header = () => {
       </div>
       <nav className="header-nav">
         <button>
-          <HomeOutlinedIcon sx={{ color: blue[500] }} />
+          <HomeOutlinedIcon fontSize="small" sx={{ color: blue[500] }} />
           <span style={{ marginLeft: "5px" }}>Homepage</span>
         </button>
         <button>
-          <HomeOutlinedIcon sx={{ color: blue[500] }} />
+          <ConnectWithoutContactOutlinedIcon
+            fontSize="small"
+            sx={{ color: blue[500] }}
+          />
           <span style={{ marginLeft: "5px" }}>Connections</span>
         </button>
         <button>
-          <HomeOutlinedIcon sx={{ color: blue[500] }} />
+          <ChatOutlinedIcon fontSize="small" sx={{ color: blue[500] }} />
           <span style={{ marginLeft: "5px" }}>Messages</span>
         </button>
         <button>
-          <HomeOutlinedIcon sx={{ color: blue[500] }} />
-          <span style={{ marginLeft: "5px" }}>Notifications</span>
+          <NotificationsNoneOutlinedIcon
+            fontSize="small"
+            sx={{ color: blue[500] }}
+          />
+
+          <Badge badgeContent={4} color="secondary">
+            <div>
+              <span style={{ marginLeft: "5px", marginRight: "10px" }}>
+                Notifications
+              </span>
+            </div>
+          </Badge>
         </button>
       </nav>
       <div className="header-profile">
