@@ -1,6 +1,5 @@
 .postCard-article {
   width: 100%;
-  height: 200px;
   padding: 10px;
   margin-top: 30px;
   border-radius: 15px;
@@ -27,4 +26,20 @@
 .postCard-topSection__optionButton {
   display: flex;
   align-items: center;
+}
+
+.postCard-description {
+  margin-top: 14px;
+  font-size: medium;
+}
+.postCard-description__hashtagPara {
+  color: rgb(0, 208, 255);
+}
+
+.postCard-imageSection {
+  margin-top: 15px;
+}
+.postCard-imageSection__img {
+  width: 100%;
+  border-radius: 15px;
 }
