@@ -1,10 +1,10 @@
 import React from "react";
 import "./PostCard.css";
-import danielPic from "../../../../images/daniel.jpg";
+// import danielPic from "../../../../images/daniel.jpg";
 import { Avatar } from "@mui/material";
 import { OpenInNewTwoTone } from "@mui/icons-material";
 
-const PostCard = () => {
+const PostCard = ({ message, hashtags }) => {
   return (
     <article className="postCard-article">
       <div className="postCard-topSection">
@@ -20,13 +20,20 @@ const PostCard = () => {
         </div>
       </div>
       <div className="postCard-description">
-        <p className="postCard-description__messagePara">
-          Was great meeting up with Anna and Dave Bishop at the breakfast talk!
-        </p>
-        <p className="postCard-description__hashtagPara">#breakfast</p>
+        <p className="postCard-description__messagePara">{message}</p>
+        <p className="postCard-description__hashtagPara">{hashtags}</p>
       </div>
-      <div className="postCard-imageSection">
+      {/* <div className="postCard-imageSection">
         <img className="postCard-imageSection__img" src={danielPic} alt="img" />
+      </div> */}
+      <div className="postCard-bottomSection">
+        <div className="postCard-bottomSection__reactionButtons">
+          <button>like</button>
+          <button>comment</button>
+        </div>
+        <div className="postCard-bottomSection__sendButton">
+          <OpenInNewTwoTone />
+        </div>
       </div>
     </article>
   );
