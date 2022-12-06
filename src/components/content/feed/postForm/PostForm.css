@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 17px;
   margin-bottom: 10px;
   border-bottom: solid 1px gray;
   align-items: center;
@@ -37,4 +37,27 @@ input[type="text"] {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   outline: none;
+}
+
+.postForm-bottomSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 12px;
+}
+.postForm-bottomSection > button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+.posForm-bottomSection__button__span {
+  margin-left: 5px;
+  font-size: small;
 }

@@ -8,6 +8,7 @@ const PostForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(textInput);
+    setTextInput("");
   };
 
   return (
@@ -27,6 +28,30 @@ const PostForm = () => {
               <CreateOutlinedIcon />
             </button>
           </div>
+        </div>
+        <div className="postForm-bottomSection">
+          <button>
+            <CreateOutlinedIcon fontSize="small" />
+            <span className="posForm-bottomSection__button__span">Image</span>
+          </button>
+          <button>
+            <CreateOutlinedIcon fontSize="small" />
+            <span className="posForm-bottomSection__button__span">Video</span>
+          </button>
+          <button>
+            <CreateOutlinedIcon fontSize="small" />
+            <span className="posForm-bottomSection__button__span">
+              Attachment
+            </span>
+          </button>
+          <button>
+            <CreateOutlinedIcon fontSize="small" />
+            <span className="posForm-bottomSection__button__span">Hashtag</span>
+          </button>
+          <button>
+            <CreateOutlinedIcon fontSize="small" />
+            <span className="posForm-bottomSection__button__span">Mention</span>
+          </button>
         </div>
       </form>
     </div>
