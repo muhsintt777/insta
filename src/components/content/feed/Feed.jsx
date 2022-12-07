@@ -43,7 +43,6 @@ const Feed = () => {
     <div className="feed-container">
       <PostForm />
       {error ? <p>{error}</p> : null}
-      <PostCard />
       {renderedPosts}
     </div>
   );
