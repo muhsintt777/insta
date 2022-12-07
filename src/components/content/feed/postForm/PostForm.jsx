@@ -29,9 +29,15 @@ const PostForm = () => {
   return (
     <div className="postForm-container">
       <form onSubmit={onSubmit}>
-        <div className="postForm-topSection">
+        <div
+          style={{ borderBottom: `solid 1px ${grey[200]}` }}
+          className="postForm-topSection"
+        >
           <Avatar />
-          <div className="postForm-Form__inputText">
+          <div
+            style={{ background: grey[100] }}
+            className="postForm-Form__inputText"
+          >
             <input
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
