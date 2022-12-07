@@ -1,8 +1,11 @@
 import React from "react";
 import "./PostCard.css";
 // import danielPic from "../../../../images/daniel.jpg";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { Avatar } from "@mui/material";
-import { OpenInNewTwoTone } from "@mui/icons-material";
 
 const PostCard = ({ message, hashtags }) => {
   return (
@@ -16,7 +19,7 @@ const PostCard = ({ message, hashtags }) => {
           <p className="postCard-topSection__name__timePara">2 hours ago</p>
         </div>
         <div className="postCard-topSection__optionButton">
-          <OpenInNewTwoTone />
+          <MoreHorizOutlinedIcon />
         </div>
       </div>
       <div className="postCard-description">
@@ -28,11 +31,15 @@ const PostCard = ({ message, hashtags }) => {
       </div> */}
       <div className="postCard-bottomSection">
         <div className="postCard-bottomSection__reactionButtons">
-          <button>like</button>
-          <button>comment</button>
+          <button>
+            <FavoriteBorderOutlinedIcon />
+          </button>
+          <button>
+            <ChatBubbleOutlineRoundedIcon />
+          </button>
         </div>
         <div className="postCard-bottomSection__sendButton">
-          <OpenInNewTwoTone />
+          <SendOutlinedIcon />
         </div>
       </div>
     </article>
