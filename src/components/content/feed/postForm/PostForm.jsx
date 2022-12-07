@@ -2,13 +2,23 @@ import React, { useState } from "react";
 import "./PostForm.css";
 import { Avatar } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import { addDoc, serverTimestamp } from "firebase/firestore";
+import { postsColRef } from "../../../../firebase/config";
 
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(textInput);
-    setTextInput("");
+    try {
+      await addDoc(postsColRef, {
+        message: textInput,
+        createdAt: serverTimestamp(),
+      });
+      setTextInput("");
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (

@@ -10,7 +10,7 @@ const Feed = () => {
   const [error, setError] = useState(null);
 
   const renderedPosts = posts.map((post) => {
-    const hashtagsString = post.hashtags.join(" ");
+    const hashtagsString = post.hashtags?.join(" ");
     return (
       <PostCard
         key={post.id}
@@ -29,7 +29,6 @@ const Feed = () => {
         querySnapshot.forEach((doc) => {
           postsArr.push({ ...doc.data(), id: doc.id });
         });
-        console.log(postsArr);
         setPosts([...postsArr]);
       } catch (err) {
         setError(err.message);
