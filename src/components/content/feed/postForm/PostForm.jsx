@@ -9,7 +9,6 @@ const PostForm = () => {
   const [textInput, setTextInput] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(textInput);
     try {
       await addDoc(postsColRef, {
         message: textInput,

@@ -1,4 +1,4 @@
-import { onSnapshot } from "firebase/firestore";
+import { onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { postsColRef } from "../../../firebase/config";
 import "./Feed.css";
@@ -23,7 +23,9 @@ const Feed = () => {
   useEffect(() => {
     setError(null);
 
-    onSnapshot(postsColRef, (snapshot) => {
+    const q = query(postsColRef, orderBy("createdAt", "desc"));
+
+    onSnapshot(q, (snapshot) => {
       let postsArr = [];
       snapshot.docs.forEach((doc) => {
         postsArr.push({ ...doc.data(), id: doc.id });
