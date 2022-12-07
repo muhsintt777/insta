@@ -30,25 +30,25 @@ const PostForm = () => {
           </div>
         </div>
         <div className="postForm-bottomSection">
-          <button>
+          <button type="button">
             <CreateOutlinedIcon fontSize="small" />
             <span className="posForm-bottomSection__button__span">Image</span>
           </button>
-          <button>
+          <button type="button">
             <CreateOutlinedIcon fontSize="small" />
             <span className="posForm-bottomSection__button__span">Video</span>
           </button>
-          <button>
+          <button type="button">
             <CreateOutlinedIcon fontSize="small" />
             <span className="posForm-bottomSection__button__span">
               Attachment
             </span>
           </button>
-          <button>
+          <button type="button">
             <CreateOutlinedIcon fontSize="small" />
             <span className="posForm-bottomSection__button__span">Hashtag</span>
           </button>
-          <button>
+          <button type="button">
             <CreateOutlinedIcon fontSize="small" />
             <span className="posForm-bottomSection__button__span">Mention</span>
           </button>
