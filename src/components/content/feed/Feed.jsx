@@ -1,6 +1,6 @@
-import { collection, getDocs } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { db } from "../../../firebase/config";
+import { postsColRef } from "../../../firebase/config";
 import "./Feed.css";
 import PostCard from "./postCard/PostCard";
 import PostForm from "./postForm/PostForm";
@@ -22,19 +22,18 @@ const Feed = () => {
 
   useEffect(() => {
     setError(null);
-    const fetchData = async () => {
-      try {
-        let postsArr = [];
-        const querySnapshot = await getDocs(collection(db, "posts"));
-        querySnapshot.forEach((doc) => {
-          postsArr.push({ ...doc.data(), id: doc.id });
-        });
-        setPosts([...postsArr]);
-      } catch (err) {
-        setError(err.message);
+
+    onSnapshot(postsColRef, (snapshot) => {
+      let postsArr = [];
+      snapshot.docs.forEach((doc) => {
+        postsArr.push({ ...doc.data(), id: doc.id });
+      });
+      if (!postsArr.length) {
+        setError("Realtime data fetching failed");
+        return;
       }
-    };
-    fetchData();
+      setPosts([...postsArr]);
+    });
   }, []);
 
   return (
