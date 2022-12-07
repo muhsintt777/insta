@@ -14,6 +14,7 @@ const Feed = () => {
     return (
       <PostCard
         key={post.id}
+        id={post.id}
         message={post.message}
         hashtags={hashtagsString}
       />

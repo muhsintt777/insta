@@ -6,8 +6,19 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { Avatar } from "@mui/material";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../../../firebase/config";
 
-const PostCard = ({ message, hashtags }) => {
+const PostCard = ({ message, hashtags, id }) => {
+  const handleDeletePost = async () => {
+    try {
+      const docRef = doc(db, "posts", id);
+      await deleteDoc(docRef);
+      console.log("post deleted");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
     <article className="postCard-article">
       <div className="postCard-topSection">
@@ -19,7 +30,9 @@ const PostCard = ({ message, hashtags }) => {
           <p className="postCard-topSection__name__timePara">2 hours ago</p>
         </div>
         <div className="postCard-topSection__optionButton">
-          <MoreHorizOutlinedIcon />
+          <button type="button" onClick={handleDeletePost}>
+            <MoreHorizOutlinedIcon />
+          </button>
         </div>
       </div>
       <div className="postCard-description">
