@@ -9,6 +9,7 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import { postsColRef } from "../../../../firebase/config";
+import { blue, green, grey, red, yellow } from "@mui/material/colors";
 
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
@@ -45,25 +46,34 @@ const PostForm = () => {
         </div>
         <div className="postForm-bottomSection">
           <button type="button">
-            <ImageOutlinedIcon fontSize="small" />
+            <ImageOutlinedIcon sx={{ color: blue[700] }} fontSize="small" />
             <span className="posForm-bottomSection__button__span">Image</span>
           </button>
           <button type="button">
-            <VideoCameraBackOutlinedIcon fontSize="small" />
+            <VideoCameraBackOutlinedIcon
+              sx={{ color: green[700] }}
+              fontSize="small"
+            />
             <span className="posForm-bottomSection__button__span">Video</span>
           </button>
           <button type="button">
-            <AttachFileOutlinedIcon fontSize="small" />
+            <AttachFileOutlinedIcon
+              sx={{ color: yellow[700] }}
+              fontSize="small"
+            />
             <span className="posForm-bottomSection__button__span">
               Attachment
             </span>
           </button>
           <button type="button">
-            <TagOutlinedIcon fontSize="small" />
+            <TagOutlinedIcon sx={{ color: red[700] }} fontSize="small" />
             <span className="posForm-bottomSection__button__span">Hashtag</span>
           </button>
           <button type="button">
-            <AlternateEmailOutlinedIcon fontSize="small" />
+            <AlternateEmailOutlinedIcon
+              sx={{ color: grey[700] }}
+              fontSize="small"
+            />
             <span className="posForm-bottomSection__button__span">Mention</span>
           </button>
         </div>
