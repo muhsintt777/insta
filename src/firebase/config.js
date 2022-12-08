@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdk296Lue6O_q_etBHK60XIuQt8BoGcX4",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "insta-7ffa0.firebaseapp.com",
   projectId: "insta-7ffa0",
   storageBucket: "insta-7ffa0.appspot.com",
