@@ -13,10 +13,15 @@ import { blue, green, grey, red, yellow } from "@mui/material/colors";
 
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
-
+  const [ImgFile, setImgFile] = useState(null);
   const fileRef = useRef();
 
-  const handleSelectImage = () => {
+  const onPrevImgClick = () => {
+    setImgFile(null);
+    fileRef.current.value = null;
+  };
+
+  const handleFileInputClick = () => {
     fileRef.current.click();
   };
 
@@ -56,12 +61,29 @@ const PostForm = () => {
               <CreateOutlinedIcon />
             </button>
           </div>
+          {ImgFile ? (
+            <img
+              onClick={onPrevImgClick}
+              title="Remove"
+              className="postForm-topSection__prevImage"
+              src={ImgFile}
+              alt="img"
+            />
+          ) : null}
         </div>
         <div className="postForm-bottomSection">
-          <button onClick={handleSelectImage} type="button">
+          <button onClick={handleFileInputClick} type="button">
             <ImageOutlinedIcon sx={{ color: blue[700] }} fontSize="small" />
             <span className="posForm-bottomSection__button__span">Image</span>
-            <input ref={fileRef} hidden type="file" name="file" />
+            <input
+              onChange={(e) =>
+                setImgFile(URL.createObjectURL(e.target.files[0]))
+              }
+              ref={fileRef}
+              hidden
+              type="file"
+              name="file"
+            />
           </button>
           <button type="button">
             <VideoCameraBackOutlinedIcon

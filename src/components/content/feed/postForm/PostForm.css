@@ -38,6 +38,14 @@ input[type="text"] {
   outline: none;
 }
 
+.postForm-topSection__prevImage {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
 .postForm-bottomSection {
   display: flex;
   flex-direction: row;
