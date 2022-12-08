@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./PostForm.css";
 import { Avatar } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -13,6 +13,13 @@ import { blue, green, grey, red, yellow } from "@mui/material/colors";
 
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
+
+  const fileRef = useRef();
+
+  const handleSelectImage = () => {
+    fileRef.current.click();
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -51,9 +58,10 @@ const PostForm = () => {
           </div>
         </div>
         <div className="postForm-bottomSection">
-          <button type="button">
+          <button onClick={handleSelectImage} type="button">
             <ImageOutlinedIcon sx={{ color: blue[700] }} fontSize="small" />
             <span className="posForm-bottomSection__button__span">Image</span>
+            <input ref={fileRef} hidden type="file" name="file" />
           </button>
           <button type="button">
             <VideoCameraBackOutlinedIcon
