@@ -17,6 +17,7 @@ const Feed = () => {
         id={post.id}
         message={post.message}
         hashtags={hashtagsString}
+        image={post.imgUrl}
       />
     );
   });

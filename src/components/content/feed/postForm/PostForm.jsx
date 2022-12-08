@@ -8,8 +8,10 @@ import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsColRef } from "../../../../firebase/config";
+import { postsColRef, storage } from "../../../../firebase/config";
 import { blue, green, grey, red, yellow } from "@mui/material/colors";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { nanoid } from "@reduxjs/toolkit";
 
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
@@ -27,12 +29,23 @@ const PostForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    let imgUrl = null;
     try {
+      if (ImgFile) {
+        const randomId = nanoid();
+        const storageRef = ref(storage, `posts/${randomId}`);
+        await uploadBytes(storageRef, fileRef.current.files[0]);
+        console.log("umg uploadded");
+        imgUrl = await getDownloadURL(storageRef);
+      }
       await addDoc(postsColRef, {
         message: textInput,
         createdAt: serverTimestamp(),
+        imgUrl: imgUrl,
       });
       setTextInput("");
+      setImgFile(null);
+      fileRef.current.value = null;
     } catch (err) {
       console.log(err.message);
     }

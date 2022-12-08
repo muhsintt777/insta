@@ -10,7 +10,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../firebase/config";
 import { grey } from "@mui/material/colors";
 
-const PostCard = ({ message, hashtags, id }) => {
+const PostCard = ({ message, hashtags, id, image }) => {
   const handleDeletePost = async () => {
     try {
       const docRef = doc(db, "posts", id);
@@ -42,9 +42,12 @@ const PostCard = ({ message, hashtags, id }) => {
         <p className="postCard-description__messagePara">{message}</p>
         <p className="postCard-description__hashtagPara">{hashtags}</p>
       </div>
-      {/* <div className="postCard-imageSection">
-        <img className="postCard-imageSection__img" src={danielPic} alt="img" />
-      </div> */}
+      {image ? (
+        <div className="postCard-imageSection">
+          <img className="postCard-imageSection__img" src={image} alt="img" />
+        </div>
+      ) : null}
+
       <div className="postCard-bottomSection">
         <div className="postCard-bottomSection__reactionButtons">
           <button className="postCard-bottomSection__reactionButtons__btn">
