@@ -29,12 +29,13 @@ const Feed = () => {
     const q = query(postsColRef, orderBy("createdAt", "desc"));
 
     onSnapshot(q, (snapshot) => {
+      setError(null);
       let postsArr = [];
       snapshot.docs.forEach((doc) => {
         postsArr.push({ ...doc.data(), id: doc.id });
       });
       if (!postsArr.length) {
-        setError("Realtime data fetching failed");
+        setError("Empty... Add new posts");
         return;
       }
       setPosts([...postsArr]);

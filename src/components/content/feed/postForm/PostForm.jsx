@@ -16,6 +16,7 @@ import { nanoid } from "@reduxjs/toolkit";
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
   const [ImgFile, setImgFile] = useState(null);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const fileRef = useRef();
 
   const onPrevImgClick = () => {
@@ -29,6 +30,7 @@ const PostForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitDisabled(true);
     let imgUrl = null;
     let randomId = null;
     try {
@@ -47,9 +49,11 @@ const PostForm = () => {
       });
       setTextInput("");
       setImgFile(null);
+      setIsSubmitDisabled(false);
       fileRef.current.value = null;
     } catch (err) {
       console.log(err.message);
+      setIsSubmitDisabled(false);
     }
   };
 
@@ -72,7 +76,7 @@ const PostForm = () => {
               type="text"
               required
             />
-            <button type="submit">
+            <button disabled={isSubmitDisabled} type="submit">
               <CreateOutlinedIcon />
             </button>
           </div>
