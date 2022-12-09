@@ -1,20 +1,30 @@
 import React from "react";
 import "./PostCard.css";
-// import danielPic from "../../../../images/daniel.jpg";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { Avatar } from "@mui/material";
 import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../../../firebase/config";
+import { db, storage } from "../../../../firebase/config";
 import { grey } from "@mui/material/colors";
+import { deleteObject, ref } from "firebase/storage";
 
-const PostCard = ({ message, hashtags, id, image }) => {
+const PostCard = ({ message, hashtags, id, image, imageName }) => {
   const handleDeletePost = async () => {
     try {
       const docRef = doc(db, "posts", id);
       await deleteDoc(docRef);
+      if (imageName) {
+        const imgRef = ref(storage, `posts/${imageName}`);
+        await deleteObject(imgRef)
+          .then(() => {
+            console.log("image deleted");
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
       console.log("post deleted");
     } catch (err) {
       console.log(err.message);

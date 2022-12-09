@@ -30,9 +30,10 @@ const PostForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     let imgUrl = null;
+    let randomId = null;
     try {
       if (ImgFile) {
-        const randomId = nanoid();
+        randomId = nanoid();
         const storageRef = ref(storage, `posts/${randomId}`);
         await uploadBytes(storageRef, fileRef.current.files[0]);
         console.log("umg uploadded");
@@ -42,6 +43,7 @@ const PostForm = () => {
         message: textInput,
         createdAt: serverTimestamp(),
         imgUrl: imgUrl,
+        imgName: randomId,
       });
       setTextInput("");
       setImgFile(null);
