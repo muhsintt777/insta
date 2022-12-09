@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header>
       <div className="header-logo">
-        <h1>INSTA</h1>
+        <h1>Name</h1>
       </div>
       <nav className="header-nav">
         <button>
