@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PostCard.css";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
@@ -11,7 +11,9 @@ import { grey } from "@mui/material/colors";
 import { deleteObject, ref } from "firebase/storage";
 
 const PostCard = ({ message, hashtags, id, image, imageName }) => {
+  const [isOptionBtns, setIsOptionBtns] = useState(true);
   const handleDeletePost = async () => {
+    setIsOptionBtns(false);
     try {
       const docRef = doc(db, "posts", id);
       await deleteDoc(docRef);
@@ -41,11 +43,32 @@ const PostCard = ({ message, hashtags, id, image, imageName }) => {
           <p className="postCard-topSection__name__timePara">2 hours ago</p>
         </div>
         <button
+          onClick={() => setIsOptionBtns(!isOptionBtns)}
           className="postCard-topSection__optionButton"
           type="button"
-          onClick={handleDeletePost}
         >
-          <MoreHorizOutlinedIcon sx={{ color: grey[700] }} />
+          <MoreHorizOutlinedIcon
+            sx={isOptionBtns ? { color: "red" } : { color: grey[700] }}
+          />
+          {isOptionBtns ? (
+            <div
+              style={{
+                background: grey[100],
+                border: `1px solid ${grey[100]}`,
+              }}
+              className="postCard-topSection__options"
+            >
+              <button className="postCard-topSection__updateButton">
+                Update
+              </button>
+              <button
+                onClick={handleDeletePost}
+                className="postCard-topSection__deleteButton"
+              >
+                Delete
+              </button>
+            </div>
+          ) : null}
         </button>
       </div>
       <div className="postCard-description">

@@ -29,6 +29,36 @@
   background-color: rgba(0, 0, 0, 0);
   border: none;
   cursor: pointer;
+  position: relative;
+}
+
+.postCard-topSection__options {
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+  border-radius: 15px;
+  position: absolute;
+  top: 40px;
+  right: -3px;
+}
+.postCard-topSection__options > button {
+  flex: 1;
+  cursor: pointer;
+  border: none;
+  padding: 10px 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.postCard-topSection__updateButton:hover {
+  color: blue;
+  background-color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.postCard-topSection__deleteButton:hover {
+  color: red;
+  background-color: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .postCard-description {
