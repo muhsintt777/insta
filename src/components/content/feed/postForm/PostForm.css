@@ -30,7 +30,7 @@
   border: none;
   cursor: pointer;
 }
-input[type="text"] {
+.postForm-form__postInput {
   width: 100%;
   padding: 12px 15px;
   border: none;

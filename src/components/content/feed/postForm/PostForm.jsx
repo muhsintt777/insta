@@ -70,6 +70,7 @@ const PostForm = () => {
             className="postForm-Form__inputText"
           >
             <input
+              className="postForm-form__postInput"
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
               placeholder="Share something..."
