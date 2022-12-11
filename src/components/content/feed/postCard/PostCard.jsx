@@ -11,7 +11,7 @@ import { grey } from "@mui/material/colors";
 import { deleteObject, ref } from "firebase/storage";
 
 const PostCard = ({ message, hashtags, id, image, imageName }) => {
-  const [isOptionBtns, setIsOptionBtns] = useState(true);
+  const [isOptionBtns, setIsOptionBtns] = useState(false);
   const handleDeletePost = async () => {
     setIsOptionBtns(false);
     try {
