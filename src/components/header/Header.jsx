@@ -6,6 +6,7 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
 import { Avatar, Badge } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -45,10 +46,12 @@ const Header = () => {
         </button>
       </nav>
       <div className="header-profile">
-        <button>
-          <Avatar sx={{ width: 36, height: 36 }} />
-          <span style={{ marginLeft: "7px" }}>Muhsin TT</span>
-        </button>
+        <Link to="/login">
+          <button className="header-profile__btn">
+            <Avatar sx={{ width: 36, height: 36 }} />
+            <span style={{ marginLeft: "7px" }}>Muhsin TT</span>
+          </button>
+        </Link>
       </div>
     </header>
   );
