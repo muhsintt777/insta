@@ -1,0 +1,99 @@
+.signupPage-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.signupPage-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.1);
+}
+
+.signupPage-form label {
+  font-size: medium;
+  margin-bottom: 5px;
+}
+.signupPage-form input {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: medium;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background-color: #f5f5f5;
+}
+.signupPage-form ::placeholder {
+  font-size: small;
+}
+
+.signupPage-form__photoDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.signupPage-form__imgContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.signupPage-form__imgContainer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.signupPage-form__img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.signupPage-form__inputsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupPage-form__inputDiv {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.signupPage-form__buttonDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.signupPage-form__buttonDiv button {
+  padding: 10px 50px;
+  font-size: medium;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.signupPage-form__buttonDiv button:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
