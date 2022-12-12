@@ -46,7 +46,7 @@ const Header = () => {
         </button>
       </nav>
       <div className="header-profile">
-        <Link to="/signup">
+        <Link to="/profile">
           <button className="header-profile__btn">
             <Avatar sx={{ width: 36, height: 36 }} />
             <span style={{ marginLeft: "7px" }}>Muhsin TT</span>

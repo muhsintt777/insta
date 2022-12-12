@@ -8,6 +8,7 @@ import Layout from "./components/layout/Layout";
 import { login, logout } from "./features/userSlice";
 import { auth } from "./firebase/config";
 import LoginPage from "./pages/loginPage/LoginPage";
+import ProfilePage from "./pages/profilePage/ProfilePage";
 import SignupPage from "./pages/signupPage/SignupPage";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Content />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
