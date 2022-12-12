@@ -6,16 +6,17 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
 import { Avatar, Badge } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <header>
       <div className="header-logo">
         <h1>Name</h1>
       </div>
       <nav className="header-nav">
-        <button>
+        <button onClick={() => navigate("/")} className="header-nav__homeBtn">
           <HomeOutlinedIcon fontSize="small" sx={{ color: blue[500] }} />
           <span style={{ marginLeft: "5px" }}>Homepage</span>
         </button>

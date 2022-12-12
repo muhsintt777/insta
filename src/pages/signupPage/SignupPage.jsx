@@ -5,7 +5,7 @@ import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import { blue } from "@mui/material/colors";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db, storage } from "../../firebase/config";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +38,7 @@ const SignupPage = () => {
         name: nameInput,
         place: placeInput,
         profileImgUrl: url,
+        createdAt: serverTimestamp(),
       });
 
       console.log("user created");
