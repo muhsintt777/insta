@@ -3,12 +3,52 @@ import "./SignupPage.css";
 import demoPic from "../../images/demoAvatar.png";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import { blue } from "@mui/material/colors";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db, storage } from "../../firebase/config";
+import { doc, setDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const SignupPage = () => {
   const inputPhotoRef = useRef();
   const [prevImg, setPrevImg] = useState(demoPic);
-  const handleSignup = (e) => {
+  const [nameInput, setNameInput] = useState("");
+  const [placeInput, setPlaceInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+
+  const handleSignup = async (e) => {
     e.preventDefault();
+    setIsSubmitDisabled(true);
+    try {
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        emailInput,
+        passwordInput
+      );
+      const uid = userCred.user.uid;
+
+      const imgRef = ref(storage, `users/${uid}`);
+      await uploadBytesResumable(imgRef, inputPhotoRef.current.files[0]);
+      const url = await getDownloadURL(imgRef);
+
+      await setDoc(doc(db, "users", uid), {
+        name: nameInput,
+        place: placeInput,
+        profileImgUrl: url,
+      });
+
+      console.log("user created");
+      setPrevImg(demoPic);
+      setNameInput("");
+      setPlaceInput("");
+      setPasswordInput("");
+      setEmailInput("");
+      setIsSubmitDisabled(false);
+    } catch (err) {
+      console.log(err.message);
+      setIsSubmitDisabled(false);
+    }
   };
   return (
     <section className="signupPage-container">
@@ -35,6 +75,9 @@ const SignupPage = () => {
           <div className="signupPage-form__inputDiv">
             <label htmlFor="name">Name</label>
             <input
+              minLength="3"
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
               required
               placeholder="eg: John Doe"
               type="text"
@@ -44,6 +87,9 @@ const SignupPage = () => {
           <div className="signupPage-form__inputDiv">
             <label htmlFor="place">Place</label>
             <input
+              minLength="2"
+              value={placeInput}
+              onChange={(e) => setPlaceInput(e.target.value)}
               required
               placeholder="eg: Kochi,KL"
               type="text"
@@ -53,6 +99,8 @@ const SignupPage = () => {
           <div className="signupPage-form__inputDiv">
             <label htmlFor="email">Email</label>
             <input
+              value={emailInput}
+              onChange={(e) => setEmailInput(e.target.value)}
               required
               placeholder="eg: johndoe@gmail.com"
               type="email"
@@ -61,11 +109,22 @@ const SignupPage = () => {
           </div>
           <div className="signupPage-form__inputDiv">
             <label htmlFor="password">Password</label>
-            <input required type="password" name="password" />
+            <input
+              minLength="8"
+              value={passwordInput}
+              onChange={(e) => setPasswordInput(e.target.value)}
+              required
+              type="password"
+              name="password"
+            />
           </div>
         </div>
         <div className="signupPage-form__buttonDiv">
-          <button style={{ background: blue[100] }} type="submit">
+          <button
+            disabled={isSubmitDisabled}
+            style={{ background: blue[100] }}
+            type="submit"
+          >
             Sign Up
           </button>
         </div>
