@@ -1,6 +1,7 @@
 import { blue, grey } from "@mui/material/colors";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/config";
 import "./LoginPage.css";
 
@@ -8,6 +9,8 @@ const LoginPage = () => {
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -19,6 +22,7 @@ const LoginPage = () => {
       console.log(userCred);
       setFormEmail("");
       setFormPassword("");
+      navigate("/");
     } catch (err) {
       setError("User not found");
       console.log(err.message);

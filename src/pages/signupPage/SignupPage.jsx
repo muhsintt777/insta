@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db, storage } from "../../firebase/config";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const inputPhotoRef = useRef();
@@ -16,6 +17,7 @@ const SignupPage = () => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -45,6 +47,7 @@ const SignupPage = () => {
       setPasswordInput("");
       setEmailInput("");
       setIsSubmitDisabled(false);
+      navigate("/");
     } catch (err) {
       console.log(err.message);
       setIsSubmitDisabled(false);
