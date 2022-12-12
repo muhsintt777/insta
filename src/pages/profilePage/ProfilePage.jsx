@@ -32,6 +32,9 @@ const ProfilePage = () => {
           </div>
         </div>
       </section>
+      <section className="profilePage-postsSec">
+        <p>heheheheh</p>
+      </section>
     </div>
   );
 };
