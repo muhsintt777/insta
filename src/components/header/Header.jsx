@@ -7,9 +7,12 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import { blue } from "@mui/material/colors";
 import { Avatar, Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUserInfo } from "../../features/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
+  const userInfo = useSelector(selectUserInfo);
   return (
     <header>
       <div className="header-logo">
@@ -49,8 +52,19 @@ const Header = () => {
       <div className="header-profile">
         <Link to="/profile">
           <button className="header-profile__btn">
-            <Avatar sx={{ width: 36, height: 36 }} />
-            <span style={{ marginLeft: "7px" }}>Muhsin TT</span>
+            <Avatar
+              src={
+                userInfo
+                  ? userInfo.profileImgUrl
+                    ? userInfo.profileImgUrl
+                    : ""
+                  : ""
+              }
+              sx={{ width: 36, height: 36 }}
+            />
+            <span style={{ marginLeft: "7px" }}>
+              {userInfo ? userInfo.name : "Sign In"}
+            </span>
           </button>
         </Link>
       </div>

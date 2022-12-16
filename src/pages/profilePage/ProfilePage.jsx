@@ -26,7 +26,16 @@ const ProfilePage = () => {
     <div className="profilePage-container">
       <section className="profilePage-profileSec">
         <div className="profilePage-profileSec__imgWrapDiv">
-          <img src={userInfo ? userInfo.profileImgUrl : profilePic} alt="img" />
+          <img
+            src={
+              userInfo
+                ? userInfo.profileImgUrl
+                  ? userInfo.profileImgUrl
+                  : profilePic
+                : profilePic
+            }
+            alt="img"
+          />
         </div>
         <div className="profilePage-profileSec__detailesDiv">
           <h3>{userInfo ? userInfo.name : "Name"}</h3>
