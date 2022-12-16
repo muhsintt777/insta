@@ -45,7 +45,12 @@ const SignupPage = () => {
       });
 
       console.log("user created");
-      dispatch(login(userCred));
+      dispatch(
+        login({
+          uid: userCred.uid,
+          email: userCred.email,
+        })
+      );
       setPrevImg(demoPic);
       setNameInput("");
       setPlaceInput("");

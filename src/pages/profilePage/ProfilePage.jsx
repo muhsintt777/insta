@@ -6,10 +6,14 @@ import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlin
 import CakeIcon from "@mui/icons-material/Cake";
 import { blue, green, yellow } from "@mui/material/colors";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
+import { selectUser, selectUserInfo } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
 const ProfilePage = () => {
   const user = useSelector(selectUser);
+  const userInfo = useSelector(selectUserInfo);
+  console.log(userInfo);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,26 +26,35 @@ const ProfilePage = () => {
     <div className="profilePage-container">
       <section className="profilePage-profileSec">
         <div className="profilePage-profileSec__imgWrapDiv">
-          <img src={profilePic} alt="img" />
+          <img src={userInfo ? userInfo.profileImgUrl : profilePic} alt="img" />
         </div>
         <div className="profilePage-profileSec__detailesDiv">
-          <h3>Muhsin TT</h3>
+          <h3>{userInfo ? userInfo.name : "Name"}</h3>
           <div>
             <PlaceOutlinedIcon sx={{ color: green[500] }} fontSize="small" />{" "}
-            <p>Kochi, KL</p>
+            <p>{userInfo ? userInfo.place : "Place"}</p>
           </div>
           <div>
             <ForwardToInboxOutlinedIcon
               sx={{ color: yellow[800] }}
               fontSize="small"
             />
-            <p>muhsintt77@gmail.com</p>
+            <p>{user ? user.email : "Email"}</p>
           </div>
           <div>
             <CakeIcon fontSize="small" sx={{ color: blue[300] }} />
             <p>D O B: _</p>
           </div>
         </div>
+        <button
+          onClick={() => {
+            signOut(auth);
+            navigate("/");
+            console.log("signout");
+          }}
+        >
+          signout
+        </button>
       </section>
       <section className="profilePage-postsSec">
         <p>heheheheh</p>

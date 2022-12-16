@@ -22,7 +22,12 @@ const LoginPage = () => {
         formEmail,
         formPassword
       );
-      dispatch(login(userCred));
+      dispatch(
+        login({
+          uid: userCred.uid,
+          email: userCred.email,
+        })
+      );
       setFormEmail("");
       setFormPassword("");
       navigate("/");
