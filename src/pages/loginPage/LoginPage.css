@@ -31,6 +31,10 @@
   background-color: #f5f5f5;
 }
 
+.loginPage-form p {
+  text-align: center;
+}
+
 .loginPage-form__emailDiv,
 .loginPage-form__passwordDiv {
   display: flex;

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ProfilePage.css";
 import profilePic from "../../images/daniel.jpg";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import CakeIcon from "@mui/icons-material/Cake";
 import { blue, green, yellow } from "@mui/material/colors";
-
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 const ProfilePage = () => {
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
   return (
     <div className="profilePage-container">
       <section className="profilePage-profileSec">

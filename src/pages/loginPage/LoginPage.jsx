@@ -1,7 +1,9 @@
 import { blue, grey } from "@mui/material/colors";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../features/userSlice";
 import { auth } from "../../firebase/config";
 import "./LoginPage.css";
 
@@ -10,6 +12,7 @@ const LoginPage = () => {
   const [formPassword, setFormPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ const LoginPage = () => {
         formEmail,
         formPassword
       );
-      console.log(userCred);
+      dispatch(login(userCred));
       setFormEmail("");
       setFormPassword("");
       navigate("/");
@@ -63,12 +66,15 @@ const LoginPage = () => {
             name="password"
           />
         </div>
-        <p>{error}</p>
+        <p style={{ color: "red" }}>{error}</p>
         <div className="loginPage-form__buttonDiv">
           <button style={{ background: blue[100] }} type="submit">
             Login
           </button>
         </div>
+        <p>
+          New ? <Link to="/signup">Create account ?</Link>
+        </p>
       </form>
     </section>
   );

@@ -8,6 +8,8 @@ import { auth, db, storage } from "../../firebase/config";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/userSlice";
 
 const SignupPage = () => {
   const inputPhotoRef = useRef();
@@ -18,6 +20,7 @@ const SignupPage = () => {
   const [passwordInput, setPasswordInput] = useState("");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -42,6 +45,7 @@ const SignupPage = () => {
       });
 
       console.log("user created");
+      dispatch(login(userCred));
       setPrevImg(demoPic);
       setNameInput("");
       setPlaceInput("");
