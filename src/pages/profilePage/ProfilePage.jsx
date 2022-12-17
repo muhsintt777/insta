@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./ProfilePage.css";
 import profilePic from "../../images/daniel.jpg";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
@@ -15,12 +15,6 @@ const ProfilePage = () => {
   const userInfo = useSelector(selectUserInfo);
   console.log(userInfo);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user, navigate]);
 
   return (
     <div className="profilePage-container">
