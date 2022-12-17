@@ -12,12 +12,17 @@ import { postsColRef, storage } from "../../../../firebase/config";
 import { blue, green, grey, red, yellow } from "@mui/material/colors";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { nanoid } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
   const [textInput, setTextInput] = useState("");
   const [ImgFile, setImgFile] = useState(null);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const fileRef = useRef();
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
   const onPrevImgClick = () => {
     setImgFile(null);
@@ -30,6 +35,10 @@ const PostForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     setIsSubmitDisabled(true);
     let imgUrl = null;
     let randomId = null;
