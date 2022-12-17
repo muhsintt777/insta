@@ -14,7 +14,6 @@ import { auth } from "../../firebase/config";
 const ProfilePage = () => {
   const user = useSelector(selectUser);
   const userInfo = useSelector(selectUserInfo);
-  console.log(userInfo);
   const navigate = useNavigate();
 
   return (

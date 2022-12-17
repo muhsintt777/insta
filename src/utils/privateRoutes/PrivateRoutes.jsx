@@ -5,7 +5,9 @@ import { selectUser } from "../../features/userSlice";
 
 const PrivateRoutes = () => {
   const user = useSelector(selectUser);
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  console.log(user);
+  let userr = true;
+  return userr ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoutes;

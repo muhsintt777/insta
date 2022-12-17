@@ -44,7 +44,6 @@ export const selectUserInfo = (state) => state.user.userInfo;
 export const fetchUserInfo = createAsyncThunk(
   "user/fetchUserInfo",
   async (uid) => {
-    console.log(`uid--${uid}`);
     const docRef = doc(db, "users", uid);
     const response = await getDoc(docRef);
     return { ...response.data() };
