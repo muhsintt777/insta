@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
+import CloseButton from "../../components/closeButton/CloseButton";
 
 const SignupPage = () => {
   const inputPhotoRef = useRef();
@@ -66,6 +67,7 @@ const SignupPage = () => {
   return (
     <section className="signupPage-container">
       <form onSubmit={handleSignup} className="signupPage-form" action="signup">
+        <CloseButton />
         <div className="signupPage-form__photoDiv">
           <div className="signupPage-form__imgContainer">
             <img className="signupPage-form__img" src={prevImg} alt="img" />

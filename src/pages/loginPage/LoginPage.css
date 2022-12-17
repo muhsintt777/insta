@@ -7,17 +7,6 @@
   width: 100%;
 }
 
-.loginPage-form__closeBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  border-radius: 50%;
-  top: -42px;
-  right: -6px;
-  cursor: pointer;
-}
-
 .loginPage-form {
   display: flex;
   flex-direction: column;

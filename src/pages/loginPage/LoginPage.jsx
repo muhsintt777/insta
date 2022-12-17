@@ -1,4 +1,4 @@
-import { blue, grey, red } from "@mui/material/colors";
+import { blue, grey } from "@mui/material/colors";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -6,12 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../features/userSlice";
 import { auth } from "../../firebase/config";
 import "./LoginPage.css";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import CloseButton from "../../components/closeButton/CloseButton";
 
 const LoginPage = () => {
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
-  const [iconHover, setIconHover] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,30 +38,10 @@ const LoginPage = () => {
     }
   };
 
-  const handleMouseEnter = () => {
-    setIconHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIconHover(false);
-  };
-
   return (
     <section style={{ background: grey[100] }} className="loginPage-container">
       <form className="loginPage-form" onSubmit={handleLogin}>
-        <div
-          title="Home"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="loginPage-form__closeBtn"
-        >
-          <Link to="/">
-            <CloseRoundedIcon
-              sx={iconHover ? { color: red[600] } : { color: red[200] }}
-              fontSize="large"
-            />
-          </Link>
-        </div>
+        <CloseButton />
         <div className="loginPage-form__emailDiv">
           <label htmlFor="email">Email</label>
           <input
