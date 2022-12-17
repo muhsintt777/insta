@@ -10,6 +10,7 @@ import { selectUser, selectUserInfo } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
+
 const ProfilePage = () => {
   const user = useSelector(selectUser);
   const userInfo = useSelector(selectUserInfo);

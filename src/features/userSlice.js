@@ -1,8 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const initialState = {
   user: null,
   userInfo: {},
+  userInfoStatus: null,
 };
 
 export const userSlice = createSlice({
@@ -11,21 +14,43 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.user = action.payload;
+      console.log("logging in");
     },
     logout: (state, action) => {
       state.user = null;
-      state.userInfo = null;
+      state.userInfo = {};
+      state.userInfoStatus = null;
       console.log("user logged out");
     },
-    addUserInfo: (state, action) => {
-      state.userInfo = action.payload;
-    },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchUserInfo.pending, (state, action) => {
+        state.userInfoStatus = "loading";
+      })
+      .addCase(fetchUserInfo.fulfilled, (state, action) => {
+        state.userInfoStatus = "succeeded";
+        state.userInfo = action.payload;
+      })
+      .addCase(fetchUserInfo.rejected, (state, action) => {
+        state.userInfoStatus = "failed";
+      });
   },
 });
 
 export const selectUser = (state) => state.user.user;
 export const selectUserInfo = (state) => state.user.userInfo;
 
-export const { login, logout, addUserInfo } = userSlice.actions;
+export const fetchUserInfo = createAsyncThunk(
+  "user/fetchUserInfo",
+  async (uid) => {
+    console.log(`uid--${uid}`);
+    const docRef = doc(db, "users", uid);
+    const response = await getDoc(docRef);
+    return { ...response.data() };
+  }
+);
+
+export const { login, logout } = userSlice.actions;
 
 export default userSlice.reducer;

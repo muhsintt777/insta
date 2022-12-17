@@ -63,7 +63,7 @@ const Header = () => {
               sx={{ width: 36, height: 36 }}
             />
             <span style={{ marginLeft: "7px" }}>
-              {userInfo ? userInfo.name : "Sign In"}
+              {userInfo.name ? userInfo.name : "Sign In"}
             </span>
           </button>
         </Link>
