@@ -13,7 +13,7 @@ import { blue, green, grey, red, yellow } from "@mui/material/colors";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../../features/userSlice";
+import { selectUser, selectUserInfo } from "../../../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
@@ -23,6 +23,7 @@ const PostForm = () => {
   const fileRef = useRef();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
+  const userInfo = useSelector(selectUserInfo);
 
   const onPrevImgClick = () => {
     setImgFile(null);
@@ -73,7 +74,9 @@ const PostForm = () => {
           style={{ borderBottom: `solid 1px ${grey[200]}` }}
           className="postForm-topSection"
         >
-          <Avatar />
+          <Avatar
+            src={userInfo.profileImgUrl ? userInfo.profileImgUrl : null}
+          />
           <div
             style={{ background: grey[100] }}
             className="postForm-Form__inputText"
