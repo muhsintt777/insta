@@ -56,6 +56,7 @@ const PostForm = () => {
         createdAt: serverTimestamp(),
         imgUrl: imgUrl,
         imgName: randomId,
+        uid: user.uid,
       });
       setTextInput("");
       setImgFile(null);

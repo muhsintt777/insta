@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PostCard.css";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { Avatar } from "@mui/material";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db, storage } from "../../../../firebase/config";
 import { grey } from "@mui/material/colors";
 import { deleteObject, ref } from "firebase/storage";
 
-const PostCard = ({ message, hashtags, id, image, imageName }) => {
+const PostCard = ({ message, hashtags, id, image, imageName, uid }) => {
   const [isOptionBtns, setIsOptionBtns] = useState(false);
+  const [postUserInfo, setPostUserInfo] = useState({});
+
+  let date = "Date";
+  if (postUserInfo.createdAt) {
+    const fullDateStr = postUserInfo.createdAt.toDate().toString();
+    const splitDateArr = fullDateStr.split(" ");
+    const shortDateArr = [splitDateArr[2], splitDateArr[1], splitDateArr[3]];
+    date = shortDateArr.join(" ");
+  }
+
   const handleDeletePost = async () => {
     setIsOptionBtns(false);
     try {
@@ -32,17 +42,31 @@ const PostCard = ({ message, hashtags, id, image, imageName }) => {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    const fetchPostUser = async () => {
+      const docRef = doc(db, "users", uid);
+      const response = await getDoc(docRef);
+      setPostUserInfo({ ...response.data() });
+    };
+    fetchPostUser();
+  }, [uid]);
+
   return (
     <article className="postCard-article">
       <div className="postCard-topSection">
         <div className="postCard-topSection__avatar">
-          <Avatar />
+          <Avatar
+            src={postUserInfo.profileImgUrl ? postUserInfo.profileImgUrl : null}
+          />
         </div>
         <div className="postCard-topSection__name">
-          <p className="postCard-topSection__name__namePara">Muhsin TT</p>
-          <p className="postCard-topSection__name__timePara">2 hours ago</p>
+          <p className="postCard-topSection__name__namePara">
+            {postUserInfo.name}
+          </p>
+          <p className="postCard-topSection__name__timePara">{date}</p>
         </div>
-        <button
+        <div
           onClick={() => setIsOptionBtns(!isOptionBtns)}
           className="postCard-topSection__optionButton"
           type="button"
@@ -69,7 +93,7 @@ const PostCard = ({ message, hashtags, id, image, imageName }) => {
               </button>
             </div>
           ) : null}
-        </button>
+        </div>
       </div>
       <div className="postCard-description">
         <p className="postCard-description__messagePara">{message}</p>

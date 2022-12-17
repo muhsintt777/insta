@@ -30,6 +30,7 @@ function App() {
             const docRef = doc(db, "users", user.uid);
             const userInfo = await getDoc(docRef);
             dispatch(addUserInfo({ ...userInfo.data() }));
+            console.log({ ...userInfo.data() });
           } catch (err) {
             console.log(err.message);
           }

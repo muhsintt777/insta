@@ -22,6 +22,7 @@ const Feed = () => {
         hashtags={hashtagsString}
         image={post.imgUrl}
         imageName={post.imgName}
+        uid={post.uid}
       />
     );
   });
@@ -39,6 +40,7 @@ const Feed = () => {
       });
       if (!postsArr.length) {
         setError("Empty... Add new posts");
+        setPosts([]);
         return;
       }
       setPosts([...postsArr]);
