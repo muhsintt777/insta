@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 
 const initialState = {
-  user: null,
+  user: auth.currentUser,
   userInfo: {},
   userInfoStatus: null,
 };

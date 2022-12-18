@@ -20,12 +20,7 @@ function App() {
       if (!user) {
         dispatch(logout());
       } else {
-        dispatch(
-          login({
-            uid: user.uid,
-            email: user.email,
-          })
-        );
+        dispatch(login(user));
         dispatch(fetchUserInfo(user.uid));
       }
     });
