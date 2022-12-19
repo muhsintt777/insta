@@ -22,10 +22,13 @@ const PostCard = ({
   const [isOptionBtns, setIsOptionBtns] = useState(false);
   const [postUserInfo, setPostUserInfo] = useState({});
 
-  const fullDateStr = createdAt.toDate().toString();
-  const splitDateArr = fullDateStr.split(" ");
-  const shortDateArr = [splitDateArr[2], splitDateArr[1], splitDateArr[3]];
-  const date = shortDateArr.join(" ");
+  let date = "Date";
+  if (createdAt) {
+    const fullDateStr = createdAt.toDate().toString();
+    const splitDateArr = fullDateStr.split(" ");
+    const shortDateArr = [splitDateArr[2], splitDateArr[1], splitDateArr[3]];
+    date = shortDateArr.join(" ");
+  }
 
   const handleDeletePost = async () => {
     setIsOptionBtns(false);

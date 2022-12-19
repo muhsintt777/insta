@@ -17,7 +17,8 @@ import { selectUser, selectUserInfo } from "../../../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
-  const [textInput, setTextInput] = useState("");
+  const hashtagRef = useRef();
+  const textInpRef = useRef();
   const [ImgFile, setImgFile] = useState(null);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const fileRef = useRef();
@@ -51,17 +52,33 @@ const PostForm = () => {
         console.log("umg uploadded");
         imgUrl = await getDownloadURL(storageRef);
       }
-      await addDoc(postsColRef, {
-        message: textInput,
+
+      let docObj = {
+        message: textInpRef.current.value,
         createdAt: serverTimestamp(),
         imgUrl: imgUrl,
         imgName: randomId,
         uid: user.uid,
-      });
-      setTextInput("");
+      };
+      if (hashtagRef.current.value) {
+        const splitArr = hashtagRef.current.value.split(" ");
+        const tagsArr = splitArr.map((tagg) => `#${tagg}`);
+        const tagsString = tagsArr.join(" ");
+        docObj = {
+          message: textInpRef.current.value,
+          createdAt: serverTimestamp(),
+          imgUrl: imgUrl,
+          imgName: randomId,
+          uid: user.uid,
+          hashtags: tagsString,
+        };
+      }
+      await addDoc(postsColRef, docObj);
+      textInpRef.current.value = null;
+      hashtagRef.current.value = null;
+      fileRef.current.value = null;
       setImgFile(null);
       setIsSubmitDisabled(false);
-      fileRef.current.value = null;
     } catch (err) {
       console.log(err.message);
       setIsSubmitDisabled(false);
@@ -84,8 +101,7 @@ const PostForm = () => {
           >
             <input
               className="postForm-form__postInput"
-              value={textInput}
-              onChange={(e) => setTextInput(e.target.value)}
+              ref={textInpRef}
               placeholder="Share something..."
               type="text"
               required
@@ -106,6 +122,7 @@ const PostForm = () => {
         </div>
         <div className="postForm-hashtagDiv">
           <input
+            ref={hashtagRef}
             title="Separate tags using space"
             placeholder="eg:- nature travel sea"
             type="text"
