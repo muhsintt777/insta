@@ -46,6 +46,15 @@
   cursor: pointer;
 }
 
+.postForm-hashtagDiv > input {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: #f5f5f5;
+}
+
 .postForm-bottomSection {
   display: flex;
   flex-direction: row;

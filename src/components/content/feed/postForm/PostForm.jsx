@@ -104,6 +104,14 @@ const PostForm = () => {
             />
           ) : null}
         </div>
+        <div className="postForm-hashtagDiv">
+          <input
+            title="Separate tags using space"
+            placeholder="eg:- nature travel sea"
+            type="text"
+            name="hashtag"
+          />
+        </div>
         <div className="postForm-bottomSection">
           <button onClick={handleFileInputClick} type="button">
             <ImageOutlinedIcon sx={{ color: blue[700] }} fontSize="small" />

@@ -13,13 +13,12 @@ const Feed = () => {
   const user = useSelector(selectUser);
 
   const renderedPosts = posts.map((post) => {
-    const hashtagsString = post.hashtags?.join(" ");
     return (
       <PostCard
         key={post.id}
         id={post.id}
         message={post.message}
-        hashtags={hashtagsString}
+        hashtags={post.hashtags}
         image={post.imgUrl}
         imageName={post.imgName}
         uid={post.uid}
