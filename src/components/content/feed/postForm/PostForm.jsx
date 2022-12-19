@@ -21,6 +21,7 @@ const PostForm = () => {
   const textInpRef = useRef();
   const [ImgFile, setImgFile] = useState(null);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const [isHashtags, setIsHashtags] = useState(false);
   const fileRef = useRef();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
@@ -120,15 +121,19 @@ const PostForm = () => {
             />
           ) : null}
         </div>
-        <div className="postForm-hashtagDiv">
-          <input
-            ref={hashtagRef}
-            title="Separate tags using space"
-            placeholder="eg:- nature travel sea"
-            type="text"
-            name="hashtag"
-          />
-        </div>
+
+        {isHashtags ? (
+          <div className="postForm-hashtagDiv">
+            <input
+              ref={hashtagRef}
+              title="Separate tags using space"
+              placeholder="eg:- nature travel sea"
+              type="text"
+              name="hashtag"
+            />
+          </div>
+        ) : null}
+
         <div className="postForm-bottomSection">
           <button onClick={handleFileInputClick} type="button">
             <ImageOutlinedIcon sx={{ color: blue[700] }} fontSize="small" />
@@ -159,7 +164,7 @@ const PostForm = () => {
               Attachment
             </span>
           </button>
-          <button type="button">
+          <button onClick={() => setIsHashtags(!isHashtags)} type="button">
             <TagOutlinedIcon sx={{ color: red[700] }} fontSize="small" />
             <span className="posForm-bottomSection__button__span">Hashtag</span>
           </button>
