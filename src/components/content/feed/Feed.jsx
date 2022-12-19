@@ -23,6 +23,7 @@ const Feed = () => {
         image={post.imgUrl}
         imageName={post.imgName}
         uid={post.uid}
+        createdAt={post.createdAt}
       />
     );
   });

@@ -10,17 +10,22 @@ import { db, storage } from "../../../../firebase/config";
 import { grey } from "@mui/material/colors";
 import { deleteObject, ref } from "firebase/storage";
 
-const PostCard = ({ message, hashtags, id, image, imageName, uid }) => {
+const PostCard = ({
+  message,
+  hashtags,
+  id,
+  image,
+  imageName,
+  uid,
+  createdAt,
+}) => {
   const [isOptionBtns, setIsOptionBtns] = useState(false);
   const [postUserInfo, setPostUserInfo] = useState({});
 
-  let date = "Date";
-  if (postUserInfo.createdAt) {
-    const fullDateStr = postUserInfo.createdAt.toDate().toString();
-    const splitDateArr = fullDateStr.split(" ");
-    const shortDateArr = [splitDateArr[2], splitDateArr[1], splitDateArr[3]];
-    date = shortDateArr.join(" ");
-  }
+  const fullDateStr = createdAt.toDate().toString();
+  const splitDateArr = fullDateStr.split(" ");
+  const shortDateArr = [splitDateArr[2], splitDateArr[1], splitDateArr[3]];
+  const date = shortDateArr.join(" ");
 
   const handleDeletePost = async () => {
     setIsOptionBtns(false);
