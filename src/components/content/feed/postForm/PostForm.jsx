@@ -148,6 +148,10 @@ const PostForm = () => {
               name="file"
             />
           </button>
+          <button onClick={() => setIsHashtags(!isHashtags)} type="button">
+            <TagOutlinedIcon sx={{ color: red[700] }} fontSize="small" />
+            <span className="posForm-bottomSection__button__span">Hashtag</span>
+          </button>
           <button type="button">
             <VideoCameraBackOutlinedIcon
               sx={{ color: green[700] }}
@@ -163,10 +167,6 @@ const PostForm = () => {
             <span className="posForm-bottomSection__button__span">
               Attachment
             </span>
-          </button>
-          <button onClick={() => setIsHashtags(!isHashtags)} type="button">
-            <TagOutlinedIcon sx={{ color: red[700] }} fontSize="small" />
-            <span className="posForm-bottomSection__button__span">Hashtag</span>
           </button>
           <button type="button">
             <AlternateEmailOutlinedIcon
