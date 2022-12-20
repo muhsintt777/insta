@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../features/userSlice";
+import { fetchUserInfo, login } from "../../features/userSlice";
 import { auth } from "../../firebase/config";
 import "./LoginPage.css";
 import CloseButton from "../../components/closeButton/CloseButton";
@@ -24,6 +24,7 @@ const LoginPage = () => {
         formPassword
       );
       dispatch(login(userCred.user));
+      dispatch(fetchUserInfo(userCred.user.uid));
       setFormEmail("");
       setFormPassword("");
       navigate("/");

@@ -17,11 +17,12 @@ function App() {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        dispatch(logout());
-      } else {
+      if (user) {
+        console.log("onAuthChange");
         dispatch(login(user));
         dispatch(fetchUserInfo(user.uid));
+      } else {
+        dispatch(logout());
       }
     });
     return () => {

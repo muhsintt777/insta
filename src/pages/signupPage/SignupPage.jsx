@@ -9,7 +9,7 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../features/userSlice";
+import { fetchUserInfo, login } from "../../features/userSlice";
 import CloseButton from "../../components/closeButton/CloseButton";
 
 const SignupPage = () => {
@@ -47,6 +47,7 @@ const SignupPage = () => {
 
       console.log("user created");
       dispatch(login(userCred.user));
+      dispatch(fetchUserInfo(userCred.user.uid));
       setPrevImg(demoPic);
       setNameInput("");
       setPlaceInput("");
