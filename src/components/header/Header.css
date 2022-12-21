@@ -49,8 +49,18 @@ header {
   cursor: pointer;
 }
 
+.header-profile__leftSpan {
+  display: none;
+}
+
 @media screen and (max-width: 481px) {
   .header-nav {
+    display: none;
+  }
+  .header-profile__leftSpan {
+    display: flex;
+  }
+  .header-profile__rightSpan {
     display: none;
   }
 }

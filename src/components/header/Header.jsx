@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header>
       <div className="header-logo">
-        <h1>Name</h1>
+        <h1>LOGO</h1>
       </div>
       <nav className="header-nav">
         <button onClick={() => navigate("/")} className="header-nav__homeBtn">
@@ -59,6 +59,12 @@ const Header = () => {
       <div className="header-profile">
         {/* <Link to="/profile"> */}
         <button onClick={handleProfileClick} className="header-profile__btn">
+          <span
+            className="header-profile__leftSpan"
+            style={{ marginRight: "7px" }}
+          >
+            {userInfo.name ? userInfo.name : "Sign In"}
+          </span>
           <Avatar
             src={
               userInfo
@@ -69,7 +75,10 @@ const Header = () => {
             }
             sx={{ width: 36, height: 36 }}
           />
-          <span style={{ marginLeft: "7px" }}>
+          <span
+            className="header-profile__rightSpan"
+            style={{ marginLeft: "7px" }}
+          >
             {userInfo.name ? userInfo.name : "Sign In"}
           </span>
         </button>
