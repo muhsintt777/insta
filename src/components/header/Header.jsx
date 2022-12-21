@@ -6,13 +6,20 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
 import { Avatar, Badge } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectUserInfo } from "../../features/userSlice";
+import { selectUser, selectUserInfo } from "../../features/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(selectUserInfo);
+  const user = useSelector(selectUser);
+
+  const handleProfileClick = () => {
+    if (user) {
+      navigate("/profile");
+    }
+  };
   return (
     <header>
       <div className="header-logo">
@@ -50,23 +57,23 @@ const Header = () => {
         </button>
       </nav>
       <div className="header-profile">
-        <Link to="/profile">
-          <button className="header-profile__btn">
-            <Avatar
-              src={
-                userInfo
+        {/* <Link to="/profile"> */}
+        <button onClick={handleProfileClick} className="header-profile__btn">
+          <Avatar
+            src={
+              userInfo
+                ? userInfo.profileImgUrl
                   ? userInfo.profileImgUrl
-                    ? userInfo.profileImgUrl
-                    : ""
                   : ""
-              }
-              sx={{ width: 36, height: 36 }}
-            />
-            <span style={{ marginLeft: "7px" }}>
-              {userInfo.name ? userInfo.name : "Sign In"}
-            </span>
-          </button>
-        </Link>
+                : ""
+            }
+            sx={{ width: 36, height: 36 }}
+          />
+          <span style={{ marginLeft: "7px" }}>
+            {userInfo.name ? userInfo.name : "Sign In"}
+          </span>
+        </button>
+        {/* </Link> */}
       </div>
     </header>
   );
