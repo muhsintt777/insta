@@ -17,8 +17,9 @@ import { selectUser, selectUserInfo } from "../../../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
-  const hashtagRef = useRef();
+  // const hashtagRef = useRef();
   const textInpRef = useRef();
+  const [tagsInp, setTagsInp] = useState("");
   const [ImgFile, setImgFile] = useState(null);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const [isHashtags, setIsHashtags] = useState(false);
@@ -61,8 +62,9 @@ const PostForm = () => {
         imgName: randomId,
         uid: user.uid,
       };
-      if (hashtagRef.current.value) {
-        const splitArr = hashtagRef.current.value.split(" ");
+      if (tagsInp !== "") {
+        // const splitArr = hashtagRef.current.value.split(" ");
+        const splitArr = tagsInp.split(" ");
         const tagsArr = splitArr.map((tagg) => `#${tagg}`);
         const tagsString = tagsArr.join(" ");
         docObj = {
@@ -76,7 +78,8 @@ const PostForm = () => {
       }
       await addDoc(postsColRef, docObj);
       textInpRef.current.value = null;
-      hashtagRef.current.value = null;
+      // hashtagRef.current.value = null;
+      setTagsInp("");
       fileRef.current.value = null;
       setImgFile(null);
       setIsSubmitDisabled(false);
@@ -125,7 +128,9 @@ const PostForm = () => {
         {isHashtags ? (
           <div className="postForm-hashtagDiv">
             <input
-              ref={hashtagRef}
+              value={tagsInp}
+              onChange={(e) => setTagsInp(e.target.value)}
+              // ref={hashtagRef}
               title="Separate tags using space"
               placeholder="eg:- nature travel sea"
               type="text"
