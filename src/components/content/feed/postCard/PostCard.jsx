@@ -80,7 +80,7 @@ const PostCard = ({
           </p>
           <p className="postCard-topSection__name__timePara">{date}</p>
         </div>
-        {uid === currUser.uid ? (
+        {uid === currUser?.uid ? (
           <div
             onClick={() => setIsOptionBtns(!isOptionBtns)}
             className="postCard-topSection__optionButton"
