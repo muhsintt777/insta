@@ -9,6 +9,8 @@ import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db, storage } from "../../../../firebase/config";
 import { grey } from "@mui/material/colors";
 import { deleteObject, ref } from "firebase/storage";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../../features/userSlice";
 
 const PostCard = ({
   message,
@@ -21,6 +23,7 @@ const PostCard = ({
 }) => {
   const [isOptionBtns, setIsOptionBtns] = useState(false);
   const [postUserInfo, setPostUserInfo] = useState({});
+  const currUser = useSelector(selectUser);
 
   let date = "Date";
   if (createdAt) {
@@ -32,6 +35,9 @@ const PostCard = ({
 
   const handleDeletePost = async () => {
     setIsOptionBtns(false);
+    if (uid !== currUser.uid) {
+      return;
+    }
     try {
       const docRef = doc(db, "posts", id);
       await deleteDoc(docRef);
@@ -74,34 +80,36 @@ const PostCard = ({
           </p>
           <p className="postCard-topSection__name__timePara">{date}</p>
         </div>
-        <div
-          onClick={() => setIsOptionBtns(!isOptionBtns)}
-          className="postCard-topSection__optionButton"
-          type="button"
-        >
-          <MoreHorizOutlinedIcon
-            sx={isOptionBtns ? { color: "red" } : { color: grey[700] }}
-          />
-          {isOptionBtns ? (
-            <div
-              style={{
-                background: grey[100],
-                border: `1px solid ${grey[100]}`,
-              }}
-              className="postCard-topSection__options"
-            >
-              <button className="postCard-topSection__updateButton">
-                Update
-              </button>
-              <button
-                onClick={handleDeletePost}
-                className="postCard-topSection__deleteButton"
+        {uid === currUser.uid ? (
+          <div
+            onClick={() => setIsOptionBtns(!isOptionBtns)}
+            className="postCard-topSection__optionButton"
+            type="button"
+          >
+            <MoreHorizOutlinedIcon
+              sx={isOptionBtns ? { color: "red" } : { color: grey[700] }}
+            />
+            {isOptionBtns ? (
+              <div
+                style={{
+                  background: grey[100],
+                  border: `1px solid ${grey[100]}`,
+                }}
+                className="postCard-topSection__options"
               >
-                Delete
-              </button>
-            </div>
-          ) : null}
-        </div>
+                <button className="postCard-topSection__updateButton">
+                  Update
+                </button>
+                <button
+                  onClick={handleDeletePost}
+                  className="postCard-topSection__deleteButton"
+                >
+                  Delete
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
       <div className="postCard-description">
         <p className="postCard-description__messagePara">{message}</p>
