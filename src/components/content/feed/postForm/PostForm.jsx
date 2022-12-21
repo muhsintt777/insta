@@ -3,13 +3,13 @@ import "./PostForm.css";
 import { Avatar } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
-import VideoCameraBackOutlinedIcon from "@mui/icons-material/VideoCameraBackOutlined";
-import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
+// import VideoCameraBackOutlinedIcon from "@mui/icons-material/VideoCameraBackOutlined";
+// import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import { postsColRef, storage } from "../../../../firebase/config";
-import { blue, green, grey, red, yellow } from "@mui/material/colors";
+import { blue, grey, red } from "@mui/material/colors";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
@@ -157,14 +157,14 @@ const PostForm = () => {
             <TagOutlinedIcon sx={{ color: red[700] }} fontSize="small" />
             <span className="posForm-bottomSection__button__span">Hashtag</span>
           </button>
-          <button type="button">
+          {/* <button type="button">
             <VideoCameraBackOutlinedIcon
               sx={{ color: green[700] }}
               fontSize="small"
             />
             <span className="posForm-bottomSection__button__span">Video</span>
-          </button>
-          <button type="button">
+          </button> */}
+          {/* <button type="button">
             <AttachFileOutlinedIcon
               sx={{ color: yellow[700] }}
               fontSize="small"
@@ -172,7 +172,7 @@ const PostForm = () => {
             <span className="posForm-bottomSection__button__span">
               Attachment
             </span>
-          </button>
+          </button> */}
           <button type="button">
             <AlternateEmailOutlinedIcon
               sx={{ color: grey[700] }}
