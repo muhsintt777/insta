@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
@@ -6,17 +6,29 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
 import { Avatar, Badge } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
 import HeaderProfileOptions from "./headerProfileOptions/HeaderProfileOptions";
 
 const Header = () => {
+  const [isOptions, setIsOptions] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const userInfo = useSelector(selectUserInfo);
   const user = useSelector(selectUser);
 
-  const handleProfileClick = () => {};
+  const handleProfileClick = () => {
+    if (location.pathname === "/profile") {
+      return;
+    }
+    if (user) {
+      setIsOptions(!isOptions);
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <header>
       <div className="header-logo">
@@ -78,8 +90,9 @@ const Header = () => {
             {userInfo.name ? userInfo.name : "Sign In"}
           </span>
         </button>
-
-        <HeaderProfileOptions />
+        {isOptions ? (
+          <HeaderProfileOptions setIsOptions={setIsOptions} />
+        ) : null}
       </div>
     </header>
   );
