@@ -54,7 +54,21 @@ header {
   display: none;
 }
 
+/* mobile */
 @media screen and (max-width: 481px) {
+  .header-nav {
+    display: none;
+  }
+  .header-profile__leftSpan {
+    display: flex;
+  }
+  .header-profile__rightSpan {
+    display: none;
+  }
+}
+
+/* tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .header-nav {
     display: none;
   }

@@ -22,8 +22,17 @@
   background-color: white;
 }
 
+/* MOBILE */
 @media screen and (max-width: 481px) {
   .bottomNav {
     display: flex;
+  }
+}
+
+/* TABLETS */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .bottomNav {
+    display: flex;
+    justify-content: space-around;
   }
 }
