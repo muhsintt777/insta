@@ -2,6 +2,7 @@
   max-width: 650px;
 }
 
+/* MOBILE */
 @media screen and (max-width: 481px) {
   .feed-container {
     width: 100%;

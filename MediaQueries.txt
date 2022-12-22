@@ -2,10 +2,26 @@ MOBILE
 
 BottomNav.css
 Header.css
+Feed.css
 
 **************************
+
 
 TABLETS
 
 BottomNav.css
 Header.css
+
+**************************
+
+
+SMALL SCREEN
+
+Header.css
+
+*************************
+
+
+USE-MEDIA-QUERY
+
+Header.jsx

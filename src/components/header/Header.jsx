@@ -5,7 +5,7 @@ import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithou
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
-import { Avatar, Badge } from "@mui/material";
+import { Avatar, Badge, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
@@ -16,6 +16,9 @@ const Header = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(selectUserInfo);
   const user = useSelector(selectUser);
+  const smallScreen = useMediaQuery(
+    "(min-width: 768px) and (max-width: 1024px)"
+  );
 
   const handleProfileClick = () => {
     if (user) {
@@ -32,29 +35,38 @@ const Header = () => {
       </div>
       <nav className="header-nav">
         <button onClick={() => navigate("/")} className="header-nav__homeBtn">
-          <HomeOutlinedIcon fontSize="small" sx={{ color: blue[500] }} />
-          <span style={{ marginLeft: "5px" }}>Homepage</span>
+          <HomeOutlinedIcon
+            fontSize={smallScreen ? "medium" : "small"}
+            sx={{ color: blue[500] }}
+          />
+          <span className="header-nav__span">Homepage</span>
         </button>
         <button>
           <ConnectWithoutContactOutlinedIcon
-            fontSize="small"
+            fontSize={smallScreen ? "medium" : "small"}
             sx={{ color: blue[500] }}
           />
-          <span style={{ marginLeft: "5px" }}>Connections</span>
+          <span className="header-nav__span">Connections</span>
         </button>
         <button>
-          <ChatOutlinedIcon fontSize="small" sx={{ color: blue[500] }} />
-          <span style={{ marginLeft: "5px" }}>Messages</span>
+          <ChatOutlinedIcon
+            fontSize={smallScreen ? "medium" : "small"}
+            sx={{ color: blue[500] }}
+          />
+          <span className="header-nav__span">Messages</span>
         </button>
         <button>
           <NotificationsNoneOutlinedIcon
-            fontSize="small"
+            fontSize={smallScreen ? "medium" : "small"}
             sx={{ color: blue[500] }}
           />
 
           <Badge badgeContent={4} color="secondary">
             <div>
-              <span style={{ marginLeft: "5px", marginRight: "10px" }}>
+              <span
+                className="header-nav__span"
+                style={{ marginRight: "10px" }}
+              >
                 Notifications
               </span>
             </div>
@@ -63,10 +75,7 @@ const Header = () => {
       </nav>
       <div className="header-profile">
         <button onClick={handleProfileClick} className="header-profile__btn">
-          <span
-            className="header-profile__leftSpan"
-            style={{ marginRight: "7px" }}
-          >
+          <span className="header-profile__leftSpan">
             {userInfo.name ? userInfo.name : "Sign In"}
           </span>
           <Avatar
@@ -79,10 +88,7 @@ const Header = () => {
             }
             sx={{ width: 36, height: 36 }}
           />
-          <span
-            className="header-profile__rightSpan"
-            style={{ marginLeft: "7px" }}
-          >
+          <span className="header-profile__rightSpan">
             {userInfo.name ? userInfo.name : "Sign In"}
           </span>
         </button>
