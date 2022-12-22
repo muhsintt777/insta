@@ -39,6 +39,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .header-profile__btn {
   background-color: white;

@@ -9,6 +9,7 @@ import { Avatar, Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
+import HeaderProfileOptions from "./headerProfileOptions/HeaderProfileOptions";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,9 +17,7 @@ const Header = () => {
   const user = useSelector(selectUser);
 
   const handleProfileClick = () => {
-    if (user) {
-      navigate("/profile");
-    }
+    navigate("/profile");
   };
   return (
     <header>
@@ -83,6 +82,7 @@ const Header = () => {
           </span>
         </button>
         {/* </Link> */}
+        <HeaderProfileOptions />
       </div>
     </header>
   );
