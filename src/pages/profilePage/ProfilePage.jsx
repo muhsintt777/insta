@@ -7,9 +7,7 @@ import CakeIcon from "@mui/icons-material/Cake";
 import { blue, green, yellow } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
-import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth, postsColRef } from "../../firebase/config";
+import { postsColRef } from "../../firebase/config";
 import { getDocs, query, where } from "firebase/firestore";
 import PostCard from "../../components/content/feed/postCard/PostCard";
 
@@ -17,7 +15,6 @@ const ProfilePage = () => {
   const [myPosts, setMyPosts] = useState([]);
   const user = useSelector(selectUser);
   const userInfo = useSelector(selectUserInfo);
-  const navigate = useNavigate();
 
   const renderedMyposts = myPosts.map((post) => {
     return (
@@ -80,15 +77,6 @@ const ProfilePage = () => {
             <p>D O B: _</p>
           </div>
         </div>
-        <button
-          onClick={() => {
-            signOut(auth);
-            navigate("/");
-            console.log("signout");
-          }}
-        >
-          signout
-        </button>
       </section>
       <section className="profilePage-postsSec">{renderedMyposts}</section>
     </div>
