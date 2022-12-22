@@ -30,7 +30,7 @@ const HeaderProfileOptions = ({ setIsOptions }) => {
 
       <button onClick={handleSignOut} type="button">
         <LogoutOutlinedIcon sx={{ color: blue[500] }} />
-        <span className="headerProfileOptions-span">Sign Out</span>
+        <span className="headerProfileOptions-span redColor">Sign Out</span>
       </button>
     </nav>
   );
