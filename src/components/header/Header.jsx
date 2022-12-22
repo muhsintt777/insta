@@ -16,9 +16,7 @@ const Header = () => {
   const userInfo = useSelector(selectUserInfo);
   const user = useSelector(selectUser);
 
-  const handleProfileClick = () => {
-    navigate("/profile");
-  };
+  const handleProfileClick = () => {};
   return (
     <header>
       <div className="header-logo">
@@ -56,7 +54,6 @@ const Header = () => {
         </button>
       </nav>
       <div className="header-profile">
-        {/* <Link to="/profile"> */}
         <button onClick={handleProfileClick} className="header-profile__btn">
           <span
             className="header-profile__leftSpan"
@@ -81,7 +78,7 @@ const Header = () => {
             {userInfo.name ? userInfo.name : "Sign In"}
           </span>
         </button>
-        {/* </Link> */}
+
         <HeaderProfileOptions />
       </div>
     </header>
