@@ -27,6 +27,8 @@ const ProfilePage = () => {
         imageName={post.imgName}
         uid={post.uid}
         createdAt={post.createdAt}
+        setMyPosts={setMyPosts}
+        myPosts={myPosts}
       />
     );
   });

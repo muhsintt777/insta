@@ -20,6 +20,8 @@ const PostCard = ({
   imageName,
   uid,
   createdAt,
+  setMyPosts,
+  myPosts,
 }) => {
   const [isOptionBtns, setIsOptionBtns] = useState(false);
   const [postUserInfo, setPostUserInfo] = useState({});
@@ -32,6 +34,11 @@ const PostCard = ({
     const shortDateArr = [splitDateArr[2], splitDateArr[1], splitDateArr[3]];
     date = shortDateArr.join(" ");
   }
+
+  const deleteMyPost = () => {
+    const newArr = myPosts.filter((post) => post.id !== id);
+    setMyPosts(newArr);
+  };
 
   const handleDeletePost = async () => {
     setIsOptionBtns(false);
@@ -50,6 +57,9 @@ const PostCard = ({
           .catch((err) => {
             console.log(err.message);
           });
+      }
+      if (myPosts && setMyPosts) {
+        deleteMyPost();
       }
       console.log("post deleted");
     } catch (err) {
