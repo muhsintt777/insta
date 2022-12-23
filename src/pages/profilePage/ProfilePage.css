@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #f5f5f5;
   width: 100%;
+  min-width: 330px;
   min-height: 100vh;
   padding-top: 70px;
   padding-left: 10px;
@@ -23,7 +24,7 @@
 .profilePage-profileSec__imgWrapDiv {
   width: 150px;
   height: 150px;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 .profilePage-profileSec__imgWrapDiv img {
   width: 100%;
@@ -33,6 +34,9 @@
   border-radius: 50%;
 }
 
+.profilePage-profileSec__detailesDiv {
+  flex: 1;
+}
 .profilePage-profileSec__detailesDiv div {
   display: flex;
   margin-top: 10px;
@@ -40,6 +44,7 @@
 }
 .profilePage-profileSec__detailesDiv div > p {
   margin-left: 10px;
+  width: 100%;
   color: #424242;
 }
 
@@ -47,4 +52,13 @@
   width: 100%;
   max-width: 650px;
   margin-top: 30px;
+}
+
+@media screen and (max-width: 481px) {
+  .profilePage-profileSec__imgWrapDiv {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+  }
 }

@@ -3,6 +3,7 @@ MOBILE
 BottomNav.css
 Header.css
 Feed.css
+ProfilePage.css
 
 **************************
 
