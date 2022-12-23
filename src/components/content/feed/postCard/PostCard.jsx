@@ -58,9 +58,11 @@ const PostCard = ({
             console.log(err.message);
           });
       }
+
       if (myPosts && setMyPosts) {
         deleteMyPost();
       }
+
       console.log("post deleted");
     } catch (err) {
       console.log(err.message);

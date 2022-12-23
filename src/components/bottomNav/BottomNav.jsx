@@ -6,6 +6,7 @@ import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
 import { blue } from "@mui/material/colors";
+import { Badge } from "@mui/material";
 
 const BottomNav = () => {
   return (
@@ -22,7 +23,9 @@ const BottomNav = () => {
       </Link>
       <Link>
         <button type="button">
-          <NotificationsNoneOutlinedIcon sx={{ color: blue[500] }} />
+          <Badge badgeContent={4} color="secondary">
+            <NotificationsNoneOutlinedIcon sx={{ color: blue[500] }} />
+          </Badge>
         </button>
       </Link>
       <Link>
