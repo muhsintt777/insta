@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
 import HeaderProfileOptions from "./headerProfileOptions/HeaderProfileOptions";
+import Logo from "../../assets/Logo";
 
 const Header = () => {
   const [isOptions, setIsOptions] = useState(false);
@@ -31,7 +32,8 @@ const Header = () => {
   return (
     <header>
       <div className="header-logo">
-        <h1>LOGO</h1>
+        {/* <h1>LOGO</h1> */}
+        <Logo />
       </div>
       <nav className="header-nav">
         <button onClick={() => navigate("/")} className="header-nav__homeBtn">

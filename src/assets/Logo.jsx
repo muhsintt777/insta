@@ -3,9 +3,9 @@ import React from "react";
 const Logo = () => {
   return (
     <svg
-      width="316.41599999999994"
+      width="50%"
       viewBox="2.490000009536743 -37.84000015258789 148.48130798339844 39.29999923706055"
-      height="83.75943192506807"
+      height="100%"
       data-palette-color="#233565"
     >
       <path
