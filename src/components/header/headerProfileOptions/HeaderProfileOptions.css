@@ -25,3 +25,9 @@
 .headerProfileOptions-span {
   margin-left: 10px;
 }
+
+@media screen and (max-width: 860px) {
+  .headerProfileOptions {
+    right: 0px;
+  }
+}
