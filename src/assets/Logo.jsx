@@ -3,7 +3,7 @@ import React from "react";
 const Logo = () => {
   return (
     <svg
-      width="50%"
+      width="90px"
       viewBox="2.490000009536743 -37.84000015258789 148.48130798339844 39.29999923706055"
       height="100%"
       data-palette-color="#233565"
@@ -13,7 +13,7 @@ const Logo = () => {
         opacity="1"
         transform="matrix(1,0,0,1,0,0)"
         fill="#233565"
-        class="undefined-text-0"
+        // class="undefined-text-0"
         data-fill-palette-color="primary"
         id="text-0"
       ></path>
