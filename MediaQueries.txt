@@ -30,4 +30,6 @@ Header.jsx
 ******************
 
 
+MAX-WIDTH: 860PX
 
+HeaderProfileOptions.css
