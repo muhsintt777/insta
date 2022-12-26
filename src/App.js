@@ -23,6 +23,7 @@ function App() {
         dispatch(fetchUserInfo(user.uid));
       } else {
         dispatch(logout());
+        console.log("onauth logout");
       }
     });
     return () => {
