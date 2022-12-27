@@ -1,35 +1,22 @@
 MOBILE
-
 BottomNav.css
 Header.css
 Feed.css
 ProfilePage.css
-
 **************************
-
 
 TABLETS
-
 BottomNav.css
 Header.css
-
 **************************
 
-
 SMALL SCREEN
-
 Header.css
-
 *************************
 
-
 USE-MEDIA-QUERY
-
 Header.jsx
-
 ******************
 
-
 MAX-WIDTH: 860PX
-
 HeaderProfileOptions.css
