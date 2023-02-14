@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./PostCard.css";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
@@ -25,7 +25,25 @@ const PostCard = ({
 }) => {
   const [isOptionBtns, setIsOptionBtns] = useState(false);
   const [postUserInfo, setPostUserInfo] = useState({});
+  const optionModalRef = useRef();
+  const optionButtonRef = useRef();
   const currUser = useSelector(selectUser);
+
+  //posts options modal window event
+  const eventClick = (e) => {
+    if (
+      e.target !== optionButtonRef.current &&
+      e.target !== optionModalRef.current
+    ) {
+      setIsOptionBtns(false);
+    }
+  };
+  if (isOptionBtns) {
+    window.addEventListener("click", eventClick);
+    console.log("Event listner added");
+  } else {
+    window.removeEventListener("click", eventClick);
+  }
 
   let date = "Date";
   if (createdAt) {
@@ -42,6 +60,7 @@ const PostCard = ({
 
   const handleDeletePost = async () => {
     setIsOptionBtns(false);
+    window.removeEventListener("click", eventClick);
     if (uid !== currUser.uid) {
       return;
     }
@@ -94,15 +113,17 @@ const PostCard = ({
         </div>
         {uid === currUser?.uid ? (
           <div
-            onClick={() => setIsOptionBtns(!isOptionBtns)}
+            onClick={() => setIsOptionBtns(true)}
             className="postCard-topSection__optionButton"
             type="button"
           >
             <MoreHorizOutlinedIcon
+              ref={optionButtonRef}
               sx={isOptionBtns ? { color: "red" } : { color: grey[700] }}
             />
             {isOptionBtns ? (
               <div
+                ref={optionModalRef}
                 style={{
                   background: grey[100],
                   border: `1px solid ${grey[100]}`,

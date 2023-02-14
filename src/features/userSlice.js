@@ -14,13 +14,11 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.user = action.payload;
-      console.log("logging in");
     },
     logout: (state, action) => {
       state.user = null;
       state.userInfo = {};
       state.userInfoStatus = null;
-      console.log("user logged out");
     },
   },
   extraReducers(builder) {

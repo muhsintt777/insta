@@ -18,12 +18,10 @@ function App() {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("onAuthChange");
         dispatch(login(user));
         dispatch(fetchUserInfo(user.uid));
       } else {
         dispatch(logout());
-        console.log("onauth logout");
       }
     });
     return () => {
@@ -35,7 +33,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Content />} />
-
           <Route element={<PrivateRoutes />}>
             <Route path="profile" element={<ProfilePage />} />
           </Route>
