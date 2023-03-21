@@ -10,6 +10,7 @@ import { auth } from "./firebase/config";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import SignupPage from "./pages/signupPage/SignupPage";
+import NotificationsPage from "./pages/notificationsPage/NotificationsPage";
 import PrivateRoutes from "./utils/privateRoutes/PrivateRoutes";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route index element={<Content />} />
           <Route element={<PrivateRoutes />}>
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="notifications" element={<NotificationsPage />} />
           </Route>
         </Route>
         <Route path="login" element={<LoginPage />} />

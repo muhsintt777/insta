@@ -1,0 +1,7 @@
+.notificationsPage {
+    display: flex;
+  justify-content: center;
+  padding: 70px 10px;
+  min-height: 100vh;
+  width: 100%;
+}
