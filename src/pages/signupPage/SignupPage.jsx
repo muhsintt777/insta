@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./SignupPage.css";
-import demoPic from "../../images/demoAvatar.png";
+import demoPic from "../../assets/images/demoAvatar.png";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import { blue } from "@mui/material/colors";
 import { createUserWithEmailAndPassword } from "firebase/auth";

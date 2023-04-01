@@ -10,7 +10,7 @@ import { blue } from "@mui/material/colors";
 import { Avatar, Badge, useMediaQuery } from "@mui/material";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
 import HeaderProfileOptions from "./headerProfileOptions/HeaderProfileOptions";
-import Logo from "../../assets/Logo";
+import Logo from "../../assets/icons/Logo";
 
 const Header = () => {
   const [isOptions, setIsOptions] = useState(false);

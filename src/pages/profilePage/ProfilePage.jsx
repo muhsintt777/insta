@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
 import "./ProfilePage.css";
-import profilePic from "../../images/daniel.jpg";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { postsColRef } from "../../firebase/config";
+import { getDocs, query, where } from "firebase/firestore";
+import { selectUser, selectUserInfo } from "../../features/userSlice";
+import { blue, green, yellow } from "@mui/material/colors";
+import profilePic from "../../assets/images/daniel.jpg";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import CakeIcon from "@mui/icons-material/Cake";
-import { blue, green, yellow } from "@mui/material/colors";
-import { useSelector } from "react-redux";
-import { selectUser, selectUserInfo } from "../../features/userSlice";
-import { postsColRef } from "../../firebase/config";
-import { getDocs, query, where } from "firebase/firestore";
 import PostCard from "../../components/content/feed/postCard/PostCard";
 
 const ProfilePage = () => {
