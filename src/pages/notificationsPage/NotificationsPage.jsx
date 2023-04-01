@@ -1,5 +1,5 @@
-import { grey } from "@mui/material/colors";
 import "./NotificationsPage.css";
+import { grey } from "@mui/material/colors";
 
 const NotificationsPage = () => {
   return (

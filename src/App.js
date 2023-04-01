@@ -12,6 +12,7 @@ import ProfilePage from "./pages/profilePage/ProfilePage";
 import SignupPage from "./pages/signupPage/SignupPage";
 import NotificationsPage from "./pages/notificationsPage/NotificationsPage";
 import PrivateRoutes from "./utils/privateRoutes/PrivateRoutes";
+import NoRoutePage from "./pages/noRoutePage/NoRoutePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
         </Route>
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
+        <Route path="*" element={<NoRoutePage />} />
       </Routes>
     </div>
   );
