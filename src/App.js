@@ -1,12 +1,12 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/config";
+import { fetchUserInfo, login, logout } from "./features/userSlice";
 import Content from "./components/content/Content";
 import Layout from "./components/layout/Layout";
-import { fetchUserInfo, login, logout } from "./features/userSlice";
-import { auth } from "./firebase/config";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import SignupPage from "./pages/signupPage/SignupPage";

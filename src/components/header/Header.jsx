@@ -1,13 +1,13 @@
-import React, { useState } from "react";
 import "./Header.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { blue } from "@mui/material/colors";
 import { Avatar, Badge, useMediaQuery } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
 import HeaderProfileOptions from "./headerProfileOptions/HeaderProfileOptions";
 import Logo from "../../assets/Logo";
@@ -57,7 +57,7 @@ const Header = () => {
           />
           <span className="header-nav__span">Messages</span>
         </button>
-        <button>
+        <button onClick={() => navigate("/notifications")}>
           <NotificationsNoneOutlinedIcon
             fontSize={smallScreen ? "medium" : "small"}
             sx={{ color: blue[500] }}
