@@ -13,6 +13,7 @@ import SignupPage from "./pages/signupPage/SignupPage";
 import NotificationsPage from "./pages/notificationsPage/NotificationsPage";
 import PrivateRoutes from "./utils/privateRoutes/PrivateRoutes";
 import NoRoutePage from "./pages/noRoutePage/NoRoutePage";
+import MessagesPage from "./pages/messagesPage/MessagesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="profile" element={<ProfilePage />} />
             <Route path="notifications" element={<NotificationsPage />} />
+            <Route path="messages" element={<MessagesPage />} />
           </Route>
         </Route>
         <Route path="login" element={<LoginPage />} />

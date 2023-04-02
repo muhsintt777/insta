@@ -50,7 +50,7 @@ const Header = () => {
           />
           <span className="header-nav__span">Connections</span>
         </button>
-        <button>
+        <button onClick={() => navigate("/messages")}>
           <ChatOutlinedIcon
             fontSize={smallScreen ? "medium" : "small"}
             sx={{ color: blue[500] }}

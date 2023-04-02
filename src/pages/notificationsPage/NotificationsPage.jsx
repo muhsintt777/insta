@@ -1,9 +1,8 @@
-import "./NotificationsPage.css";
-import { grey } from "@mui/material/colors";
+import "./NotificationsPageStyle.css";
 
 const NotificationsPage = () => {
   return (
-    <section style={{ background: grey[100] }} className="notificationsPage">
+    <section className="notificationsPage">
       <h1>Coming Soon</h1>
     </section>
   );
