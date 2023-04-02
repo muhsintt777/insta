@@ -29,8 +29,8 @@ header {
   justify-content: center;
   flex: 1;
   border: none;
-  background-color: white;
   cursor: pointer;
+  background-color: white;
 }
 
 .header-nav__span {

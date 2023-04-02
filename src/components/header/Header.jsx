@@ -43,7 +43,7 @@ const Header = () => {
           />
           <span className="header-nav__span">Homepage</span>
         </button>
-        <button>
+        <button onClick={() => navigate("/connection")}>
           <ConnectWithoutContactOutlinedIcon
             fontSize={smallScreen ? "medium" : "small"}
             sx={{ color: blue[500] }}
