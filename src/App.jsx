@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/config";
 import { fetchUserInfo, login, logout } from "./features/userSlice";
-import Content from "./components/content/Content";
+import Content from "./pages/homePage/content/Content";
 import Layout from "./components/layout/Layout";
 import LoginPage from "./pages/loginPage/LoginPage";
 import ProfilePage from "./pages/profilePage/ProfilePage";
