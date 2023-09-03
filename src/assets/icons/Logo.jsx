@@ -13,7 +13,6 @@ const Logo = () => {
         opacity="1"
         transform="matrix(1,0,0,1,0,0)"
         fill="#233565"
-        // class="undefined-text-0"
         data-fill-palette-color="primary"
         id="text-0"
       ></path>
