@@ -9,7 +9,7 @@ import profilePic from "../../assets/images/daniel.jpg";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import CakeIcon from "@mui/icons-material/Cake";
-import PostCard from "../homePage/content/feed/postCard/PostCard";
+import PostCard from "../homePage/feed/postCard/PostCard";
 
 const ProfilePage = () => {
   const [myPosts, setMyPosts] = useState([]);

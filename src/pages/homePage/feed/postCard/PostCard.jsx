@@ -6,11 +6,11 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { Avatar } from "@mui/material";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
-import { db, storage } from "../../../../../firebase/config";
+import { db, storage } from "../../../../firebase/config"; 
 import { grey } from "@mui/material/colors";
 import { deleteObject, ref } from "firebase/storage";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../../../features/userSlice";
+import { selectUser } from "../../../../features/userSlice";
 
 const PostCard = ({
   message,

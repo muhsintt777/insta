@@ -1,7 +1,7 @@
 import { grey } from "@mui/material/colors";
 import React from "react";
 import "./Content.css";
-import Feed from "./feed/Feed";
+import Feed from "../feed/Feed";
 
 const Content = () => {
   return (

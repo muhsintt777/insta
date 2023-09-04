@@ -1,5 +1,6 @@
 import "./index.css";
 import ReactDOM from "react-dom/client";
+import { StrictMode } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";

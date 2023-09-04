@@ -3,21 +3,18 @@ import "./PostForm.css";
 import { Avatar } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
-// import VideoCameraBackOutlinedIcon from "@mui/icons-material/VideoCameraBackOutlined";
-// import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsColRef, storage } from "../../../../../firebase/config";
+import { postsColRef, storage } from "../../../../firebase/config";
 import { blue, grey, red } from "@mui/material/colors";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { selectUser, selectUserInfo } from "../../../../../features/userSlice";
+import { selectUser, selectUserInfo } from "../../../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
-  // const hashtagRef = useRef();
   const textInpRef = useRef();
   const [tagsInp, setTagsInp] = useState("");
   const [ImgFile, setImgFile] = useState(null);
