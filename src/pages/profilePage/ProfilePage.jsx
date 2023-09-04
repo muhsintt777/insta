@@ -1,7 +1,7 @@
 import "./ProfilePage.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { postsColRef } from "../../firebase/config";
+import { postsColRef } from "../../configs/firebase";
 import { getDocs, query, where } from "firebase/firestore";
 import { selectUser, selectUserInfo } from "../../features/userSlice";
 import { blue, green, yellow } from "@mui/material/colors";

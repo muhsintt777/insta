@@ -4,7 +4,7 @@ import demoPic from "../../assets/images/demoAvatar.png";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import { blue } from "@mui/material/colors";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db, storage } from "../../firebase/config";
+import { auth, db, storage } from "../../configs/firebase";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";

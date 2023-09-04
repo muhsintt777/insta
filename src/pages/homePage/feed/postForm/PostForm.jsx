@@ -6,7 +6,7 @@ import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsColRef, storage } from "../../../../firebase/config";
+import { postsColRef, storage } from "../../../../configs/firebase";
 import { blue, grey, red } from "@mui/material/colors";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { nanoid } from "@reduxjs/toolkit";

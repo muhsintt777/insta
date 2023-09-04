@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchUserInfo, login } from "../../features/userSlice";
-import { auth } from "../../firebase/config";
+import { auth } from "../../configs/firebase";
 import "./LoginPage.css";
 import CloseButton from "../../components/closeButton/CloseButton";
 

@@ -5,7 +5,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { blue } from "@mui/material/colors";
 import { signOut } from "firebase/auth";
-import { auth } from "../../../firebase/config";
+import { auth } from "../../../configs/firebase";
 
 const HeaderProfileOptions = ({ setIsOptions }) => {
   const location = useLocation();

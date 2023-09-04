@@ -2,7 +2,7 @@ import { onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../features/userSlice";
-import { postsColRef } from "../../../firebase/config";
+import { postsColRef } from "../../../configs/firebase";
 import "./Feed.css";
 import PostCard from "./postCard/PostCard";
 import PostForm from "./postForm/PostForm";

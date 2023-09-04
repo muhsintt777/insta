@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/config";
+import { auth } from "./configs/firebase";
 import { fetchUserInfo, login, logout } from "./features/userSlice";
 import Content from "./pages/homePage/content/Content";
 import Layout from "./components/layout/Layout";
