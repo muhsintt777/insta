@@ -5,9 +5,13 @@ import { Header } from "components/header/header";
 export const PrimaryLayout = () => {
   return (
     <div className={styles.container}>
-      <Header />
-      <p>primary layout</p>
-      <Outlet />
+      <div className={styles.header}>
+        <Header />
+      </div>
+      <div className={styles.middle}>
+        <div className={styles.nav}>sefefef</div>
+        <Outlet />
+      </div>
     </div>
   );
 };
