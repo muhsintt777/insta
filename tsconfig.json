@@ -23,10 +23,10 @@
     "baseUrl": "./src",
     "paths": {
       "src/*": ["./*"],
-      "components/*": ["components/*"],
-      "configs/*": ["configs/*"],
-      "assets/*": ["assets/*"],
-      "utils/*": ["utils/*"]
+      "assets/*": ["./src/assets/*"],
+      "components/*": ["./components/*"],
+      "configs/*": ["./configs/*"],
+      "utils/*": ["./utils/*"]
     }
   },
   "include": ["src"],
