@@ -10,7 +10,9 @@ export const PrimaryLayout = () => {
       </div>
       <div className={styles.middle}>
         <div className={styles.nav}>sefefef</div>
-        <Outlet />
+        <div className={styles.outlet}>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
