@@ -1,8 +1,8 @@
-import { InputField } from "components/input-field/input-field";
 import styles from "./loginStyle.module.scss";
-import { TitleHead } from "./title-head";
 import { ChangeEvent, useState } from "react";
+import { InputField } from "components/input-field/input-field";
 import { PrimaryButton } from "components/primary-button/primary-button";
+import { TitleHead } from "./title-head";
 
 interface EmailInpType {
   value: string;
