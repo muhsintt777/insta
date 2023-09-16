@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  > label {
+    margin-bottom: 5px;
+    font-size: 0.75rem;
+  }
+
+  > input {
+    width: 100%;
+    font-size: 0.7rem;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    padding: 10px;
+    background-color: var(--clr-bg-primary);
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: var(--clr-lightGrey);
+    }
+  }
+
+  > p {
+    margin-top: 5px;
+    font-size: 0.65rem;
+    color: red;
+    transition: all 0.2s;
+  }
+}
+
+.errorMessageHide {
+  display: none;
+}
+
+.errorMessageShow {
+  display: block;
+}
