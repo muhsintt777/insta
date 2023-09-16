@@ -4,7 +4,7 @@ import styles from "./input-fieldStyle.module.scss";
 interface InputFieldProps {
   placeholder: string;
   label: string;
-  type: "text" | "number";
+  type: "text" | "number" | "password";
   name: string;
   value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
