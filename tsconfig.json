@@ -24,6 +24,7 @@
     "paths": {
       "assets/*": ["./src/assets/*"],
       "components/*": ["./components/*"],
+      "constants/*": ["./constants/*"],
       "layouts/*": ["./layouts/*"],
       "screens/*": ["./screens/*"],
       "configs/*": ["./configs/*"],
