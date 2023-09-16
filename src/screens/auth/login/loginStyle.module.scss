@@ -11,6 +11,8 @@
   width: 800px;
   height: 60px;
   margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .main {
@@ -20,6 +22,7 @@
   justify-content: center;
   width: 800px;
   margin-bottom: 10px;
+  border-radius: 8px;
   background-color: white;
 }
 
@@ -27,11 +30,15 @@
   display: flex;
 
   > div {
-    width: 300px;
+    width: 350px;
     padding: 20px;
 
     &:first-child {
       border-right: 1px solid var(--clr-lightGrey);
     }
   }
+}
+
+.buttonWrap {
+  margin-top: 15px;
 }
