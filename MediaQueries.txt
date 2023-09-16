@@ -6,10 +6,7 @@ Feed.css
 ProfilePage.css
 **************************
  
-
 TABLETS
-
-
 
 BottomNav.css
 Header.css
@@ -29,5 +26,3 @@ MAX-WIDTH: 860PX
 
 HeaderProfileOptions.css
 *****************************
-
-testing3
