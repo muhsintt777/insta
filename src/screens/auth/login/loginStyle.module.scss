@@ -8,6 +8,30 @@
 }
 
 .head {
-  width: 700px;
+  width: 800px;
   height: 60px;
+  margin-bottom: 10px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.loginBox {
+  display: flex;
+
+  div {
+    width: 300px;
+    padding: 20px;
+
+    &:first-child {
+      border-right: 1px solid var(--clr-lightGrey);
+    }
+  }
 }

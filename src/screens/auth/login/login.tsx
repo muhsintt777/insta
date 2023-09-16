@@ -7,6 +7,14 @@ export const Login = () => {
       <div className={styles.head}>
         <TitleHead title="LOGIN" />
       </div>
+      <div className={styles.main}>
+        <div className={styles.loginBox}>
+          <div>
+            <p>EMAIL</p>
+          </div>
+          <div>sso</div>
+        </div>
+      </div>
     </div>
   );
 };
