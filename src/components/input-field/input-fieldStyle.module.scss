@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  height: 80px;
 
   > label {
     margin-bottom: 5px;
@@ -31,9 +32,9 @@
 }
 
 .errorMessageHide {
-  display: none;
+  opacity: 0;
 }
 
 .errorMessageShow {
-  display: block;
+  opacity: 1;
 }
