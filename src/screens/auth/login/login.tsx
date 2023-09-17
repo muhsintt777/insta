@@ -3,8 +3,8 @@ import { ChangeEvent, useState } from "react";
 import { InputField } from "components/input-field/input-field";
 import { PrimaryButton } from "components/primary-button/primary-button";
 import { TitleHead } from "./title-head";
-import { REGEX } from "constants/validation";
 import { trimAllWhitespace } from "utils/common";
+import { REGEX } from "utils/constants";
 
 interface EmailInpType {
   value: string;
