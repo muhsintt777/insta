@@ -100,7 +100,12 @@ export const Login = () => {
                 value={passwordInp.value}
               />
               <div className={styles.buttonWrap}>
-                <PrimaryButton type="submit" disabled={false} text="LOGIN" />
+                <PrimaryButton
+                  showLoader={showLoader}
+                  type="submit"
+                  disabled={false}
+                  text="LOGIN"
+                />
               </div>
             </form>
           </div>

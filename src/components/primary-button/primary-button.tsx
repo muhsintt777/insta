@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { DotLoader } from "components/loaders/dot-loader";
 import { FC } from "react";
 
 interface PrimaryButtonProps {
@@ -6,12 +7,14 @@ interface PrimaryButtonProps {
   disabled: boolean;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  showLoader?: boolean;
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = ({
   text,
   disabled,
   type = "button",
+  showLoader = false,
 }) => {
   return (
     <Button
@@ -34,7 +37,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
         },
       }}
     >
-      {text}
+      {showLoader ? <DotLoader /> : text}
     </Button>
   );
 };
