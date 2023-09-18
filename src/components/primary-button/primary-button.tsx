@@ -4,11 +4,18 @@ import { FC } from "react";
 interface PrimaryButtonProps {
   text: string;
   disabled: boolean;
+  type?: "button" | "submit" | "reset";
+  onClick?: () => void;
 }
 
-export const PrimaryButton: FC<PrimaryButtonProps> = ({ text, disabled }) => {
+export const PrimaryButton: FC<PrimaryButtonProps> = ({
+  text,
+  disabled,
+  type = "button",
+}) => {
   return (
     <Button
+      type={type}
       fullWidth
       disabled={disabled}
       variant="contained"

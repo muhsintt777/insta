@@ -10,11 +10,11 @@ export const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PrimaryLayout />}>
-          <Route index element={<Home />} />
+          <Route path="home" index element={<Home />} />
         </Route>
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="login" element={<Login />} />
-          <Route path="signup" element={<></>} />
+          <Route path="signup" element={<>sefsefe</>} />
         </Route>
       </Routes>
     </BrowserRouter>
