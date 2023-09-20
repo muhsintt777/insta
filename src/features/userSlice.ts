@@ -1,21 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 // PayloadAction
 import type { Rootstate } from "configs/store";
+import { User } from "utils/types";
 
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string | null;
-  email: string;
-}
-
-interface UserState {
+interface InitialState {
   status: "loading" | "successfull" | "failed" | "idle";
   user: User | null;
   token: string | null;
 }
 
-const initialState: UserState = {
+const initialState: InitialState = {
   status: "loading",
   token: null,
   user: null,
