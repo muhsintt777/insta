@@ -24,12 +24,13 @@ export const App = () => {
       ) : (
         <Routes>
           <Route path="/" element={<PrimaryLayout />}>
-            <Route index element={protect(Home)} />
+            <Route path="home" element={protect(Home)} />
           </Route>
-          <Route path="/auth" element={<AuthLayout />}>
+          <Route path="auth" element={<AuthLayout />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<>sefsefe</>} />
           </Route>
+          <Route path="*" element={protect(Home)} />
         </Routes>
       )}
     </>

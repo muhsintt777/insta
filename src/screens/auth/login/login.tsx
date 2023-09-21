@@ -64,7 +64,8 @@ export const Login = () => {
       console.log(trimmedEmail, trimmedPassword);
 
       await ApiService.login(trimmedEmail, trimmedPassword);
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
+      console.log("sfefsefs");
     } catch (err) {
       console.log(err);
     }
