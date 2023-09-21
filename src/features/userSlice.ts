@@ -1,18 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // PayloadAction
 import type { Rootstate } from "configs/store";
+import { ApiService } from "utils/api-service";
 import { User } from "utils/types";
 
 interface InitialState {
   status: "loading" | "successfull" | "failed" | "idle";
   user: User | null;
   token: string | null;
+  error: string | null;
 }
 
 const initialState: InitialState = {
   status: "loading",
   token: null,
   user: null,
+  error: null,
 };
 
 export const userSlice = createSlice({
@@ -25,7 +28,31 @@ export const userSlice = createSlice({
       state.user = null;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCurrentUser.pending, (state, _action) => {
+        if (state.status !== "loading") {
+          state.status = "loading";
+        }
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.status = "successfull";
+        state.user = action.payload;
+      })
+      .addCase(getCurrentUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Fetch user failed";
+      });
+  },
 });
+
+export const getCurrentUser = createAsyncThunk(
+  "user/getCurrentUser",
+  async () => {
+    const result = await ApiService.getCurrentUser();
+    return result;
+  }
+);
 
 export const { logout } = userSlice.actions;
 

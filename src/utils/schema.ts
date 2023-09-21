@@ -2,6 +2,7 @@ import { z } from "zod";
 import { REGEX } from "./constants";
 
 export const GetCurrentUserSchema = z.object({
+  id: z.number().int(),
   firstName: z
     .string({
       required_error: "Firstname is required",
@@ -23,5 +24,7 @@ export const GetCurrentUserSchema = z.object({
     })
     .trim()
     .regex(REGEX.email, "Email is not valid"),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 export type GetCurrentUserType = z.infer<typeof GetCurrentUserSchema>;

@@ -3,4 +3,6 @@ export interface User {
   firstName: string;
   lastName: string | null;
   email: string;
+  createdAt: string;
+  updatedAt: string;
 }

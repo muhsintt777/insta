@@ -15,7 +15,7 @@ export class ApiService {
       if (user.success === false) {
         throw { errorMessage: "Server error: Invalidated data received" };
       } else {
-        return user;
+        return user.data;
       }
     } catch (err: any) {
       if (err.errorMessage) {
