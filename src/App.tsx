@@ -1,30 +1,36 @@
 import "./App.css";
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { PrimaryLayout } from "./layouts/primary-layout/primary-layout";
 import { AuthLayout } from "layouts/auth-layout/auth-layout";
 import { Home } from "./screens/home/home";
 import { Login } from "screens/auth/login/login";
+import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
+import { getCurrentUser, selectUserApiStatus } from "features/userSlice";
+import { protect } from "utils/protect-route";
 
 export const App = () => {
-  const [showLoader, setShowLoader] = useState(false);
+  const dispath = useAppDispatch();
+  const userApiStatus = useAppSelector(selectUserApiStatus);
+
+  useEffect(() => {
+    dispath(getCurrentUser());
+  }, []);
 
   return (
     <>
-      {showLoader ? (
+      {userApiStatus === "loading" ? (
         <p>loadeinggg</p>
       ) : (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<PrimaryLayout />}>
-              <Route path="home" index element={<Home />} />
-            </Route>
-            <Route path="/auth" element={<AuthLayout />}>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<>sefsefe</>} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PrimaryLayout />}>
+            <Route index element={protect(Home)} />
+          </Route>
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<>sefsefe</>} />
+          </Route>
+        </Routes>
       )}
     </>
   );
