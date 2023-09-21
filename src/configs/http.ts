@@ -6,5 +6,3 @@ export const http = axios.create({
     "Content-Type": "application/json",
   },
 });
-
-http.defaults.headers.common["Origin"] = "http://localhost:3500";
