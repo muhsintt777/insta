@@ -12,6 +12,8 @@ export default defineConfig({
       screens: "/src/screens",
       utils: "/src/utils",
       configs: "/src/configs",
+      features: "/src/features",
+      hooks: "/src/hooks",
     },
   },
 });

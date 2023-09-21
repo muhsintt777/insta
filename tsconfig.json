@@ -27,6 +27,8 @@
       "layouts/*": ["./layouts/*"],
       "screens/*": ["./screens/*"],
       "configs/*": ["./configs/*"],
+      "features/*": ["./features/*"],
+      "hooks/*": ["./hooks/*"],
       "utils/*": ["./utils/*"]
     }
   },
