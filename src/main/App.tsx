@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PrimaryLayout } from "layouts/primary-layout/primary-layout";
 import { AuthLayout } from "layouts/auth-layout/auth-layout";
@@ -12,9 +12,12 @@ import { protect } from "utils/protect-route";
 export const App = () => {
   const dispath = useAppDispatch();
   const userApiStatus = useAppSelector(selectUserApiStatus);
+  const apiRef = useRef({ getCurrentUser: false });
 
   useEffect(() => {
+    if (apiRef.current.getCurrentUser) return;
     dispath(getCurrentUser());
+    apiRef.current.getCurrentUser = true;
   }, []);
 
   return (
@@ -24,13 +27,14 @@ export const App = () => {
       ) : (
         <Routes>
           <Route path="/" element={<PrimaryLayout />}>
-            <Route path="home" element={protect(Home)} />
+            <Route index element={protect(Home)} />
+            <Route path="one" element={<p>sfsefsefse</p>} />
           </Route>
-          <Route path="auth" element={<AuthLayout />}>
+          <Route path="/auth" element={<AuthLayout />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<>sefsefe</>} />
           </Route>
-          <Route path="*" element={protect(Home)} />
+          <Route path="*" element={<p>page not found</p>} />
         </Routes>
       )}
     </>

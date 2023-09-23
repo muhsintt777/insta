@@ -8,8 +8,7 @@ export class ApiService {
 
   static async getCurrentUser() {
     try {
-      const result = (await http.get("auth/user", { withCredentials: true }))
-        .data;
+      const result = (await http.get("auth/user")).data;
 
       const user = GetCurrentUserSchema.safeParse(result);
       if (user.success === false) {

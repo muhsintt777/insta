@@ -7,6 +7,8 @@ import { trimAllWhitespace } from "utils/common";
 import { REGEX } from "configs/constants";
 import { ApiService } from "services/api-service";
 import { useNavigate } from "react-router-dom";
+import { getCurrentUser } from "features/user/userSlice";
+import { useAppDispatch } from "hooks/redux-hooks";
 
 interface EmailInpType {
   value: string;
@@ -21,6 +23,7 @@ interface PasswordInpType {
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispath = useAppDispatch();
 
   const [showLoader, setShowLoader] = useState(false);
   const [emailInp, setEmailInp] = useState<EmailInpType>({
@@ -64,8 +67,8 @@ export const Login = () => {
       console.log(trimmedEmail, trimmedPassword);
 
       await ApiService.login(trimmedEmail, trimmedPassword);
-      navigate("/home", { replace: true });
-      console.log("sfefsefs");
+      await dispath(getCurrentUser());
+      navigate("/", { replace: true });
     } catch (err) {
       console.log(err);
     }
