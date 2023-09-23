@@ -1,4 +1,4 @@
-import { selectUser } from "features/userSlice";
+import { selectUser } from "features/user/userSlice";
 import { useAppSelector } from "hooks/redux-hooks";
 import { FC, PropsWithChildren } from "react";
 import { Navigate } from "react-router-dom";

@@ -1,12 +1,12 @@
 import "./App.css";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { PrimaryLayout } from "./layouts/primary-layout/primary-layout";
+import { PrimaryLayout } from "layouts/primary-layout/primary-layout";
 import { AuthLayout } from "layouts/auth-layout/auth-layout";
-import { Home } from "./pages/home/home";
+import { Home } from "pages/home/home";
 import { Login } from "pages/auth/login/login";
 import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
-import { getCurrentUser, selectUserApiStatus } from "features/userSlice";
+import { getCurrentUser, selectUserApiStatus } from "features/user/userSlice";
 import { protect } from "utils/protect-route";
 
 export const App = () => {
