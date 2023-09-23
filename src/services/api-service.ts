@@ -1,5 +1,5 @@
 import { http } from "configs/http";
-import { GetCurrentUserSchema } from "./schema";
+import { GetCurrentUserSchema } from "utils/schema";
 
 export class ApiService {
   static async login(email: string, password: string) {

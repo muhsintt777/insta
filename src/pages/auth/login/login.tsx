@@ -4,8 +4,8 @@ import { InputField } from "components/input-field/input-field";
 import { PrimaryButton } from "components/primary-button/primary-button";
 import { TitleHead } from "./title-head";
 import { trimAllWhitespace } from "utils/common";
-import { REGEX } from "utils/constants";
-import { ApiService } from "utils/api-service";
+import { REGEX } from "configs/constants";
+import { ApiService } from "services/api-service";
 import { useNavigate } from "react-router-dom";
 
 interface EmailInpType {

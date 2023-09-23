@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { REGEX } from "./constants";
+import { REGEX } from "../configs/constants";
 
 export const GetCurrentUserSchema = z.object({
   id: z.number().int(),

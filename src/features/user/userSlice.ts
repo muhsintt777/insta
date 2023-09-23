@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // PayloadAction
 import type { Rootstate } from "configs/store";
-import { ApiService } from "utils/api-service";
+import { ApiService } from "services/api-service";
 import { User } from "utils/types";
 
 interface InitialState {
