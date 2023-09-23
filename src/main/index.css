@@ -25,3 +25,7 @@ body {
   --fnt-primary: "Lexend Zetta", sans-serif;
   --fnt-secondary: "Work Sans", sans-serif;
 }
+
+a {
+  all: unset;
+}
