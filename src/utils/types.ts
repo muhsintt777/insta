@@ -6,3 +6,8 @@ export interface User {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IconsProps {
+  color?: string;
+  size?: string;
+}
