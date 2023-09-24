@@ -1,14 +1,14 @@
 import styles from "./side-navStyle.module.scss";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { HomeIcon } from "assets/icons-components/home-icon";
 
 interface SideNavTabProps {
   path: string;
   name: string;
+  icon: JSX.Element;
 }
 
-export const SideNavTab: FC<SideNavTabProps> = ({ path, name }) => {
+export const SideNavTab: FC<SideNavTabProps> = ({ path, name, icon }) => {
   return (
     <NavLink
       to={path}
@@ -16,7 +16,7 @@ export const SideNavTab: FC<SideNavTabProps> = ({ path, name }) => {
         isActive ? `${styles.tabActive} ${styles.tab}` : styles.tab
       }
     >
-      <HomeIcon />
+      {icon}
       <p>{name}</p>
     </NavLink>
   );
