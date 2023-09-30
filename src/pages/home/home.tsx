@@ -3,7 +3,10 @@ import { Post } from "./components/post/post";
 
 export const Home = () => {
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.postWrap}>
+        <Post />
+      </div>
       <div className={styles.postWrap}>
         <Post />
       </div>
