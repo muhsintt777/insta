@@ -9,7 +9,6 @@
 .head {
   display: flex;
   align-items: center;
-  height: 50px;
 
   > :nth-child(2) {
     flex: 1;
@@ -48,4 +47,22 @@
 
 .content {
   flex: 1;
+
+  > p {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+  > img {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px 0px;
+  border-top: 1px solid var(--clr-lightGrey);
 }
