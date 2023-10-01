@@ -5,7 +5,6 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute: FC<any> = ({ children }) => {
   const user = useAppSelector(selectUser);
-  console.log(user);
 
   if (user) {
     return children;
