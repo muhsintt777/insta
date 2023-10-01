@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-bg-primary);
+  border-radius: 50%;
+  overflow: hidden;
+  > img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
