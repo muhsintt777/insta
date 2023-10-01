@@ -1,20 +1,18 @@
 import styles from "./postStyle.module.scss";
 
-import profilePicPNG from "assets/images/profile-pic.png";
 import test1 from "assets/images/test1.jpg";
 import { VerticalDotIcon } from "assets/icons-components/vertical-dot-icon";
-import { PrimaryIconButton } from "components/primary-icon-button/primary-icon-button";
 import { LikeIcon } from "assets/icons-components/like-icon";
 import { CommentIcon } from "assets/icons-components/comment-icon";
 import { ShareIcon } from "assets/icons-components/share-icon";
+import { PrimaryIconButton } from "components/primary-icon-button/primary-icon-button";
+import { RoundedProfile } from "components/rounded-profile/rounded-profile";
 
 export const Post = () => {
   return (
     <article className={styles.container}>
       <div className={styles.head}>
-        <div className={styles.imageWrap}>
-          <img src={profilePicPNG} alt="img" />
-        </div>
+        <RoundedProfile />
         <div>
           <p>John Doe</p>
           <p>5 mins ago</p>
