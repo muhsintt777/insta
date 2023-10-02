@@ -8,24 +8,29 @@
 
   > form {
     flex: 1;
+    display: flex;
+    align-items: center;
     margin-left: 8px;
+    padding: 3px;
+    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 5px;
+    transition: border-color 0.2s;
     background-color: var(--clr-bg-primary);
+
+    &:focus-within {
+      border-color: var(--clr-lightGrey);
+    }
 
     > input {
       width: 100%;
       font-size: 10px;
       font-family: var(--fnt-secondary);
       outline: none;
-      border: 1px solid rgba(0, 0, 0, 0);
+      border: none;
       border-radius: 5px;
-      padding: 10px;
-      transition: border-color 0.2s;
-      background-color: rgba(0, 0, 0, 0);
+      padding: 0px 5px;
 
-      &:focus {
-        border-color: var(--clr-lightGrey);
-      }
+      background-color: rgba(0, 0, 0, 0);
     }
   }
 }
