@@ -17,6 +17,7 @@ body {
 
   /* variables */
   --clr-primary: #df002c;
+  --clr-primary-light: #df002c0f;
   --clr-black: #141c1a;
   --clr-green: #20c35b;
   --clr-purple: #af7dff;
@@ -24,6 +25,7 @@ body {
   --clr-grey: #677572;
   --clr-lightGrey: #dfe5e4;
   --clr-bg-primary: #f7faf9;
+
   --fnt-primary: "Lexend Zetta", sans-serif;
   --fnt-secondary: "Work Sans", sans-serif;
 }
