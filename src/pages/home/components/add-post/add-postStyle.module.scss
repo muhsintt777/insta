@@ -1,10 +1,14 @@
 .container {
-  display: flex;
-  align-items: center;
   width: 100%;
   margin-bottom: 4px;
   padding: 10px 6px;
   background-color: white;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  width: 100%;
 
   > form {
     flex: 1;
@@ -33,4 +37,16 @@
       background-color: rgba(0, 0, 0, 0);
     }
   }
+}
+
+.bottom {
+  margin-top: 8px;
+}
+
+.bottomSpan {
+  margin-left: 3px;
+  font-size: 8px;
+  font-family: var(--fnt-secondary);
+  font-weight: 500;
+  color: var(--clr-black);
 }
