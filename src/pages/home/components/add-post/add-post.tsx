@@ -1,5 +1,5 @@
 import styles from "./add-postStyle.module.scss";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 import { colors } from "main/global-style";
 import { SendIcon } from "assets/icons-components/send-icon";
@@ -10,12 +10,24 @@ import { HashtagIcon } from "assets/icons-components/hashtag-icon";
 import { SecondaryButton } from "components/secondary-button/secondary-button";
 import { RoundedProfile } from "components/rounded-profile/rounded-profile";
 import { PrimaryIconButton } from "components/primary-icon-button/primary-icon-button";
+import { PrimaryModal } from "components/modal/primary-modal";
 
 export const AddPost = () => {
+  const [showModal, setShowModal] = useState(false);
+
   async function addPost(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log("add post");
   }
+
+  function openModal() {
+    setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -25,6 +37,23 @@ export const AddPost = () => {
           <PrimaryIconButton type="submit">
             <SendIcon size="12px" color="var(--clr-grey)" />
           </PrimaryIconButton>
+          <PrimaryModal closeModal={closeModal} isOpen={showModal}>
+            <div
+              style={{
+                width: "400px",
+                height: "400px",
+                backgroundColor: "white",
+              }}
+            >
+              <p onClick={closeModal}>close</p>
+              <p>blas</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
+                atque officiis, magnam earum possimus commodi asperiores et?
+                Omnis, totam sit.
+              </p>
+            </div>
+          </PrimaryModal>
         </form>
       </div>
       <div className={styles.bottom}>
@@ -36,7 +65,7 @@ export const AddPost = () => {
           <MentionIcon size="8px" color={colors.PRIMARY} />{" "}
           <span className={styles.bottomSpan}>Mention</span>
         </SecondaryButton>
-        <SecondaryButton hoverColor={colors.PRIMARY_LIGHT}>
+        <SecondaryButton onClick={openModal} hoverColor={colors.PRIMARY_LIGHT}>
           <HashtagIcon size="8px" color={colors.PRIMARY} />
           <span className={styles.bottomSpan}>Tag</span>
         </SecondaryButton>
