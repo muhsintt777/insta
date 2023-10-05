@@ -21,6 +21,7 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
   type = "button",
   hoverColor = "none",
   color = "var(--clr-grey)",
+  onClick,
 }) => {
   return (
     <Button
@@ -34,6 +35,7 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
           backgroundColor: hoverColor,
         },
       }}
+      onClick={onClick}
     >
       {showLoader ? <DotLoader /> : children}
     </Button>
