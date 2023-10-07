@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--clr-lightGrey);
+
+  > p {
+    font-family: var(--fnt-primary);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    color: var(--clr-black);
+  }
+}
