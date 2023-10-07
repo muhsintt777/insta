@@ -12,6 +12,8 @@ import { RoundedProfile } from "components/rounded-profile/rounded-profile";
 import { PrimaryIconButton } from "components/primary-icon-button/primary-icon-button";
 import { PrimaryModal } from "components/modal/primary-modal";
 
+import { CreatePost } from "../create-post/create-post";
+
 export const AddPost = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -37,22 +39,10 @@ export const AddPost = () => {
           <PrimaryIconButton type="submit">
             <SendIcon size="12px" color="var(--clr-grey)" />
           </PrimaryIconButton>
-          <PrimaryModal closeModal={closeModal} isOpen={showModal}>
-            <div
-              style={{
-                width: "400px",
-                height: "400px",
-                backgroundColor: "white",
-              }}
-            >
-              <p onClick={closeModal}>close</p>
-              <p>blas</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
-                atque officiis, magnam earum possimus commodi asperiores et?
-                Omnis, totam sit.
-              </p>
-            </div>
+
+          {/* --- modal --- */}
+          <PrimaryModal isOpen={showModal}>
+            <CreatePost onClose={closeModal} />
           </PrimaryModal>
         </form>
       </div>
