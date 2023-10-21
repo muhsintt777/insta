@@ -30,6 +30,7 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .addCase(getCurrentUser.pending, (state, _action) => {
         if (state.status !== "loading") {
           state.status = "loading";
@@ -51,7 +52,7 @@ export const getCurrentUser = createAsyncThunk(
   async () => {
     const result = await ApiService.getCurrentUser();
     return result;
-  }
+  },
 );
 
 export const { logout } = userSlice.actions;
