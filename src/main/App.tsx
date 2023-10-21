@@ -21,6 +21,7 @@ export const App = () => {
     if (apiRef.current.getCurrentUser) return;
     dispath(getCurrentUser());
     apiRef.current.getCurrentUser = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
