@@ -16,6 +16,7 @@ export class ApiService {
       } else {
         return user.data;
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       if (err.errorMessage) {
         throw { errorMessage: err.errorMessage };
