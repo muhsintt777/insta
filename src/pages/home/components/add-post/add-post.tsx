@@ -1,5 +1,5 @@
 import styles from "./add-postStyle.module.scss";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 
 import { colors } from "main/global-style";
 import { SendIcon } from "assets/icons-components/send-icon";
@@ -16,6 +16,8 @@ import { CreatePost } from "../create-post/create-post";
 
 export const AddPost = () => {
   const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState<string | null>(null);
+  const fileInpRef = useRef<HTMLInputElement | null>(null);
 
   async function addPost(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,6 +30,24 @@ export const AddPost = () => {
 
   function closeModal() {
     setShowModal(false);
+  }
+
+  function onImageClick() {
+    fileInpRef.current?.click();
+  }
+
+  function onFileChange(e: ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (!files) return;
+    const imageFile = files[0];
+    if (imageFile.size > 5 * 1024 * 1024 && fileInpRef.current) {
+      alert("toobig");
+      fileInpRef.current.files = null;
+      setImage(null);
+    } else {
+      const imageDataUrl = URL.createObjectURL(imageFile);
+      setImage(imageDataUrl);
+    }
   }
 
   return (
@@ -46,10 +66,22 @@ export const AddPost = () => {
           </PrimaryModal>
         </form>
       </div>
+      {image && <img src={image} alt="" />}
       <div className={styles.bottom}>
-        <SecondaryButton hoverColor={colors.PRIMARY_LIGHT}>
+        <SecondaryButton
+          onClick={onImageClick}
+          hoverColor={colors.PRIMARY_LIGHT}
+        >
           <AddImageIcon size="8px" color={colors.PRIMARY} />
           <span className={styles.bottomSpan}>Image</span>
+          <input
+            ref={fileInpRef}
+            type="file"
+            name="image"
+            hidden
+            accept="image/png image/jpeg image/jpg image/webp"
+            onChange={onFileChange}
+          />
         </SecondaryButton>
         <SecondaryButton hoverColor={colors.PRIMARY_LIGHT}>
           <MentionIcon size="8px" color={colors.PRIMARY} />{" "}
