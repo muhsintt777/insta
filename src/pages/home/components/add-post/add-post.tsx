@@ -1,7 +1,9 @@
 import styles from "./add-postStyle.module.scss";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 
+import { FILE_SIZE } from "configs/constants";
 import { colors } from "main/global-style";
+
 import { SendIcon } from "assets/icons-components/send-icon";
 import { AddImageIcon } from "assets/icons-components/add-image-icon";
 import { MentionIcon } from "assets/icons-components/mention-icon";
@@ -40,7 +42,7 @@ export const AddPost = () => {
     const files = e.target.files;
     if (!files) return;
     const imageFile = files[0];
-    if (imageFile.size > 5 * 1024 * 1024 && fileInpRef.current) {
+    if (imageFile.size > FILE_SIZE.postImage && fileInpRef.current) {
       alert("toobig");
       fileInpRef.current.files = null;
       setImage(null);
