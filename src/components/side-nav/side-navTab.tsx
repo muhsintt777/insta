@@ -1,6 +1,7 @@
 import styles from "./side-navStyle.module.scss";
-import { FC, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
 import { IconsProps } from "utils/types";
 
 const customStyle = {
@@ -15,13 +16,24 @@ interface SideNavTabProps {
 }
 
 export const SideNavTab: FC<SideNavTabProps> = ({ path, name, Icon }) => {
+  const location = useLocation();
   const [isActive, setIsActive] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+
+  const currentPath = location.pathname;
+
+  useEffect(() => {
+    if (currentPath === path) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [currentPath, path]);
+
   return (
     <NavLink
       to={path}
       className={({ isActive }) => {
-        setIsActive(isActive);
         return isActive ? `${styles.tabActive} ${styles.tab}` : styles.tab;
       }}
       onMouseEnter={() => setIsHovering(true)}
