@@ -30,7 +30,7 @@ export const AddPost = () => {
 
     const formData = new FormData();
     formData.append("image", imageFile);
-    console.log(formData.getAll);
+    console.log(formData.get("image"));
   }
 
   function openModal() {
@@ -76,7 +76,7 @@ export const AddPost = () => {
           </PrimaryModal>
         </form>
       </div>
-      {image && <img src={image} alt="" />}
+      {image && <img style={{ width: "300px" }} src={image} alt="" />}
       <div className={styles.bottom}>
         <SecondaryButton
           onClick={onImageClick}
