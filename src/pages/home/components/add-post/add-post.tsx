@@ -19,11 +19,18 @@ import { CreatePost } from "../create-post/create-post";
 export const AddPost = () => {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<Blob | null>(null);
   const fileInpRef = useRef<HTMLInputElement | null>(null);
 
   async function addPost(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log("add post");
+
+    if (!imageFile) return;
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    console.log(formData.getAll);
   }
 
   function openModal() {
@@ -47,6 +54,7 @@ export const AddPost = () => {
       fileInpRef.current.files = null;
       setImage(null);
     } else {
+      setImageFile(imageFile);
       const imageDataUrl = URL.createObjectURL(imageFile);
       setImage(imageDataUrl);
     }
