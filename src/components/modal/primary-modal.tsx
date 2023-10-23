@@ -18,7 +18,7 @@ export const PrimaryModal: FC<PrimaryModalProps> = ({
       onClose={closeModal}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      {children}
+      <>{children}</>
     </Modal>
   );
 };
