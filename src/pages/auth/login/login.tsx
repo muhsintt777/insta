@@ -6,7 +6,7 @@ import { TitleHead } from "./title-head";
 import { trimAllWhitespace } from "utils/common";
 import { REGEX } from "configs/constants";
 import { ApiService } from "services/api-service";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCurrentUser } from "features/user/userSlice";
 import { useAppDispatch } from "hooks/redux-hooks";
 
@@ -112,6 +112,10 @@ export const Login = () => {
                 />
               </div>
             </form>
+            <p className={styles.createAccount}>
+              Don't have an account?{" "}
+              <Link to={"/auth/signup"}>Create account</Link>
+            </p>
           </div>
           <div>SSO coming soon...</div>
         </div>

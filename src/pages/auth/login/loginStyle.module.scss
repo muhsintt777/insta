@@ -40,3 +40,16 @@
 .buttonWrap {
   margin-top: 2px;
 }
+
+.createAccount {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--clr-grey);
+
+  > a {
+    color: var(--clr-primary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
