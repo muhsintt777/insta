@@ -11,6 +11,7 @@ import { Chat } from 'features/chat/chat';
 import { Notifications } from 'features/notifications/notifications';
 import { Friends } from 'features/friends/friends';
 import { Home } from 'features/home/home';
+import { SignupPage } from 'features/auth/signup/signup-page';
 
 export const App = () => {
   const dispath = useAppDispatch();
@@ -36,9 +37,10 @@ export const App = () => {
             <Route path="chat" element={protect(Chat)} />
             <Route path="notifications" element={protect(Notifications)} />
           </Route>
+
           <Route path="/auth" element={<AuthLayout />}>
             <Route path="login" element={<Login />} />
-            <Route path="signup" element={<>Signup</>} />
+            <Route path="signup" element={<SignupPage />} />
           </Route>
           <Route path="*" element={<p>page not found</p>} />
         </Routes>
