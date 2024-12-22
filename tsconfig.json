@@ -26,7 +26,6 @@
       "assets/*": ["./assets/*"],
       "layouts/*": ["./layouts/*"],
       "main/*": ["./main/*"],
-      "pages/*": ["./pages/*"],
       "screens/*": ["./screens/*"],
       "services/*": ["./services/*"],
       "configs/*": ["./configs/*"],

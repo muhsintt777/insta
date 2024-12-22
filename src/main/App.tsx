@@ -8,7 +8,7 @@ import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
 import { Login } from 'features/auth/login/login';
 import { Chat } from 'features/chat/chat';
-import { Notifications } from 'pages/notifications/notifications';
+import { Notifications } from 'features/notifications/notifications';
 import { Friends } from 'features/friends/friends';
 import { Home } from 'features/home/home';
 
