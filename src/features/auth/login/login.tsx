@@ -8,7 +8,7 @@ import { ApiService } from 'services/api-service';
 import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentUser } from 'features/user/userSlice';
 import { useAppDispatch } from 'hooks/redux-hooks';
-import { TitleHead } from './title-head';
+import { AuthHeader } from '../components/auth-header';
 
 interface EmailInpType {
   value: string;
@@ -79,7 +79,7 @@ export const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.head}>
-        <TitleHead title="LOGIN" />
+        <AuthHeader title="LOGIN" />
       </div>
       <div className={styles.main}>
         <div className={styles.loginBox}>
