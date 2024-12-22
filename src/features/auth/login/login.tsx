@@ -2,13 +2,13 @@ import styles from './loginStyle.module.scss';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { InputField } from 'components/input-field/input-field';
 import { PrimaryButton } from 'components/primary-button/primary-button';
-import { TitleHead } from './title-head';
 import { trimAllWhitespace } from 'utils/common';
 import { REGEX } from 'configs/constants';
 import { ApiService } from 'services/api-service';
 import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentUser } from 'features/user/userSlice';
 import { useAppDispatch } from 'hooks/redux-hooks';
+import { TitleHead } from './title-head';
 
 interface EmailInpType {
   value: string;

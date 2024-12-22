@@ -7,7 +7,7 @@ import { protect } from 'utils/protect-route';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
 import { Home } from 'pages/home/home';
-import { Login } from 'pages/auth/login/login';
+import { Login } from 'features/auth/login/login';
 import { Chat } from 'pages/chat/chat';
 import { Notifications } from 'pages/notifications/notifications';
 import { Friends } from 'pages/friends/friends';
