@@ -8,9 +8,9 @@ import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
 import { Home } from 'pages/home/home';
 import { Login } from 'features/auth/login/login';
-import { Chat } from 'pages/chat/chat';
+import { Chat } from 'features/chat/chat';
 import { Notifications } from 'pages/notifications/notifications';
-import { Friends } from 'pages/friends/friends';
+import { Friends } from 'features/friends/friends';
 
 export const App = () => {
   const dispath = useAppDispatch();
