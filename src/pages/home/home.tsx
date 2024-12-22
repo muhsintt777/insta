@@ -1,6 +1,6 @@
-import styles from "./homeStyle.module.scss";
-import { Post } from "./components/post/post";
-import { AddPost } from "./components/add-post/add-post";
+import styles from './homeStyle.module.scss';
+import { Post } from './components/post/post';
+import { AddPost } from './components/add-post/add-post';
 
 export const Home = () => {
   return (

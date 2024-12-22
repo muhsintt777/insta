@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface HomeIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface HomeIconProps {
 }
 
 export const HomeIcon: FC<HomeIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <div>

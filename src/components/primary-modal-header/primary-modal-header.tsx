@@ -1,8 +1,8 @@
-import styles from "./primary-modal-headerStyle.module.scss";
-import { FC } from "react";
+import styles from './primary-modal-headerStyle.module.scss';
+import { FC } from 'react';
 
-import { CloseIcon } from "assets/icons-components/close-icon";
-import { PrimaryIconButton } from "components/primary-icon-button/primary-icon-button";
+import { CloseIcon } from 'assets/icons-components/close-icon';
+import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
 
 interface PrimaryModalHeaderProps {
   title: string;

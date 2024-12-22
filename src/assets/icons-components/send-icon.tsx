@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface SendIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface SendIconProps {
 }
 
 export const SendIcon: FC<SendIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

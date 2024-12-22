@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface ConstructionIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface ConstructionIconProps {
 }
 
 export const ConstructionIcon: FC<ConstructionIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

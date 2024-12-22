@@ -1,5 +1,5 @@
-import { FC } from "react";
-import styles from "./title-headStyle.module.scss";
+import { FC } from 'react';
+import styles from './title-headStyle.module.scss';
 
 interface TitleHeadProps {
   title: string;

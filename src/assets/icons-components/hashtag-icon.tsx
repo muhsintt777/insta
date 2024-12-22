@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface HashtagIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface HashtagIconProps {
 }
 
 export const HashtagIcon: FC<HashtagIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

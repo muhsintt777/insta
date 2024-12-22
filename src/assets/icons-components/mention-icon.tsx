@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface MentionIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface MentionIconProps {
 }
 
 export const MentionIcon: FC<MentionIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

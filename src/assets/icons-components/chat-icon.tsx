@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface ChatIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface ChatIconProps {
 }
 
 export const ChatIcon: FC<ChatIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

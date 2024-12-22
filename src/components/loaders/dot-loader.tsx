@@ -1,4 +1,4 @@
-import styles from "./loaderStyle.module.css";
+import styles from './loaderStyle.module.css';
 
 export const DotLoader = () => {
   return <div className={styles.dotLoader}></div>;

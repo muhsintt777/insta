@@ -1,5 +1,5 @@
-import { FC, ReactElement } from "react";
-import { Modal } from "@mui/material";
+import { FC, ReactElement } from 'react';
+import { Modal } from '@mui/material';
 
 interface PrimaryModalProps {
   children: ReactElement;
@@ -16,7 +16,7 @@ export const PrimaryModal: FC<PrimaryModalProps> = ({
     <Modal
       open={isOpen}
       onClose={closeModal}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
       <>{children}</>
     </Modal>

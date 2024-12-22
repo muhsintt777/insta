@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface AddImageIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface AddImageIconProps {
 }
 
 export const AddImageIcon: FC<AddImageIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

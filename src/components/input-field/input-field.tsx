@@ -1,10 +1,10 @@
-import { FC, ChangeEvent } from "react";
-import styles from "./input-fieldStyle.module.scss";
+import { FC, ChangeEvent } from 'react';
+import styles from './input-fieldStyle.module.scss';
 
 interface InputFieldProps {
   placeholder: string;
   label: string;
-  type: "text" | "number" | "password";
+  type: 'text' | 'number' | 'password';
   name: string;
   value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;

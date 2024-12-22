@@ -1,3 +1,3 @@
 export const trimAllWhitespace = (text: string): string => {
-  return text.replace(/\s+/g, "");
+  return text.replace(/\s+/g, '');
 };

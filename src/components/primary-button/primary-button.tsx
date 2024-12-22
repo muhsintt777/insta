@@ -1,11 +1,11 @@
-import { Button } from "@mui/material";
-import { DotLoader } from "components/loaders/dot-loader";
-import { FC } from "react";
+import { Button } from '@mui/material';
+import { DotLoader } from 'components/loaders/dot-loader';
+import { FC } from 'react';
 
 interface PrimaryButtonProps {
   text: string;
   disabled: boolean;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   showLoader?: boolean;
 }
@@ -13,7 +13,7 @@ interface PrimaryButtonProps {
 export const PrimaryButton: FC<PrimaryButtonProps> = ({
   text,
   disabled,
-  type = "button",
+  type = 'button',
   showLoader = false,
 }) => {
   return (
@@ -23,17 +23,17 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
       disabled={disabled}
       variant="contained"
       sx={{
-        height: "43px",
-        fontSize: "12px",
-        borderRadius: "5px",
-        fontFamily: "var(--fnt-primary)",
+        height: '43px',
+        fontSize: '12px',
+        borderRadius: '5px',
+        fontFamily: 'var(--fnt-primary)',
         fontWeight: 900,
-        letterSpacing: "-0.02rem",
-        color: "white",
-        backgroundColor: "var(--clr-primary)",
+        letterSpacing: '-0.02rem',
+        color: 'white',
+        backgroundColor: 'var(--clr-primary)',
 
-        "&:hover": {
-          backgroundColor: "var(--clr-primary)",
+        '&:hover': {
+          backgroundColor: 'var(--clr-primary)',
         },
       }}
     >

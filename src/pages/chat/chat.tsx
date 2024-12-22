@@ -1,5 +1,5 @@
-import styles from "./chatStyle.module.scss";
-import { ConstructionIcon } from "assets/icons-components/construction-icon";
+import styles from './chatStyle.module.scss';
+import { ConstructionIcon } from 'assets/icons-components/construction-icon';
 
 export const Chat = () => {
   return (

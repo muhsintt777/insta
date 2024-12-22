@@ -1,9 +1,9 @@
-import styles from "./side-navStyle.module.scss";
-import { FriendsIcon } from "assets/icons-components/friends-icon";
-import { SideNavTab } from "./side-navTab";
-import { HomeIcon } from "assets/icons-components/home-icon";
-import { ChatIcon } from "assets/icons-components/chat-icon";
-import { NotificationsIcon } from "assets/icons-components/notifications-icon";
+import styles from './side-navStyle.module.scss';
+import { FriendsIcon } from 'assets/icons-components/friends-icon';
+import { SideNavTab } from './side-navTab';
+import { HomeIcon } from 'assets/icons-components/home-icon';
+import { ChatIcon } from 'assets/icons-components/chat-icon';
+import { NotificationsIcon } from 'assets/icons-components/notifications-icon';
 
 export const SideNav = () => {
   return (

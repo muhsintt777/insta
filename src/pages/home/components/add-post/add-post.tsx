@@ -1,20 +1,20 @@
-import styles from "./add-postStyle.module.scss";
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import styles from './add-postStyle.module.scss';
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 
-import { FILE_SIZE } from "configs/constants";
-import { colors } from "main/global-style";
+import { FILE_SIZE } from 'configs/constants';
+import { colors } from 'main/global-style';
 
-import { SendIcon } from "assets/icons-components/send-icon";
-import { AddImageIcon } from "assets/icons-components/add-image-icon";
-import { MentionIcon } from "assets/icons-components/mention-icon";
-import { HashtagIcon } from "assets/icons-components/hashtag-icon";
+import { SendIcon } from 'assets/icons-components/send-icon';
+import { AddImageIcon } from 'assets/icons-components/add-image-icon';
+import { MentionIcon } from 'assets/icons-components/mention-icon';
+import { HashtagIcon } from 'assets/icons-components/hashtag-icon';
 
-import { SecondaryButton } from "components/secondary-button/secondary-button";
-import { RoundedProfile } from "components/rounded-profile/rounded-profile";
-import { PrimaryIconButton } from "components/primary-icon-button/primary-icon-button";
-import { PrimaryModal } from "components/modal/primary-modal";
+import { SecondaryButton } from 'components/secondary-button/secondary-button';
+import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
+import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
+import { PrimaryModal } from 'components/modal/primary-modal';
 
-import { CreatePost } from "../create-post/create-post";
+import { CreatePost } from '../create-post/create-post';
 
 export const AddPost = () => {
   const [showModal, setShowModal] = useState(false);
@@ -24,13 +24,13 @@ export const AddPost = () => {
 
   async function addPost(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("add post");
+    console.log('add post');
 
     if (!imageFile) return;
 
     const formData = new FormData();
-    formData.append("image", imageFile);
-    console.log(formData.get("image"));
+    formData.append('image', imageFile);
+    console.log(formData.get('image'));
   }
 
   function openModal() {
@@ -50,7 +50,7 @@ export const AddPost = () => {
     if (!files) return;
     const imageFile = files[0];
     if (imageFile.size > FILE_SIZE.postImage && fileInpRef.current) {
-      alert("toobig");
+      alert('toobig');
       fileInpRef.current.files = null;
       setImage(null);
     } else {
@@ -76,7 +76,7 @@ export const AddPost = () => {
           </PrimaryModal>
         </form>
       </div>
-      {image && <img style={{ width: "300px" }} src={image} alt="" />}
+      {image && <img style={{ width: '300px' }} src={image} alt="" />}
       <div className={styles.bottom}>
         <SecondaryButton
           onClick={onImageClick}
@@ -94,7 +94,7 @@ export const AddPost = () => {
           />
         </SecondaryButton>
         <SecondaryButton hoverColor={colors.PRIMARY_LIGHT}>
-          <MentionIcon size="8px" color={colors.PRIMARY} />{" "}
+          <MentionIcon size="8px" color={colors.PRIMARY} />{' '}
           <span className={styles.bottomSpan}>Mention</span>
         </SecondaryButton>
         <SecondaryButton onClick={openModal} hoverColor={colors.PRIMARY_LIGHT}>

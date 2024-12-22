@@ -1,14 +1,14 @@
-import styles from "./loginStyle.module.scss";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { InputField } from "components/input-field/input-field";
-import { PrimaryButton } from "components/primary-button/primary-button";
-import { TitleHead } from "./title-head";
-import { trimAllWhitespace } from "utils/common";
-import { REGEX } from "configs/constants";
-import { ApiService } from "services/api-service";
-import { Link, useNavigate } from "react-router-dom";
-import { getCurrentUser } from "features/user/userSlice";
-import { useAppDispatch } from "hooks/redux-hooks";
+import styles from './loginStyle.module.scss';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { InputField } from 'components/input-field/input-field';
+import { PrimaryButton } from 'components/primary-button/primary-button';
+import { TitleHead } from './title-head';
+import { trimAllWhitespace } from 'utils/common';
+import { REGEX } from 'configs/constants';
+import { ApiService } from 'services/api-service';
+import { Link, useNavigate } from 'react-router-dom';
+import { getCurrentUser } from 'features/user/userSlice';
+import { useAppDispatch } from 'hooks/redux-hooks';
 
 interface EmailInpType {
   value: string;
@@ -27,12 +27,12 @@ export const Login = () => {
 
   const [showLoader, setShowLoader] = useState(false);
   const [emailInp, setEmailInp] = useState<EmailInpType>({
-    value: "",
+    value: '',
     isValid: false,
     error: null,
   });
   const [passwordInp, setPasswordInp] = useState<PasswordInpType>({
-    value: "",
+    value: '',
     isValid: false,
     error: null,
   });
@@ -41,7 +41,7 @@ export const Login = () => {
     const value = e.target.value;
     const trimmedValue = trimAllWhitespace(value);
     const isValid = REGEX.email.test(trimmedValue);
-    const error = !isValid && trimmedValue ? "Please enter valid email" : null;
+    const error = !isValid && trimmedValue ? 'Please enter valid email' : null;
 
     setEmailInp({ value, isValid, error });
   }
@@ -51,7 +51,7 @@ export const Login = () => {
     const trimmedValue = trimAllWhitespace(value);
     const isValid = REGEX.password.test(trimmedValue);
     const error =
-      !isValid && trimmedValue ? "Please enter valid password" : null;
+      !isValid && trimmedValue ? 'Please enter valid password' : null;
 
     setPasswordInp({ value, isValid, error });
   }
@@ -68,7 +68,7 @@ export const Login = () => {
 
       await ApiService.login(trimmedEmail, trimmedPassword);
       await dispath(getCurrentUser());
-      navigate("/", { replace: true });
+      navigate('/', { replace: true });
     } catch (err) {
       console.log(err);
     }
@@ -113,8 +113,8 @@ export const Login = () => {
               </div>
             </form>
             <p className={styles.createAccount}>
-              Don't have an account?{" "}
-              <Link to={"/auth/signup"}>Create account</Link>
+              Don't have an account?{' '}
+              <Link to={'/auth/signup'}>Create account</Link>
             </p>
           </div>
           <div>SSO coming soon...</div>

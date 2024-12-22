@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface FriendsIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface FriendsIconProps {
 }
 
 export const FriendsIcon: FC<FriendsIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

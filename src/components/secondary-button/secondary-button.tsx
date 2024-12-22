@@ -1,6 +1,6 @@
-import { Button } from "@mui/material";
-import { DotLoader } from "components/loaders/dot-loader";
-import { FC, ReactNode } from "react";
+import { Button } from '@mui/material';
+import { DotLoader } from 'components/loaders/dot-loader';
+import { FC, ReactNode } from 'react';
 
 interface SecondaryButtonProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface SecondaryButtonProps {
   fullWidth?: boolean;
   hoverColor?: string;
   color?: string;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
 }
 
@@ -18,9 +18,9 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
   disabled = false,
   showLoader = false,
   fullWidth = false,
-  type = "button",
-  hoverColor = "none",
-  color = "var(--clr-grey)",
+  type = 'button',
+  hoverColor = 'none',
+  color = 'var(--clr-grey)',
   onClick,
 }) => {
   return (
@@ -29,9 +29,9 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
       fullWidth={fullWidth}
       disabled={disabled}
       sx={{
-        textTransform: "none",
+        textTransform: 'none',
         color: color,
-        "&:hover": {
+        '&:hover': {
           backgroundColor: hoverColor,
         },
       }}

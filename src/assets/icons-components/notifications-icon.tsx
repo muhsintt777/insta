@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface NotificationsIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface NotificationsIconProps {
 }
 
 export const NotificationsIcon: FC<NotificationsIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

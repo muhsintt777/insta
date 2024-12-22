@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface VerticalDotIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface VerticalDotIconProps {
 }
 
 export const VerticalDotIcon: FC<VerticalDotIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg

@@ -1,12 +1,12 @@
-import styles from "./side-navStyle.module.scss";
-import { FC, useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import styles from './side-navStyle.module.scss';
+import { FC, useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
-import { IconsProps } from "utils/types";
+import { IconsProps } from 'utils/types';
 
 const customStyle = {
-  activeColor: "var(--clr-black)",
-  inactiveColor: "var(--clr-grey)",
+  activeColor: 'var(--clr-black)',
+  inactiveColor: 'var(--clr-grey)',
 };
 
 interface SideNavTabProps {

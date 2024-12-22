@@ -1,6 +1,6 @@
 /* font imports */
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400;500;600;700;800;900&display=swap');
 
 *,
 *::after,
@@ -13,7 +13,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Work Sans', sans-serif;
 
   /* variables */
   --clr-primary: #df002c;
@@ -26,8 +26,8 @@ body {
   --clr-lightGrey: #dfe5e4;
   --clr-bg-primary: #f7faf9;
 
-  --fnt-primary: "Lexend Zetta", sans-serif;
-  --fnt-secondary: "Work Sans", sans-serif;
+  --fnt-primary: 'Lexend Zetta', sans-serif;
+  --fnt-secondary: 'Work Sans', sans-serif;
 }
 
 a {

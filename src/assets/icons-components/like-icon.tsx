@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface LikeIconProps {
   color?: string;
@@ -6,8 +6,8 @@ interface LikeIconProps {
 }
 
 export const LikeIcon: FC<LikeIconProps> = ({
-  color = "currentColor",
-  size = "16px",
+  color = 'currentColor',
+  size = '16px',
 }) => {
   return (
     <svg
