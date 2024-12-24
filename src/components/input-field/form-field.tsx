@@ -1,5 +1,5 @@
-import { ChangeEvent, FC, useCallback } from 'react';
 import styles from './form-field.module.scss';
+import { ChangeEvent, CSSProperties, FC, useCallback } from 'react';
 
 interface TextInputProps {
   type: 'TEXT';
@@ -25,6 +25,7 @@ interface FormFieldProps {
   name: string;
   error: string | null;
   controls: TextInputProps | PasswordInputProps | NumberInputProps;
+  containerStyle?: CSSProperties;
 }
 
 export const FormField: FC<FormFieldProps> = ({
@@ -33,6 +34,7 @@ export const FormField: FC<FormFieldProps> = ({
   name,
   error,
   controls,
+  containerStyle,
 }) => {
   const handleNumberChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>, onChange: (e: number) => void) => {
@@ -44,7 +46,7 @@ export const FormField: FC<FormFieldProps> = ({
   );
 
   return (
-    <div className={styles.container}>
+    <div style={containerStyle} className={styles.container}>
       {controls.type === 'TEXT' && (
         <>
           <label htmlFor={name}>{label}</label>
