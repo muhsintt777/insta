@@ -12,6 +12,7 @@ import { Notifications } from 'features/notifications/notifications';
 import { Friends } from 'features/friends/friends';
 import { Home } from 'features/home/home';
 import { SignupPage } from 'features/auth/signup/signup-page';
+import { Toast } from 'features/toast/toast';
 
 export const App = () => {
   const dispath = useAppDispatch();
@@ -45,6 +46,8 @@ export const App = () => {
           <Route path="*" element={<p>page not found</p>} />
         </Routes>
       )}
+
+      <Toast />
     </>
   );
 };
