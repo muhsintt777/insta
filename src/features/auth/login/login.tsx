@@ -1,6 +1,5 @@
 import styles from './loginStyle.module.scss';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { InputField } from 'components/input-field/input-field';
 import { PrimaryButton } from 'components/primary-button/primary-button';
 import { trimAllWhitespace } from 'utils/common';
 import { REGEX } from 'configs/constants';
@@ -9,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentUser } from 'features/user/userSlice';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { AuthHeader } from '../components/auth-header';
+import { FormField } from 'components/input-field/form-field';
 
 interface EmailInpType {
   value: string;
@@ -37,8 +37,8 @@ export const Login = () => {
     error: null,
   });
 
-  function handleEmailInpChange(e: ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
+  function handleEmailInpChange(e: string) {
+    const value = e;
     const trimmedValue = trimAllWhitespace(value);
     const isValid = REGEX.email.test(trimmedValue);
     const error = !isValid && trimmedValue ? 'Please enter valid email' : null;
@@ -46,8 +46,8 @@ export const Login = () => {
     setEmailInp({ value, isValid, error });
   }
 
-  function handlePasswordInpChange(e: ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
+  function handlePasswordInpChange(e: string) {
+    const value = e;
     const trimmedValue = trimAllWhitespace(value);
     const isValid = REGEX.password.test(trimmedValue);
     const error =
@@ -85,23 +85,27 @@ export const Login = () => {
         <div className={styles.loginBox}>
           <div>
             <form onSubmit={handleSubmit}>
-              <InputField
-                value={emailInp.value}
+              <FormField
                 label="EMAIL"
                 name="email"
-                onChange={handleEmailInpChange}
                 placeholder="john@email.com"
-                type="text"
                 error={emailInp.error}
+                controls={{
+                  onchange: handleEmailInpChange,
+                  value: emailInp.value,
+                  type: 'TEXT',
+                }}
               />
-              <InputField
+              <FormField
                 error={passwordInp.error}
                 label="PASSWORD"
                 name="password"
-                onChange={handlePasswordInpChange}
                 placeholder="Password@123"
-                type="password"
-                value={passwordInp.value}
+                controls={{
+                  onchange: handlePasswordInpChange,
+                  value: passwordInp.value,
+                  type: 'PASSWORD',
+                }}
               />
               <div className={styles.buttonWrap}>
                 <PrimaryButton
