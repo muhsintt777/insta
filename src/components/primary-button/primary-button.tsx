@@ -1,10 +1,10 @@
+import { FC } from 'react';
 import { Button } from '@mui/material';
 import { DotLoader } from 'components/loaders/dot-loader';
-import { FC } from 'react';
 
 interface PrimaryButtonProps {
   text: string;
-  disabled: boolean;
+  disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   showLoader?: boolean;
@@ -12,7 +12,7 @@ interface PrimaryButtonProps {
 
 export const PrimaryButton: FC<PrimaryButtonProps> = ({
   text,
-  disabled,
+  disabled = false,
   type = 'button',
   showLoader = false,
 }) => {
