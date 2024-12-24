@@ -1,13 +1,15 @@
 import styles from './signup-page.module.scss';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from 'components/input-field/form-field';
 import { PrimaryButton } from 'components/primary-button/primary-button';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthHeader } from '../components/auth-header';
+import { authService } from '../auth-service';
 
 export const SignupPage = () => {
+  const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
   const {
     handleSubmit,
     control,
@@ -16,7 +18,7 @@ export const SignupPage = () => {
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
       fullName: '',
-      userName: '',
+      username: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -24,8 +26,17 @@ export const SignupPage = () => {
     },
   });
 
-  const onSubmit = useCallback((data: SignupFormSchema) => {
+  const onSubmit = useCallback(async (data: SignupFormSchema) => {
     console.log(data);
+
+    try {
+      setShowFormSubmitLoader(true);
+      await authService.createUser(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setShowFormSubmitLoader(false);
+    }
   }, []);
 
   return (
@@ -55,14 +66,14 @@ export const SignupPage = () => {
               )}
             />
             <Controller
-              name="userName"
+              name="username"
               control={control}
               render={({ field }) => (
                 <FormField
                   containerStyle={{ width: '300px' }}
-                  name="userName"
+                  name="username"
                   label="Username"
-                  error={errors.userName?.message || null}
+                  error={errors.username?.message || null}
                   placeholder="john_doe_123"
                   controls={{
                     type: 'TEXT',
@@ -131,7 +142,11 @@ export const SignupPage = () => {
               )}
             />
           </div>
-          <PrimaryButton type="submit" text="CREATE ACCOUNT" />
+          <PrimaryButton
+            type="submit"
+            text="CREATE ACCOUNT"
+            showLoader={showFormSubmitLoader}
+          />
         </form>
       </div>
     </div>

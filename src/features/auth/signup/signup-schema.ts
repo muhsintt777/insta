@@ -7,7 +7,7 @@ const signupFormSchemaBase = z.object({
     .min(3, 'Full name must be at least 3 characters')
     .max(50, 'Full name must not exceed 50 characters')
     .transform((val) => val.replace(/\s+/g, ' ')),
-  userName: z
+  username: z
     .string()
     .trim()
     .min(3, 'Username must be at least 3 characters')
