@@ -41,3 +41,6 @@ export const HTTP_STATUS_CODES = {
   UNPROCESSABLE_ENTITY: 422,
   INTERNAL_SERVER_ERROR: 500,
 } as const;
+
+export const COMMON_ERROR_MESSAGE =
+  'Something went wrong, Please try again later';
