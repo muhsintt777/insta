@@ -9,8 +9,11 @@ import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthHeader } from '../components/auth-header';
 import { authService } from '../auth-service';
 import { toastErrorHandler } from 'utils/error-handlers';
+import { useNavigate } from 'react-router-dom';
+import { APP_ROUTES } from 'configs/app-routes';
 
 export const SignupPage = () => {
+  const navigate = useNavigate();
   const { showToast } = useToast();
   const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
 
@@ -35,6 +38,8 @@ export const SignupPage = () => {
       try {
         setShowFormSubmitLoader(true);
         await authService.createUser(data);
+        await authService.login({ email: data.email, password: data.password });
+        navigate(APP_ROUTES.HOME);
         showToast('success', 'Account created successfully');
       } catch (error) {
         toastErrorHandler(error, showToast);
@@ -42,7 +47,7 @@ export const SignupPage = () => {
         setShowFormSubmitLoader(false);
       }
     },
-    [showToast],
+    [showToast, navigate],
   );
 
   return (
