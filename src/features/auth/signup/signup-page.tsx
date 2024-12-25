@@ -2,13 +2,13 @@ import styles from './signup-page.module.scss';
 import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CustomError } from 'utils/custom-error';
 import { FormField } from 'components/input-field/form-field';
 import { PrimaryButton } from 'components/primary-button/primary-button';
 import { useToast } from 'features/toast/useToast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthHeader } from '../components/auth-header';
 import { authService } from '../auth-service';
+import { toastErrorHandler } from 'utils/error-handlers';
 
 export const SignupPage = () => {
   const { showToast } = useToast();
@@ -37,11 +37,7 @@ export const SignupPage = () => {
         await authService.createUser(data);
         showToast('success', 'Account created successfully');
       } catch (error) {
-        if (error instanceof CustomError) {
-          showToast('error', error.message);
-        } else {
-          showToast('error', 'Something went wrong');
-        }
+        toastErrorHandler(error, showToast);
       } finally {
         setShowFormSubmitLoader(false);
       }
