@@ -3,7 +3,7 @@ import { ERROR_TYPE } from 'configs/constants';
 import { CustomError } from './custom-error';
 import { ToastSeverity } from 'features/toast/toast-types';
 
-export const apiErrorHandler = (error: any) => {
+export const rethrowCustomError = (error: any) => {
   if (error instanceof AxiosError) {
     throw new CustomError(
       error.response?.data.errorType,

@@ -1,7 +1,7 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
 import { http } from 'configs/http';
 import { CustomError } from 'utils/custom-error';
-import { apiErrorHandler } from 'utils/error-handlers';
+import { rethrowCustomError } from 'utils/error-handlers';
 
 interface CreateUserParams {
   email: string;
@@ -25,7 +25,7 @@ export const authService = {
         );
       }
     } catch (error) {
-      apiErrorHandler(error);
+      rethrowCustomError(error);
     }
   },
 
@@ -36,7 +36,7 @@ export const authService = {
         throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
       }
     } catch (error) {
-      apiErrorHandler(error);
+      rethrowCustomError(error);
     }
   },
 };
