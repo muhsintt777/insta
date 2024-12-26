@@ -17,7 +17,7 @@ type LoginParams =
 export const authService = {
   createUser: async (params: CreateUserParams) => {
     try {
-      const { status } = await http.post('api/users', params);
+      const { status } = await http.post('users', params);
       if (status !== HTTP_STATUS_CODES.CREATED) {
         throw new CustomError(
           ERROR_TYPE.UNKNOWN_API_ERROR,
@@ -31,7 +31,7 @@ export const authService = {
 
   login: async (params: LoginParams) => {
     try {
-      const response = await http.post('api/auth/login', params);
+      const response = await http.post('auth/login', params);
       if (response.status !== HTTP_STATUS_CODES.OK) {
         throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
       }
