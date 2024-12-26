@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { getCurrentUser, selectUserApiStatus } from 'features/user/userSlice';
+import { fetchCurrentUser, selectUserApiStatus } from 'features/user/userSlice';
 import { protect } from 'utils/protect-route';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
@@ -17,18 +17,18 @@ import { Toast } from 'features/toast/toast';
 export const App = () => {
   const dispath = useAppDispatch();
   const userApiStatus = useAppSelector(selectUserApiStatus);
-  const apiRef = useRef({ getCurrentUser: false });
+  const apiRef = useRef({ fetchCurrentUser: false });
 
   useEffect(() => {
-    if (apiRef.current.getCurrentUser) return;
-    dispath(getCurrentUser());
-    apiRef.current.getCurrentUser = true;
+    if (apiRef.current.fetchCurrentUser) return;
+    dispath(fetchCurrentUser());
+    apiRef.current.fetchCurrentUser = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {userApiStatus === 'loading' ? (
+      {userApiStatus === 'LOADING' ? (
         <p>loadeinggg</p>
       ) : (
         <Routes>

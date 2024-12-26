@@ -1,14 +1,14 @@
 import styles from './loginStyle.module.scss';
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { PrimaryButton } from 'components/primary-button/primary-button';
-import { trimAllWhitespace } from 'utils/common';
-import { REGEX } from 'configs/constants';
-import { ApiService } from 'services/api-service';
+import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getCurrentUser } from 'features/user/userSlice';
+import { REGEX } from 'configs/constants';
 import { useAppDispatch } from 'hooks/redux-hooks';
-import { AuthHeader } from '../components/auth-header';
+import { PrimaryButton } from 'components/primary-button/primary-button';
 import { FormField } from 'components/input-field/form-field';
+import { trimAllWhitespace } from 'utils/common';
+import { fetchCurrentUser } from 'features/user/userSlice';
+import { AuthHeader } from '../components/auth-header';
+import { authService } from '../auth-service';
 
 interface EmailInpType {
   value: string;
@@ -66,8 +66,11 @@ export const Login = () => {
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
       console.log(trimmedEmail, trimmedPassword);
 
-      await ApiService.login(trimmedEmail, trimmedPassword);
-      await dispath(getCurrentUser());
+      await authService.login({
+        email: trimmedEmail,
+        password: trimmedPassword,
+      });
+      await dispath(fetchCurrentUser());
       navigate('/', { replace: true });
     } catch (err) {
       console.log(err);

@@ -1,19 +1,23 @@
 import styles from './signup-page.module.scss';
 import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { APP_ROUTES } from 'configs/app-routes';
 import { FormField } from 'components/input-field/form-field';
 import { PrimaryButton } from 'components/primary-button/primary-button';
-import { useToast } from 'features/toast/useToast';
-import { signupFormSchema, SignupFormSchema } from './signup-schema';
-import { AuthHeader } from '../components/auth-header';
-import { authService } from '../auth-service';
 import { toastErrorHandler } from 'utils/error-handlers';
-import { useNavigate } from 'react-router-dom';
-import { APP_ROUTES } from 'configs/app-routes';
+import { useAppDispatch } from 'hooks/redux-hooks';
+import { useToast } from 'features/toast/useToast';
+import { userService } from 'features/user/user-service';
+import { updateUser } from 'features/user/userSlice';
+import { signupFormSchema, SignupFormSchema } from './signup-schema';
+import { authService } from '../auth-service';
+import { AuthHeader } from '../components/auth-header';
 
 export const SignupPage = () => {
   const navigate = useNavigate();
+  const dispath = useAppDispatch();
   const { showToast } = useToast();
   const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
 
@@ -39,6 +43,8 @@ export const SignupPage = () => {
         setShowFormSubmitLoader(true);
         await authService.createUser(data);
         await authService.login({ email: data.email, password: data.password });
+        const user = await userService.fetchCurrentUser();
+        dispath(updateUser(user));
         navigate(APP_ROUTES.HOME);
         showToast('success', 'Account created successfully');
       } catch (error) {
@@ -47,7 +53,7 @@ export const SignupPage = () => {
         setShowFormSubmitLoader(false);
       }
     },
-    [showToast, navigate],
+    [showToast, navigate, dispath],
   );
 
   return (

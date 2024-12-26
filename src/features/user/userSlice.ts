@@ -1,63 +1,69 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 // PayloadAction
 import type { Rootstate } from 'configs/store';
-import { ApiService } from 'services/api-service';
-import { User } from 'utils/types';
+import { User, UserSlice } from './user-types';
+import { userService } from './user-service';
+import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 
-interface InitialState {
-  status: 'loading' | 'successfull' | 'failed' | 'idle';
-  user: User | null;
-  token: string | null;
-  error: string | null;
-}
-
-const initialState: InitialState = {
-  status: 'loading',
-  token: null,
-  user: null,
-  error: null,
-};
+const initialState = {
+  status: 'LOADING',
+  details: null,
+} as UserSlice;
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     logout: (state) => {
-      state.status = 'idle';
-      state.token = null;
-      state.user = null;
+      const newState: UserSlice = { status: 'LOGGED_OUT', details: null };
+      Object.assign(state, newState);
+    },
+    updateUser: (state, action: PayloadAction<User>) => {
+      const newState: UserSlice = {
+        status: 'SUCCESS',
+        details: action.payload,
+      };
+      Object.assign(state, newState);
     },
   },
   extraReducers: (builder) => {
     builder
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .addCase(getCurrentUser.pending, (state, _action) => {
-        if (state.status !== 'loading') {
-          state.status = 'loading';
-        }
+      .addCase(fetchCurrentUser.pending, (state) => {
+        const newState: UserSlice = { status: 'LOADING', details: null };
+        Object.assign(state, newState);
       })
-      .addCase(getCurrentUser.fulfilled, (state, action) => {
-        state.status = 'successfull';
-        state.user = action.payload;
-      })
-      .addCase(getCurrentUser.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Fetch user failed';
+      .addCase(
+        fetchCurrentUser.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          const newState: UserSlice = {
+            status: 'SUCCESS',
+            details: action.payload,
+          };
+          Object.assign(state, newState);
+        },
+      )
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        const newState: UserSlice = {
+          status: 'FAILED',
+          details: null,
+          error: action.error.message || COMMON_ERROR_MESSAGE,
+        };
+        Object.assign(state, newState);
       });
   },
 });
 
-export const getCurrentUser = createAsyncThunk(
-  'user/getCurrentUser',
+export const fetchCurrentUser = createAsyncThunk(
+  'user/fetchCurrentUser',
   async () => {
-    const result = await ApiService.getCurrentUser();
+    const result = await userService.fetchCurrentUser();
     return result;
   },
 );
 
-export const { logout } = userSlice.actions;
+export const { logout, updateUser } = userSlice.actions;
 
-export const selectUser = (state: Rootstate) => state.user.user;
+export const selectUser = (state: Rootstate) => state.user.details;
 export const selectUserApiStatus = (state: Rootstate) => state.user.status;
 
 export const userReducer = userSlice.reducer;
