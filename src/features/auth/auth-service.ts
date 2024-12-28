@@ -1,7 +1,7 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
 import { http } from 'configs/http';
+import { asyncHandler } from 'utils/common';
 import { CustomError } from 'utils/custom-error';
-import { rethrowCustomError } from 'utils/error-handlers';
 
 interface CreateUserParams {
   email: string;
@@ -15,8 +15,8 @@ type LoginParams =
   | { username: string; password: string };
 
 export const authService = {
-  createUser: async (params: CreateUserParams) => {
-    try {
+  createUser: async (params: CreateUserParams) =>
+    asyncHandler(async () => {
       const { status } = await http.post('users', params);
       if (status !== HTTP_STATUS_CODES.CREATED) {
         throw new CustomError(
@@ -24,19 +24,13 @@ export const authService = {
           'Failed to create user',
         );
       }
-    } catch (error) {
-      rethrowCustomError(error);
-    }
-  },
+    }),
 
-  login: async (params: LoginParams) => {
-    try {
+  login: async (params: LoginParams) =>
+    asyncHandler(async () => {
       const response = await http.post('auth/login', params);
       if (response.status !== HTTP_STATUS_CODES.OK) {
         throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
       }
-    } catch (error) {
-      rethrowCustomError(error);
-    }
-  },
+    }),
 };
