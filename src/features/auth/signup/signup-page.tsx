@@ -45,8 +45,8 @@ export const SignupPage = () => {
         await authService.login({ email: data.email, password: data.password });
         const user = await userService.fetchCurrentUser();
         dispath(updateUser(user));
-        navigate(APP_ROUTES.HOME);
         showToast('success', 'Account created successfully');
+        navigate(APP_ROUTES.HOME);
       } catch (error) {
         toastErrorHandler(error, showToast);
       } finally {
