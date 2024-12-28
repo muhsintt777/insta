@@ -8,7 +8,7 @@ export const trimAllWhitespace = (text: string): string => {
 
 export const asyncHandler = async <T>(fn: () => Promise<T>) => {
   try {
-    return fn();
+    return await fn();
   } catch (error) {
     if (error instanceof CustomError) {
       throw error;
