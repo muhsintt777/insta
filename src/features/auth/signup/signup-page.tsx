@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { APP_ROUTES } from 'configs/app-routes';
 import { FormField } from 'components/input-field/form-field';
 import { PrimaryButton } from 'components/primary-button/primary-button';
-import { toastErrorHandler } from 'utils/error-handlers';
+import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { useToast } from 'features/toast/useToast';
 import { userService } from 'features/user/user-service';
@@ -48,7 +48,7 @@ export const SignupPage = () => {
         showToast('success', 'Account created successfully');
         navigate(APP_ROUTES.HOME);
       } catch (error) {
-        toastErrorHandler(error, showToast);
+        handleErrorWithToast(error);
       } finally {
         setShowFormSubmitLoader(false);
       }
