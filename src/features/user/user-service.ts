@@ -5,8 +5,8 @@ import { asyncHandler } from 'utils/common';
 import { User } from './user-types';
 
 export const userService = {
-  fetchCurrentUser: async () => {
-    return asyncHandler(async () => {
+  fetchCurrentUser: async () =>
+    asyncHandler(async () => {
       const result = await http.get('users/me');
       if (result.status !== HTTP_STATUS_CODES.OK) {
         throw new CustomError(
@@ -15,6 +15,5 @@ export const userService = {
         );
       }
       return result.data?.data as User;
-    })();
-  },
+    }),
 };
