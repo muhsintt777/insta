@@ -1,11 +1,9 @@
-import './App.css';
 import { useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { fetchCurrentUser, selectUserApiStatus } from 'features/user/userSlice';
-import { protect } from 'utils/protect-route';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
+import { fetchCurrentUser, selectUserApiStatus } from 'features/user/userSlice';
 import { Login } from 'features/auth/login/login';
 import { Chat } from 'features/chat/chat';
 import { Notifications } from 'features/notifications/notifications';
@@ -13,6 +11,7 @@ import { Friends } from 'features/friends/friends';
 import { Home } from 'features/home/home';
 import { SignupPage } from 'features/auth/signup/signup-page';
 import { Toast } from 'features/toast/toast';
+import { protect } from './with-protected-route';
 
 export const App = () => {
   const dispath = useAppDispatch();
@@ -23,8 +22,7 @@ export const App = () => {
     if (apiRef.current.fetchCurrentUser) return;
     dispath(fetchCurrentUser());
     apiRef.current.fetchCurrentUser = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispath]);
 
   return (
     <>
