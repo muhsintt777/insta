@@ -14,6 +14,7 @@ body {
   width: 100vw;
   height: 100vh;
   font-family: 'Work Sans', sans-serif;
+  color: #141c1a;
 
   /* variables */
   --clr-primary: #df002c;
@@ -32,4 +33,9 @@ body {
 
 a {
   all: unset;
+}
+
+.app-container {
+  width: 100%;
+  padding: 0px 200px;
 }
