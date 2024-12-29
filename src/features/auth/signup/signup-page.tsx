@@ -1,7 +1,7 @@
 import styles from './signup-page.module.scss';
 import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { APP_ROUTES } from 'configs/app-routes';
 import { FormField } from 'components/input-field/form-field';
@@ -164,6 +164,9 @@ export const SignupPage = () => {
             text="CREATE ACCOUNT"
             showLoader={showFormSubmitLoader}
           />
+          <p className={styles.loginLink}>
+            Already have an account? <Link to={APP_ROUTES.LOGIN}>Login</Link>
+          </p>
         </form>
       </div>
     </div>

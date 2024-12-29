@@ -31,3 +31,18 @@
   flex-direction: row;
   column-gap: 16px;
 }
+
+.loginLink {
+  margin-top: 12px;
+  color: var(--clr-grey);
+  font-size: 12px;
+  font-weight: 400;
+
+  > a {
+    color: var(--clr-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
