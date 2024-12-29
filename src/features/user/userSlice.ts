@@ -63,7 +63,7 @@ export const fetchCurrentUser = createAsyncThunk(
 
 export const { logout, updateUser } = userSlice.actions;
 
-export const selectUser = (state: Rootstate) => state.user.details;
+export const selectUser = (state: Rootstate) => state.user;
 export const selectUserApiStatus = (state: Rootstate) => state.user.status;
 
 export const userReducer = userSlice.reducer;
