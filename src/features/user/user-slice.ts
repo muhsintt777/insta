@@ -28,12 +28,12 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCurrentUser.pending, (state) => {
+      .addCase(initialUserFetch.pending, (state) => {
         const newState: UserSlice = { status: 'LOADING', details: null };
         Object.assign(state, newState);
       })
       .addCase(
-        fetchCurrentUser.fulfilled,
+        initialUserFetch.fulfilled,
         (state, action: PayloadAction<User>) => {
           const newState: UserSlice = {
             status: 'SUCCESS',
@@ -42,7 +42,7 @@ export const userSlice = createSlice({
           Object.assign(state, newState);
         },
       )
-      .addCase(fetchCurrentUser.rejected, (state, action) => {
+      .addCase(initialUserFetch.rejected, (state, action) => {
         const newState: UserSlice = {
           status: 'FAILED',
           details: null,
@@ -53,8 +53,8 @@ export const userSlice = createSlice({
   },
 });
 
-export const fetchCurrentUser = createAsyncThunk(
-  'user/fetchCurrentUser',
+export const initialUserFetch = createAsyncThunk(
+  'user/initialUserFetch',
   async () => {
     const result = await userService.fetchCurrentUser();
     return result;

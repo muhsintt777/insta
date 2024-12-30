@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
 import {
-  fetchCurrentUser,
+  initialUserFetch,
   selectUserApiStatus,
 } from 'features/user/user-slice';
 import { Notifications } from 'features/notifications/notifications';
@@ -20,12 +20,12 @@ import { protect } from './with-protected-route';
 export const App = () => {
   const dispath = useAppDispatch();
   const userApiStatus = useAppSelector(selectUserApiStatus);
-  const apiRef = useRef({ fetchCurrentUser: false });
+  const apiRef = useRef({ initialUserFetch: false });
 
   useEffect(() => {
-    if (apiRef.current.fetchCurrentUser) return;
-    dispath(fetchCurrentUser());
-    apiRef.current.fetchCurrentUser = true;
+    if (apiRef.current.initialUserFetch) return;
+    dispath(initialUserFetch());
+    apiRef.current.initialUserFetch = true;
   }, [dispath]);
 
   return (
