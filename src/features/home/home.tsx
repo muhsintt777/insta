@@ -6,12 +6,8 @@ export const Home = () => {
   return (
     <div className={styles.container}>
       <AddPost />
-      <div className={styles.postWrap}>
-        <Post />
-      </div>
-      <div className={styles.postWrap}>
-        <Post />
-      </div>
+      <Post />
+      <Post />
     </div>
   );
 };
