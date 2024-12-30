@@ -10,7 +10,7 @@ import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { useToast } from 'features/toast/useToast';
 import { userService } from 'features/user/user-service';
-import { updateUser } from 'features/user/userSlice';
+import { updateUser } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { authService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';

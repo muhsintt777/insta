@@ -6,7 +6,7 @@ import { useAppDispatch } from 'hooks/redux-hooks';
 import { PrimaryButton } from 'components/primary-button/primary-button';
 import { FormField } from 'components/input-field/form-field';
 import { trimAllWhitespace } from 'utils/common';
-import { fetchCurrentUser } from 'features/user/userSlice';
+import { fetchCurrentUser } from 'features/user/user-slice';
 import { AuthHeader } from '../components/auth-header';
 import { authService } from '../auth-service';
 

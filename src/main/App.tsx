@@ -3,7 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
-import { fetchCurrentUser, selectUserApiStatus } from 'features/user/userSlice';
+import {
+  fetchCurrentUser,
+  selectUserApiStatus,
+} from 'features/user/user-slice';
 import { Notifications } from 'features/notifications/notifications';
 import { ProfilePage } from 'features/user/profile-page';
 import { SignupPage } from 'features/auth/signup/signup-page';

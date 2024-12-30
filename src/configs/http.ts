@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logout } from 'features/user/userSlice';
+import { logout } from 'features/user/user-slice';
 import { ERROR_TYPE, HTTP_STATUS_CODES } from './constants';
 import { store } from './store';
 import { ENV } from './env';

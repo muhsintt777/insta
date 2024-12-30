@@ -12,7 +12,7 @@ import {
 import { APP_ROUTES } from 'configs/app-routes';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
-import { selectUser } from 'features/user/userSlice';
+import { selectUser } from 'features/user/user-slice';
 
 export const Header = memo(() => {
   const user = useAppSelector(selectUser);
