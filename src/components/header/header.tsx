@@ -1,6 +1,6 @@
 import styles from './header.module.scss';
 import { memo, MouseEvent, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Avatar,
   Menu,
@@ -17,6 +17,7 @@ import { selectUser } from 'features/user/user-slice';
 export const Header = memo(() => {
   const user = useAppSelector(selectUser);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -31,8 +32,9 @@ export const Header = memo(() => {
 
   const onProfileClick = useCallback(() => {
     handleClose();
+    if (pathname === APP_ROUTES.PROFILE) return;
     navigate(APP_ROUTES.PROFILE);
-  }, [navigate]);
+  }, [navigate, pathname]);
 
   return (
     <>
