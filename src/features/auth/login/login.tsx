@@ -64,7 +64,6 @@ export const Login = () => {
     try {
       const trimmedEmail = trimAllWhitespace(emailInp.value);
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
-      console.log(trimmedEmail, trimmedPassword);
 
       await authService.login({
         email: trimmedEmail,
