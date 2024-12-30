@@ -6,9 +6,11 @@ import { useAppDispatch } from 'hooks/redux-hooks';
 import { PrimaryButton } from 'components/primary-button/primary-button';
 import { FormField } from 'components/input-field/form-field';
 import { trimAllWhitespace } from 'utils/common';
-import { initialUserFetch } from 'features/user/user-slice';
-import { AuthHeader } from '../components/auth-header';
+import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { userService } from 'features/user/user-service';
+import { updateUser } from 'features/user/user-slice';
 import { authService } from '../auth-service';
+import { AuthHeader } from '../components/auth-header';
 
 interface EmailInpType {
   value: string;
@@ -59,23 +61,23 @@ export const Login = () => {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!emailInp.isValid || !passwordInp.isValid) return;
-    setShowLoader(true);
 
     try {
+      setShowLoader(true);
       const trimmedEmail = trimAllWhitespace(emailInp.value);
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
-
       await authService.login({
         email: trimmedEmail,
         password: trimmedPassword,
       });
-      await dispath(initialUserFetch());
+      const userDetails = await userService.fetchCurrentUser();
+      dispath(updateUser(userDetails));
       navigate('/', { replace: true });
     } catch (err) {
-      console.log(err);
+      handleErrorWithToast(err);
+    } finally {
+      setShowLoader(false);
     }
-
-    setShowLoader(false);
   }
 
   return (
