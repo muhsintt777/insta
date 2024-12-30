@@ -5,8 +5,7 @@ import { selectUser } from 'features/user/userSlice';
 
 export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   const user = useAppSelector(selectUser);
-
-  if (user) {
+  if (user.details) {
     return <>{children}</>;
   } else {
     return <Navigate to="/auth/login" replace={true} />;
