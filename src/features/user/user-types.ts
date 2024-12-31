@@ -6,6 +6,8 @@ export interface User {
   profileImage: string | null;
   createdAt: Date;
   updatedAt: Date;
+  bio: string | null;
+  gender: string | null;
   __v: number;
 }
 
