@@ -8,7 +8,6 @@
 
 .appBarWrap {
   width: 100%;
-  height: 100%;
 }
 
 .body {
@@ -18,6 +17,37 @@
 }
 
 .userDetailsSection {
+  display: flex;
   width: 100%;
-  background-color: red;
+  margin-top: 8px;
+  padding: 12px;
+  column-gap: 20px;
+  border-radius: 4px;
+  background-color: var(--clr-white);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.name {
+  font-family: var(--fnt-secondary);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.bio {
+  font-family: var(--fnt-secondary);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.addBio {
+  font-size: 12px;
+}
+
+.stats {
+  font-size: 14px;
 }
