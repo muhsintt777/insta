@@ -1,4 +1,8 @@
+@import 'main/index.module.scss';
+
 .container {
+  @include appContainer;
+
   display: flex;
   align-items: center;
   width: 100%;

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
+import { SecondaryLayout } from 'layouts/secondary-layout';
 import {
   initialUserFetch,
   selectUserApiStatus,
@@ -39,13 +40,17 @@ export const App = () => {
             <Route path="friends" element={protect(Friends)} />
             <Route path="chat" element={protect(Chat)} />
             <Route path="notifications" element={protect(Notifications)} />
-            <Route path="profile" element={protect(ProfilePage)} />
           </Route>
 
           <Route path="/auth" element={<AuthLayout />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignupPage />} />
           </Route>
+
+          <Route element={<SecondaryLayout />}>
+            <Route path="profile" element={protect(ProfilePage)} />
+          </Route>
+
           <Route path="*" element={<p>page not found</p>} />
         </Routes>
       )}

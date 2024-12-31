@@ -1,0 +1,6 @@
+@import 'main/index.module.scss';
+
+.container {
+  @include appContainer;
+  width: 100%;
+}

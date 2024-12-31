@@ -39,18 +39,16 @@ export const Header = memo(() => {
   return (
     <>
       <header className={styles.container}>
-        <div className="app-container">
-          <div className={styles.contentWrap}>
-            <div>logo</div>
-            {user.status === 'SUCCESS' && (
-              <>
-                <div className={styles.profile} onClick={handleClick}>
-                  <p>{user.details.fullName}</p>
-                  <RoundedProfile size="40px" />
-                </div>
-              </>
-            )}
-          </div>
+        <div className={styles.contentWrap}>
+          <div>logo</div>
+          {user.status === 'SUCCESS' && (
+            <>
+              <div className={styles.profile} onClick={handleClick}>
+                <p>{user.details.fullName}</p>
+                <RoundedProfile size="40px" />
+              </div>
+            </>
+          )}
         </div>
       </header>
       <Menu
