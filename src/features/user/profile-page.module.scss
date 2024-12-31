@@ -1,6 +1,23 @@
-@import 'main/index.module.scss';
-
 .container {
-  @include appContainer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+  height: 100%;
+}
+
+.appBarWrap {
+  width: 100%;
+  height: 100%;
+}
+
+.body {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.userDetailsSection {
+  width: 100%;
+  background-color: red;
 }

@@ -35,6 +35,6 @@ a {
   all: unset;
 }
 
-@mixin appContainer {
+.app-container {
   padding: 0px 200px;
 }

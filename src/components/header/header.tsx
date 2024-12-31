@@ -13,6 +13,7 @@ import { APP_ROUTES } from 'configs/app-routes';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { selectUser } from 'features/user/user-slice';
+import { addMultipleClassNames } from 'utils/common';
 
 export const Header = memo(() => {
   const user = useAppSelector(selectUser);
@@ -38,7 +39,9 @@ export const Header = memo(() => {
 
   return (
     <>
-      <header className={styles.container}>
+      <header
+        className={addMultipleClassNames(styles.container, 'app-container')}
+      >
         <div className={styles.contentWrap}>
           <div>logo</div>
           {user.status === 'SUCCESS' && (
