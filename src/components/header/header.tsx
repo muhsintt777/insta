@@ -10,14 +10,17 @@ import {
   Theme,
 } from '@mui/material';
 import { APP_ROUTES } from 'configs/app-routes';
-import { useAppSelector } from 'hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
-import { selectUser } from 'features/user/user-slice';
+import { logout, selectUser } from 'features/user/user-slice';
+import { authService } from 'features/auth/auth-service';
+import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { addMultipleClassNames } from 'utils/common';
 
 export const Header = memo(() => {
-  const user = useAppSelector(selectUser);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -37,6 +40,15 @@ export const Header = memo(() => {
     navigate(APP_ROUTES.PROFILE);
   }, [navigate, pathname]);
 
+  const handleLogout = useCallback(async () => {
+    try {
+      await authService.signout();
+      dispatch(logout());
+    } catch (error) {
+      handleErrorWithToast(error);
+    }
+  }, [dispatch]);
+
   return (
     <>
       <header
@@ -47,7 +59,7 @@ export const Header = memo(() => {
           {user.status === 'SUCCESS' && (
             <>
               <div className={styles.profile} onClick={handleClick}>
-                <p>{user.details.fullName}</p>
+                <p>{user.details.username}</p>
                 <RoundedProfile size="40px" />
               </div>
             </>
@@ -72,9 +84,9 @@ export const Header = memo(() => {
         <MenuItem onClick={onProfileClick}>
           <Avatar /> Profile
         </MenuItem>
-        {/* <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem> */}
+        <MenuItem onClick={handleLogout}>
+          <Avatar /> Signout
+        </MenuItem>
       </Menu>
     </>
   );

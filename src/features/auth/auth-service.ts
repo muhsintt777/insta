@@ -33,4 +33,12 @@ export const authService = {
         throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
       }
     }),
+
+  signout: async () =>
+    asyncHandler(async () => {
+      const result = (await http.post('auth/logout')).data;
+      if (result.statusCode !== HTTP_STATUS_CODES.OK) {
+        throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to logout');
+      }
+    }),
 };
