@@ -24,3 +24,7 @@ export const asyncHandler = async <T>(fn: () => Promise<T>) => {
     }
   }
 };
+
+export const addMultipleClassNames = (...classNames: string[]) => {
+  return classNames.join(' ');
+};
