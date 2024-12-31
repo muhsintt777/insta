@@ -13,7 +13,7 @@ export const PrimaryIconButton: FC<PrimaryIconButtonProps> = ({
   type = 'button',
 }) => {
   return (
-    <IconButton type={type} onClick={onClick}>
+    <IconButton type={type} onClick={onClick} sx={{ padding: 0 }}>
       {children}
     </IconButton>
   );
