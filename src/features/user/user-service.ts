@@ -7,7 +7,7 @@ import { User } from './user-types';
 export const userService = {
   fetchCurrentUser: async () =>
     asyncHandler(async () => {
-      const result = await http.get('users/me');
+      const result = await http.get('users/currentuser');
       if (result.status !== HTTP_STATUS_CODES.OK) {
         throw new CustomError(
           ERROR_TYPE.UNKNOWN_API_ERROR,
