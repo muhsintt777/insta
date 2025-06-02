@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 // PayloadAction
 import type { Rootstate } from 'configs/store';
+import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 import { User, UserSlice } from './user-types';
 import { userService } from './user-service';
-import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 
 const initialState = {
   status: 'LOADING',
