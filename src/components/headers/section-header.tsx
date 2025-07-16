@@ -1,13 +1,14 @@
 import styles from './section-header.module.scss';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
 interface SectionHeaderProps {
   title: string;
+  style?: CSSProperties;
 }
 
-export const SectionHeader: FC<SectionHeaderProps> = ({ title }) => {
+export const SectionHeader: FC<SectionHeaderProps> = ({ title, style }) => {
   return (
-    <div className={styles.container}>
+    <div style={style} className={styles.container}>
       <p>{title}</p>
     </div>
   );

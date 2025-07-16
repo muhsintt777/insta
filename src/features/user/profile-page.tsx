@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
+import { SectionHeader } from 'components/headers/section-header';
 import { addMultipleClassNames } from 'utils/common';
+import { Post } from 'features/home/components/post/post';
 import { selectUser } from './user-slice';
 
 export const ProfilePage = () => {
@@ -27,6 +29,12 @@ export const ProfilePage = () => {
             {!userDetails.bio && <p className={styles.addBio}>Add bio...</p>}
           </div>
         </div>
+        <SectionHeader
+          style={{ marginTop: '8px', marginBottom: '8px' }}
+          title="POSTS"
+        />
+        <Post />
+        <Post />
       </div>
     </div>
   );
