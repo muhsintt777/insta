@@ -1,4 +1,4 @@
-import { Header } from 'components/header/header';
+import { Header } from 'components/headers/app-header';
 import styles from './auth-layoutStyle.module.css';
 import { Outlet } from 'react-router-dom';
 
