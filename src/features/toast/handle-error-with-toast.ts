@@ -12,7 +12,8 @@ export const handleErrorWithToast = (error: any) => {
     dispatch(
       show({
         severity: 'error',
-        message: 'Something went wrong, please try again later.',
+        message:
+          error.message || 'Something went wrong, please try again later.',
       }),
     );
   }
