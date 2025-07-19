@@ -1,31 +1,44 @@
-import styles from './homeStyle.module.scss';
-import { AddPost } from './components/add-post/add-post';
+import styles from './home-page.module.scss';
+import { useEffect, useState } from 'react';
+import { LoaderStatus } from 'utils/types';
 import { PostCard } from 'features/posts/components/post-card';
+import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { PostService } from 'features/posts/post-service';
+import { AddPost } from './components/add-post/add-post';
 
 export const HomePage = () => {
+  const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const resut = await PostService.fetchPosts();
+        setPosts(resut);
+        setShowLoader('SUCCESS');
+      } catch (error) {
+        handleErrorWithToast(error);
+        setShowLoader('FAILED');
+      }
+    })();
+  }, []);
+
   return (
     <div className={styles.container}>
       <AddPost />
-      <PostCard
-        id="1"
-        caption="Enjoying the sunset!"
-        image="https://placehold.co/600x400"
-        likeCount={12}
-        commentCount={3}
-        createdAt={new Date().toISOString()}
-        updatedAt={new Date().toISOString()}
-        fullname="John Doe"
-      />
-      <PostCard
-        id="2"
-        caption="Had a great lunch with friends."
-        image="https://placehold.co/600x400/EEE/31343C"
-        likeCount={8}
-        commentCount={1}
-        createdAt={new Date(Date.now() - 3600 * 1000).toISOString()}
-        updatedAt={new Date(Date.now() - 3600 * 1000).toISOString()}
-        fullname="Jane Smith"
-      />
+      {posts.map((post) => (
+        <PostCard
+          key={post.id}
+          id={post.id}
+          caption={post.caption}
+          image={post.image}
+          likeCount={post.likeCount}
+          commentCount={post.commentCount}
+          createdAt={post.createdAt}
+          updatedAt={post.updatedAt}
+          fullname={'User Name'} // Replace with actual user name if available
+        />
+      ))}
     </div>
   );
 };
