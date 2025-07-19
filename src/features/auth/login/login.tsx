@@ -7,7 +7,7 @@ import { PrimaryButton } from 'components/primary-button/primary-button';
 import { FormField } from 'components/input-field/form-field';
 import { trimAllWhitespace } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { userService } from 'features/user/user-service';
+import { UserService } from 'features/user/user-service';
 import { updateUser } from 'features/user/user-slice';
 import { authService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
@@ -70,7 +70,7 @@ export const Login = () => {
         email: trimmedEmail,
         password: trimmedPassword,
       });
-      const userDetails = await userService.fetchCurrentUser();
+      const userDetails = await UserService.fetchCurrentUser();
       dispath(updateUser(userDetails));
       navigate('/', { replace: true });
     } catch (err) {
