@@ -6,11 +6,13 @@ import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
 import { SectionHeader } from 'components/headers/section-header';
 import { addMultipleClassNames } from 'utils/common';
-import { Post } from 'features/home/components/post/post';
-import { PostSkeleton } from 'features/home/components/post/post-skeleton';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { selectUser } from './user-slice';
+import {
+  PostCard,
+  PostCardSkeleton,
+} from 'features/posts/components/post-card';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -56,8 +58,8 @@ export const ProfilePage = () => {
         {postLoader ? (
           // Show 2 skeletons while loading
           <>
-            <PostSkeleton />
-            <PostSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
           </>
         ) : posts.length === 0 ? (
           <div style={{ textAlign: 'center', color: '#888', marginTop: 32 }}>
@@ -65,7 +67,7 @@ export const ProfilePage = () => {
           </div>
         ) : (
           posts.map((post) => (
-            <Post
+            <PostCard
               id={post.id}
               caption={post.caption}
               commentCount={post.commentCount}

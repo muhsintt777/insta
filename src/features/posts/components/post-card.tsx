@@ -1,4 +1,4 @@
-import styles from './postStyle.module.scss';
+import styles from './post-card.module.scss';
 import { FC } from 'react';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
@@ -7,7 +7,7 @@ import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 
-interface PostProps {
+interface PostCardProps {
   id: string;
   fullname: string;
   image: string;
@@ -18,7 +18,7 @@ interface PostProps {
   updatedAt: string;
 }
 
-export const Post: FC<PostProps> = ({
+export const PostCard: FC<PostCardProps> = ({
   caption,
   commentCount,
   createdAt,
@@ -54,3 +54,38 @@ export const Post: FC<PostProps> = ({
     </article>
   );
 };
+
+export const PostCardSkeleton: FC = () => (
+  <article
+    className={styles.container}
+    aria-busy="true"
+    aria-label="Loading post"
+  >
+    <div className={styles.head}>
+      <div className={styles.skeletonProfile} />
+      <div className={styles.skeletonTextGroup}>
+        <div
+          className={styles.skeletonText}
+          style={{ width: '80px', height: '14px' }}
+        />
+        <div
+          className={styles.skeletonText}
+          style={{ width: '50px', height: '12px', marginTop: 4 }}
+        />
+      </div>
+      <div className={styles.skeletonIconButton} />
+    </div>
+    <div className={styles.content}>
+      <div
+        className={styles.skeletonText}
+        style={{ width: '100%', height: '16px', marginBottom: 8 }}
+      />
+      <div className={styles.skeletonImage} />
+    </div>
+    <div className={styles.actions}>
+      <div className={styles.skeletonActionIcon} />
+      <div className={styles.skeletonActionIcon} />
+      <div className={styles.skeletonActionIcon} />
+    </div>
+  </article>
+);

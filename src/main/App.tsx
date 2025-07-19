@@ -15,7 +15,7 @@ import { Friends } from 'features/friends/friends';
 import { Login } from 'features/auth/login/login';
 import { Toast } from 'features/toast/toast';
 import { Chat } from 'features/chat/chat';
-import { Home } from 'features/home/home';
+import { HomePage } from 'features/home/home-page';
 import { protect } from './with-protected-route';
 
 export const App = () => {
@@ -36,7 +36,7 @@ export const App = () => {
       ) : (
         <Routes>
           <Route path="/" element={<PrimaryLayout />}>
-            <Route index element={protect(Home)} />
+            <Route index element={protect(HomePage)} />
             <Route path="friends" element={protect(Friends)} />
             <Route path="chat" element={protect(Chat)} />
             <Route path="notifications" element={protect(Notifications)} />
