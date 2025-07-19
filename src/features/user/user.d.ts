@@ -1,15 +1,14 @@
-export interface User {
-  id: string;
+interface User {
+  bio: string | null;
+  gender: string | null;
+  mobileNo: string | null;
   email: string;
   username: string;
   fullName: string;
-  mobileNo: string | null;
   profileImage: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-  bio: string | null;
-  gender: string | null;
-  __v: number;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
 }
 
 interface UserSuccessSlice {

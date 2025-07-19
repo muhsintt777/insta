@@ -1,19 +1,13 @@
 import { http } from 'configs/http';
-import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
-import { CustomError } from 'utils/custom-error';
-import { asyncHandler } from 'utils/common';
-import { User } from './user-types';
+import { HTTP_STATUS_CODES } from 'configs/constants';
+import { User } from './user';
 
-export const userService = {
-  fetchCurrentUser: async () =>
-    asyncHandler(async () => {
-      const result = await http.get('users/currentuser');
-      if (result.status !== HTTP_STATUS_CODES.OK) {
-        throw new CustomError(
-          ERROR_TYPE.UNKNOWN_API_ERROR,
-          'Fetch user failed',
-        );
-      }
-      return result.data?.data as User;
-    }),
-};
+export class UserService {
+  static async fetchCurrentUser(): Promise<User> {
+    const res = await http.get('/users/currentuser');
+    if (res.status !== HTTP_STATUS_CODES.OK) {
+      throw new Error('Failed to fetch user details');
+    }
+    return res.data.data as User;
+  }
+}

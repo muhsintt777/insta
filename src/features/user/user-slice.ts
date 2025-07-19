@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 // PayloadAction
 import type { Rootstate } from 'configs/store';
 import { COMMON_ERROR_MESSAGE } from 'configs/constants';
-import { User, UserSlice } from './user-types';
-import { userService } from './user-service';
+import { User, UserSlice } from './user';
+import { UserService } from './user-service';
 
 const initialState = {
   status: 'LOADING',
@@ -56,7 +56,7 @@ export const userSlice = createSlice({
 export const initialUserFetch = createAsyncThunk(
   'user/initialUserFetch',
   async () => {
-    const result = await userService.fetchCurrentUser();
+    const result = await UserService.fetchCurrentUser();
     return result;
   },
 );

@@ -56,7 +56,6 @@ export const ProfilePage = () => {
         />
 
         {postLoader ? (
-          // Show 2 skeletons while loading
           <>
             <PostCardSkeleton />
             <PostCardSkeleton />
