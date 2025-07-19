@@ -1,4 +1,9 @@
-export const ENV = {
-  SERVER_TYPE: (import.meta.env.VITE_SERVER_TYPE as 'DEV') || 'PROD',
-  API_URL: import.meta.env.VITE_API_URL as string,
+export const ENV:ENVType = {
+  SERVER_TYPE: 'DEV',
+  API_URL: 'https://insta-server-k0gd.onrender.com/api',
 };
+
+interface ENVType {
+  SERVER_TYPE: 'DEV' | 'PROD';
+  API_URL: string;
+}
