@@ -8,6 +8,8 @@ interface PrimaryButtonProps {
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   showLoader?: boolean;
+  fullWidth?: boolean;
+  customStyles?: React.CSSProperties;
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = ({
@@ -15,12 +17,14 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
   disabled = false,
   type = 'button',
   showLoader = false,
+  fullWidth = false,
+  customStyles = {},
   onClick,
 }) => {
   return (
     <Button
       type={type}
-      fullWidth
+      fullWidth={fullWidth}
       onClick={onClick}
       disabled={disabled}
       variant="contained"
@@ -37,6 +41,8 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
         '&:hover': {
           backgroundColor: 'var(--clr-primary)',
         },
+
+        ...customStyles,
       }}
     >
       {showLoader ? <DotLoader /> : text}
