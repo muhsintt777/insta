@@ -1,4 +1,4 @@
-import styles from './primary-modal-headerStyle.module.scss';
+import styles from './primary-modal-header.module.scss';
 import { FC } from 'react';
 
 import { CloseIcon } from 'assets/icons-components/close-icon';
