@@ -1,6 +1,6 @@
-import { CSSProperties, FC, ReactElement } from 'react';
+import styles from './primary-modal.module.scss';
+import { FC, ReactElement } from 'react';
 import { Modal } from '@mui/material';
-import { colors } from 'main/global-style';
 
 interface PrimaryModalProps {
   children: ReactElement;
@@ -14,20 +14,12 @@ export const PrimaryModal: FC<PrimaryModalProps> = ({
   closeModal,
 }) => {
   return (
-    <Modal open={isOpen} onClose={closeModal} sx={styles.modal}>
-      <div style={styles.container}>{children}</div>
+    <Modal
+      open={isOpen}
+      onClose={closeModal}
+      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    >
+      <div className={styles.modalContainer}>{children}</div>
     </Modal>
   );
-};
-
-const styles: Record<string, CSSProperties> = {
-  container: {
-    backgroundColor: colors.LIGHTGREY,
-    borderRadius: '8px',
-  },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 };
