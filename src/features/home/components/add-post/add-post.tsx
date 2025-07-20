@@ -12,7 +12,7 @@ import { HashtagIcon } from 'assets/icons-components/hashtag-icon';
 import { SecondaryButton } from 'components/secondary-button/secondary-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
-import { PrimaryModal } from 'components/modal/primary-modal';
+import { PrimaryModal } from 'components/modals/primary-modal';
 
 import { CreatePost } from '../create-post/create-post';
 

@@ -1,5 +1,5 @@
-import { PrimaryModal } from 'components/modal/primary-modal';
-import { PrimaryModalHeader } from 'components/modal/primary-modal-header';
+import { PrimaryModal } from 'components/modals/primary-modal';
+import { PrimaryModalHeader } from 'components/modals/primary-modal-header';
 import { FC } from 'react';
 
 interface CreatePostModalProps {

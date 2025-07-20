@@ -1,7 +1,7 @@
 import styles from './create-postStyle.module.scss';
 import { FC } from 'react';
 
-import { PrimaryModalHeader } from 'components/modal/primary-modal-header';
+import { PrimaryModalHeader } from 'components/modals/primary-modal-header';
 
 interface CreatePostProps {
   onClose: () => void;
