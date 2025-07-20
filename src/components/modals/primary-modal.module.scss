@@ -1,3 +1,9 @@
+.footer {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-top: 1px solid var(--clr-light-grey);
+}
 .modalContainer {
   display: flex;
   flex-direction: column;

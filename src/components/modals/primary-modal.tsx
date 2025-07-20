@@ -3,6 +3,7 @@ import { FC, ReactElement } from 'react';
 import { Modal } from '@mui/material';
 import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
 import { CloseIcon } from 'assets/icons-components/close-icon';
+import { PrimaryButton } from 'components/primary-button/primary-button';
 
 interface PrimaryModalProps {
   children: ReactElement;
@@ -37,6 +38,14 @@ export const ModalHeader: FC<ModalHeaderProps> = ({ title, onClose }) => {
       <PrimaryIconButton onClick={onClose}>
         <CloseIcon />
       </PrimaryIconButton>
+    </div>
+  );
+};
+
+export const ModalFooter = () => {
+  return (
+    <div className={styles.footer}>
+      <PrimaryButton text="sefe" />
     </div>
   );
 };
