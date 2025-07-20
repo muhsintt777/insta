@@ -1,11 +1,17 @@
 import styles from './primary-modal.module.scss';
 import { FC, ReactElement } from 'react';
 import { Modal } from '@mui/material';
+import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
+import { CloseIcon } from 'assets/icons-components/close-icon';
 
 interface PrimaryModalProps {
   children: ReactElement;
   isOpen: boolean;
   closeModal?: () => void;
+}
+interface ModalHeaderProps {
+  title: string;
+  onClose: () => void;
 }
 
 export const PrimaryModal: FC<PrimaryModalProps> = ({
@@ -21,5 +27,16 @@ export const PrimaryModal: FC<PrimaryModalProps> = ({
     >
       <div className={styles.modalContainer}>{children}</div>
     </Modal>
+  );
+};
+
+export const ModalHeader: FC<ModalHeaderProps> = ({ title, onClose }) => {
+  return (
+    <div className={styles.header}>
+      <p>{title}</p>
+      <PrimaryIconButton onClick={onClose}>
+        <CloseIcon />
+      </PrimaryIconButton>
+    </div>
   );
 };

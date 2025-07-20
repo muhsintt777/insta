@@ -8,3 +8,22 @@
   min-height: 300px;
   max-height: 90vh;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0px 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--clr-lightGrey);
+
+  > p {
+    font-family: var(--fnt-primary);
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    color: var(--clr-black);
+  }
+}
