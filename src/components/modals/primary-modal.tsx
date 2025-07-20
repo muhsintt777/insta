@@ -4,6 +4,7 @@ import { Modal } from '@mui/material';
 import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
 import { CloseIcon } from 'assets/icons-components/close-icon';
 import { PrimaryButton } from 'components/primary-button/primary-button';
+import { SecondaryButton } from 'components/secondary-button/secondary-button';
 
 interface PrimaryModalProps {
   children: ReactElement;
@@ -46,6 +47,7 @@ export const ModalFooter = () => {
   return (
     <div className={styles.footer}>
       <PrimaryButton text="sefe" />
+      <SecondaryButton>fseff</SecondaryButton>
     </div>
   );
 };

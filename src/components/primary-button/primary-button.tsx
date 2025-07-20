@@ -9,7 +9,6 @@ interface PrimaryButtonProps {
   onClick?: () => void;
   showLoader?: boolean;
   fullWidth?: boolean;
-  customStyles?: React.CSSProperties;
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = ({
@@ -18,7 +17,6 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
   type = 'button',
   showLoader = false,
   fullWidth = false,
-  customStyles = {},
   onClick,
 }) => {
   return (
@@ -41,8 +39,6 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
         '&:hover': {
           backgroundColor: 'var(--clr-primary)',
         },
-
-        ...customStyles,
       }}
     >
       {showLoader ? <DotLoader /> : text}
