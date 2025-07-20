@@ -15,11 +15,13 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
   disabled = false,
   type = 'button',
   showLoader = false,
+  onClick,
 }) => {
   return (
     <Button
       type={type}
       fullWidth
+      onClick={onClick}
       disabled={disabled}
       variant="contained"
       sx={{
