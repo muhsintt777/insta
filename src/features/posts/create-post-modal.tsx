@@ -1,5 +1,5 @@
-import { PrimaryModal } from 'components/modals/primary-modal';
-import { PrimaryModalHeader } from 'components/modals/primary-modal-header';
+import { PrimaryModal, ModalHeader } from 'components/modals/primary-modal';
+import { PrimaryModalFooter } from 'components/modals/primary-modal-footer';
 import { FC } from 'react';
 
 interface CreatePostModalProps {
@@ -16,8 +16,9 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   return (
     <PrimaryModal isOpen={isOpen}>
       <>
-        <PrimaryModalHeader title="CREATE POST" onClose={closeModal} />
-        <div>dgrgrg</div>
+        <ModalHeader title="CREATE POST" onClose={closeModal} />
+        <div style={{ flex: 1, width: '100%' }}>dgrgrg</div>
+        <PrimaryModalFooter />
       </>
     </PrimaryModal>
   );
