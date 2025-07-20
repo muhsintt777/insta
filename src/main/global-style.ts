@@ -7,6 +7,7 @@ export const colors = {
   YELLOW: 'var(--clr-yellow)',
   GREY: 'var(--clr-grey)',
   LIGHTGREY: 'var(--clr-lightGrey)',
+  BORDER: 'var(--clr-lightGrey)',
   BG_PRIMARY: 'var(--clr-bg-primary)',
 };
 
