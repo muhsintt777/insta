@@ -16,6 +16,17 @@ interface ModalHeaderProps {
   onClose: () => void;
 }
 
+interface ModalFooterProps {
+  primaryButton?: {
+    text: string;
+    onClick?: () => void;
+  };
+  secondaryButton?: {
+    text: string;
+    onClick?: () => void;
+  };
+}
+
 export const PrimaryModal: FC<PrimaryModalProps> = ({
   children,
   isOpen,
@@ -46,8 +57,8 @@ export const ModalHeader: FC<ModalHeaderProps> = ({ title, onClose }) => {
 export const ModalFooter = () => {
   return (
     <div className={styles.footer}>
-      <PrimaryButton text="sefe" />
       <SecondaryButton>fseff</SecondaryButton>
+      <PrimaryButton text="sefe" />
     </div>
   );
 };
