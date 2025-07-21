@@ -29,6 +29,12 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
       fullWidth={fullWidth}
       disabled={disabled}
       sx={{
+        height: '35px',
+        borderRadius: '5px',
+        fontSize: '12px',
+        fontFamily: 'var(--fnt-primary)',
+        fontWeight: 900,
+        letterSpacing: '-0.02rem',
         textTransform: 'none',
         color: color,
         '&:hover': {
