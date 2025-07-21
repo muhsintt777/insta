@@ -4,7 +4,7 @@ import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
 import { ShareIcon } from 'assets/icons-components/share-icon';
-import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
+import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 
 interface PostCardProps {

@@ -9,9 +9,9 @@ import { AddImageIcon } from 'assets/icons-components/add-image-icon';
 import { MentionIcon } from 'assets/icons-components/mention-icon';
 import { HashtagIcon } from 'assets/icons-components/hashtag-icon';
 
-import { SecondaryButton } from 'components/secondary-button/secondary-button';
+import { SecondaryButton } from 'components/buttons/secondary-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
-import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
+import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { PrimaryModal } from 'components/modals/primary-modal';
 
 import { CreatePost } from '../create-post/create-post';

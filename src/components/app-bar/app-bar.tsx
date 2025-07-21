@@ -1,7 +1,7 @@
 import styles from './app-bar.module.scss';
 import { FC } from 'react';
 import { BackIcon } from 'assets/icons-components/back-icon';
-import { PrimaryIconButton } from 'components/primary-icon-button/primary-icon-button';
+import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 
 interface AppBarProps {
   title: string;

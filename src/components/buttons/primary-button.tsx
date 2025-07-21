@@ -27,7 +27,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
       disabled={disabled}
       variant="contained"
       sx={{
-        height: '43px',
+        height: '40px',
         fontSize: '12px',
         borderRadius: '5px',
         fontFamily: 'var(--fnt-primary)',

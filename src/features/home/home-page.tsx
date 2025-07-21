@@ -5,7 +5,7 @@ import { PostCard } from 'features/posts/components/post-card';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { AddPost } from './components/add-post/add-post';
-import { PrimaryButton } from 'components/primary-button/primary-button';
+import { PrimaryButton } from 'components/buttons/primary-button';
 import { CreatePostModal } from 'features/posts/create-post-modal';
 
 export const HomePage = () => {
