@@ -19,6 +19,7 @@ interface ModalHeaderProps {
 interface ModalFooterProps {
   primaryButton?: {
     text: string;
+    showLoader?: boolean;
     onClick?: () => void;
   };
   secondaryButton?: {
@@ -54,11 +55,25 @@ export const ModalHeader: FC<ModalHeaderProps> = ({ title, onClose }) => {
   );
 };
 
-export const ModalFooter = () => {
+export const ModalFooter: FC<ModalFooterProps> = ({
+  primaryButton,
+  secondaryButton,
+}) => {
   return (
     <div className={styles.footer}>
-      <SecondaryButton>fseff</SecondaryButton>
-      <PrimaryButton text="sefe" />
+      {secondaryButton && (
+        <SecondaryButton onClick={secondaryButton.onClick}>
+          {secondaryButton.text}
+        </SecondaryButton>
+      )}
+      {primaryButton && (
+        <PrimaryButton
+          customStyles={secondaryButton ? { marginLeft: '12px' } : undefined}
+          text={primaryButton.text}
+          showLoader={primaryButton.showLoader}
+          onClick={primaryButton.onClick}
+        />
+      )}
     </div>
   );
 };
