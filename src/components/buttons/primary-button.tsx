@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import { Button } from '@mui/material';
 import { DotLoader } from 'components/loaders/dot-loader';
 
@@ -9,6 +9,7 @@ interface PrimaryButtonProps {
   onClick?: () => void;
   showLoader?: boolean;
   fullWidth?: boolean;
+  customStyles?: CSSProperties;
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = ({
@@ -18,9 +19,11 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
   showLoader = false,
   fullWidth = false,
   onClick,
+  customStyles,
 }) => {
   return (
     <Button
+      style={customStyles}
       type={type}
       fullWidth={fullWidth}
       onClick={onClick}
