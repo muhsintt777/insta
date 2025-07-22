@@ -37,7 +37,12 @@ export const PrimaryModal: FC<PrimaryModalProps> = ({
     <Modal
       open={isOpen}
       onClose={closeModal}
-      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        outline: 'none',
+      }}
     >
       <div className={styles.modalContainer}>{children}</div>
     </Modal>
