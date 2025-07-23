@@ -1,6 +1,11 @@
 import { HTTP_STATUS_CODES } from 'configs/constants';
 import { http } from 'configs/http';
 
+interface CreatePostParams {
+  image: File;
+  caption: string;
+}
+
 export class PostService {
   static async fetchUserPosts() {
     const res = await http.get('posts/currentuser');
@@ -18,5 +23,15 @@ export class PostService {
       throw new Error('Failed to fetch posts. Please try again later.');
     }
     return res.data.data as Post[];
+  }
+
+  static async createPost(params: CreatePostParams) {
+    const formData = new FormData();
+    formData.append('image', params.image);
+    formData.append('caption', params.caption);
+    const res = await http.post('posts', formData);
+    if (res.status !== HTTP_STATUS_CODES.CREATED) {
+      throw new Error('Failed to create post. Please try again later.');
+    }
   }
 }

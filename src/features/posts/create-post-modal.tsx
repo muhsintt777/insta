@@ -16,12 +16,20 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   closeModal,
   onSubmit,
 }) => {
+  const handlePostSubmit = () => {
+    onSubmit?.();
+    closeModal();
+  };
+
   return (
     <PrimaryModal isOpen={isOpen}>
       <>
         <ModalHeader title="CREATE POST" onClose={closeModal} />
         <div style={{ flex: 1, width: '100%' }}>dgrgrg</div>
-        <ModalFooter />
+        <ModalFooter
+          secondaryButton={{ onClick: closeModal, text: 'CANCEL' }}
+          primaryButton={{ text: 'POST', onClick: handlePostSubmit }}
+        />
       </>
     </PrimaryModal>
   );
