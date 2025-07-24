@@ -19,13 +19,24 @@ interface NumberInputProps {
   onchange: (e: number) => void;
 }
 
+interface ImageInputProps {
+  type: 'IMAGE';
+  value: File | null;
+  onchange: (e: File | null) => void;
+  sizeLimit?: number; // in bytes
+}
+
 interface FormFieldProps {
   placeholder: string;
   label: string;
   name: string;
   error: string | null;
-  controls: TextInputProps | PasswordInputProps | NumberInputProps;
-  containerStyle?: CSSProperties;
+  controls:
+    | TextInputProps
+    | PasswordInputProps
+    | NumberInputProps
+    | ImageInputProps;
+  customStyles?: CSSProperties;
 }
 
 export const FormField: FC<FormFieldProps> = ({
@@ -34,7 +45,7 @@ export const FormField: FC<FormFieldProps> = ({
   name,
   error,
   controls,
-  containerStyle,
+  customStyles,
 }) => {
   const handleNumberChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>, onChange: (e: number) => void) => {
@@ -46,7 +57,7 @@ export const FormField: FC<FormFieldProps> = ({
   );
 
   return (
-    <div style={containerStyle} className={styles.container}>
+    <div style={customStyles} className={styles.container}>
       {controls.type === 'TEXT' && (
         <>
           <label htmlFor={name}>{label}</label>
@@ -104,6 +115,51 @@ export const FormField: FC<FormFieldProps> = ({
           >
             {error}
           </p>
+        </>
+      )}
+
+      {controls.type === 'IMAGE' && (
+        <>
+          <label htmlFor={name}>{label}</label>
+          <input
+            name={name}
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0] || null;
+              if (
+                file &&
+                controls.sizeLimit &&
+                file.size > controls.sizeLimit
+              ) {
+                // Optionally, you can set error state here or call onchange with null
+                controls.onchange(null);
+                return;
+              }
+              controls.onchange(file);
+            }}
+          />
+          {controls.value && (
+            <div className={styles.previewContainer}>
+              <img
+                src={URL.createObjectURL(controls.value)}
+                alt="Preview"
+                className={styles.imagePreview}
+              />
+            </div>
+          )}
+          <p
+            className={
+              error ? styles.errorMessageShow : styles.errorMessageHide
+            }
+          >
+            {error}
+          </p>
+          {controls.sizeLimit && (
+            <span className={styles.sizeLimitInfo}>
+              Max size: {Math.round(controls.sizeLimit / 1024)} KB
+            </span>
+          )}
         </>
       )}
     </div>
