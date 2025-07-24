@@ -1,10 +1,29 @@
+import { FC, useState } from 'react';
+import { z } from 'zod';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from 'components/input-field/form-field';
 import {
   PrimaryModal,
   ModalHeader,
   ModalFooter,
 } from 'components/modals/primary-modal';
-import { FC, useState } from 'react';
+import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { PostService } from './post-service';
+
+const postFormSchema = z.object({
+  caption: z
+    .string()
+    .min(2, 'Caption is too small')
+    .max(200, 'Caption is too long'),
+  image: z
+    .instanceof(File)
+    .refine((file) => !file || file.size <= 5 * 1024 * 1024, {
+      message: 'Image must be less than 5MB',
+    }),
+});
+
+type PostFormSchema = z.infer<typeof postFormSchema>;
 
 interface CreatePostModalProps {
   closeModal: () => void;
@@ -17,53 +36,83 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   closeModal,
   onSubmit,
 }) => {
-  const [postForm, setPostForm] = useState({
-    caption: '',
-    image: null as File | null,
+  const [showPostLoader, setShowPostLoader] = useState(false);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<PostFormSchema>({
+    resolver: zodResolver(postFormSchema),
   });
 
-  const handlePostSubmit = () => {
-    onSubmit?.();
-    closeModal();
+  const handlePostSubmit = async (data: PostFormSchema) => {
+    try {
+      setShowPostLoader(true);
+      await PostService.createPost(data);
+      onSubmit?.();
+      reset();
+      closeModal();
+    } catch (error) {
+      handleErrorWithToast(error);
+    } finally {
+      setShowPostLoader(false);
+    }
   };
 
   return (
     <PrimaryModal isOpen={isOpen}>
       <>
         <ModalHeader title="CREATE POST" onClose={closeModal} />
-        <div style={{ flex: 1, width: '100%', padding: '0px 12px' }}>
-          <FormField
-            error={null}
-            label="Caption"
-            name="Caption"
-            placeholder="What's on your mind?"
-            controls={{
-              type: 'TEXT',
-              value: postForm.caption,
-              onchange: (e) => {
-                setPostForm((prev) => ({ ...prev, caption: e }));
-              },
-            }}
+        <form
+          onSubmit={handleSubmit(handlePostSubmit)}
+          style={{ flex: 1, width: '100%', padding: '0px 12px' }}
+        >
+          <Controller
+            name="caption"
+            control={control}
+            render={({ field }) => (
+              <FormField
+                error={errors.caption?.message || null}
+                label="Caption"
+                name="caption"
+                placeholder="What's on your mind?"
+                customStyles={{ marginBottom: '12px' }}
+                controls={{
+                  type: 'TEXT',
+                  value: field.value,
+                  onchange: field.onChange,
+                }}
+              />
+            )}
           />
 
-          <FormField
-            error={null}
-            label="Image"
-            name="Image"
-            placeholder="Upload an image"
-            controls={{
-              type: 'IMAGE',
-              value: postForm.image,
-              onchange: (e) => {
-                setPostForm((prev) => ({ ...prev, image: e }));
-              },
-              sizeLimit: 5 * 1024 * 1024, // 5 MB limit
-            }}
+          <Controller
+            name="image"
+            control={control}
+            render={({ field }) => (
+              <FormField
+                error={errors.image?.message || null}
+                label="Image"
+                name="image"
+                placeholder="Upload an image"
+                controls={{
+                  type: 'IMAGE',
+                  value: field.value,
+                  onchange: field.onChange,
+                  sizeLimit: 5 * 1024 * 1024, // 5 MB
+                }}
+              />
+            )}
           />
-        </div>
+        </form>
         <ModalFooter
           secondaryButton={{ onClick: closeModal, text: 'CANCEL' }}
-          primaryButton={{ text: 'POST', onClick: handlePostSubmit }}
+          primaryButton={{
+            text: 'POST',
+            showLoader: showPostLoader,
+            onClick: handleSubmit(handlePostSubmit),
+          }}
         />
       </>
     </PrimaryModal>

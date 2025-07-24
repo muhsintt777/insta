@@ -20,7 +20,7 @@ interface ModalFooterProps {
   primaryButton?: {
     text: string;
     showLoader?: boolean;
-    onClick?: () => void;
+    onClick?: () => void | Promise<void>;
   };
   secondaryButton?: {
     text: string;
