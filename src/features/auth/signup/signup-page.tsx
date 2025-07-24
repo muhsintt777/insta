@@ -69,7 +69,7 @@ export const SignupPage = () => {
               control={control}
               render={({ field }) => (
                 <FormField
-                  containerStyle={{ width: '300px' }}
+                  customStyles={{ width: '300px' }}
                   name="fullName"
                   label="Full name"
                   error={errors.fullName?.message || null}
@@ -87,7 +87,7 @@ export const SignupPage = () => {
               control={control}
               render={({ field }) => (
                 <FormField
-                  containerStyle={{ width: '300px' }}
+                  customStyles={{ width: '300px' }}
                   name="username"
                   label="Username"
                   error={errors.username?.message || null}
@@ -106,7 +106,7 @@ export const SignupPage = () => {
             control={control}
             render={({ field }) => (
               <FormField
-                containerStyle={{ width: '616px' }}
+                customStyles={{ width: '616px' }}
                 name="email"
                 label="Email"
                 error={errors.email?.message || null}
@@ -126,7 +126,7 @@ export const SignupPage = () => {
               control={control}
               render={({ field }) => (
                 <FormField
-                  containerStyle={{ width: '300px' }}
+                  customStyles={{ width: '300px' }}
                   name={field.name}
                   label="Password"
                   error={errors.password?.message || null}
@@ -145,7 +145,7 @@ export const SignupPage = () => {
               control={control}
               render={({ field }) => (
                 <FormField
-                  containerStyle={{ width: '300px' }}
+                  customStyles={{ width: '300px' }}
                   name={field.name}
                   label="Confirm Password"
                   error={errors.confirmPassword?.message || null}
