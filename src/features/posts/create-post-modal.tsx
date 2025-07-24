@@ -10,6 +10,7 @@ import {
 } from 'components/modals/primary-modal';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from './post-service';
+import { FileInput } from 'components/input-field/file-input';
 
 const postFormSchema = z.object({
   caption: z
@@ -91,17 +92,14 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
             name="image"
             control={control}
             render={({ field }) => (
-              <FormField
+              <FileInput
                 error={errors.image?.message || null}
                 label="Image"
                 name="image"
-                placeholder="Upload an image"
-                controls={{
-                  type: 'IMAGE',
-                  value: field.value,
-                  onchange: field.onChange,
-                  sizeLimit: 5 * 1024 * 1024, // 5 MB
-                }}
+                sizeLimit="2_MB"
+                onChange={field.onChange}
+                type="IMAGE"
+                value={field.value}
               />
             )}
           />
