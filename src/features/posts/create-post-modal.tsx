@@ -102,7 +102,6 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
                 name="image"
                 sizeLimit="2_MB"
                 onChange={field.onChange}
-                type="IMAGE"
                 value={field.value}
               />
             )}
