@@ -67,7 +67,12 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
         <ModalHeader title="CREATE POST" onClose={closeModal} />
         <form
           onSubmit={handleSubmit(handlePostSubmit)}
-          style={{ flex: 1, width: '100%', padding: '0px 12px' }}
+          style={{
+            flex: 1,
+            width: '100%',
+            padding: '0px 12px',
+            overflowY: 'auto',
+          }}
         >
           <Controller
             name="caption"
@@ -78,7 +83,6 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
                 label="Caption"
                 name="caption"
                 placeholder="What's on your mind?"
-                customStyles={{ marginBottom: '12px' }}
                 controls={{
                   type: 'TEXT',
                   value: field.value,
