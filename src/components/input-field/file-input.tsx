@@ -41,53 +41,31 @@ export const FileInput: FC<FileInputProps> = ({
     }
     onChange(file);
   };
-  error = 'sfsefef';
+
   return (
     <div style={customStyles} className={styles.container}>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className={styles.label}>
+        {label}
+      </label>
       <input
         ref={inputRef}
         name={name}
         type="file"
         accept="image/*"
-        style={{ display: 'none' }}
         onChange={handleFileChange}
       />
       <div
         className={styles.previewContainer + ' ' + styles.clickableBox}
         onClick={handleBoxClick}
-        style={{
-          height: '155px',
-          width: '100%',
-          background: 'var(--clr-bg-primary)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          borderRadius: 5,
-        }}
       >
         {value ? (
           <img
             src={URL.createObjectURL(value)}
             alt="Preview"
             className={styles.imagePreview}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              padding: 8,
-            }}
           />
         ) : (
-          <span
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <AddImageIcon size="80px" color="var(--clr-grey)" />
-          </span>
+          <AddImageIcon size="80px" color="var(--clr-grey)" />
         )}
       </div>
       <p className={error ? styles.errorMessageShow : styles.errorMessageHide}>
