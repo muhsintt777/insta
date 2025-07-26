@@ -27,9 +27,11 @@ export class PostService {
 
   static async createPost(params: CreatePostParams) {
     const formData = new FormData();
-    formData.append('image', params.image);
+    formData.append('image', params.image, params.image.name);
     formData.append('caption', params.caption);
-    const res = await http.post('posts', formData);
+    const res = await http.post('posts', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
     if (res.status !== HTTP_STATUS_CODES.CREATED) {
       throw new Error('Failed to create post. Please try again later.');
     }

@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import { z } from 'zod';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from 'components/input-field/form-field';
@@ -8,23 +7,10 @@ import {
   ModalHeader,
   ModalFooter,
 } from 'components/modals/primary-modal';
+import { FileInput } from 'components/input-field/file-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from './post-service';
-import { FileInput } from 'components/input-field/file-input';
-
-const postFormSchema = z.object({
-  caption: z
-    .string()
-    .min(2, 'Caption is too small')
-    .max(200, 'Caption is too long'),
-  image: z
-    .instanceof(File)
-    .refine((file) => !file || file.size <= 5 * 1024 * 1024, {
-      message: 'Image must be less than 5MB',
-    }),
-});
-
-type PostFormSchema = z.infer<typeof postFormSchema>;
+import { PostFormSchema, postFormSchema } from './post-validation';
 
 interface CreatePostModalProps {
   closeModal: () => void;
