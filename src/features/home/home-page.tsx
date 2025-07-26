@@ -1,5 +1,5 @@
 import styles from './home-page.module.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { LoaderStatus } from 'utils/types';
 import { PostCard } from 'features/posts/components/post-card';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
@@ -9,6 +9,15 @@ import { AddPost } from './components/add-post/add-post';
 export const HomePage = () => {
   const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');
   const [posts, setPosts] = useState<Post[]>([]);
+
+  const refetchPosts = useCallback(async () => {
+    try {
+      const result = await PostService.fetchPosts();
+      setPosts(result);
+    } catch (error) {
+      //
+    }
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -25,7 +34,7 @@ export const HomePage = () => {
 
   return (
     <div className={styles.container}>
-      <AddPost />
+      <AddPost onPostCreated={refetchPosts} />
 
       {posts.map((post) => (
         <PostCard

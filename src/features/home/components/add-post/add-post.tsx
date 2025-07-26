@@ -1,9 +1,13 @@
 import styles from './add-postStyle.module.scss';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { CreatePostModal } from 'features/posts/create-post-modal';
 
-export const AddPost = () => {
+interface AddPostProps {
+  onPostCreated?: () => void;
+}
+
+export const AddPost: FC<AddPostProps> = ({ onPostCreated }) => {
   const [showCreatePostModal, setShowCreatePostModal] =
     useState<boolean>(false);
 
@@ -14,13 +18,14 @@ export const AddPost = () => {
   return (
     <div className={styles.container}>
       <RoundedProfile />
-      <div>
-        <div></div>
+      <div className={styles.clickableBox} onClick={toggleCreatePostModal}>
+        <p>What's on your mind?</p>
       </div>
       {showCreatePostModal && (
         <CreatePostModal
           isOpen={showCreatePostModal}
           closeModal={toggleCreatePostModal}
+          onSubmit={onPostCreated}
         />
       )}
     </div>

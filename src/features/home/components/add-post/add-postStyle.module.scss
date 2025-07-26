@@ -1,6 +1,22 @@
 .container {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
   width: 100%;
   margin-bottom: 4px;
   padding: 10px 6px;
   background-color: white;
+}
+
+.clickableBox {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: 4px;
+  background-color: var(--clr-bg-primary);
+  cursor: pointer;
+
+  > p {
+    font-size: 12px;
+    color: var(--clr-secondary-font);
+  }
 }
