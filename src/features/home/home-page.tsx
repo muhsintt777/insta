@@ -5,17 +5,10 @@ import { PostCard } from 'features/posts/components/post-card';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { AddPost } from './components/add-post/add-post';
-import { CreatePostModal } from 'features/posts/create-post-modal';
 
 export const HomePage = () => {
   const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');
   const [posts, setPosts] = useState<Post[]>([]);
-  const [showCreatePostModal, setShowCreatePostModal] =
-    useState<boolean>(false);
-
-  const toggleCreatePostModal = () => {
-    setShowCreatePostModal(!showCreatePostModal);
-  };
 
   useEffect(() => {
     (async () => {
@@ -34,12 +27,6 @@ export const HomePage = () => {
     <div className={styles.container}>
       <AddPost />
 
-      {showCreatePostModal && (
-        <CreatePostModal
-          isOpen={showCreatePostModal}
-          closeModal={toggleCreatePostModal}
-        />
-      )}
       {posts.map((post) => (
         <PostCard
           key={post.id}

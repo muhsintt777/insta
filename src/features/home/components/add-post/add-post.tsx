@@ -1,24 +1,28 @@
 import styles from './add-postStyle.module.scss';
 import { useState } from 'react';
-
-import { SendIcon } from 'assets/icons-components/send-icon';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
-import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
+import { CreatePostModal } from 'features/posts/create-post-modal';
 
 export const AddPost = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showCreatePostModal, setShowCreatePostModal] =
+    useState<boolean>(false);
+
+  const toggleCreatePostModal = () => {
+    setShowCreatePostModal(!showCreatePostModal);
+  };
 
   return (
     <div className={styles.container}>
-      <div className={styles.top}>
-        <RoundedProfile />
-        <div>
-          <input type="text" placeholder="What's on your mind ? <username>" />
-          <PrimaryIconButton type="submit">
-            <SendIcon size="12px" color="var(--clr-grey)" />
-          </PrimaryIconButton>
-        </div>
+      <RoundedProfile />
+      <div>
+        <div></div>
       </div>
+      {showCreatePostModal && (
+        <CreatePostModal
+          isOpen={showCreatePostModal}
+          closeModal={toggleCreatePostModal}
+        />
+      )}
     </div>
   );
 };
