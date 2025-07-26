@@ -21,6 +21,7 @@
 }
 
 .previewContainer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,6 +30,16 @@
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--clr-bg-primary);
+}
+
+.sizeLimit {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 10px;
+  color: var(--clr-grey);
+  padding: 2px 8px;
+  pointer-events: none;
 }
 
 .imagePreview {

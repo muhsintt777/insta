@@ -100,7 +100,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
                 error={errors.image?.message || null}
                 label="Image"
                 name="image"
-                sizeLimit="2_MB"
+                sizeLabelInMb={2}
                 onChange={field.onChange}
                 value={field.value}
               />
