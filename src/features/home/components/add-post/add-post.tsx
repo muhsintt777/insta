@@ -1,5 +1,5 @@
 import styles from './add-postStyle.module.scss';
-import { FC, useState } from 'react';
+import { FC, useState, memo } from 'react';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { CreatePostModal } from 'features/posts/create-post-modal';
 
@@ -7,7 +7,7 @@ interface AddPostProps {
   onPostCreated?: () => void;
 }
 
-export const AddPost: FC<AddPostProps> = ({ onPostCreated }) => {
+const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
   const [showCreatePostModal, setShowCreatePostModal] =
     useState<boolean>(false);
 
@@ -31,3 +31,5 @@ export const AddPost: FC<AddPostProps> = ({ onPostCreated }) => {
     </div>
   );
 };
+
+export const AddPost = memo(AddPostComponent);
