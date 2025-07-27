@@ -18,7 +18,7 @@ http.interceptors.response.use(
     return res;
   },
   async (err) => {
-    const statusCode = err.response?.data?.statusCode;
+    const statusCode = err.response.status;
     const errorType = err.response?.data?.errorType;
 
     if (
