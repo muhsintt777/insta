@@ -39,6 +39,6 @@ export class AuthService {
   }
 
   static async refreshAuth() {
-    // Implement refresh logic if needed
+    await http.post('auth/refresh');
   }
 }
