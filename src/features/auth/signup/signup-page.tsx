@@ -12,7 +12,7 @@ import { useToast } from 'features/toast/useToast';
 import { UserService } from 'features/user/user-service';
 import { updateUser } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
-import { authService } from '../auth-service';
+import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 
 export const SignupPage = () => {
@@ -41,8 +41,8 @@ export const SignupPage = () => {
     async (data: SignupFormSchema) => {
       try {
         setShowFormSubmitLoader(true);
-        await authService.createUser(data);
-        await authService.login({ email: data.email, password: data.password });
+        await AuthService.createUser(data);
+        await AuthService.login({ email: data.email, password: data.password });
         const user = await UserService.fetchCurrentUser();
         dispath(updateUser(user));
         showToast('success', 'Account created successfully');

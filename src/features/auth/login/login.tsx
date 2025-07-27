@@ -9,7 +9,7 @@ import { trimAllWhitespace } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { UserService } from 'features/user/user-service';
 import { updateUser } from 'features/user/user-slice';
-import { authService } from '../auth-service';
+import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 
 interface EmailInpType {
@@ -66,7 +66,7 @@ export const Login = () => {
       setShowLoader(true);
       const trimmedEmail = trimAllWhitespace(emailInp.value);
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
-      await authService.login({
+      await AuthService.login({
         email: trimmedEmail,
         password: trimmedPassword,
       });
