@@ -1,6 +1,5 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
 import { http } from 'configs/http';
-import { asyncHandler } from 'utils/common';
 import { CustomError } from 'utils/custom-error';
 
 interface CreateUserParams {
@@ -14,31 +13,32 @@ type LoginParams =
   | { email: string; password: string }
   | { username: string; password: string };
 
-export const authService = {
-  createUser: async (params: CreateUserParams) =>
-    asyncHandler(async () => {
-      const { status } = await http.post('users', params);
-      if (status !== HTTP_STATUS_CODES.CREATED) {
-        throw new CustomError(
-          ERROR_TYPE.UNKNOWN_API_ERROR,
-          'Failed to create user',
-        );
-      }
-    }),
+export class AuthService {
+  static async createUser(params: CreateUserParams) {
+    const { status } = await http.post('users', params);
+    if (status !== HTTP_STATUS_CODES.CREATED) {
+      throw new CustomError(
+        ERROR_TYPE.UNKNOWN_API_ERROR,
+        'Failed to create user',
+      );
+    }
+  }
 
-  login: async (params: LoginParams) =>
-    asyncHandler(async () => {
-      const response = await http.post('auth/login', params);
-      if (response.status !== HTTP_STATUS_CODES.OK) {
-        throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
-      }
-    }),
+  static async login(params: LoginParams) {
+    const response = await http.post('auth/login', params);
+    if (response.status !== HTTP_STATUS_CODES.OK) {
+      throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
+    }
+  }
 
-  signout: async () =>
-    asyncHandler(async () => {
-      const result = (await http.post('auth/logout')).data;
-      if (result.statusCode !== HTTP_STATUS_CODES.OK) {
-        throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to logout');
-      }
-    }),
-};
+  static async signout() {
+    const res = await http.post('auth/logout');
+    if (res.status !== HTTP_STATUS_CODES.OK) {
+      throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to logout');
+    }
+  }
+
+  static async refreshAuth() {
+    await http.post('auth/refresh');
+  }
+}
