@@ -31,6 +31,7 @@ http.interceptors.response.use(
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
       errorType !== ERROR_TYPE.AUTH_TOKEN_EXPIRED
     ) {
+      await AuthService.signout();
       store.dispatch(logout());
     }
 

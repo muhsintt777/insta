@@ -32,8 +32,8 @@ export class AuthService {
   }
 
   static async signout() {
-    const result = (await http.post('auth/logout')).data;
-    if (result.statusCode !== HTTP_STATUS_CODES.OK) {
+    const res = await http.post('auth/logout');
+    if (res.status !== HTTP_STATUS_CODES.OK) {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to logout');
     }
   }
