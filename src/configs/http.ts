@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { logout } from 'features/user/user-slice';
+import { AuthService } from 'features/auth/auth-service';
 import { ERROR_TYPE, HTTP_STATUS_CODES } from './constants';
 import { store } from './store';
 import { ENV } from './env';
@@ -24,12 +25,13 @@ http.interceptors.response.use(
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
       errorType === ERROR_TYPE.AUTH_TOKEN_EXPIRED
     ) {
-      await http.post('auth/refresh');
+      await AuthService.refreshAuth();
       return http.request(err.config);
     } else if (
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
       errorType !== ERROR_TYPE.AUTH_TOKEN_EXPIRED
     ) {
+      await AuthService.signout();
       store.dispatch(logout());
     }
 
