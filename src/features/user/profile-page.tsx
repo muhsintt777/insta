@@ -34,13 +34,9 @@ export const ProfilePage = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div
-        className={addMultipleClassNames(styles.appBarWrap, 'app-container')}
-      >
-        <AppBar title="PROFILE" onBackClick={() => navigate(-1)} />
-      </div>
-      <div className={addMultipleClassNames(styles.body, 'app-container')}>
+    <div className={addMultipleClassNames(styles.container, 'app-container')}>
+      <AppBar title="PROFILE" onBackClick={() => navigate(-1)} />
+      <div className={addMultipleClassNames(styles.body)}>
         <div className={styles.userDetailsSection}>
           <RoundedProfile size="100px" />
           <div className={styles.userDetails}>
@@ -50,10 +46,6 @@ export const ProfilePage = () => {
             {!userDetails.bio && <p className={styles.addBio}>Add bio...</p>}
           </div>
         </div>
-        <SectionHeader
-          style={{ marginTop: '8px', marginBottom: '8px' }}
-          title="POSTS"
-        />
 
         {postLoader ? (
           <>
