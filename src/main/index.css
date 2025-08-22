@@ -11,12 +11,6 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  font-family: 'Work Sans', sans-serif;
-  color: #141c1a;
-
-  /* variables */
   --clr-primary: #df002c;
   --clr-primary-light: #df002c0f;
   --clr-black: #141c1a;
@@ -32,6 +26,15 @@ body {
 
   --fnt-primary: 'Lexend Zetta', sans-serif;
   --fnt-secondary: 'Work Sans', sans-serif;
+}
+
+#root {
+  width: 100vw;
+  height: 100dvh;
+
+  font-family: var(--fnt-secondary);
+  color: var(--clr-black);
+  background-color: var(--clr-bg-primary);
 }
 
 a {
