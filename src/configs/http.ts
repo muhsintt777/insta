@@ -29,10 +29,10 @@ http.interceptors.response.use(
       return http.request(err.config);
     } else if (
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
-      errorType !== ERROR_TYPE.AUTH_TOKEN_EXPIRED
+      errorType !== ERROR_TYPE.AUTH_UNAUTHORIZED
     ) {
-      await AuthService.signout();
       store.dispatch(logout());
+      await AuthService.signout();
     }
 
     throw err;
