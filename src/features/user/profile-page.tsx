@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
-import { SectionHeader } from 'components/headers/section-header';
 import { addMultipleClassNames } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
