@@ -1,11 +1,13 @@
 import styles from './post-card.module.scss';
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, MouseEvent, useCallback, useState } from 'react';
+import { Menu, MenuItem, PopoverOrigin, SxProps, Theme } from '@mui/material';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
 import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
+import { PostService } from '../post-service';
 
 interface PostCardProps {
   id: string;
@@ -30,6 +32,31 @@ export const PostCard: FC<PostCardProps> = ({
   customStyles,
   fullname,
 }) => {
+  const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
+
+  const open = Boolean(menuAnchorEl);
+
+  const handleMenuClick = useCallback(
+    (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+      setMenuAnchorEl(e.currentTarget);
+    },
+    [],
+  );
+
+  const handleMenuClose = useCallback(() => {
+    setMenuAnchorEl(null);
+  }, []);
+
+  const handleEdit = useCallback(() => {
+    console.log('Edit post:', id);
+    handleMenuClose();
+  }, [id, handleMenuClose]);
+
+  const handleDelete = useCallback(async () => {
+    await PostService.deletePost(id);
+    handleMenuClose();
+  }, [id, handleMenuClose]);
+
   return (
     <article style={customStyles} className={styles.container}>
       <div className={styles.head}>
@@ -39,7 +66,7 @@ export const PostCard: FC<PostCardProps> = ({
           <p>5 mins ago</p>
         </div>
         <div className={styles.iconButton}>
-          <PrimaryIconButton onClick={() => console.log('icon-button')}>
+          <PrimaryIconButton onClick={handleMenuClick}>
             <VerticalDotIcon color="var(--clr-grey)" />
           </PrimaryIconButton>
         </div>
@@ -53,6 +80,30 @@ export const PostCard: FC<PostCardProps> = ({
         <CommentIcon />
         <ShareIcon />
       </div>
+
+      <Menu
+        aria-hidden={open ? 'false' : 'true'}
+        anchorEl={menuAnchorEl}
+        id={`post-menu-${id}`}
+        open={open}
+        onClose={handleMenuClose}
+        disableAutoFocus
+        disableRestoreFocus
+        MenuListProps={{
+          onBlur: handleMenuClose,
+        }}
+        slotProps={{
+          paper: {
+            elevation: 0,
+            sx: postMenuSx,
+          },
+        }}
+        transformOrigin={postMenuTransformOrigin}
+        anchorOrigin={postMenuAnchorOrigin}
+      >
+        <MenuItem onClick={handleEdit}>Edit</MenuItem>
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
+      </Menu>
     </article>
   );
 };
@@ -91,3 +142,31 @@ export const PostCardSkeleton: FC = () => (
     </div>
   </article>
 );
+
+const postMenuSx: SxProps<Theme> = {
+  overflow: 'visible',
+  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+  mt: 1.5,
+  '&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    top: 0,
+    right: 14,
+    width: 10,
+    height: 10,
+    bgcolor: 'background.paper',
+    transform: 'translateY(-50%) rotate(45deg)',
+    zIndex: 0,
+  },
+};
+
+const postMenuTransformOrigin: PopoverOrigin = {
+  horizontal: 'right',
+  vertical: 'top',
+};
+
+const postMenuAnchorOrigin: PopoverOrigin = {
+  horizontal: 'right',
+  vertical: 'bottom',
+};

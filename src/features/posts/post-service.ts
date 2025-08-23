@@ -36,4 +36,11 @@ export class PostService {
       throw new Error('Failed to create post. Please try again later.');
     }
   }
+
+  static async deletePost(postId: string) {
+    const res = await http.delete(`posts/${postId}`);
+    if (res.status !== HTTP_STATUS_CODES.OK) {
+      throw new Error('Failed to delete post. Please try again later.');
+    }
+  }
 }
