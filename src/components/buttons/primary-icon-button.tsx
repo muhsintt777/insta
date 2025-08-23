@@ -1,9 +1,9 @@
-import { FC, ReactNode } from 'react';
+import { FC, MouseEvent, ReactNode } from 'react';
 import { IconButton } from '@mui/material';
 
 interface PrimaryIconButtonProps {
   children: ReactNode;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
   type?: 'button' | 'submit' | 'reset';
 }
 
