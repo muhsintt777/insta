@@ -1,5 +1,12 @@
 import styles from './app-header.module.scss';
-import { memo, MouseEvent, useCallback, useState } from 'react';
+import {
+  memo,
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Avatar,
@@ -23,6 +30,7 @@ export const Header = memo(() => {
   const user = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const open = Boolean(anchorEl);
 
@@ -30,15 +38,25 @@ export const Header = memo(() => {
     setAnchorEl(e.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
+
+  // Handle focus management reactively when menu closes
+  useEffect(() => {
+    if (!open && menuRef.current) {
+      const focusedElement = menuRef.current.querySelector(':focus');
+      if (focusedElement && focusedElement instanceof HTMLElement) {
+        focusedElement.blur();
+      }
+    }
+  }, [open]);
 
   const onProfileClick = useCallback(() => {
     handleClose();
     if (pathname === APP_ROUTES.PROFILE) return;
     navigate(APP_ROUTES.PROFILE);
-  }, [navigate, pathname]);
+  }, [handleClose, navigate, pathname]);
 
   const handleLogout = useCallback(async () => {
     try {
@@ -67,11 +85,17 @@ export const Header = memo(() => {
         </div>
       </header>
       <Menu
+        ref={menuRef}
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
         onClose={handleClose}
         onClick={handleClose}
+        disableAutoFocus
+        disableRestoreFocus
+        MenuListProps={{
+          onBlur: handleClose,
+        }}
         slotProps={{
           paper: {
             elevation: 0,
