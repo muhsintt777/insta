@@ -58,6 +58,7 @@ export const ProfilePage = () => {
         ) : (
           posts.map((post) => (
             <PostCard
+              customStyles={{ marginBottom: '6px' }}
               id={post.id}
               caption={post.caption}
               commentCount={post.commentCount}

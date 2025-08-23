@@ -1,5 +1,5 @@
 import styles from './post-card.module.scss';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
@@ -16,6 +16,7 @@ interface PostCardProps {
   commentCount: number;
   createdAt: string;
   updatedAt: string;
+  customStyles?: CSSProperties;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -26,10 +27,11 @@ export const PostCard: FC<PostCardProps> = ({
   image,
   likeCount,
   updatedAt,
+  customStyles,
   fullname,
 }) => {
   return (
-    <article className={styles.container}>
+    <article style={customStyles} className={styles.container}>
       <div className={styles.head}>
         <RoundedProfile />
         <div>
