@@ -12,6 +12,7 @@ applyTo: '**'
 - Write descriptive commit very short, use chore: feat: fix: for prefix.
 - Apply secure coding practices and web security best practices
 - Use scss modules for styling
+- Direct DOM access should be avoided
 
 ## Preferences
 
