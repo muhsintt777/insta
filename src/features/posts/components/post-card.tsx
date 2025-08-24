@@ -7,7 +7,6 @@ import { CommentIcon } from 'assets/icons-components/comment-icon';
 import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
-import { PostService } from '../post-service';
 
 interface PostCardProps {
   id: string;
@@ -19,6 +18,7 @@ interface PostCardProps {
   createdAt: string;
   updatedAt: string;
   customStyles?: CSSProperties;
+  onDelete: () => Promise<void>;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -31,6 +31,7 @@ export const PostCard: FC<PostCardProps> = ({
   updatedAt,
   customStyles,
   fullname,
+  onDelete,
 }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -53,9 +54,9 @@ export const PostCard: FC<PostCardProps> = ({
   }, [id, handleMenuClose]);
 
   const handleDelete = useCallback(async () => {
-    await PostService.deletePost(id);
+    await onDelete();
     handleMenuClose();
-  }, [id, handleMenuClose]);
+  }, [handleMenuClose, onDelete]);
 
   return (
     <article style={customStyles} className={styles.container}>

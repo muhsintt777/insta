@@ -1,5 +1,5 @@
 import styles from './profile-page.module.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
@@ -18,6 +18,15 @@ export const ProfilePage = () => {
   const userDetails = useAppSelector(selectUser).details!;
   const [posts, setPosts] = useState<Post[]>([]);
   const [postLoader, setPostLoader] = useState<boolean>(true);
+
+  const deletePost = useCallback(async (postId: string) => {
+    try {
+      await PostService.deletePost(postId);
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+    } catch (error) {
+      handleErrorWithToast(error);
+    }
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -58,6 +67,7 @@ export const ProfilePage = () => {
         ) : (
           posts.map((post) => (
             <PostCard
+              onDelete={() => deletePost(post.id)}
               customStyles={{ marginBottom: '6px' }}
               id={post.id}
               caption={post.caption}
