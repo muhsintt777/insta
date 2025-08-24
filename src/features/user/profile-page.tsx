@@ -7,6 +7,7 @@ import { AppBar } from 'components/app-bar/app-bar';
 import { addMultipleClassNames } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
+import { useLoader } from 'features/loader/useLoader';
 import { selectUser } from './user-slice';
 import {
   PostCard,
@@ -16,17 +17,25 @@ import {
 export const ProfilePage = () => {
   const navigate = useNavigate();
   const userDetails = useAppSelector(selectUser).details!;
+  const { showGlobalBackdrop, hideGlobalBackdrop } = useLoader();
+
   const [posts, setPosts] = useState<Post[]>([]);
   const [postLoader, setPostLoader] = useState<boolean>(true);
 
-  const deletePost = useCallback(async (postId: string) => {
-    try {
-      await PostService.deletePost(postId);
-      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-    } catch (error) {
-      handleErrorWithToast(error);
-    }
-  }, []);
+  const deletePost = useCallback(
+    async (postId: string) => {
+      try {
+        showGlobalBackdrop();
+        await PostService.deletePost(postId);
+        setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+      } catch (error) {
+        handleErrorWithToast(error);
+      } finally {
+        hideGlobalBackdrop();
+      }
+    },
+    [showGlobalBackdrop, hideGlobalBackdrop],
+  );
 
   useEffect(() => {
     (async () => {

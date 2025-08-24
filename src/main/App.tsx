@@ -17,6 +17,7 @@ import { Toast } from 'features/toast/toast';
 import { Chat } from 'features/chat/chat';
 import { HomePage } from 'features/home/home-page';
 import { protect } from './with-protected-route';
+import { BackdropLoader } from 'features/loader';
 
 export const App = () => {
   const dispath = useAppDispatch();
@@ -31,6 +32,8 @@ export const App = () => {
 
   return (
     <>
+      <BackdropLoader />
+      <Toast />
       {userApiStatus === 'LOADING' ? (
         <p>loadeinggg</p>
       ) : (

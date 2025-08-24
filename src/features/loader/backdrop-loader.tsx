@@ -1,16 +1,13 @@
-import { FC } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useLoader } from './useLoader';
 
-interface BackdropLoaderProps {
-  open: boolean;
-}
-
-export const BackdropLoader: FC<BackdropLoaderProps> = ({ open }) => {
+export const BackdropLoader = () => {
+  const { isBackdropVisible } = useLoader();
   return (
     <Backdrop
       sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-      open={open}
+      open={isBackdropVisible}
     >
       <CircularProgress color="inherit" />
     </Backdrop>
