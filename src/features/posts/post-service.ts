@@ -43,4 +43,11 @@ export class PostService {
       throw new Error('Failed to delete post. Please try again later.');
     }
   }
+
+  static async editPost(postId: string, caption: string) {
+    const res = await http.put(`posts/${postId}`, { caption });
+    if (res.status !== HTTP_STATUS_CODES.OK) {
+      throw new Error('Failed to edit post. Please try again later.');
+    }
+  }
 }

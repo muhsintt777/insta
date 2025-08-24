@@ -7,3 +7,8 @@ interface Post {
   createdAt: string;
   updatedAt: string;
 }
+
+interface EditPostParams {
+  postId: string;
+  caption: string;
+}

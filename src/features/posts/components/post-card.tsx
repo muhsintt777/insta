@@ -26,7 +26,7 @@ interface PostCardProps {
   updatedAt: string;
   customStyles?: CSSProperties;
   onDelete?: () => Promise<void>;
-  onEdit?: () => Promise<void>;
+  onEdit?: () => void;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -62,9 +62,9 @@ export const PostCard: FC<PostCardProps> = ({
   }, []);
 
   const handleEdit = useCallback(() => {
-    console.log('Edit post:', id);
+    onEdit?.();
     handleMenuClose();
-  }, [id, handleMenuClose]);
+  }, [onEdit, handleMenuClose]);
 
   const handleDelete = useCallback(async () => {
     await onDelete?.();

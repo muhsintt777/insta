@@ -16,4 +16,13 @@ export const postFormSchema = z.object({
       },
     ),
 });
+
+export const editPostFormSchema = z.object({
+  caption: z
+    .string()
+    .min(2, 'Caption is too small')
+    .max(200, 'Caption is too long'),
+});
+
 export type PostFormSchema = z.infer<typeof postFormSchema>;
+export type EditPostFormSchema = z.infer<typeof editPostFormSchema>;

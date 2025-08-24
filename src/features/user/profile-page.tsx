@@ -13,6 +13,7 @@ import {
   PostCard,
   PostCardSkeleton,
 } from 'features/posts/components/post-card';
+import { EditPostModal } from 'features/posts/edit-post-modal';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ export const ProfilePage = () => {
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [postLoader, setPostLoader] = useState<boolean>(true);
+  const [selectedPostToEdit, setSelectedPostToEdit] =
+    useState<EditPostParams | null>(null);
 
   const deletePost = useCallback(
     async (postId: string) => {
@@ -36,6 +39,28 @@ export const ProfilePage = () => {
     },
     [showGlobalBackdrop, hideGlobalBackdrop],
   );
+
+  const editPost = useCallback(
+    async (param: EditPostParams) => {
+      try {
+        showGlobalBackdrop();
+        await PostService.editPost(param.postId, param.caption);
+      } catch (error) {
+        handleErrorWithToast(error);
+      } finally {
+        hideGlobalBackdrop();
+      }
+    },
+    [hideGlobalBackdrop, showGlobalBackdrop],
+  );
+
+  const closeEditModal = useCallback(() => {
+    setSelectedPostToEdit(null);
+  }, []);
+
+  const openEditModal = useCallback((postId: string, caption: string) => {
+    setSelectedPostToEdit({ postId, caption });
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -76,6 +101,7 @@ export const ProfilePage = () => {
         ) : (
           posts.map((post) => (
             <PostCard
+              onEdit={() => openEditModal(post.id, post.caption)}
               onDelete={() => deletePost(post.id)}
               customStyles={{ marginBottom: '6px' }}
               id={post.id}
@@ -91,6 +117,13 @@ export const ProfilePage = () => {
           ))
         )}
       </div>
+      <EditPostModal
+        closeModal={closeEditModal}
+        currentCaption=""
+        isOpen={Boolean(selectedPostToEdit?.postId)}
+        postId={selectedPostToEdit?.postId || ''}
+        onSubmit={editPost}
+      />
     </div>
   );
 };
