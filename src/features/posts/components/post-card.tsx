@@ -1,5 +1,12 @@
 import styles from './post-card.module.scss';
-import { CSSProperties, FC, MouseEvent, useCallback, useState } from 'react';
+import {
+  CSSProperties,
+  FC,
+  MouseEvent,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import { Menu, MenuItem, PopoverOrigin, SxProps, Theme } from '@mui/material';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
@@ -18,7 +25,8 @@ interface PostCardProps {
   createdAt: string;
   updatedAt: string;
   customStyles?: CSSProperties;
-  onDelete: () => Promise<void>;
+  onDelete?: () => Promise<void>;
+  onEdit?: () => Promise<void>;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -32,10 +40,15 @@ export const PostCard: FC<PostCardProps> = ({
   customStyles,
   fullname,
   onDelete,
+  onEdit,
 }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(menuAnchorEl);
+  const enableOptions = useMemo(
+    () => Boolean(onDelete || onEdit),
+    [onDelete, onEdit],
+  );
 
   const handleMenuClick = useCallback(
     (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
@@ -54,7 +67,7 @@ export const PostCard: FC<PostCardProps> = ({
   }, [id, handleMenuClose]);
 
   const handleDelete = useCallback(async () => {
-    await onDelete();
+    await onDelete?.();
     handleMenuClose();
   }, [handleMenuClose, onDelete]);
 
@@ -66,11 +79,13 @@ export const PostCard: FC<PostCardProps> = ({
           <p>{fullname}</p>
           <p>5 mins ago</p>
         </div>
-        <div className={styles.iconButton}>
-          <PrimaryIconButton onClick={handleMenuClick}>
-            <VerticalDotIcon color="var(--clr-grey)" />
-          </PrimaryIconButton>
-        </div>
+        {enableOptions && (
+          <div className={styles.iconButton}>
+            <PrimaryIconButton onClick={handleMenuClick}>
+              <VerticalDotIcon color="var(--clr-grey)" />
+            </PrimaryIconButton>
+          </div>
+        )}
       </div>
       <div className={styles.content}>
         <p>{caption}</p>
@@ -102,8 +117,8 @@ export const PostCard: FC<PostCardProps> = ({
         transformOrigin={postMenuTransformOrigin}
         anchorOrigin={postMenuAnchorOrigin}
       >
-        <MenuItem onClick={handleEdit}>Edit</MenuItem>
-        <MenuItem onClick={handleDelete}>Delete</MenuItem>
+        {onEdit && <MenuItem onClick={handleEdit}>Edit</MenuItem>}
+        {onDelete && <MenuItem onClick={handleDelete}>Delete</MenuItem>}
       </Menu>
     </article>
   );
