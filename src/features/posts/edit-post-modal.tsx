@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from 'components/input-field/form-field';
@@ -35,7 +35,7 @@ export const EditPostModal: FC<EditPostModalProps> = ({
   } = useForm<EditPostFormSchema>({
     resolver: zodResolver(editPostFormSchema),
     defaultValues: {
-      caption: currentCaption,
+      caption: '',
     },
   });
 
@@ -51,6 +51,12 @@ export const EditPostModal: FC<EditPostModalProps> = ({
       setShowPostLoader(false);
     }
   };
+
+  useEffect(() => {
+    if (isOpen && currentCaption) {
+      reset({ caption: currentCaption });
+    }
+  }, [isOpen, currentCaption, reset]);
 
   return (
     <PrimaryModal isOpen={isOpen}>

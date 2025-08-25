@@ -45,6 +45,13 @@ export const ProfilePage = () => {
       try {
         showGlobalBackdrop();
         await PostService.editPost(param.postId, param.caption);
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === param.postId
+              ? { ...post, caption: param.caption }
+              : post,
+          ),
+        );
       } catch (error) {
         handleErrorWithToast(error);
       } finally {
@@ -119,7 +126,7 @@ export const ProfilePage = () => {
       </div>
       <EditPostModal
         closeModal={closeEditModal}
-        currentCaption=""
+        currentCaption={selectedPostToEdit?.caption || ''}
         isOpen={Boolean(selectedPostToEdit?.postId)}
         postId={selectedPostToEdit?.postId || ''}
         onSubmit={editPost}
