@@ -16,6 +16,10 @@ export class DateUtils {
     return date.toISOString();
   }
 
+  static dateFromIsoString(isoString: string): Date {
+    return new Date(isoString);
+  }
+
   static formatDate(
     date: Date,
     format: 'dd-mm-yyyy' | 'dd mmm yyyy' = 'dd mmm yyyy',

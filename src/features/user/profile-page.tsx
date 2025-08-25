@@ -118,7 +118,7 @@ export const ProfilePage = () => {
               image={post.image}
               likeCount={post.likeCount}
               updatedAt={post.updatedAt}
-              fullname="name"
+              fullname={post.creator.fullName}
               key={post.id}
             />
           ))

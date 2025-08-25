@@ -14,6 +14,7 @@ import { CommentIcon } from 'assets/icons-components/comment-icon';
 import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
+import { DateUtils } from 'utils/date-utils';
 
 interface PostCardProps {
   id: string;
@@ -49,6 +50,10 @@ export const PostCard: FC<PostCardProps> = ({
     () => Boolean(onDelete || onEdit),
     [onDelete, onEdit],
   );
+  const date = useMemo(
+    () => DateUtils.formatRelative(DateUtils.dateFromIsoString(createdAt)),
+    [createdAt],
+  );
 
   const handleMenuClick = useCallback(
     (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
@@ -77,7 +82,7 @@ export const PostCard: FC<PostCardProps> = ({
         <RoundedProfile />
         <div>
           <p>{fullname}</p>
-          <p>5 mins ago</p>
+          <p>{date}</p>
         </div>
         {enableOptions && (
           <div className={styles.iconButton}>
