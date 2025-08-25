@@ -46,7 +46,7 @@ export const HomePage = () => {
           commentCount={post.commentCount}
           createdAt={post.createdAt}
           updatedAt={post.updatedAt}
-          fullname={'User Name'} // Replace with actual user name if available
+          fullname={post.creator.fullName}
         />
       ))}
     </div>
