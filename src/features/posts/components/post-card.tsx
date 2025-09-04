@@ -15,6 +15,7 @@ import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { DateUtils } from 'utils/date-utils';
+import { SecondaryButton } from 'components/buttons/secondary-button';
 
 interface PostCardProps {
   id: string;
@@ -28,6 +29,7 @@ interface PostCardProps {
   customStyles?: CSSProperties;
   onDelete?: () => Promise<void>;
   onEdit?: () => void;
+  onLike: () => void;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -42,6 +44,7 @@ export const PostCard: FC<PostCardProps> = ({
   fullname,
   onDelete,
   onEdit,
+  onLike,
 }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -97,7 +100,9 @@ export const PostCard: FC<PostCardProps> = ({
         <img src={image} alt="img" />
       </div>
       <div className={styles.actions}>
-        <LikeIcon />
+        <SecondaryButton onClick={onLike}>
+          <LikeIcon />
+        </SecondaryButton>
         <CommentIcon />
         <ShareIcon />
       </div>
