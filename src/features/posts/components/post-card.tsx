@@ -108,8 +108,13 @@ export const PostCard: FC<PostCardProps> = ({
           {isLiked ? <LikedIcon color={colors.PRIMARY} /> : <LikeIcon />}
           <span className={styles.count}>{likeCount + 5}</span>
         </SecondaryButton>
-        <CommentIcon />
-        <ShareIcon />
+        <SecondaryButton>
+          <CommentIcon />
+          <span className={styles.count}>{commentCount + 2}</span>
+        </SecondaryButton>
+        <SecondaryButton>
+          <ShareIcon />
+        </SecondaryButton>
       </div>
 
       <Menu
