@@ -16,6 +16,8 @@ import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { DateUtils } from 'utils/date-utils';
 import { SecondaryButton } from 'components/buttons/secondary-button';
+import { LikedIcon } from 'assets/icons-components/liked-icon';
+import { colors } from 'main/global-style';
 
 interface PostCardProps {
   id: string;
@@ -24,6 +26,7 @@ interface PostCardProps {
   caption: string;
   likeCount: number;
   commentCount: number;
+  isLiked: boolean;
   createdAt: string;
   updatedAt: string;
   customStyles?: CSSProperties;
@@ -42,6 +45,7 @@ export const PostCard: FC<PostCardProps> = ({
   updatedAt,
   customStyles,
   fullname,
+  isLiked,
   onDelete,
   onEdit,
   onLike,
@@ -101,7 +105,8 @@ export const PostCard: FC<PostCardProps> = ({
       </div>
       <div className={styles.actions}>
         <SecondaryButton onClick={onLike}>
-          <LikeIcon />
+          {isLiked ? <LikedIcon color={colors.PRIMARY} /> : <LikeIcon />}
+          <span className={styles.count}>{likeCount + 5}</span>
         </SecondaryButton>
         <CommentIcon />
         <ShareIcon />

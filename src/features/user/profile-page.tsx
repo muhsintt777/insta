@@ -14,6 +14,7 @@ import {
   PostCardSkeleton,
 } from 'features/posts/components/post-card';
 import { EditPostModal } from 'features/posts/edit-post-modal';
+import { LikeService } from 'features/like/like-service';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -69,6 +70,29 @@ export const ProfilePage = () => {
     setSelectedPostToEdit({ postId, caption });
   }, []);
 
+  const handleLike = useCallback(async (postId: string, isLiked: boolean) => {
+    try {
+      if (isLiked) {
+        await LikeService.deleteLike(postId);
+      } else {
+        await LikeService.createLike(postId);
+      }
+      setPosts((prev) =>
+        prev.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                isLiked: !isLiked,
+                likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
+              }
+            : post,
+        ),
+      );
+    } catch (error) {
+      //
+    }
+  }, []);
+
   useEffect(() => {
     (async () => {
       try {
@@ -108,6 +132,7 @@ export const ProfilePage = () => {
         ) : (
           posts.map((post) => (
             <PostCard
+              onLike={() => handleLike(post.id, post.isLiked)}
               onEdit={() => openEditModal(post.id, post.caption)}
               onDelete={() => deletePost(post.id)}
               customStyles={{ marginBottom: '6px' }}
@@ -119,6 +144,7 @@ export const ProfilePage = () => {
               likeCount={post.likeCount}
               updatedAt={post.updatedAt}
               fullname={post.creator.fullName}
+              isLiked={post.isLiked}
               key={post.id}
             />
           ))
