@@ -10,6 +10,7 @@ interface Post {
     username: string;
     profileImage: string | null;
   };
+  isLiked: boolean;
   createdAt: string;
   updatedAt: string;
 }
