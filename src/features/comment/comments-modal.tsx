@@ -12,6 +12,7 @@ import { any } from 'zod';
 import { CommentCard } from './comment-card';
 import { LoaderStatus } from 'utils/types';
 import { CommentService } from './comment-service';
+import { CircleLoader } from 'features/loader/Circle-loader';
 
 interface CommentsModalProps {
   closeModal: () => void;
@@ -60,12 +61,23 @@ export const CommentsModal: FC<CommentsModalProps> = ({
       <>
         <ModalHeader title="COMMENTS" onClose={closeModal} />
         <div className={styles.body}>
-          {screenStatus === 'LOADING' && <p>Loading...</p>}
-          {screenStatus === 'FAILED' && <p>Failed to load comments</p>}
-          {screenStatus === 'SUCCESS' && comments.length === 0 && (
-            <p>No comments yet</p>
+          {screenStatus === 'LOADING' && (
+            <div className={styles.screenStatusWrap}>
+              <CircleLoader />
+            </div>
           )}
-          {screenStatus === 'SUCCESS' && comments.length > 0 && (
+          {screenStatus === 'FAILED' && (
+            <div className={styles.screenStatusWrap}>
+              {' '}
+              <p>Failed to load comments</p>{' '}
+            </div>
+          )}
+          {screenStatus === 'SUCCESS' && comments.length === 0 && (
+            <div className={styles.screenStatusWrap}>
+              <p>No comments yet</p>
+            </div>
+          )}
+          {screenStatus === 'SUCCESS' && (
             <div className={styles.commentsList}>
               {comments.map((comment) => (
                 <CommentCard
