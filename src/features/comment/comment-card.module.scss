@@ -15,6 +15,12 @@
 .authorName {
   display: flex;
   justify-content: space-between;
+
+  > span:last-child {
+    font-size: 10px;
+    color: var(--clr-secondary-font);
+    font-family: var(--fnt-secondary);
+  }
 }
 
 .commentText {
