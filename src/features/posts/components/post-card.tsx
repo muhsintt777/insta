@@ -33,6 +33,7 @@ interface PostCardProps {
   onDelete?: () => Promise<void>;
   onEdit?: () => void;
   onLike: () => void;
+  onComment: () => void;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -48,6 +49,7 @@ export const PostCard: FC<PostCardProps> = ({
   isLiked,
   onDelete,
   onEdit,
+  onComment,
   onLike,
 }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
@@ -108,7 +110,7 @@ export const PostCard: FC<PostCardProps> = ({
           {isLiked ? <LikedIcon color={colors.PRIMARY} /> : <LikeIcon />}
           <span className={styles.count}>{likeCount + 5}</span>
         </SecondaryButton>
-        <SecondaryButton>
+        <SecondaryButton onClick={onComment}>
           <CommentIcon />
           <span className={styles.count}>{commentCount + 2}</span>
         </SecondaryButton>

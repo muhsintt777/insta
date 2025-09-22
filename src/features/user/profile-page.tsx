@@ -15,6 +15,7 @@ import {
 } from 'features/posts/components/post-card';
 import { EditPostModal } from 'features/posts/edit-post-modal';
 import { LikeService } from 'features/like/like-service';
+import { CommentsModal } from 'features/comment/comments-modal';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ export const ProfilePage = () => {
   const [postLoader, setPostLoader] = useState<boolean>(true);
   const [selectedPostToEdit, setSelectedPostToEdit] =
     useState<EditPostParams | null>(null);
+
+  const [selectedPostIdForComments, setSelectedPostIdForComments] = useState<
+    string | null
+  >(null);
 
   const deletePost = useCallback(
     async (postId: string) => {
@@ -93,6 +98,14 @@ export const ProfilePage = () => {
     }
   }, []);
 
+  const openCommentsModal = useCallback((postId: string) => {
+    setSelectedPostIdForComments(postId);
+  }, []);
+
+  const closeCommentsModal = useCallback(() => {
+    setSelectedPostIdForComments(null);
+  }, []);
+
   useEffect(() => {
     (async () => {
       try {
@@ -132,6 +145,7 @@ export const ProfilePage = () => {
         ) : (
           posts.map((post) => (
             <PostCard
+              onComment={() => openCommentsModal(post.id)}
               onLike={() => handleLike(post.id, post.isLiked)}
               onEdit={() => openEditModal(post.id, post.caption)}
               onDelete={() => deletePost(post.id)}
@@ -156,6 +170,11 @@ export const ProfilePage = () => {
         isOpen={Boolean(selectedPostToEdit?.postId)}
         postId={selectedPostToEdit?.postId || ''}
         onSubmit={editPost}
+      />
+      <CommentsModal
+        closeModal={closeCommentsModal}
+        isOpen={Boolean(selectedPostIdForComments)}
+        postId={selectedPostIdForComments}
       />
     </div>
   );
