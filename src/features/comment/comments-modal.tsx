@@ -1,16 +1,16 @@
 import styles from './comments-modal.module.scss';
 import { FC, useEffect, useState } from 'react';
-import { useForm, Controller, set } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PrimaryModal, ModalHeader } from 'components/modals/primary-modal';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { CommentCard } from './comment-card';
-import { LoaderStatus } from 'utils/types';
-import { CommentService } from './comment-service';
-import { CircleLoader } from 'features/loader/Circle-loader';
-import { FormField } from 'components/input-field/form-field';
-import { commentFormSchema, CommentFormSchema } from './comment-validation';
 import { PrimaryButton } from 'components/buttons/primary-button';
+import { FormField } from 'components/input-field/form-field';
+import { LoaderStatus } from 'utils/types';
+import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { CircleLoader } from 'features/loader/Circle-loader';
+import { CommentService } from './comment-service';
+import { CommentCard } from './comment-card';
+import { commentFormSchema, CommentFormSchema } from './comment-validation';
 
 interface CommentsModalProps {
   closeModal: () => void;
@@ -110,7 +110,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
             control={control}
             render={({ field }) => (
               <FormField
-                label="eee"
+                label="..."
                 customStyles={{ flex: 1 }}
                 error={errors.comment?.message || null}
                 name="comment"
