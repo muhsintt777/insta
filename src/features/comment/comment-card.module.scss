@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   column-gap: 8px;
+  margin-bottom: 8px;
 }
 
 .rightSection {
@@ -16,15 +17,19 @@
   display: flex;
   justify-content: space-between;
 
+  > span:first-child {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
   > span:last-child {
     font-size: 10px;
     color: var(--clr-secondary-font);
-    font-family: var(--fnt-secondary);
   }
 }
 
 .commentText {
   margin-top: 4px;
   font-size: 12px;
-  font-family: var(--fnt-secondary);
+  color: var(--clr-secondary-font);
 }

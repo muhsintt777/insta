@@ -5,7 +5,7 @@ export class CommentService {
     const result = await http.get(`/comments/post/${postId}`);
     if (result.status === 204) return [];
     if (result.status !== 200) throw new Error('Failed to fetch comments');
-    return result.data;
+    return result.data.data as CommentDetails[];
   }
 
   static async createComment(postId: string, content: string) {

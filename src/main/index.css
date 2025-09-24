@@ -11,6 +11,9 @@
 }
 
 body {
+  font-family: var(--fnt-secondary);
+  color: var(--clr-black);
+
   --clr-primary: #df002c;
   --clr-primary-light: #df002c0f;
   --clr-black: #141c1a;
@@ -32,8 +35,6 @@ body {
   width: 100vw;
   height: 100dvh;
 
-  font-family: var(--fnt-secondary);
-  color: var(--clr-black);
   background-color: var(--clr-bg-primary);
 }
 
