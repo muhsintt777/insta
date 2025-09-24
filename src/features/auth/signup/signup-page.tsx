@@ -41,7 +41,7 @@ export const SignupPage = () => {
     async (data: SignupFormSchema) => {
       try {
         setShowFormSubmitLoader(true);
-        await AuthService.createUser(data);
+        await AuthService.createUser(data as any);
         await AuthService.login({ email: data.email, password: data.password });
         const user = await UserService.fetchCurrentUser();
         dispath(updateUser(user));

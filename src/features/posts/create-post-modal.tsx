@@ -36,7 +36,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   const handlePostSubmit = async (data: PostFormSchema) => {
     try {
       setShowPostLoader(true);
-      await PostService.createPost(data);
+      await PostService.createPost(data as any);
       onSubmit?.();
       reset();
       closeModal();

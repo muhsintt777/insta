@@ -47,6 +47,9 @@ export const HomePage = () => {
           createdAt={post.createdAt}
           updatedAt={post.updatedAt}
           fullname={post.creator.fullName}
+          isLiked={post.isLiked}
+          onComment={() => {}}
+          onLike={() => {}}
         />
       ))}
     </div>
