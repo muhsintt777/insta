@@ -51,6 +51,17 @@ export const CommentsModal: FC<CommentsModalProps> = ({
     }
   };
 
+  const onDeleteComment = async (commentId: string) => {
+    try {
+      if (!postId) return;
+      await CommentService.deleteComment(commentId);
+      const updatedComments = await CommentService.listPostComments(postId);
+      setComments(updatedComments);
+    } catch (error) {
+      //
+    }
+  };
+
   useEffect(() => {
     (async () => {
       if (!postId) return;
@@ -92,10 +103,12 @@ export const CommentsModal: FC<CommentsModalProps> = ({
               {comments.map((comment) => (
                 <CommentCard
                   key={comment.id}
+                  commentId={comment.id}
                   commentText={comment.content}
                   authorName={comment.creator.username}
                   authorProfilePic={comment.creator.profileImage}
                   commentedAt={comment.createdAt}
+                  onDelete={() => onDeleteComment(comment.id)}
                 />
               ))}
             </div>

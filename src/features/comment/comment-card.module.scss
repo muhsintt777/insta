@@ -15,16 +15,18 @@
 
 .authorName {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 
   > span:first-child {
+    flex: 1;
     font-size: 12px;
     font-weight: 500;
   }
 
-  > span:last-child {
+  > .date {
     font-size: 10px;
     color: var(--clr-secondary-font);
+    margin-right: 4px;
   }
 }
 
