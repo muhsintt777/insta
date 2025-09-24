@@ -2,17 +2,15 @@ import styles from './comments-modal.module.scss';
 import { FC, useEffect, useState } from 'react';
 import { useForm, Controller, set } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  PrimaryModal,
-  ModalHeader,
-  ModalFooter,
-} from 'components/modals/primary-modal';
+import { PrimaryModal, ModalHeader } from 'components/modals/primary-modal';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { any } from 'zod';
 import { CommentCard } from './comment-card';
 import { LoaderStatus } from 'utils/types';
 import { CommentService } from './comment-service';
 import { CircleLoader } from 'features/loader/Circle-loader';
+import { FormField } from 'components/input-field/form-field';
+import { commentFormSchema, CommentFormSchema } from './comment-validation';
+import { PrimaryButton } from 'components/buttons/primary-button';
 
 interface CommentsModalProps {
   closeModal: () => void;
@@ -27,18 +25,31 @@ export const CommentsModal: FC<CommentsModalProps> = ({
 }) => {
   const [screenStatus, setScreenStatus] = useState<LoaderStatus>('IDLE');
   const [comments, setComments] = useState<CommentDetails[]>([]);
+  const [showCommentLoader, setShowCommentLoader] = useState(false);
 
   const {
     handleSubmit,
     control,
     formState: { errors },
     reset,
-  } = useForm<any>({
-    // resolver: zodResolver(),
-    defaultValues: {
-      caption: '',
-    },
+  } = useForm<CommentFormSchema>({
+    resolver: zodResolver(commentFormSchema),
   });
+
+  const onCommentSubmit = async (data: CommentFormSchema) => {
+    try {
+      if (!postId || screenStatus !== 'SUCCESS' || showCommentLoader) return;
+      setShowCommentLoader(true);
+      await CommentService.createComment(postId, data.comment);
+      const newComment = await CommentService.listPostComments(postId);
+      setComments(newComment);
+      reset();
+    } catch (error) {
+      handleErrorWithToast(error);
+    } finally {
+      setShowCommentLoader(false);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -49,7 +60,6 @@ export const CommentsModal: FC<CommentsModalProps> = ({
         setComments(result);
         setScreenStatus('SUCCESS');
       } catch (error) {
-        //
         setScreenStatus('FAILED');
         handleErrorWithToast(error);
       }
@@ -91,14 +101,34 @@ export const CommentsModal: FC<CommentsModalProps> = ({
             </div>
           )}
         </div>
-        <ModalFooter
-          secondaryButton={{ onClick: closeModal, text: 'CANCEL' }}
-          primaryButton={{
-            text: 'COMMENT',
-            showLoader: false,
-            onClick: handleSubmit(() => {}),
-          }}
-        />
+        <form
+          className={styles.footer}
+          onSubmit={handleSubmit(onCommentSubmit)}
+        >
+          <Controller
+            name="comment"
+            control={control}
+            render={({ field }) => (
+              <FormField
+                label="eee"
+                customStyles={{ flex: 1 }}
+                error={errors.comment?.message || null}
+                name="comment"
+                placeholder="Add a comment..."
+                controls={{
+                  type: 'TEXT',
+                  value: field.value,
+                  onchange: field.onChange,
+                }}
+              />
+            )}
+          />
+          <PrimaryButton
+            text="SEND"
+            type="submit"
+            showLoader={showCommentLoader}
+          />
+        </form>
       </>
     </PrimaryModal>
   );
