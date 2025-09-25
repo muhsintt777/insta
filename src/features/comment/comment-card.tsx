@@ -62,7 +62,7 @@ export const CommentCardComp: FC<CommentCardProps> = ({
       <RoundedProfile />
       <div className={styles.rightSection}>
         <div className={styles.authorName}>
-          <span>{authorName} efsfe</span>
+          <span>{authorName}</span>
           <span className={styles.date}>{formattedDate}</span>
           <PrimaryIconButton onClick={handleMenuClick}>
             <VerticalDotIcon color="var(--clr-grey)" />
