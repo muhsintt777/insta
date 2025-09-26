@@ -11,7 +11,7 @@ import { Menu, MenuItem, PopoverOrigin, SxProps, Theme } from '@mui/material';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
-import { ShareIcon } from 'assets/icons-components/share-icon';
+// import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { DateUtils } from 'utils/date-utils';
@@ -114,9 +114,9 @@ export const PostCard: FC<PostCardProps> = ({
           <CommentIcon />
           <span className={styles.count}>{commentCount + 2}</span>
         </SecondaryButton>
-        <SecondaryButton>
+        {/* <SecondaryButton>
           <ShareIcon />
-        </SecondaryButton>
+        </SecondaryButton> */}
       </div>
 
       <Menu
