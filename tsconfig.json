@@ -23,15 +23,13 @@
 
     "baseUrl": "./src",
     "paths": {
-      "components/*": ["./components/*"],
       "assets/*": ["./assets/*"],
-      "layouts/*": ["./layouts/*"],
-      "main/*": ["./main/*"],
-      "screens/*": ["./screens/*"],
-      "services/*": ["./services/*"],
+      "components/*": ["./components/*"],
       "configs/*": ["./configs/*"],
       "features/*": ["./features/*"],
       "hooks/*": ["./hooks/*"],
+      "layouts/*": ["./layouts/*"],
+      "main/*": ["./main/*"],
       "utils/*": ["./utils/*"]
     }
   },
