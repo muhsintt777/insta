@@ -65,7 +65,7 @@ export const FormField: FC<FormFieldProps> = ({
             name={name}
             type="text"
             placeholder={placeholder}
-            value={controls.value}
+            value={controls.value ?? ''}
             onChange={(e) => controls.onchange(e.target.value)}
           />
           <p
@@ -85,7 +85,7 @@ export const FormField: FC<FormFieldProps> = ({
             name={name}
             type="password"
             placeholder={placeholder}
-            value={controls.value}
+            value={controls.value ?? ''}
             onChange={(e) => controls.onchange(e.target.value)}
           />
           <p

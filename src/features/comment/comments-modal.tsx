@@ -34,6 +34,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
     reset,
   } = useForm<CommentFormSchema>({
     resolver: zodResolver(commentFormSchema),
+    defaultValues: { comment: '' },
   });
 
   const onCommentSubmit = async (data: CommentFormSchema) => {
