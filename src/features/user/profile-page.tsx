@@ -109,17 +109,16 @@ export const ProfilePage = () => {
   const updateCommentCount = useCallback(
     (postId: string, type: 'increament' | 'decreament') => {
       setPosts((prev) =>
-        prev.map((post) =>
-          post.id === postId
-            ? {
-                ...post,
-                commentCount:
-                  type === 'increament'
-                    ? post.commentCount + 1
-                    : post.commentCount - 1,
-              }
-            : post,
-        ),
+        prev.map((post) => {
+          if (post.id !== postId) return post;
+
+          if (type === 'increament') {
+            post.commentCount = post.commentCount + 1;
+          } else {
+            post.commentCount = post.commentCount - 1;
+          }
+          return post;
+        }),
       );
     },
     [],
