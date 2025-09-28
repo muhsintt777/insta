@@ -106,6 +106,25 @@ export const ProfilePage = () => {
     setSelectedPostIdForComments(null);
   }, []);
 
+  const updateCommentCount = useCallback(
+    (postId: string, type: 'increament' | 'decreament') => {
+      setPosts((prev) =>
+        prev.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                commentCount:
+                  type === 'increament'
+                    ? post.commentCount + 1
+                    : post.commentCount - 1,
+              }
+            : post,
+        ),
+      );
+    },
+    [],
+  );
+
   useEffect(() => {
     (async () => {
       try {
@@ -172,9 +191,15 @@ export const ProfilePage = () => {
         onSubmit={editPost}
       />
       <CommentsModal
+        onSubmit={() =>
+          updateCommentCount(selectedPostIdForComments!, 'increament')
+        }
         closeModal={closeCommentsModal}
         isOpen={Boolean(selectedPostIdForComments)}
         postId={selectedPostIdForComments}
+        onDelete={() =>
+          updateCommentCount(selectedPostIdForComments!, 'decreament')
+        }
       />
     </div>
   );

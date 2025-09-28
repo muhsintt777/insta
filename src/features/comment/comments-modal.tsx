@@ -16,12 +16,16 @@ interface CommentsModalProps {
   closeModal: () => void;
   isOpen: boolean;
   postId: string | null;
+  onSubmit?: () => void;
+  onDelete?: () => void;
 }
 
 export const CommentsModal: FC<CommentsModalProps> = ({
   isOpen,
   closeModal,
   postId,
+  onSubmit,
+  onDelete,
 }) => {
   const [screenStatus, setScreenStatus] = useState<LoaderStatus>('IDLE');
   const [comments, setComments] = useState<CommentDetails[]>([]);
@@ -44,6 +48,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
       await CommentService.createComment(postId, data.comment);
       const newComment = await CommentService.listPostComments(postId);
       setComments(newComment);
+      onSubmit?.();
       reset();
     } catch (error) {
       handleErrorWithToast(error);
@@ -58,6 +63,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
       await CommentService.deleteComment(commentId);
       const updatedComments = await CommentService.listPostComments(postId);
       setComments(updatedComments);
+      onDelete?.();
     } catch (error) {
       //
     }
