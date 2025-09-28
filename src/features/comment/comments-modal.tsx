@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PrimaryModal, ModalHeader } from 'components/modals/primary-modal';
 import { PrimaryButton } from 'components/buttons/primary-button';
-import { FormField } from 'components/input-field/form-field';
+import { TextInput } from 'components/input-field/text-input';
 import { LoaderStatus } from 'utils/types';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { CircleLoader } from 'features/loader/Circle-loader';
@@ -123,17 +123,12 @@ export const CommentsModal: FC<CommentsModalProps> = ({
             name="comment"
             control={control}
             render={({ field }) => (
-              <FormField
-                label="..."
-                customStyles={{ flex: 1 }}
+              <TextInput
                 error={errors.comment?.message || null}
                 name="comment"
+                onchange={field.onChange}
+                value={field.value}
                 placeholder="Add a comment..."
-                controls={{
-                  type: 'TEXT',
-                  value: field.value,
-                  onchange: field.onChange,
-                }}
               />
             )}
           />
