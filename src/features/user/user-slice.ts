@@ -26,6 +26,21 @@ export const userSlice = createSlice({
       };
       Object.assign(state, newState);
     },
+    updateUserResourceCount: (
+      state,
+      action: PayloadAction<{
+        type: 'increament' | 'decreament';
+        key: 'postCount' | 'friendsCount';
+      }>,
+    ) => {
+      if (state.status !== 'SUCCESS' || state.details === null) return;
+
+      if (action.payload.type === 'increament') {
+        state.details[action.payload.key] += 1;
+      } else {
+        state.details[action.payload.key] -= 1;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,7 +78,8 @@ export const initialUserFetch = createAsyncThunk(
   },
 );
 
-export const { logout, updateUser } = userSlice.actions;
+export const { logout, updateUser, updateUserResourceCount } =
+  userSlice.actions;
 
 export const selectUser = (state: Rootstate) => state.user;
 export const selectUserApiStatus = (state: Rootstate) => state.user.status;
