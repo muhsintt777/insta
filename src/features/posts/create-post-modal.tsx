@@ -11,6 +11,8 @@ import { FileInput } from 'components/input-field/file-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
+import { useAppDispatch } from 'hooks/redux-hooks';
+import { updateUserResourceCount } from 'features/user/user-slice';
 
 interface CreatePostModalProps {
   closeModal: () => void;
@@ -23,6 +25,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   closeModal,
   onSubmit,
 }) => {
+  const dispatch = useAppDispatch();
   const [showPostLoader, setShowPostLoader] = useState(false);
   const {
     handleSubmit,
@@ -38,6 +41,9 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
       setShowPostLoader(true);
       await PostService.createPost(data as any);
       onSubmit?.();
+      dispatch(
+        updateUserResourceCount({ type: 'increament', key: 'postCount' }),
+      );
       reset();
       closeModal();
     } catch (error) {

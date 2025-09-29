@@ -1,14 +1,14 @@
 import styles from './profile-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
 import { addMultipleClassNames } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { useLoader } from 'features/loader/useLoader';
-import { selectUser } from './user-slice';
+import { selectUser, updateUserResourceCount } from './user-slice';
 import {
   PostCard,
   PostCardSkeleton,
@@ -19,6 +19,7 @@ import { CommentsModal } from 'features/comment/comments-modal';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
   const { showGlobalBackdrop, hideGlobalBackdrop } = useLoader();
 
@@ -37,13 +38,16 @@ export const ProfilePage = () => {
         showGlobalBackdrop();
         await PostService.deletePost(postId);
         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+        dispatch(
+          updateUserResourceCount({ type: 'decreament', key: 'postCount' }),
+        );
       } catch (error) {
         handleErrorWithToast(error);
       } finally {
         hideGlobalBackdrop();
       }
     },
-    [showGlobalBackdrop, hideGlobalBackdrop],
+    [showGlobalBackdrop, hideGlobalBackdrop, dispatch],
   );
 
   const editPost = useCallback(
@@ -145,7 +149,9 @@ export const ProfilePage = () => {
           <RoundedProfile size="100px" />
           <div className={styles.userDetails}>
             <p className={styles.name}>{userDetails.fullName}</p>
-            <p className={styles.stats}>0 posts | 0 friends</p>
+            <p className={styles.stats}>
+              {userDetails.postCount} posts | {userDetails.friendsCount} friends
+            </p>
             {userDetails.bio && <p className={styles.bio}>{userDetails.bio}</p>}
             {!userDetails.bio && <p className={styles.addBio}>Add bio...</p>}
           </div>
