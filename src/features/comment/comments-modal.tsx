@@ -139,6 +139,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
             )}
           />
           <PrimaryButton
+            customStyles={{ width: '100px' }}
             text="SEND"
             type="submit"
             showLoader={showCommentLoader}
