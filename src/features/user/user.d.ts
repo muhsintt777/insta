@@ -6,6 +6,8 @@ interface User {
   username: string;
   fullName: string;
   profileImage: string | null;
+  postCount: number;
+  friendsCount: number;
   createdAt: string;
   updatedAt: string;
   id: string;
