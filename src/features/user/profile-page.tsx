@@ -2,8 +2,10 @@ import styles from './profile-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { EditIcon } from 'assets/icons-components/edit-icon';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
+import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { addMultipleClassNames } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
@@ -16,6 +18,7 @@ import {
 import { EditPostModal } from 'features/posts/edit-post-modal';
 import { LikeService } from 'features/like/like-service';
 import { CommentsModal } from 'features/comment/comments-modal';
+import { EditUserModal } from './edit-user-modal';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -24,6 +27,7 @@ export const ProfilePage = () => {
   const { showGlobalBackdrop, hideGlobalBackdrop } = useLoader();
 
   const [posts, setPosts] = useState<Post[]>([]);
+  const [showUserEditModal, setShowUserEditModal] = useState(false);
   const [postLoader, setPostLoader] = useState<boolean>(true);
   const [selectedPostToEdit, setSelectedPostToEdit] =
     useState<EditPostParams | null>(null);
@@ -77,6 +81,10 @@ export const ProfilePage = () => {
 
   const openEditModal = useCallback((postId: string, caption: string) => {
     setSelectedPostToEdit({ postId, caption });
+  }, []);
+
+  const toggleUserEditModal = useCallback(() => {
+    setShowUserEditModal((prev) => !prev);
   }, []);
 
   const handleLike = useCallback(async (postId: string, isLiked: boolean) => {
@@ -155,6 +163,11 @@ export const ProfilePage = () => {
             {userDetails.bio && <p className={styles.bio}>{userDetails.bio}</p>}
             {!userDetails.bio && <p className={styles.addBio}>Add bio...</p>}
           </div>
+          <div className={styles.editIconWrap}>
+            <PrimaryIconButton onClick={toggleUserEditModal}>
+              <EditIcon />
+            </PrimaryIconButton>
+          </div>
         </div>
 
         {postLoader ? (
@@ -205,6 +218,10 @@ export const ProfilePage = () => {
         onDelete={() =>
           updateCommentCount(selectedPostIdForComments!, 'decreament')
         }
+      />
+      <EditUserModal
+        isOpen={showUserEditModal}
+        closeModal={toggleUserEditModal}
       />
     </div>
   );
