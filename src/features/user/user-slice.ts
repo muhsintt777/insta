@@ -41,6 +41,10 @@ export const userSlice = createSlice({
         state.details[action.payload.key] -= 1;
       }
     },
+    editUser: (state, action: PayloadAction<Partial<User>>) => {
+      if (state.status !== 'SUCCESS') return;
+      state.details = { ...state.details, ...action.payload };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -78,7 +82,7 @@ export const initialUserFetch = createAsyncThunk(
   },
 );
 
-export const { logout, updateUser, updateUserResourceCount } =
+export const { logout, updateUser, updateUserResourceCount, editUser } =
   userSlice.actions;
 
 export const selectUser = (state: Rootstate) => state.user;
