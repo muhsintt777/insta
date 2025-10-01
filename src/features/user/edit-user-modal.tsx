@@ -5,7 +5,7 @@ import {
   PrimaryModal,
 } from 'components/modals/primary-modal';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { editUser, selectUser } from './user-slice';
 import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput } from 'components/input-field/text-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { UserService } from './user-service';
+import { User } from './user';
 
 interface EditUserModalProps {
   isOpen: boolean;
@@ -38,50 +39,50 @@ export const EditUserModal: FC<EditUserModalProps> = ({
     defaultValues: { fullName: userDetails.fullName, bio: userDetails.bio },
   });
 
-  const getChangedFormValues = (formData: UserEditSchema) => {
-    const changedValues: Partial<UserEditSchema> = {
-      fullName:
-        userDetails.fullName !== formData.fullName
-          ? formData.fullName
-          : undefined,
-      bio: userDetails.bio !== formData.bio ? formData.bio : undefined,
-    };
-    if (Object.values(changedValues).every((value) => value === undefined)) {
+  const getChangedFormValues = (
+    formData: UserEditSchema,
+    currentUserDetails: User,
+  ) => {
+    const changedValues: any = {};
+    if (formData.fullName !== currentUserDetails.fullName) {
+      changedValues.fullName = formData.fullName;
+    }
+    if (formData.bio !== currentUserDetails.bio) {
+      changedValues.bio = formData.bio;
+    }
+    if (Object.keys(changedValues).length === 0) {
       return null;
     }
-    return changedValues;
+    return changedValues as Partial<User>;
   };
 
   const handleSave = async (data: UserEditSchema) => {
     try {
-      const changedValues = getChangedFormValues(data);
+      const changedValues = getChangedFormValues(data, userDetails);
       if (!changedValues) {
-        handleClose();
+        closeModal();
         return;
       }
       setShowLoader(true);
-      await UserService.editUserProfile({
-        fullName: changedValues.fullName,
-        bio: changedValues.bio || undefined,
-      });
+      await UserService.editUserProfile(changedValues);
       dispatch(editUser(changedValues));
       setShowLoader(false);
-      handleClose();
+      closeModal();
     } catch (error) {
       handleErrorWithToast(error);
       setShowLoader(false);
     }
   };
 
-  const handleClose = () => {
-    reset();
-    closeModal();
-  };
+  useEffect(() => {
+    if (!isOpen) return;
+    reset({ fullName: userDetails.fullName, bio: userDetails.bio });
+  }, [isOpen, userDetails.fullName, userDetails.bio, reset]);
 
   return (
     <PrimaryModal isOpen={isOpen}>
       <>
-        <ModalHeader title="Edit Profile" onClose={handleClose} />
+        <ModalHeader title="Edit Profile" onClose={closeModal} />
         <div className={styles.body}>
           <Controller
             name="fullName"
@@ -104,7 +105,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
               <TextInput
                 error={errors.bio?.message || null}
                 name="bio"
-                onchange={(e) => field.onChange(e || null)}
+                onchange={field.onChange}
                 value={field.value}
                 label="Bio"
               />
@@ -117,7 +118,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
             onClick: handleSubmit(handleSave),
             showLoader: showLoader,
           }}
-          secondaryButton={{ text: 'CANCEL', onClick: handleClose }}
+          secondaryButton={{ text: 'CANCEL', onClick: closeModal }}
         />
       </>
     </PrimaryModal>
