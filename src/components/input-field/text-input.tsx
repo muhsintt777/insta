@@ -1,5 +1,5 @@
 import styles from './input-field.module.scss';
-import { FC, memo, useMemo } from 'react';
+import { CSSProperties, FC, memo, useMemo } from 'react';
 import { addMultipleClassNames } from 'utils/common';
 
 interface TextInputProps {
@@ -8,6 +8,7 @@ interface TextInputProps {
   error: string | null;
   placeholder?: string;
   label?: string;
+  customStyle?: CSSProperties;
   onchange: (value: string) => void;
 }
 
@@ -17,6 +18,7 @@ const TextInputComp: FC<TextInputProps> = ({
   error,
   label,
   placeholder,
+  customStyle,
   onchange,
 }) => {
   const errorClassNames = useMemo(() => {
@@ -27,7 +29,7 @@ const TextInputComp: FC<TextInputProps> = ({
   }, [error]);
 
   return (
-    <div className={styles.container}>
+    <div style={customStyle} className={styles.container}>
       {label && (
         <label htmlFor={name} className={styles.label}>
           {label}

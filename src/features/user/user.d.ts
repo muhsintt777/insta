@@ -1,5 +1,5 @@
 interface User {
-  bio: string | null;
+  bio: string;
   gender: string | null;
   mobileNo: string | null;
   email: string;
