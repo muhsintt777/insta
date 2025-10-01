@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const userEditSchema = z.object({
-  fullname: z
+  fullName: z
     .string()
     .min(2, 'Fullname is too small')
     .max(100, 'Fullname is too long'),
