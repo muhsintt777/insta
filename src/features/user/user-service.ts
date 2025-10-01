@@ -16,11 +16,9 @@ export class UserService {
   }
 
   static async editUserProfile(params: EditUserProfileParams) {
-    console.log('params', params);
-
-    // const res = await http.put('users/currentuser', params);
-    // if (res.status !== HTTP_STATUS_CODES.OK) {
-    //   throw new Error('Failed to update user profile');
-    // }
+    const res = await http.put('users/currentuser', params);
+    if (res.status !== HTTP_STATUS_CODES.OK) {
+      throw new Error('Failed to update user profile');
+    }
   }
 }
