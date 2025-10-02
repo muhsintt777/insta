@@ -21,6 +21,8 @@ http.interceptors.response.use(
     const statusCode = err.status;
     const errorType = err.response?.data?.errorType;
 
+    console.log({ statusCode, errorType });
+
     if (
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
       errorType === ERROR_TYPE.AUTH_TOKEN_EXPIRED
@@ -29,10 +31,10 @@ http.interceptors.response.use(
       return http.request(err.config);
     } else if (
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
-      errorType !== ERROR_TYPE.AUTH_UNAUTHORIZED
+      errorType === ERROR_TYPE.AUTH_UNAUTHORIZED
     ) {
       store.dispatch(logout());
-      await AuthService.signout();
+      // await AuthService.signout();
     }
 
     throw err;
