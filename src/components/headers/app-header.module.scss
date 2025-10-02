@@ -1,13 +1,14 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   background-color: white;
 }
 
 .contentWrap {
-  width: 100%;
+  width: 750px;
   display: flex;
 }
 

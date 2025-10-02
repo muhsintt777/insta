@@ -12,6 +12,8 @@
 }
 
 .outlet {
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: calc(100dvh - 50px);
   padding-top: 8px;

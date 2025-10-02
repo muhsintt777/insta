@@ -22,7 +22,6 @@ import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { logout, selectUser } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { addMultipleClassNames } from 'utils/common';
 
 export const Header = memo(() => {
   const navigate = useNavigate();
@@ -69,9 +68,7 @@ export const Header = memo(() => {
 
   return (
     <>
-      <header
-        className={addMultipleClassNames(styles.container, 'app-container')}
-      >
+      <header className={styles.container}>
         <div className={styles.contentWrap}>
           <div>logo</div>
           {user.status === 'SUCCESS' && (
