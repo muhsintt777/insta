@@ -6,7 +6,6 @@ import { EditIcon } from 'assets/icons-components/edit-icon';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
-import { addMultipleClassNames } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { useLoader } from 'features/loader/useLoader';
@@ -150,9 +149,9 @@ export const ProfilePage = () => {
   }, []);
 
   return (
-    <div className={addMultipleClassNames(styles.container, 'app-container')}>
+    <div className={styles.container}>
       <AppBar title="PROFILE" onBackClick={() => navigate(-1)} />
-      <div className={addMultipleClassNames(styles.body)}>
+      <div className={styles.body}>
         <div className={styles.userDetailsSection}>
           <RoundedProfile size="100px" />
           <div className={styles.userDetails}>
