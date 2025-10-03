@@ -1,4 +1,4 @@
-## Insta - Social (React + Vite + TypeScript)
+## Insta - Social (React + Redux + TypeScript)
 
 An Instagram-like SPA built with React 18, Vite, and TypeScript (strict mode). It uses Redux Toolkit for state, React Router v6 for routing, axios for HTTP with interceptors, MUI for UI primitives, react-hook-form + zod for form validation, and SCSS modules for styling.
 
