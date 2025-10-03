@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import appLogo from 'assets/images/app-logo.svg';
+import { DotLoader } from 'components/loaders/dot-loader';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'layouts/secondary-layout';
@@ -18,6 +20,7 @@ import { Chat } from 'features/chat/chat';
 import { HomePage } from 'features/home/home-page';
 import { protect } from './with-protected-route';
 import { BackdropLoader } from 'features/loader';
+import { colors } from './global-style';
 
 export const App = () => {
   const dispath = useAppDispatch();
@@ -35,7 +38,14 @@ export const App = () => {
       <BackdropLoader />
       <Toast />
       {userApiStatus === 'LOADING' ? (
-        <p>loadeinggg</p>
+        <div className="loader-wrap">
+          <img src={appLogo} alt="logo" />
+          <DotLoader color={colors.PRIMARY} />
+          <p>
+            Note:- This may take a few extra seconds as it is hosted on a free
+            server.
+          </p>
+        </div>
       ) : (
         <Routes>
           <Route path="/" element={<PrimaryLayout />}>

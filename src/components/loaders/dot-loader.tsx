@@ -1,5 +1,15 @@
 import styles from './loaderStyle.module.css';
+import { FC } from 'react';
 
-export const DotLoader = () => {
-  return <div className={styles.dotLoader}></div>;
+interface DotLoaderProps {
+  color?: string;
+}
+
+export const DotLoader: FC<DotLoaderProps> = ({ color = '#ffffff' }) => {
+  return (
+    <div
+      className={styles.dotLoader}
+      style={{ ['--dot-color' as any]: color }}
+    />
+  );
 };
