@@ -55,6 +55,24 @@ export const HomePage = () => {
     setSelectedPostIdForComments(null);
   }, []);
 
+  const updateCommentCount = useCallback(
+    (postId: string, type: 'increament' | 'decreament') => {
+      setPosts((prev) =>
+        prev.map((post) => {
+          if (post.id !== postId) return post;
+
+          if (type === 'increament') {
+            post.commentCount = post.commentCount + 1;
+          } else {
+            post.commentCount = post.commentCount - 1;
+          }
+          return post;
+        }),
+      );
+    },
+    [],
+  );
+
   useEffect(() => {
     (async () => {
       try {
@@ -93,6 +111,12 @@ export const HomePage = () => {
         closeModal={closeCommentsModal}
         isOpen={Boolean(selectedPostIdForComments)}
         postId={selectedPostIdForComments}
+        onDelete={() =>
+          updateCommentCount(selectedPostIdForComments!, 'decreament')
+        }
+        onSubmit={() =>
+          updateCommentCount(selectedPostIdForComments!, 'increament')
+        }
       />
     </div>
   );
