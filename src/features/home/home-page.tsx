@@ -1,7 +1,10 @@
 import styles from './home-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { LoaderStatus } from 'utils/types';
-import { PostCard } from 'features/posts/components/post-card';
+import {
+  PostCard,
+  PostCardSkeleton,
+} from 'features/posts/components/post-card';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
@@ -90,22 +93,35 @@ export const HomePage = () => {
     <div className={styles.container}>
       <AddPost onPostCreated={refetchPosts} />
 
-      {posts.map((post) => (
-        <PostCard
-          key={post.id}
-          id={post.id}
-          caption={post.caption}
-          image={post.image}
-          likeCount={post.likeCount}
-          commentCount={post.commentCount}
-          createdAt={post.createdAt}
-          updatedAt={post.updatedAt}
-          fullname={post.creator.fullName}
-          isLiked={post.isLiked}
-          onComment={() => openCommentsModal(post.id)}
-          onLike={() => handleLike(post.id, post.isLiked)}
-        />
-      ))}
+      {showLoader === 'LOADING' ? (
+        <>
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+        </>
+      ) : posts.length === 0 ? (
+        <div className={styles.noContent}>No posts to display.</div>
+      ) : showLoader === 'FAILED' ? (
+        <div className={styles.errorMessage}>
+          Something went wrong. Please try again later.
+        </div>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            key={post.id}
+            id={post.id}
+            caption={post.caption}
+            image={post.image}
+            likeCount={post.likeCount}
+            commentCount={post.commentCount}
+            createdAt={post.createdAt}
+            updatedAt={post.updatedAt}
+            fullname={post.creator.fullName}
+            isLiked={post.isLiked}
+            onComment={() => openCommentsModal(post.id)}
+            onLike={() => handleLike(post.id, post.isLiked)}
+          />
+        ))
+      )}
 
       <CommentsModal
         closeModal={closeCommentsModal}

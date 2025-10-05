@@ -6,3 +6,17 @@
   height: 100%;
   overflow-y: auto;
 }
+
+.noContent {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--clr-secondary-font);
+}
+
+.errorMessage {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--clr-primary);
+}
