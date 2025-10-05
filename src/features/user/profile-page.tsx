@@ -153,7 +153,7 @@ export const ProfilePage = () => {
       <AppBar title="PROFILE" onBackClick={() => navigate(-1)} />
       <div className={styles.body}>
         <div className={styles.userDetailsSection}>
-          <RoundedProfile size="100px" />
+          <RoundedProfile imageUrl={userDetails.profileImage} size="100px" />
           <div className={styles.userDetails}>
             <p className={styles.name}>{userDetails.fullName}</p>
             <p className={styles.stats}>

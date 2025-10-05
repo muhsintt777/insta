@@ -31,6 +31,7 @@ export const CommentCardComp: FC<CommentCardProps> = ({
   commentText,
   commentedAt,
   commentId,
+  authorProfilePic,
   onDelete,
 }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
@@ -59,7 +60,7 @@ export const CommentCardComp: FC<CommentCardProps> = ({
 
   return (
     <div style={customStyle} className={styles.container}>
-      <RoundedProfile />
+      <RoundedProfile imageUrl={authorProfilePic} />
       <div className={styles.rightSection}>
         <div className={styles.authorName}>
           <span>{authorName}</span>

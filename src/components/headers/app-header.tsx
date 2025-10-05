@@ -75,7 +75,10 @@ export const Header = memo(() => {
             <>
               <div className={styles.profile} onClick={handleClick}>
                 <p>{user.details.username}</p>
-                <RoundedProfile size="40px" />
+                <RoundedProfile
+                  imageUrl={user.details.profileImage}
+                  size="40px"
+                />
               </div>
             </>
           )}
