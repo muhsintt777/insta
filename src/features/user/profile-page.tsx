@@ -187,6 +187,7 @@ export const ProfilePage = () => {
               onDelete={() => deletePost(post.id)}
               customStyles={{ marginBottom: '6px' }}
               id={post.id}
+              userProfileImage={post.creator.profileImage}
               caption={post.caption}
               commentCount={post.commentCount}
               createdAt={post.createdAt}

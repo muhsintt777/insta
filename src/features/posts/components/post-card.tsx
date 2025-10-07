@@ -26,6 +26,7 @@ interface PostCardProps {
   caption: string;
   likeCount: number;
   commentCount: number;
+  userProfileImage: string | null;
   isLiked: boolean;
   createdAt: string;
   updatedAt: string;
@@ -46,6 +47,7 @@ export const PostCard: FC<PostCardProps> = ({
   updatedAt,
   customStyles,
   fullname,
+  userProfileImage,
   isLiked,
   onDelete,
   onEdit,
@@ -88,7 +90,7 @@ export const PostCard: FC<PostCardProps> = ({
   return (
     <article style={customStyles} className={styles.container}>
       <div className={styles.head}>
-        <RoundedProfile />
+        <RoundedProfile imageUrl={userProfileImage} />
         <div>
           <p>{fullname}</p>
           <p>{date}</p>

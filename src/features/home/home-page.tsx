@@ -112,6 +112,7 @@ export const HomePage = () => {
             caption={post.caption}
             image={post.image}
             likeCount={post.likeCount}
+            userProfileImage={post.creator.profileImage}
             commentCount={post.commentCount}
             createdAt={post.createdAt}
             updatedAt={post.updatedAt}
