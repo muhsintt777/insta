@@ -11,6 +11,7 @@ interface AddPostProps {
 
 const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
   const userDetails = useAppSelector(selectUser).details!;
+
   const [showCreatePostModal, setShowCreatePostModal] =
     useState<boolean>(false);
 
