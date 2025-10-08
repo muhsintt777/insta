@@ -10,6 +10,12 @@
 .contentWrap {
   width: 750px;
   display: flex;
+
+  > img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
 }
 
 .profile {

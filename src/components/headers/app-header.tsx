@@ -22,6 +22,7 @@ import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { logout, selectUser } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import appLogo from 'assets/images/app-logo.svg';
 
 export const Header = memo(() => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export const Header = memo(() => {
     <>
       <header className={styles.container}>
         <div className={styles.contentWrap}>
-          <div>logo</div>
+          <img src={appLogo} alt="app-logo" />
           {user.status === 'SUCCESS' && (
             <>
               <div className={styles.profile} onClick={handleClick}>
