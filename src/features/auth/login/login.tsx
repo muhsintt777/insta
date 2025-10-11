@@ -8,7 +8,7 @@ import { FormField } from 'components/input-field/form-field';
 import { trimAllWhitespace } from 'utils/common';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { UserService } from 'features/user/user-service';
-import { updateUser } from 'features/user/user-slice';
+import { userActions } from 'features/user/user-slice';
 import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 
@@ -71,7 +71,7 @@ export const Login = () => {
         password: trimmedPassword,
       });
       const userDetails = await UserService.fetchCurrentUser();
-      dispath(updateUser(userDetails));
+      dispath(userActions.login(userDetails));
       navigate('/', { replace: true });
     } catch (err) {
       handleErrorWithToast(err);

@@ -10,7 +10,7 @@ import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { useToast } from 'features/toast/useToast';
 import { UserService } from 'features/user/user-service';
-import { updateUser } from 'features/user/user-slice';
+import { userActions } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
@@ -44,7 +44,7 @@ export const SignupPage = () => {
         await AuthService.createUser(data as any);
         await AuthService.login({ email: data.email, password: data.password });
         const user = await UserService.fetchCurrentUser();
-        dispath(updateUser(user));
+        dispath(userActions.login(user));
         showToast('success', 'Account created successfully');
         navigate(APP_ROUTES.HOME);
       } catch (error) {

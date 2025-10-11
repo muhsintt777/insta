@@ -19,7 +19,7 @@ import {
 import { APP_ROUTES } from 'configs/app-routes';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
-import { logout, selectUser } from 'features/user/user-slice';
+import { selectUser, userActions } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import appLogo from 'assets/images/app-logo.svg';
@@ -61,7 +61,7 @@ export const Header = memo(() => {
   const handleLogout = useCallback(async () => {
     try {
       await AuthService.signout();
-      dispatch(logout());
+      dispatch(userActions.logout());
     } catch (error) {
       handleErrorWithToast(error);
     }

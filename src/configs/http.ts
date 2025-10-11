@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logout } from 'features/user/user-slice';
+import { userActions } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
 import { ERROR_TYPE, HTTP_STATUS_CODES } from './constants';
 import { store } from './store';
@@ -33,7 +33,7 @@ http.interceptors.response.use(
       statusCode === HTTP_STATUS_CODES.UNAUTHORIZED &&
       errorType === ERROR_TYPE.AUTH_UNAUTHORIZED
     ) {
-      store.dispatch(logout());
+      store.dispatch(userActions.logout());
       // await AuthService.signout();
     }
 

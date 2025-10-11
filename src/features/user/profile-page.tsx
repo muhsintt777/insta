@@ -9,7 +9,7 @@ import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { useLoader } from 'features/loader/useLoader';
-import { selectUser, updateUserResourceCount } from './user-slice';
+import { selectUser, userActions } from './user-slice';
 import {
   PostCard,
   PostCardSkeleton,
@@ -42,7 +42,10 @@ export const ProfilePage = () => {
         await PostService.deletePost(postId);
         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
         dispatch(
-          updateUserResourceCount({ type: 'decreament', key: 'postCount' }),
+          userActions.updateUserResourceCount({
+            type: 'decreament',
+            key: 'postCount',
+          }),
         );
       } catch (error) {
         handleErrorWithToast(error);

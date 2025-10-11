@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-// PayloadAction
 import type { Rootstate } from 'configs/store';
 import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 import { AuthService } from 'features/auth/auth-service';
@@ -19,7 +18,7 @@ export const userSlice = createSlice({
       const newState: UserSlice = { status: 'LOGGED_OUT', details: null };
       Object.assign(state, newState);
     },
-    updateUser: (state, action: PayloadAction<User>) => {
+    login: (state, action: PayloadAction<User>) => {
       const newState: UserSlice = {
         status: 'SUCCESS',
         details: action.payload,
@@ -82,8 +81,7 @@ export const initialUserFetch = createAsyncThunk(
   },
 );
 
-export const { logout, updateUser, updateUserResourceCount, editUser } =
-  userSlice.actions;
+export const userActions = userSlice.actions;
 
 export const selectUser = (state: Rootstate) => state.user;
 export const selectUserApiStatus = (state: Rootstate) => state.user.status;

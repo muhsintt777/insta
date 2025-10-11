@@ -6,7 +6,7 @@ import {
 } from 'components/modals/primary-modal';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { FC, useEffect, useState } from 'react';
-import { editUser, selectUser } from './user-slice';
+import { selectUser, userActions } from './user-slice';
 import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -65,7 +65,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
       }
       setShowLoader(true);
       await UserService.editUserProfile(changedValues);
-      dispatch(editUser(changedValues));
+      dispatch(userActions.editUser(changedValues));
       setShowLoader(false);
       closeModal();
     } catch (error) {
