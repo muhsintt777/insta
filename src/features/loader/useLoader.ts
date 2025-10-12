@@ -1,17 +1,17 @@
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { hideBackdrop, selectLoader, showBackdrop } from './loader-slice';
+import { loaderActions, selectLoader } from './loader-slice';
 
 export const useLoader = () => {
   const dispatch = useAppDispatch();
   const loaderState = useAppSelector(selectLoader);
 
   const showGlobalBackdrop = useCallback(() => {
-    dispatch(showBackdrop());
+    dispatch(loaderActions.showBackdrop());
   }, [dispatch]);
 
   const hideGlobalBackdrop = useCallback(() => {
-    dispatch(hideBackdrop());
+    dispatch(loaderActions.hideBackdrop());
   }, [dispatch]);
 
   return {

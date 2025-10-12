@@ -22,7 +22,7 @@ export const loaderSlice = createSlice({
   },
 });
 
-export const { showBackdrop, hideBackdrop } = loaderSlice.actions;
+export const loaderActions = loaderSlice.actions;
 
 export const selectLoader = (state: Rootstate) => state.loader;
 export const loaderReducer = loaderSlice.reducer;
