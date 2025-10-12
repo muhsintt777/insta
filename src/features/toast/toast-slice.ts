@@ -34,7 +34,7 @@ export const toastSlice = createSlice({
   },
 });
 
-export const { show, hide } = toastSlice.actions;
+export const toastActions = toastSlice.actions;
 
 export const selectToastConfigs = (state: Rootstate) => state.toast;
 export const toastReducer = toastSlice.reducer;
