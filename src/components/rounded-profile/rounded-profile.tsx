@@ -2,7 +2,7 @@ import styles from './rounded-profileStyle.module.scss';
 
 import { FC } from 'react';
 
-import profilePicPNG from 'assets/images/profile-pic.png';
+import { IMAGES } from 'assets/images';
 
 interface RoundedProfileProps {
   size?: string;
@@ -15,7 +15,7 @@ export const RoundedProfile: FC<RoundedProfileProps> = ({
 }) => {
   return (
     <div style={{ width: size, height: size }} className={styles.container}>
-      <img src={imageUrl || profilePicPNG} alt="img" />
+      <img src={imageUrl || IMAGES.PROFILE_PIC} alt="img" />
     </div>
   );
 };
