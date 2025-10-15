@@ -1,6 +1,6 @@
 export const ENV:ENVType = {
-  SERVER_TYPE: 'DEV',
-  API_URL: 'https://insta-server-k0gd.onrender.com/api',
+  SERVER_TYPE: 'PROD',
+  API_URL: 'https://insta-server-prod.onrender.com/api',
 };
 
 interface ENVType {
