@@ -42,8 +42,8 @@ export const App = () => {
           <img src={appLogo} alt="logo" />
           <DotLoader color={colors.PRIMARY} />
           <p>
-            Note:- This may take a few extra seconds as it is hosted on a free
-            server.
+            Note:- Initial loading may take a few extra seconds(upto 50s) as it
+            is hosted on a free server.
           </p>
         </div>
       ) : (
