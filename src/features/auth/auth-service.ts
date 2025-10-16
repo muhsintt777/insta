@@ -7,6 +7,7 @@ interface CreateUserParams {
   password: string;
   fullName: string;
   username: string;
+  profileImage?: File;
 }
 
 type LoginParams =
@@ -15,7 +16,22 @@ type LoginParams =
 
 export class AuthService {
   static async createUser(params: CreateUserParams) {
-    const { status } = await http.post('users', params);
+    const formData = new FormData();
+    formData.append('email', params.email);
+    formData.append('password', params.password);
+    formData.append('fullName', params.fullName);
+    formData.append('username', params.username);
+    if (params.profileImage) {
+      formData.append(
+        'profileImage',
+        params.profileImage,
+        params.profileImage.name,
+      );
+    }
+
+    const { status } = await http.post('users', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
     if (status !== HTTP_STATUS_CODES.CREATED) {
       throw new CustomError(
         ERROR_TYPE.UNKNOWN_API_ERROR,

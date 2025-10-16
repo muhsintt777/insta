@@ -14,6 +14,7 @@ import { userActions } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
+import { FileInput } from 'components/input-field/file-input';
 
 export const SignupPage = () => {
   const navigate = useNavigate();
@@ -63,6 +64,21 @@ export const SignupPage = () => {
       </div>
       <div className={styles.main}>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            name="profileImage"
+            control={control}
+            render={({ field }) => (
+              <FileInput
+                error={errors.profileImage?.message || null}
+                label="Profile Image"
+                name="profileImage"
+                sizeLabelInMb={2}
+                onChange={field.onChange}
+                value={field.value}
+                customStyles={{ marginBottom: '16px' }}
+              />
+            )}
+          />
           <div className={styles.rowFields}>
             <Controller
               name="fullName"
