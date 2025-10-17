@@ -47,7 +47,9 @@ export class AuthService {
     if (response.status !== HTTP_STATUS_CODES.OK) {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
     }
-    store.dispatch(authActions.setToken(response.data.data?.accessToken));
+    store.dispatch(
+      authActions.setToken(`Bearer ${response.data.data?.accessToken}`),
+    );
   }
 
   static async signout() {
