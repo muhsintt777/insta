@@ -1,6 +1,8 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
 import { http } from 'configs/http';
+import { store } from 'configs/store';
 import { CustomError } from 'utils/custom-error';
+import { authActions } from './auth-slice';
 
 interface CreateUserParams {
   email: string;
@@ -45,6 +47,7 @@ export class AuthService {
     if (response.status !== HTTP_STATUS_CODES.OK) {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
     }
+    store.dispatch(authActions.setToken(response.data.data?.accessToken));
   }
 
   static async signout() {
@@ -52,6 +55,7 @@ export class AuthService {
     if (res.status !== HTTP_STATUS_CODES.OK) {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to logout');
     }
+    store.dispatch(authActions.clearToken());
   }
 
   static async refreshAuth() {

@@ -10,7 +10,12 @@ export const http = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+});
+
+http.interceptors.request.use((config) => {
+  const { token } = store.getState().auth;
+  config.headers.Authorization = token;
+  return config;
 });
 
 http.interceptors.response.use(
