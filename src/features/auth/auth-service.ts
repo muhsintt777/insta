@@ -61,6 +61,10 @@ export class AuthService {
   }
 
   static async refreshAuth() {
-    await http.post('auth/refresh');
+    const result = (await http.post('auth/refresh')).data;
+    if (result.errorType) {
+      throw new Error('Failed to refresh auth');
+    }
+    store.dispatch(authActions.setToken(`Bearer ${result.data?.accessToken}`));
   }
 }
