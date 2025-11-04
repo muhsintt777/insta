@@ -60,3 +60,21 @@ a {
   height: 100px;
   object-fit: contain;
 }
+
+.info {
+  text-align: center;
+  width: 100%;
+  margin: 20px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clr-secondary-font);
+}
+
+.error {
+  text-align: center;
+  width: 100%;
+  margin: 20px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clr-primary);
+}

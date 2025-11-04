@@ -45,4 +45,4 @@ export const HTTP_STATUS_CODES = {
 } as const;
 
 export const COMMON_ERROR_MESSAGE =
-  'Something went wrong, Please try again later';
+  'Something went wrong, Please try again later.';

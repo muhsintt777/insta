@@ -10,6 +10,7 @@ import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
 import { CommentsModal } from 'features/comment/comments-modal';
 import { AddPost } from './components/add-post/add-post';
+import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 
 export const HomePage = () => {
   const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');
@@ -99,11 +100,9 @@ export const HomePage = () => {
           <PostCardSkeleton />
         </>
       ) : posts.length === 0 ? (
-        <div className={styles.noContent}>No posts to display.</div>
+        <div className="info">No posts to display.</div>
       ) : showLoader === 'FAILED' ? (
-        <div className={styles.errorMessage}>
-          Something went wrong. Please try again later.
-        </div>
+        <div className="error">{COMMON_ERROR_MESSAGE}</div>
       ) : (
         posts.map((post) => (
           <PostCard

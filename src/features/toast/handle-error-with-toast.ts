@@ -1,6 +1,7 @@
 import { store } from 'configs/store';
 import { CustomError } from 'utils/custom-error';
 import { toastActions } from './toast-slice';
+import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 
 export const handleErrorWithToast = (error: any) => {
   const dispatch = store.dispatch;
@@ -12,8 +13,7 @@ export const handleErrorWithToast = (error: any) => {
     dispatch(
       toastActions.show({
         severity: 'error',
-        message:
-          error.message || 'Something went wrong, please try again later.',
+        message: error.message || COMMON_ERROR_MESSAGE,
       }),
     );
   }

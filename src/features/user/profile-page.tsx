@@ -178,9 +178,7 @@ export const ProfilePage = () => {
             <PostCardSkeleton />
           </>
         ) : posts.length === 0 ? (
-          <div style={{ textAlign: 'center', color: '#888', marginTop: 32 }}>
-            No posts to display.
-          </div>
+          <p className="info">No posts to display.</p>
         ) : (
           posts.map((post) => (
             <PostCard
