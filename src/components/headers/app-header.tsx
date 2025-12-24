@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { selectUser, userActions } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
+import { themeActions } from 'features/theme/theme-slice';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import appLogo from 'assets/images/app-logo.svg';
 
@@ -57,6 +58,11 @@ export const Header = memo(() => {
     if (pathname === APP_ROUTES.PROFILE) return;
     navigate(APP_ROUTES.PROFILE);
   }, [handleClose, navigate, pathname]);
+
+  const handleThemeSwitch = useCallback(() => {
+    dispatch(themeActions.toggleTheme());
+    handleClose();
+  }, [handleClose, dispatch]);
 
   const handleLogout = useCallback(async () => {
     try {
@@ -108,6 +114,9 @@ export const Header = memo(() => {
       >
         <MenuItem onClick={onProfileClick}>
           <Avatar /> Profile
+        </MenuItem>
+        <MenuItem onClick={handleThemeSwitch}>
+          <Avatar /> Switch Theme
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Avatar /> Signout
