@@ -1,6 +1,5 @@
 export const colors = {
   PRIMARY: 'var(--clr-primary)',
-  PRIMARY_LIGHT: 'var(--clr-primary-light)',
   BLACK: 'var(--clr-black)',
   GREEN: 'var(--clr-green)',
   PURPLE: 'var(--clr-purple)',
