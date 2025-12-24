@@ -26,7 +26,15 @@ export const themeSlice = createSlice({
 });
 
 export const themeActions = themeSlice.actions;
-
 export const selectTheme = (state: Rootstate) => state.theme.theme;
-
 export const themeReducer = themeSlice.reducer;
+
+export const getInitialTheme = (): 'light' | 'dark' => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === 'dark' ? 'dark' : 'light';
+  } catch (e) {
+    //
+  }
+  return 'light';
+};

@@ -3,7 +3,7 @@ import { toastReducer } from 'features/toast/toast-slice';
 import { userReducer } from 'features/user/user-slice';
 import { loaderReducer } from 'features/loader/loader-slice';
 import { authReducer } from 'features/auth/auth-slice';
-import { themeReducer } from 'features/theme/theme-slice';
+import { getInitialTheme, themeReducer } from 'features/theme/theme-slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +12,11 @@ export const store = configureStore({
     loader: loaderReducer,
     auth: authReducer,
     theme: themeReducer,
+  },
+  preloadedState: {
+    theme: {
+      theme: getInitialTheme(),
+    },
   },
 });
 
