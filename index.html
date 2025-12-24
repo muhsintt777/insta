@@ -8,13 +8,23 @@
     <script>
       (function () {
         try {
-          const t = localStorage.getItem('app:theme');
-          if (t) document.documentElement.setAttribute('data-theme', t);
-          else if (
+          let theme = localStorage.getItem('app:theme');
+          if (theme === 'light' || theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', theme);
+            return;
+          }
+
+          // No theme stored, use system preference
+          if (
             window.matchMedia &&
             window.matchMedia('(prefers-color-scheme: dark)').matches
-          )
-            document.documentElement.setAttribute('data-theme', 'dark');
+          ) {
+            theme = 'dark';
+          } else {
+            theme = 'light';
+          }
+          localStorage.setItem('app:theme', theme);
+          document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();
     </script>
