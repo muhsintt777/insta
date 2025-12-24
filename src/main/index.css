@@ -42,14 +42,6 @@
   --clr-bg-primary: var(--clr-shadedBlack);
 }
 
-:root,
-body,
-#root {
-  transition:
-    background-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
 body {
   font-family: var(--fnt-secondary);
   color: var(--clr-fnt-primary);
