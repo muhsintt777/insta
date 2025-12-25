@@ -6,7 +6,7 @@ interface HashtagIconProps {
 }
 
 export const HashtagIcon: FC<HashtagIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

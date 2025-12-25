@@ -6,7 +6,7 @@ interface SendIconProps {
 }
 
 export const SendIcon: FC<SendIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

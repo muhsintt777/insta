@@ -6,7 +6,7 @@ interface ConstructionIconProps {
 }
 
 export const ConstructionIcon: FC<ConstructionIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

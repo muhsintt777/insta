@@ -6,7 +6,7 @@ interface LikeIconProps {
 }
 
 export const LikeIcon: FC<LikeIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

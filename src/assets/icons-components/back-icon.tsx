@@ -6,7 +6,7 @@ interface BackIconProps {
 }
 
 export const BackIcon: FC<BackIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

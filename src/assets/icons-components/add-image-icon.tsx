@@ -6,7 +6,7 @@ interface AddImageIconProps {
 }
 
 export const AddImageIcon: FC<AddImageIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

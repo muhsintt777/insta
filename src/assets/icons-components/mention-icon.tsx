@@ -6,7 +6,7 @@ interface MentionIconProps {
 }
 
 export const MentionIcon: FC<MentionIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

@@ -6,7 +6,7 @@ interface FriendsIconProps {
 }
 
 export const FriendsIcon: FC<FriendsIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

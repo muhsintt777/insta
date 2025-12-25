@@ -6,7 +6,7 @@ interface ChatIconProps {
 }
 
 export const ChatIcon: FC<ChatIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

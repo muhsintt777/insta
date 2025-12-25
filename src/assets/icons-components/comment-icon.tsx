@@ -6,7 +6,7 @@ interface CommentIconProps {
 }
 
 export const CommentIcon: FC<CommentIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

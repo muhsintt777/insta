@@ -6,7 +6,7 @@ interface NotificationsIconProps {
 }
 
 export const NotificationsIcon: FC<NotificationsIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

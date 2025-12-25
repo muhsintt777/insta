@@ -6,7 +6,7 @@ interface HomeIconProps {
 }
 
 export const HomeIcon: FC<HomeIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

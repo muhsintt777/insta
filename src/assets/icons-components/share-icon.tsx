@@ -6,7 +6,7 @@ interface ShareIconProps {
 }
 
 export const ShareIcon: FC<ShareIconProps> = ({
-  color = 'currentColor',
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (
