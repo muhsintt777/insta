@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface BackIconProps {
   color?: string;
   size?: string;
 }
 
-export const BackIcon: FC<BackIconProps> = ({
+const BackIconComp: FC<BackIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -21,3 +21,5 @@ export const BackIcon: FC<BackIconProps> = ({
     </svg>
   );
 };
+
+export const BackIcon = memo(BackIconComp);

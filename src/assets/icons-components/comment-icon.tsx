@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface CommentIconProps {
   color?: string;
   size?: string;
 }
 
-export const CommentIcon: FC<CommentIconProps> = ({
+const CommentIconComp: FC<CommentIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -23,3 +23,5 @@ export const CommentIcon: FC<CommentIconProps> = ({
     </svg>
   );
 };
+
+export const CommentIcon = memo(CommentIconComp);

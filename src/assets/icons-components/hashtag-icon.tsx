@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface HashtagIconProps {
   color?: string;
   size?: string;
 }
 
-export const HashtagIcon: FC<HashtagIconProps> = ({
+const HashtagIconComp: FC<HashtagIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -27,3 +27,5 @@ export const HashtagIcon: FC<HashtagIconProps> = ({
     </svg>
   );
 };
+
+export const HashtagIcon = memo(HashtagIconComp);

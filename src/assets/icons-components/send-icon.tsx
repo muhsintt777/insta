@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface SendIconProps {
   color?: string;
   size?: string;
 }
 
-export const SendIcon: FC<SendIconProps> = ({
+const SendIconComp: FC<SendIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -22,3 +22,5 @@ export const SendIcon: FC<SendIconProps> = ({
     </svg>
   );
 };
+
+export const SendIcon = memo(SendIconComp);

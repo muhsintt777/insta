@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface VerticalDotIconProps {
   color?: string;
   size?: string;
 }
 
-export const VerticalDotIcon: FC<VerticalDotIconProps> = ({
+const VerticalDotIconComp: FC<VerticalDotIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -23,3 +23,5 @@ export const VerticalDotIcon: FC<VerticalDotIconProps> = ({
     </svg>
   );
 };
+
+export const VerticalDotIcon = memo(VerticalDotIconComp);

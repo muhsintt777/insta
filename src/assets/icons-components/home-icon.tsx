@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface HomeIconProps {
   color?: string;
   size?: string;
 }
 
-export const HomeIcon: FC<HomeIconProps> = ({
+const HomeIconComp: FC<HomeIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -29,3 +29,5 @@ export const HomeIcon: FC<HomeIconProps> = ({
     </div>
   );
 };
+
+export const HomeIcon = memo(HomeIconComp);

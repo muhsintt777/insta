@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface MentionIconProps {
   color?: string;
   size?: string;
 }
 
-export const MentionIcon: FC<MentionIconProps> = ({
+const MentionIconComp: FC<MentionIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -22,3 +22,5 @@ export const MentionIcon: FC<MentionIconProps> = ({
     </svg>
   );
 };
+
+export const MentionIcon = memo(MentionIconComp);

@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface ConstructionIconProps {
   color?: string;
   size?: string;
 }
 
-export const ConstructionIcon: FC<ConstructionIconProps> = ({
+const ConstructionIconComp: FC<ConstructionIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -24,3 +24,5 @@ export const ConstructionIcon: FC<ConstructionIconProps> = ({
     </svg>
   );
 };
+
+export const ConstructionIcon = memo(ConstructionIconComp);

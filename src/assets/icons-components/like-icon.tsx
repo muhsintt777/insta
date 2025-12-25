@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface LikeIconProps {
   color?: string;
   size?: string;
 }
 
-export const LikeIcon: FC<LikeIconProps> = ({
+const LikeIconComp: FC<LikeIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -22,3 +22,5 @@ export const LikeIcon: FC<LikeIconProps> = ({
     </svg>
   );
 };
+
+export const LikeIcon = memo(LikeIconComp);

@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface FriendsIconProps {
   color?: string;
   size?: string;
 }
 
-export const FriendsIcon: FC<FriendsIconProps> = ({
+const FriendsIconComp: FC<FriendsIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -23,3 +23,5 @@ export const FriendsIcon: FC<FriendsIconProps> = ({
     </svg>
   );
 };
+
+export const FriendsIcon = memo(FriendsIconComp);

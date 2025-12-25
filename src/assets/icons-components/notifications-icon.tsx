@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface NotificationsIconProps {
   color?: string;
   size?: string;
 }
 
-export const NotificationsIcon: FC<NotificationsIconProps> = ({
+const NotificationsIconComp: FC<NotificationsIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -24,3 +24,5 @@ export const NotificationsIcon: FC<NotificationsIconProps> = ({
     </svg>
   );
 };
+
+export const NotificationsIcon = memo(NotificationsIconComp);

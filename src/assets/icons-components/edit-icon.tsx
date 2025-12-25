@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface EditIconProps {
   color?: string;
   size?: string;
 }
 
-export const EditIcon: FC<EditIconProps> = ({
+const EditIconComp: FC<EditIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -21,3 +21,5 @@ export const EditIcon: FC<EditIconProps> = ({
     </svg>
   );
 };
+
+export const EditIcon = memo(EditIconComp);

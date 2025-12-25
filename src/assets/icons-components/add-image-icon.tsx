@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface AddImageIconProps {
   color?: string;
   size?: string;
 }
 
-export const AddImageIcon: FC<AddImageIconProps> = ({
+const AddImageIconComp: FC<AddImageIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -25,3 +25,5 @@ export const AddImageIcon: FC<AddImageIconProps> = ({
     </svg>
   );
 };
+
+export const AddImageIcon = memo(AddImageIconComp);

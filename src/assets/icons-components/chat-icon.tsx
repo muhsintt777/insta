@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface ChatIconProps {
   color?: string;
   size?: string;
 }
 
-export const ChatIcon: FC<ChatIconProps> = ({
+const ChatIconComp: FC<ChatIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -27,3 +27,5 @@ export const ChatIcon: FC<ChatIconProps> = ({
     </svg>
   );
 };
+
+export const ChatIcon = memo(ChatIconComp);

@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface CloseIconProps {
   color?: string;
   size?: string;
 }
 
-export const CloseIcon: FC<CloseIconProps> = ({
+const CloseIconComp: FC<CloseIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -23,3 +23,5 @@ export const CloseIcon: FC<CloseIconProps> = ({
     </svg>
   );
 };
+
+export const CloseIcon = memo(CloseIconComp);

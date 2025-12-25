@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface ShareIconProps {
   color?: string;
   size?: string;
 }
 
-export const ShareIcon: FC<ShareIconProps> = ({
+const ShareIconComp: FC<ShareIconProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
@@ -28,3 +28,5 @@ export const ShareIcon: FC<ShareIconProps> = ({
     </svg>
   );
 };
+
+export const ShareIcon = memo(ShareIconComp);
