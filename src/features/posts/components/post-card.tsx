@@ -98,7 +98,7 @@ export const PostCard: FC<PostCardProps> = ({
         {enableOptions && (
           <div className={styles.iconButton}>
             <PrimaryIconButton onClick={handleMenuClick}>
-              <VerticalDotIcon color="var(--clr-border)" />
+              <VerticalDotIcon />
             </PrimaryIconButton>
           </div>
         )}
@@ -113,7 +113,7 @@ export const PostCard: FC<PostCardProps> = ({
           <span className={styles.count}>{likeCount}</span>
         </SecondaryButton>
         <SecondaryButton onClick={onComment}>
-          <CommentIcon color="var(--clr-border)" />
+          <CommentIcon />
           <span className={styles.count}>{commentCount}</span>
         </SecondaryButton>
         {/* <SecondaryButton>
