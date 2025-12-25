@@ -109,7 +109,7 @@ export const PostCard: FC<PostCardProps> = ({
       </div>
       <div className={styles.actions}>
         <SecondaryButton onClick={onLike}>
-          {isLiked ? <LikedIcon color={'var(--clr-border)'} /> : <LikeIcon />}
+          {isLiked ? <LikedIcon /> : <LikeIcon />}
           <span className={styles.count}>{likeCount}</span>
         </SecondaryButton>
         <SecondaryButton onClick={onComment}>
