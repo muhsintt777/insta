@@ -31,7 +31,10 @@
   --clr-primary: var(--clr-red);
   --clr-fnt-primary: var(--clr-black);
   --clr-fnt-secondary: var(--clr-grey);
+
   --clr-border: var(--clr-lightGrey);
+  --clr-icon: var(--clr-grey);
+
   --clr-bg-primary: var(--clr-white);
   --clr-bg-secondary: var(--clr-shadedWhite);
 
@@ -41,7 +44,10 @@
 }
 :root[data-theme='dark'] {
   --clr-fnt-primary: var(--clr-shadedWhite);
+
   --clr-border: var(--clr-darkGrey);
+  --clr-icon: var(--clr-lightGrey);
+
   --clr-bg-primary: var(--clr-shadedBlack);
   --clr-bg-secondary: var(--clr-darkBlue);
 
