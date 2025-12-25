@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { colors } from 'main/global-style';
 
 interface EditIconProps {
   color?: string;
@@ -7,7 +6,7 @@ interface EditIconProps {
 }
 
 export const EditIcon: FC<EditIconProps> = ({
-  color = colors.BLACK,
+  color = 'var(--clr-icon)',
   size = '16px',
 }) => {
   return (

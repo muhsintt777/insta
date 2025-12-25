@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { colors } from 'main/global-style';
 
 interface BackIconProps {
   color?: string;
@@ -7,7 +6,7 @@ interface BackIconProps {
 }
 
 export const BackIcon: FC<BackIconProps> = ({
-  color = colors.BLACK,
+  color = 'currentColor',
   size = '16px',
 }) => {
   return (
