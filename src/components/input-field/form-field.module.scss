@@ -16,11 +16,12 @@
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 5px;
     padding: 10px;
+    color: var(--clr-fnt-primary);
     background-color: var(--clr-bg-secondary);
     transition: border-color 0.2s;
 
     &:focus {
-      border-color: var(--clr-lightGrey);
+      border-color: var(--clr-border);
     }
   }
 
@@ -38,4 +39,22 @@
 
 .errorMessageShow {
   opacity: 1;
+}
+
+/* Override browser autofill (Chrome / Edge / Safari / Firefox) */
+.container {
+  > input:-webkit-autofill,
+  > input:-webkit-autofill:focus,
+  > input:-webkit-autofill:hover {
+    box-shadow: 0 0 0px 1000px var(--clr-bg-secondary) inset !important;
+    -webkit-text-fill-color: var(--clr-fnt-primary) !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    border-color: var(--clr-border) !important;
+  }
+
+  /* Firefox */
+  > input:-moz-autofill {
+    box-shadow: 0 0 0px 1000px var(--clr-bg-secondary) inset !important;
+    -moz-text-fill-color: var(--clr-fnt-primary) !important;
+  }
 }
