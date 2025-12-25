@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   height: 100vh;
-  background-color: var(--clr-bg-primary);
+  background-color: var(--clr-bg-secondary);
 }
 
 .header {
@@ -20,7 +20,7 @@
 
 .nav {
   width: 200px;
-  background-color: white;
+  background-color: var(--clr-bg-primary);
 }
 
 .outlet {

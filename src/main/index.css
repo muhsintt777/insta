@@ -13,14 +13,16 @@
 :root {
   --clr-red: #df002c;
   --clr-black: #141c1a;
-  --clr-shadedBlack: #0f1413;
+  --clr-shadedBlack: #0e0f13;
   --clr-green: #20c35b;
+  --clr-darkBlue: #151822;
   --clr-purple: #af7dff;
   --clr-yellow: #ffaf21;
   --clr-white: #ffffff;
-  --clr-shadedWhite: #f7faf9;
+  --clr-shadedWhite: #f0f6fc;
   --clr-grey: #677572;
   --clr-lightGrey: #dfe5e4;
+  --clr-transparent: transparent;
 
   --fnt-primary: 'Lexend Zetta', sans-serif;
   --fnt-secondary: 'Work Sans', sans-serif;
@@ -29,12 +31,15 @@
   --clr-fnt-primary: var(--clr-black);
   --clr-fnt-secondary: var(--clr-grey);
   --clr-border: var(--clr-lightGrey);
-  --clr-bg-primary: var(--clr-shadedWhite);
+  --clr-bg-primary: var(--clr-white);
+  --clr-bg-secondary: var(--clr-shadedWhite);
 }
 
 :root[data-theme='dark'] {
   --clr-fnt-primary: var(--clr-shadedWhite);
-  --clr-bg-primary: var(--clr-shadedBlack);
+  --clr-border: var(--clr-transparent);
+  --clr-bg-primary: var(--clr-darkBlue);
+  --clr-bg-secondary: var(--clr-shadedBlack);
 }
 
 body {
@@ -45,11 +50,19 @@ body {
 #root {
   width: 100vw;
   height: 100dvh;
-  background-color: var(--clr-bg-primary);
+  background-color: var(--clr-bg-secondary);
 }
 
 a {
   all: unset;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: 900;
+  font-family: var(--fnt-primary);
+  letter-spacing: -0.12rem;
+  color: var(--clr-fnt-primary);
 }
 
 .app-container {

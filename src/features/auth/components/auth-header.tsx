@@ -8,7 +8,7 @@ interface AuthHeaderProps {
 export const AuthHeader: FC<AuthHeaderProps> = memo(({ title }) => {
   return (
     <div className={styles.container}>
-      <p>{title}</p>
+      <h1>{title}</h1>
     </div>
   );
 });

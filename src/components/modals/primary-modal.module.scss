@@ -1,7 +1,7 @@
 .modalContainer {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--clr-bg-primary);
   border-radius: 4px;
   min-width: 500px;
   max-width: 90vw;

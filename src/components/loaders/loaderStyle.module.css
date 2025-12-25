@@ -3,7 +3,11 @@
   aspect-ratio: 2.5;
   /* Allow overriding dot color via CSS variable with white as default */
   --_g: no-repeat
-    radial-gradient(farthest-side, var(--dot-color, #ffffff) 90%, #0000);
+    radial-gradient(
+      farthest-side,
+      var(--dot-color, var(--clr-white)) 90%,
+      #0000
+    );
   background: var(--_g), var(--_g), var(--_g), var(--_g);
   background-size: 20% 50%;
   animation: l43 1s infinite linear;

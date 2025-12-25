@@ -5,14 +5,14 @@
   width: 100%;
   margin-bottom: 4px;
   padding: 10px 6px;
-  background-color: white;
+  background-color: var(--clr-bg-primary);
 }
 
 .clickableBox {
   flex: 1;
   padding: 10px 8px;
   border-radius: 4px;
-  background-color: var(--clr-bg-primary);
+  background-color: var(--clr-bg-secondary);
   cursor: pointer;
 
   > p {
