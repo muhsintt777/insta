@@ -38,8 +38,8 @@
 :root[data-theme='dark'] {
   --clr-fnt-primary: var(--clr-shadedWhite);
   --clr-border: var(--clr-transparent);
-  --clr-bg-primary: var(--clr-darkBlue);
-  --clr-bg-secondary: var(--clr-shadedBlack);
+  --clr-bg-primary: var(--clr-shadedBlack);
+  --clr-bg-secondary: var(--clr-darkBlue);
 }
 
 body {
