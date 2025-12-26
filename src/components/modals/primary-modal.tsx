@@ -52,7 +52,7 @@ export const PrimaryModal: FC<PrimaryModalProps> = ({
 export const ModalHeader: FC<ModalHeaderProps> = ({ title, onClose }) => {
   return (
     <div className={styles.header}>
-      <p>{title}</p>
+      <h1>{title}</h1>
       <PrimaryIconButton onClick={onClose}>
         <CloseIcon />
       </PrimaryIconButton>

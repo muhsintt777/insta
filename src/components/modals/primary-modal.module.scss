@@ -17,15 +17,11 @@
   height: 50px;
   padding: 0px 10px;
   margin-bottom: 8px;
-  border-bottom: 1px solid var(--clr-lightGrey);
+  border-bottom: 1px solid var(--clr-border);
 
-  > p {
-    font-family: var(--fnt-primary);
-    font-weight: 900;
-    font-size: 14px;
-    letter-spacing: -1.5px;
+  > h1 {
     text-transform: uppercase;
-    color: var(--clr-black);
+    color: var(--clr-fnt-primary);
   }
 }
 
@@ -35,5 +31,5 @@
   align-items: center;
   height: 50px;
   padding: 0px 10px;
-  border-top: 1px solid var(--clr-light-grey);
+  border-top: 1px solid var(--clr-border);
 }

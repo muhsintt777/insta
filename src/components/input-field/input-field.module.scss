@@ -17,11 +17,12 @@
   font-size: 12px;
   font-family: var(--fnt-secondary);
   outline: none;
-  border: 1px solid rgba(0, 0, 0, 0);
+  border: 1px solid transparent;
   border-radius: 5px;
   padding: 8px;
   background-color: var(--clr-bg-secondary);
   transition: border-color 0.2s;
+  color: var(--clr-fnt-primary);
 
   &::placeholder {
     font-size: 10px;
@@ -29,7 +30,7 @@
   }
 
   &:focus {
-    border-color: var(--clr-lightGrey);
+    border-color: var(--clr-border);
   }
 }
 
@@ -38,7 +39,7 @@
   bottom: -12px;
   left: 8px;
   font-size: 10px;
-  color: red;
+  color: var(--clr-fnt-error);
   transition: all 0.2s;
 }
 
