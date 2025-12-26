@@ -15,7 +15,7 @@
   > p {
     margin-top: 5px;
     font-size: 0.65rem;
-    color: red;
+    color: var(--clr-fnt-error);
     transition: all 0.2s;
   }
 }
@@ -37,7 +37,7 @@
   right: 8px;
   bottom: 8px;
   font-size: 10px;
-  color: var(--clr-grey);
+  color: var(--clr-fnt-secondary);
   padding: 2px 8px;
   pointer-events: none;
 }

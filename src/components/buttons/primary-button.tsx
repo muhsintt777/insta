@@ -36,7 +36,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
         fontFamily: 'var(--fnt-primary)',
         fontWeight: 900,
         letterSpacing: '-0.02rem',
-        color: 'white',
+        color: 'var(--clr-white)',
         backgroundColor: 'var(--clr-primary)',
 
         '&:hover': {

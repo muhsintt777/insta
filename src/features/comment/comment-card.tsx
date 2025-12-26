@@ -100,7 +100,7 @@ export const CommentCard = memo(CommentCardComp);
 
 const commentMenuSx: SxProps<Theme> = {
   overflow: 'visible',
-  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+  filter: 'drop-shadow(0px 2px 8px var(--clr-shadow-default))',
   mt: 1.5,
   '&::before': {
     content: '""',

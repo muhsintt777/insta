@@ -1,15 +1,15 @@
 import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 import { useLoader } from './useLoader';
+import { CircleLoader } from './Circle-loader';
 
 export const BackdropLoader = () => {
   const { isBackdropVisible } = useLoader();
   return (
     <Backdrop
-      sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+      sx={(theme) => ({ zIndex: theme.zIndex.drawer + 1 })}
       open={isBackdropVisible}
     >
-      <CircularProgress color="inherit" />
+      <CircleLoader size="large" />
     </Backdrop>
   );
 };

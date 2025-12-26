@@ -5,7 +5,9 @@ interface DotLoaderProps {
   color?: string;
 }
 
-export const DotLoader: FC<DotLoaderProps> = ({ color = '#ffffff' }) => {
+export const DotLoader: FC<DotLoaderProps> = ({
+  color = 'var(--clr-white)',
+}) => {
   return (
     <div
       className={styles.dotLoader}
