@@ -23,6 +23,7 @@
   --clr-grey: #677572;
   --clr-lightGrey: #dfe5e4;
   --clr-darkGrey: #3d444d;
+  --clr-lightShadow: rgba(0, 0, 0, 0.32);
 
   --fnt-primary: 'Lexend Zetta', sans-serif;
   --fnt-secondary: 'Work Sans', sans-serif;
@@ -41,6 +42,8 @@
   --clr-scroll-track: var(--clr-shadedWhite);
   --clr-scroll-thumb: var(--clr-lightGrey);
   --clr-scroll-thumb-hover: var(--clr-grey);
+
+  --clr-shadow-default: var(--clr-lightShadow);
 }
 :root[data-theme='dark'] {
   --clr-fnt-primary: var(--clr-shadedWhite);
