@@ -23,7 +23,6 @@
   --clr-grey: #677572;
   --clr-lightGrey: #dfe5e4;
   --clr-darkGrey: #3d444d;
-  --clr-transparent: transparent;
 
   --fnt-primary: 'Lexend Zetta', sans-serif;
   --fnt-secondary: 'Work Sans', sans-serif;
@@ -31,6 +30,7 @@
   --clr-primary: var(--clr-red);
   --clr-fnt-primary: var(--clr-black);
   --clr-fnt-secondary: var(--clr-grey);
+  --clr-fnt-error: var(--clr-red);
 
   --clr-border: var(--clr-lightGrey);
   --clr-icon: var(--clr-grey);
