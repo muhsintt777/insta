@@ -112,13 +112,13 @@ export const Header = memo(() => {
         transformOrigin={menuTransformOrigin}
         anchorOrigin={menuAnchorOrigin}
       >
-        <MenuItem onClick={onProfileClick}>
+        <MenuItem sx={menuItemSx} onClick={onProfileClick}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleThemeSwitch}>
+        <MenuItem sx={menuItemSx} onClick={handleThemeSwitch}>
           <Avatar /> Switch Theme
         </MenuItem>
-        <MenuItem onClick={handleLogout}>
+        <MenuItem sx={menuItemSx} onClick={handleLogout}>
           <Avatar /> Signout
         </MenuItem>
       </Menu>
@@ -129,6 +129,8 @@ export const Header = memo(() => {
 const menuSx: SxProps<Theme> = {
   overflow: 'visible',
   filter: 'drop-shadow(0px 2px 8px var(--clr-shadow-default))',
+  bgcolor: 'var(--clr-bg-primary)',
+  color: 'var(--clr-fnt-primary)',
   mt: 1.5,
   '& .MuiAvatar-root': {
     width: 32,
@@ -144,10 +146,14 @@ const menuSx: SxProps<Theme> = {
     right: 14,
     width: 10,
     height: 10,
-    bgcolor: 'background.paper',
+    bgcolor: 'var(--clr-bg-primary)',
     transform: 'translateY(-50%) rotate(45deg)',
     zIndex: 0,
   },
+};
+
+const menuItemSx: SxProps<Theme> = {
+  ':hover': { backgroundColor: 'var(--clr-border)' },
 };
 
 const menuTransformOrigin: PopoverOrigin = {
