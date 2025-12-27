@@ -24,6 +24,7 @@
   --clr-lightGrey: #dfe5e4;
   --clr-darkGrey: #3d444d;
   --clr-lightShadow: rgba(0, 0, 0, 0.32);
+  --clr-whiteShadow: rgba(255, 255, 255, 0.02);
 
   --fnt-primary: 'Lexend Zetta', sans-serif;
   --fnt-secondary: 'Work Sans', sans-serif;
@@ -57,6 +58,8 @@
   --clr-scroll-track: var(--clr-darkBlue);
   --clr-scroll-thumb: var(--clr-grey);
   --clr-scroll-thumb-hover: var(--clr-lightGrey);
+
+  --clr-shadow-default: var(--clr-whiteShadow);
 }
 
 body {
