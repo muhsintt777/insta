@@ -11,7 +11,6 @@ interface CustomMenuProps {
   anchorEl: HTMLElement | null;
   onClose: () => void;
   items: MenuItemOption[];
-  menuSx?: SxProps<Theme>;
 }
 
 const CustomMenuComp: FC<CustomMenuProps> = ({ anchorEl, onClose, items }) => {
