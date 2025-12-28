@@ -7,20 +7,17 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { Menu, MenuItem, PopoverOrigin, SxProps, Theme } from '@mui/material';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
-// import { ShareIcon } from 'assets/icons-components/share-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { DateUtils } from 'utils/date-utils';
 import { SecondaryButton } from 'components/buttons/secondary-button';
 import { LikedIcon } from 'assets/icons-components/liked-icon';
-import { colors } from 'main/global-style';
+import { CustomMenu } from 'components/menus/custom-menu';
 
 interface PostCardProps {
-  id: string;
   fullname: string;
   image: string;
   caption: string;
@@ -29,7 +26,6 @@ interface PostCardProps {
   userProfileImage: string | null;
   isLiked: boolean;
   createdAt: string;
-  updatedAt: string;
   customStyles?: CSSProperties;
   onDelete?: () => Promise<void>;
   onEdit?: () => void;
@@ -41,10 +37,8 @@ export const PostCard: FC<PostCardProps> = ({
   caption,
   commentCount,
   createdAt,
-  id,
   image,
   likeCount,
-  updatedAt,
   customStyles,
   fullname,
   userProfileImage,
@@ -87,6 +81,23 @@ export const PostCard: FC<PostCardProps> = ({
     handleMenuClose();
   }, [handleMenuClose, onDelete]);
 
+  const menuItems = useMemo(() => {
+    const items = [];
+    if (onEdit) {
+      items.push({
+        label: 'Edit',
+        onClick: handleEdit,
+      });
+    }
+    if (onDelete) {
+      items.push({
+        label: 'Delete',
+        onClick: handleDelete,
+      });
+    }
+    return items;
+  }, [handleDelete, handleEdit, onDelete, onEdit]);
+
   return (
     <article style={customStyles} className={styles.container}>
       <div className={styles.head}>
@@ -121,29 +132,11 @@ export const PostCard: FC<PostCardProps> = ({
         </SecondaryButton> */}
       </div>
 
-      <Menu
-        aria-hidden={open ? 'false' : 'true'}
+      <CustomMenu
         anchorEl={menuAnchorEl}
-        id={`post-menu-${id}`}
-        open={open}
         onClose={handleMenuClose}
-        disableAutoFocus
-        disableRestoreFocus
-        MenuListProps={{
-          onBlur: handleMenuClose,
-        }}
-        slotProps={{
-          paper: {
-            elevation: 0,
-            sx: postMenuSx,
-          },
-        }}
-        transformOrigin={postMenuTransformOrigin}
-        anchorOrigin={postMenuAnchorOrigin}
-      >
-        {onEdit && <MenuItem onClick={handleEdit}>Edit</MenuItem>}
-        {onDelete && <MenuItem onClick={handleDelete}>Delete</MenuItem>}
-      </Menu>
+        items={menuItems}
+      />
     </article>
   );
 };
@@ -182,31 +175,3 @@ export const PostCardSkeleton: FC = () => (
     </div>
   </article>
 );
-
-const postMenuSx: SxProps<Theme> = {
-  overflow: 'visible',
-  filter: 'drop-shadow(0px 2px 8px var(--clr-shadow-default))',
-  mt: 1.5,
-  '&::before': {
-    content: '""',
-    display: 'block',
-    position: 'absolute',
-    top: 0,
-    right: 14,
-    width: 10,
-    height: 10,
-    bgcolor: 'background.paper',
-    transform: 'translateY(-50%) rotate(45deg)',
-    zIndex: 0,
-  },
-};
-
-const postMenuTransformOrigin: PopoverOrigin = {
-  horizontal: 'right',
-  vertical: 'top',
-};
-
-const postMenuAnchorOrigin: PopoverOrigin = {
-  horizontal: 'right',
-  vertical: 'bottom',
-};
