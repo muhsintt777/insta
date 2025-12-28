@@ -1,29 +1,16 @@
 import styles from './app-header.module.scss';
-import {
-  memo,
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Avatar,
-  Menu,
-  MenuItem,
-  PopoverOrigin,
-  SxProps,
-  Theme,
-} from '@mui/material';
+import { Avatar } from '@mui/material';
 import { APP_ROUTES } from 'configs/app-routes';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import appLogo from 'assets/images/app-logo.svg';
+import { CustomMenu } from 'components/menus/custom-menu';
 import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { selectUser, userActions } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
 import { themeActions } from 'features/theme/theme-slice';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import appLogo from 'assets/images/app-logo.svg';
 
 export const Header = memo(() => {
   const navigate = useNavigate();
@@ -31,9 +18,6 @@ export const Header = memo(() => {
   const user = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const open = Boolean(anchorEl);
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
@@ -42,16 +26,6 @@ export const Header = memo(() => {
   const handleClose = useCallback(() => {
     setAnchorEl(null);
   }, []);
-
-  // Handle focus management reactively when menu closes
-  useEffect(() => {
-    if (!open && menuRef.current) {
-      const focusedElement = menuRef.current.querySelector(':focus');
-      if (focusedElement && focusedElement instanceof HTMLElement) {
-        focusedElement.blur();
-      }
-    }
-  }, [open]);
 
   const onProfileClick = useCallback(() => {
     handleClose();
@@ -73,6 +47,27 @@ export const Header = memo(() => {
     }
   }, [dispatch]);
 
+  const menuItems = useMemo(
+    () => [
+      {
+        label: 'Profile',
+        onClick: onProfileClick,
+        icon: <Avatar />,
+      },
+      {
+        label: 'Switch Theme',
+        onClick: handleThemeSwitch,
+        icon: <Avatar />,
+      },
+      {
+        label: 'Signout',
+        onClick: handleLogout,
+        icon: <Avatar />,
+      },
+    ],
+    [onProfileClick, handleThemeSwitch, handleLogout],
+  );
+
   return (
     <>
       <header className={styles.container}>
@@ -91,77 +86,7 @@ export const Header = memo(() => {
           )}
         </div>
       </header>
-      <Menu
-        ref={menuRef}
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        disableAutoFocus
-        disableRestoreFocus
-        MenuListProps={{
-          onBlur: handleClose,
-        }}
-        slotProps={{
-          paper: {
-            elevation: 0,
-            sx: menuSx,
-          },
-        }}
-        transformOrigin={menuTransformOrigin}
-        anchorOrigin={menuAnchorOrigin}
-      >
-        <MenuItem sx={menuItemSx} onClick={onProfileClick}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem sx={menuItemSx} onClick={handleThemeSwitch}>
-          <Avatar /> Switch Theme
-        </MenuItem>
-        <MenuItem sx={menuItemSx} onClick={handleLogout}>
-          <Avatar /> Signout
-        </MenuItem>
-      </Menu>
+      <CustomMenu anchorEl={anchorEl} onClose={handleClose} items={menuItems} />
     </>
   );
 });
-
-const menuSx: SxProps<Theme> = {
-  overflow: 'visible',
-  filter: 'drop-shadow(0px 2px 8px var(--clr-shadow-default))',
-  bgcolor: 'var(--clr-bg-primary)',
-  color: 'var(--clr-fnt-primary)',
-  mt: 1.5,
-  '& .MuiAvatar-root': {
-    width: 32,
-    height: 32,
-    ml: -0.5,
-    mr: 1,
-  },
-  '&::before': {
-    content: '""',
-    display: 'block',
-    position: 'absolute',
-    top: 0,
-    right: 14,
-    width: 10,
-    height: 10,
-    bgcolor: 'var(--clr-bg-primary)',
-    transform: 'translateY(-50%) rotate(45deg)',
-    zIndex: 0,
-  },
-};
-
-const menuItemSx: SxProps<Theme> = {
-  ':hover': { backgroundColor: 'var(--clr-border)' },
-};
-
-const menuTransformOrigin: PopoverOrigin = {
-  horizontal: 'right',
-  vertical: 'top',
-};
-
-const menuAnchorOrigin: PopoverOrigin = {
-  horizontal: 'right',
-  vertical: 'bottom',
-};
