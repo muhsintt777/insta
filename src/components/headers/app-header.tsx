@@ -34,8 +34,6 @@ export const Header = memo(() => {
   }, [handleClose, navigate, pathname]);
 
   const handleThemeSwitch = useCallback(() => {
-    console.log('hiiiii');
-
     dispatch(themeActions.toggleTheme());
     handleClose();
   }, [handleClose, dispatch]);
@@ -57,7 +55,7 @@ export const Header = memo(() => {
         icon: <Avatar sx={{ color: 'red' }} />,
       },
       {
-        label: 'Switch Themetttttttttt',
+        label: 'Switch Theme',
         onClick: handleThemeSwitch,
         icon: <Avatar />,
       },
