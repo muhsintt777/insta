@@ -1,12 +1,11 @@
 import styles from './app-header.module.scss';
 import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Avatar } from '@mui/material';
 import { APP_ROUTES } from 'configs/app-routes';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import appLogo from 'assets/images/app-logo.svg';
 import { CustomMenu } from 'components/menus/custom-menu';
-import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
+import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
 import { selectUser, userActions } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
 import { themeActions } from 'features/theme/theme-slice';
@@ -52,17 +51,17 @@ export const Header = memo(() => {
       {
         label: 'Profile',
         onClick: onProfileClick,
-        icon: <Avatar sx={{ color: 'red' }} />,
+        icon: <CustomAvatar />,
       },
       {
         label: 'Switch Theme',
         onClick: handleThemeSwitch,
-        icon: <Avatar />,
+        icon: <CustomAvatar />,
       },
       {
         label: 'Signout',
         onClick: handleLogout,
-        icon: <Avatar />,
+        icon: <CustomAvatar />,
       },
     ],
     [onProfileClick, handleThemeSwitch, handleLogout],
@@ -77,10 +76,7 @@ export const Header = memo(() => {
             <>
               <div className={styles.profile} onClick={handleClick}>
                 <p>{user.details.username}</p>
-                <RoundedProfile
-                  imageUrl={user.details.profileImage}
-                  size="40px"
-                />
+                <CustomAvatar src={user.details.profileImage} size="40px" />
               </div>
             </>
           )}
