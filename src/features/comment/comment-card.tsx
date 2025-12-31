@@ -10,7 +10,7 @@ import {
 } from 'react';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
-import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
+import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
 import { CustomMenu } from 'components/menus/custom-menu';
 import { DateUtils } from 'utils/date-utils';
 
@@ -65,7 +65,7 @@ export const CommentCardComp: FC<CommentCardProps> = ({
 
   return (
     <div style={customStyle} className={styles.container}>
-      <RoundedProfile imageUrl={authorProfilePic} />
+      <CustomAvatar src={authorProfilePic} size={'45px'} />
       <div className={styles.rightSection}>
         <div className={styles.authorName}>
           <span>{authorName}</span>
