@@ -11,7 +11,7 @@ import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
-import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
+import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
 import { DateUtils } from 'utils/date-utils';
 import { SecondaryButton } from 'components/buttons/secondary-button';
 import { LikedIcon } from 'assets/icons-components/liked-icon';
@@ -101,7 +101,7 @@ export const PostCard: FC<PostCardProps> = ({
   return (
     <article style={customStyles} className={styles.container}>
       <div className={styles.head}>
-        <RoundedProfile imageUrl={userProfileImage} />
+        <CustomAvatar src={userProfileImage} />
         <div>
           <p>{fullname}</p>
           <p>{date}</p>

@@ -3,9 +3,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { EditIcon } from 'assets/icons-components/edit-icon';
-import { RoundedProfile } from 'components/rounded-profile/rounded-profile';
 import { AppBar } from 'components/app-bar/app-bar';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
+import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from 'features/posts/post-service';
 import { useLoader } from 'features/loader/useLoader';
@@ -156,7 +156,7 @@ export const ProfilePage = () => {
       <AppBar title="PROFILE" onBackClick={() => navigate(-1)} />
       <div className={styles.body}>
         <div className={styles.userDetailsSection}>
-          <RoundedProfile imageUrl={userDetails.profileImage} size="100px" />
+          <CustomAvatar src={userDetails.profileImage} size="100px" />
           <div className={styles.userDetails}>
             <p className={styles.name}>{userDetails.fullName}</p>
             <p className={styles.stats}>
