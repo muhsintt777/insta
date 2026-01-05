@@ -8,10 +8,13 @@ import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
 // This avoids importing actual slices which pull in axios through circular dependencies
 const userSlice = createSlice({
   name: 'user',
-  initialState: { status: 'LOGGED_OUT' as const, details: null as null | Record<string, unknown> },
+  initialState: {
+    status: 'LOGGED_OUT' as const,
+    details: null as null | Record<string, unknown>,
+  },
   reducers: {
     login: (state, action) => {
-      state.status = 'SUCCESS' as const;
+      state.status = 'SUCCESS' as any;
       state.details = action.payload;
     },
     logout: (state) => {
@@ -64,7 +67,7 @@ const authSlice = createSlice({
 
 const themeSlice = createSlice({
   name: 'theme',
-  initialState: { theme: 'light' as const },
+  initialState: { theme: 'light' as 'light' | 'dark' },
   reducers: {
     toggleTheme: (state) => {
       state.theme = state.theme === 'light' ? 'dark' : 'light';
