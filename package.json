@@ -42,7 +42,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "jsdom": "^27.4.0",
+    "happy-dom": "^20.0.11",
     "msw": "^1.2.3",
     "prettier": "3.0.3",
     "sass": "^1.83.0",
