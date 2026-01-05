@@ -13,6 +13,7 @@ export default defineConfig({
       layouts: '/src/layouts',
       main: '/src/main',
       utils: '/src/utils',
+      'test-utils': '/src/test-utils',
     },
   },
 });

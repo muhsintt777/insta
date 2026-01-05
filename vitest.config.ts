@@ -3,7 +3,7 @@ import path from 'path';
 
 export default defineConfig({
   test: {
-    environment: 'happy-dom',
+    environment: 'jsdom',
     globals: true,
     setupFiles: 'src/setupTests.ts',
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
@@ -11,9 +11,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov'],
     },
-    deps: {
-      inline: ['get-intrinsic', 'es-abstract', 'es-define-property'],
-    },
+    pool: 'forks',
   },
   resolve: {
     alias: {
@@ -25,6 +23,7 @@ export default defineConfig({
       layouts: path.resolve(__dirname, 'src/layouts'),
       main: path.resolve(__dirname, 'src/main'),
       utils: path.resolve(__dirname, 'src/utils'),
+      'test-utils': path.resolve(__dirname, 'src/test-utils'),
     },
   },
 });

@@ -31,7 +31,9 @@
       "hooks/*": ["./hooks/*"],
       "layouts/*": ["./layouts/*"],
       "main/*": ["./main/*"],
-      "utils/*": ["./utils/*"]
+      "utils/*": ["./utils/*"],
+      "test-utils": ["./test-utils"],
+      "test-utils/*": ["./test-utils/*"]
     }
   },
   "include": ["src"],

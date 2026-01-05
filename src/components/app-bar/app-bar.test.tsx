@@ -1,44 +1,41 @@
-import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderToStaticMarkup } from 'react-dom/server';
-
-// Mock local CSS module
-vi.mock('./app-bar.module.scss', () => ({
-  default: {
-    container: 'container',
-    iconWrap: 'iconWrap',
-  },
-}));
-
-// Mock PrimaryIconButton to render a simple button
-vi.mock('components/buttons/primary-icon-button', () => ({
-  PrimaryIconButton: ({ children, onClick }: any) => (
-    <button data-testid="primary-icon-button" onClick={onClick}>
-      {children}
-    </button>
-  ),
-}));
-
-// Mock BackIcon to a simple element
-vi.mock('assets/icons-components/back-icon', () => ({
-  BackIcon: () => <span data-testid="back-icon" />,
-}));
-
-let AppBar: any;
-
-beforeEach(async () => {
-  const mod = await import('./app-bar');
-  AppBar = mod.AppBar;
-});
+import { describe, it, expect, vi } from 'vitest';
+import { screen, renderWithProviders, userEvent } from 'test-utils';
+import { AppBar } from './app-bar';
 
 describe('AppBar', () => {
-  it('renders title', () => {
-    const onBack = vi.fn();
-    const markup = renderToStaticMarkup(
-      // dynamic import ensures mocks are applied
-      <AppBar title="My Title" onBackClick={onBack} />,
+  it('renders title correctly', () => {
+    const onBackClick = vi.fn();
+
+    renderWithProviders(<AppBar title="My Title" onBackClick={onBackClick} />);
+
+    expect(screen.getByText('My Title')).toBeInTheDocument();
+  });
+
+  it('calls onBackClick when back button is clicked', async () => {
+    const user = userEvent.setup();
+    const onBackClick = vi.fn();
+
+    renderWithProviders(<AppBar title="Test" onBackClick={onBackClick} />);
+
+    const backButton = screen.getByRole('button');
+    await user.click(backButton);
+
+    expect(onBackClick).toHaveBeenCalledOnce();
+  });
+
+  it('applies custom styles when provided', () => {
+    const onBackClick = vi.fn();
+    const customStyles = { backgroundColor: 'red' };
+
+    const { container } = renderWithProviders(
+      <AppBar
+        title="Styled"
+        onBackClick={onBackClick}
+        customStyles={customStyles}
+      />,
     );
 
-    expect(markup).toContain('My Title');
+    const appBarContainer = container.firstChild as HTMLElement;
+    expect(appBarContainer.style.backgroundColor).toBe('red');
   });
 });
