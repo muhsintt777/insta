@@ -13,7 +13,7 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage --reporter=lcov"
+    "test:coverage": "vitest run --coverage"
   },
   "resolutions": {
     "get-intrinsic": "1.2.4"
@@ -41,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^4.1.0",
+    "@vitest/coverage-v8": "1.6.1",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
