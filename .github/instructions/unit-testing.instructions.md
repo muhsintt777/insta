@@ -42,6 +42,8 @@ describe('MyComponent', () => {
 
 ## Testing Best Practices
 
+- Target 90% code coverage overall, not per file.
+
 ### Rendering
 
 - Use `renderWithProviders` from `test-utils` for components that need Redux or Router context
