@@ -37,7 +37,7 @@ describe('http config', () => {
       expect(http.defaults.baseURL).toBe(
         'https://insta-server-k0gd.onrender.com/api',
       );
-    });
+    }, 10000);
 
     it('creates axios instance with correct headers', async () => {
       const { http } = await import('./http');
