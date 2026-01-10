@@ -42,7 +42,8 @@ describe('MyComponent', () => {
 
 ## Testing Best Practices
 
-- Target 90% code coverage overall, not per file.
+- Target 90% code coverage overall.
+- Targget minimum 80% coverage per file.
 
 ### Rendering
 
