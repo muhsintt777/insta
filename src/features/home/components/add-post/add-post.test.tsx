@@ -48,7 +48,7 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'LOGGED_IN',
+          status: 'SUCCESS',
         },
       },
     });
@@ -63,7 +63,7 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'LOGGED_IN',
+          status: 'SUCCESS',
         },
       },
     });
@@ -83,7 +83,7 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'LOGGED_IN',
+          status: 'SUCCESS',
         },
       },
     });
@@ -111,7 +111,7 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'LOGGED_IN',
+          status: 'SUCCESS',
         },
       },
     });
@@ -132,7 +132,7 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'LOGGED_IN',
+          status: 'SUCCESS',
         },
       },
     });

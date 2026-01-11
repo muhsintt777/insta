@@ -81,6 +81,7 @@ const mockPosts: Post[] = [
     creator: {
       id: 'user-1',
       fullName: 'John Doe',
+      username: 'johndoe',
       profileImage: 'https://example.com/profile1.jpg',
     },
   },
@@ -96,6 +97,7 @@ const mockPosts: Post[] = [
     creator: {
       id: 'user-2',
       fullName: 'Jane Smith',
+      username: 'janesmith',
       profileImage: null,
     },
   },
