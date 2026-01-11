@@ -9,16 +9,16 @@ import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    status: 'LOGGED_OUT' as const,
+    status: 'LOGGED_OUT' as 'LOGGED_OUT' | 'SUCCESS' | 'LOADING' | 'FAILED',
     details: null as null | Record<string, unknown>,
   },
   reducers: {
     login: (state, action) => {
-      state.status = 'SUCCESS' as any;
+      state.status = 'SUCCESS';
       state.details = action.payload;
     },
     logout: (state) => {
-      state.status = 'LOGGED_OUT' as const;
+      state.status = 'LOGGED_OUT';
       state.details = null;
     },
   },
