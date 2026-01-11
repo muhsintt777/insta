@@ -22,6 +22,8 @@ describe('CommentService', () => {
         id: 'comment-1',
         content: 'Test comment',
         createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        postId: mockPostId,
         creator: {
           id: 'user-1',
           username: 'testuser',

@@ -21,6 +21,8 @@ const mockComments: CommentDetails[] = [
     id: 'comment-1',
     content: 'Test comment 1',
     createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    postId: 'post-123',
     creator: {
       id: 'user-1',
       username: 'testuser1',
@@ -31,6 +33,8 @@ const mockComments: CommentDetails[] = [
     id: 'comment-2',
     content: 'Test comment 2',
     createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    postId: 'post-123',
     creator: {
       id: 'user-2',
       username: 'testuser2',
