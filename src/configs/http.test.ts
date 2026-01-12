@@ -60,7 +60,16 @@ describe('http config', () => {
       });
 
       const config = { headers: {} as Record<string, string> };
-      const interceptor = http.interceptors.request.handlers[0];
+      const interceptor = (
+        http.interceptors.request as unknown as {
+          handlers: Array<{
+            fulfilled: (config: { headers: Record<string, string> }) => {
+              headers: Record<string, string>;
+            };
+            rejected: (error: unknown) => unknown;
+          }>;
+        }
+      ).handlers[0];
       const result = interceptor.fulfilled(config);
 
       expect(result.headers.Authorization).toBe('bearer-test-token');
@@ -71,7 +80,14 @@ describe('http config', () => {
     it('returns response on success', async () => {
       const { http } = await import('./http');
 
-      const interceptor = http.interceptors.response.handlers[0];
+      const interceptor = (
+        http.interceptors.response as unknown as {
+          handlers: Array<{
+            fulfilled: <T>(response: T) => T;
+            rejected: (error: unknown) => Promise<unknown>;
+          }>;
+        }
+      ).handlers[0];
       const mockResponse = { data: { message: 'success' } };
       const result = interceptor.fulfilled(mockResponse);
 
@@ -94,7 +110,14 @@ describe('http config', () => {
       const { http } = await import('./http');
       http.request = mockRequest;
 
-      const interceptor = http.interceptors.response.handlers[0];
+      const interceptor = (
+        http.interceptors.response as unknown as {
+          handlers: Array<{
+            fulfilled: <T>(response: T) => T;
+            rejected: (error: unknown) => Promise<unknown>;
+          }>;
+        }
+      ).handlers[0];
       const mockError = {
         status: 401,
         response: { data: { errorType: ERROR_TYPE.AUTH_TOKEN_EXPIRED } },
@@ -136,7 +159,14 @@ describe('http config', () => {
 
       const { http } = await import('./http');
 
-      const interceptor = http.interceptors.response.handlers[0];
+      const interceptor = (
+        http.interceptors.response as unknown as {
+          handlers: Array<{
+            fulfilled: <T>(response: T) => T;
+            rejected: (error: unknown) => Promise<unknown>;
+          }>;
+        }
+      ).handlers[0];
       const mockError = {
         status: 401,
         response: { data: { errorType: ERROR_TYPE.SIGNED_OUT } },
@@ -157,7 +187,14 @@ describe('http config', () => {
     it('throws error for other error types', async () => {
       const { http } = await import('./http');
 
-      const interceptor = http.interceptors.response.handlers[0];
+      const interceptor = (
+        http.interceptors.response as unknown as {
+          handlers: Array<{
+            fulfilled: <T>(response: T) => T;
+            rejected: (error: unknown) => Promise<unknown>;
+          }>;
+        }
+      ).handlers[0];
       const mockError = {
         status: 500,
         response: { data: { errorType: 'INTERNAL_SERVER_ERROR' } },

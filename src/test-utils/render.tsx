@@ -26,7 +26,11 @@ const userSlice = createSlice({
 
 const toastSlice = createSlice({
   name: 'toast',
-  initialState: { show: false, severity: 'info' as const, message: '' },
+  initialState: {
+    show: false,
+    severity: 'info' as 'success' | 'error' | 'info' | 'warning',
+    message: '',
+  },
   reducers: {
     show: (state, action) => {
       state.show = true;

@@ -5,6 +5,7 @@ import {
   userReducer,
   initialUserFetch,
 } from './user-slice';
+import type { User, UserSlice, UserSuccessSlice } from './user';
 import { configureStore } from '@reduxjs/toolkit';
 import { UserService } from './user-service';
 import { AuthService } from 'features/auth/auth-service';
@@ -22,7 +23,7 @@ vi.mock('features/auth/auth-service', () => ({
 }));
 
 describe('userSlice', () => {
-  const mockUser = {
+  const mockUser: User = {
     id: 'user-1',
     fullName: 'John Doe',
     username: 'johndoe',
@@ -31,12 +32,16 @@ describe('userSlice', () => {
     bio: 'Test bio',
     postCount: 10,
     friendsCount: 5,
+    gender: null,
+    mobileNo: null,
+    createdAt: '2024-01-01T00:00:00.000Z',
+    updatedAt: '2024-01-01T00:00:00.000Z',
   };
 
   describe('reducers', () => {
     it('logout should set status to LOGGED_OUT and details to null', () => {
-      const state = {
-        status: 'SUCCESS' as const,
+      const state: UserSuccessSlice = {
+        status: 'SUCCESS',
         details: mockUser,
       };
 
@@ -47,8 +52,8 @@ describe('userSlice', () => {
     });
 
     it('login should set status to SUCCESS and store user details', () => {
-      const state = {
-        status: 'LOADING' as const,
+      const state: UserSlice = {
+        status: 'LOADING',
         details: null,
       };
 
@@ -60,8 +65,8 @@ describe('userSlice', () => {
 
     describe('updateUserResourceCount', () => {
       it('increments postCount', () => {
-        const state = {
-          status: 'SUCCESS' as const,
+        const state: UserSuccessSlice = {
+          status: 'SUCCESS',
           details: { ...mockUser, postCount: 10 },
         };
 
@@ -77,8 +82,8 @@ describe('userSlice', () => {
       });
 
       it('decrements postCount', () => {
-        const state = {
-          status: 'SUCCESS' as const,
+        const state: UserSuccessSlice = {
+          status: 'SUCCESS',
           details: { ...mockUser, postCount: 10 },
         };
 
@@ -94,8 +99,8 @@ describe('userSlice', () => {
       });
 
       it('increments friendsCount', () => {
-        const state = {
-          status: 'SUCCESS' as const,
+        const state: UserSuccessSlice = {
+          status: 'SUCCESS',
           details: { ...mockUser, friendsCount: 5 },
         };
 
@@ -111,8 +116,8 @@ describe('userSlice', () => {
       });
 
       it('does nothing when status is not SUCCESS', () => {
-        const state = {
-          status: 'LOADING' as const,
+        const state: UserSlice = {
+          status: 'LOADING',
           details: null,
         };
 
@@ -130,8 +135,8 @@ describe('userSlice', () => {
 
     describe('editUser', () => {
       it('updates user details partially', () => {
-        const state = {
-          status: 'SUCCESS' as const,
+        const state: UserSuccessSlice = {
+          status: 'SUCCESS',
           details: mockUser,
         };
 
@@ -146,8 +151,8 @@ describe('userSlice', () => {
       });
 
       it('does nothing when status is not SUCCESS', () => {
-        const state = {
-          status: 'LOADING' as const,
+        const state: UserSlice = {
+          status: 'LOADING',
           details: null,
         };
 
@@ -198,8 +203,11 @@ describe('userSlice', () => {
         initialUserFetch.rejected(new Error('Fetch failed'), 'requestId'),
       );
 
-      expect(store.getState().user.status).toBe('FAILED');
-      expect(store.getState().user.error).toBe('Fetch failed');
+      const userState = store.getState().user;
+      expect(userState.status).toBe('FAILED');
+      if (userState.status === 'FAILED') {
+        expect(userState.error).toBe('Fetch failed');
+      }
     });
   });
 });

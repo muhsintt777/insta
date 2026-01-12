@@ -156,7 +156,7 @@ describe('App', () => {
     it('renders routes when user status is FAILED', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'FAILED', details: null, error: 'Failed' },
+          user: { status: 'FAILED', details: null },
         },
         route: '/',
       });
