@@ -107,14 +107,12 @@ export const HomePage = () => {
         posts.map((post) => (
           <PostCard
             key={post.id}
-            id={post.id}
             caption={post.caption}
             image={post.image}
             likeCount={post.likeCount}
             userProfileImage={post.creator.profileImage}
             commentCount={post.commentCount}
             createdAt={post.createdAt}
-            updatedAt={post.updatedAt}
             fullname={post.creator.fullName}
             isLiked={post.isLiked}
             onComment={() => openCommentsModal(post.id)}

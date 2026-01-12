@@ -12,13 +12,15 @@ applyTo: '**'
 - Write descriptive commit very short, use chore: feat: fix: for prefix.
 - Apply secure coding practices and web security best practices
 - Use scss modules for styling
-- Direct DOM access should be avoided
+- Use yarn for package management
+- Direct DOM access should be avoided unless absolutely necessary
 
 ## Preferences
 
 - Modern, concise, and industry best practices
 - Clear, maintainable, and scalable code
 - Professional and clear documentation
+- No snapshot tests unless absolutely necessary
 
 ## Global Style Guide
 

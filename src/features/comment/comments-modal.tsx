@@ -110,7 +110,6 @@ export const CommentsModal: FC<CommentsModalProps> = ({
               {comments.map((comment) => (
                 <CommentCard
                   key={comment.id}
-                  commentId={comment.id}
                   commentText={comment.content}
                   authorName={comment.creator.username}
                   authorProfilePic={comment.creator.profileImage}
