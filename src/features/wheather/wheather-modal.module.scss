@@ -1,0 +1,120 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 32px;
+  flex: 1;
+}
+
+.weatherIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.condition {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--clr-fnt-primary);
+  margin-bottom: 4px;
+}
+
+.location {
+  font-size: 14px;
+  color: var(--clr-fnt-secondary);
+  margin-bottom: 24px;
+}
+
+.temperatureSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.temperature {
+  font-size: 72px;
+  font-weight: 300;
+  color: var(--clr-fnt-primary);
+  line-height: 1;
+
+  .degree {
+    font-size: 24px;
+    vertical-align: super;
+  }
+}
+
+.tempRange {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--clr-fnt-secondary);
+  margin-top: 8px;
+
+  .minTemp,
+  .maxTemp {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .arrow {
+    font-size: 12px;
+  }
+}
+
+.statsSection {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--clr-border);
+  width: 100%;
+  margin-top: 16px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  .statLabel {
+    font-size: 12px;
+    color: var(--clr-fnt-secondary);
+  }
+
+  .statValue {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--clr-fnt-primary);
+  }
+}
+
+.forecastButton {
+  width: 100%;
+  max-width: 280px;
+  height: 48px;
+  margin-top: 24px;
+  border: none;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #4fc3f7 0%, #00bcd4 100%);
+  color: var(--clr-white);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--fnt-secondary);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
