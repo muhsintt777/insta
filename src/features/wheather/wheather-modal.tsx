@@ -1,11 +1,11 @@
+import styles from './wheather-modal.module.scss';
+import { FC, useEffect, useState } from 'react';
 import {
   ModalFooter,
   ModalHeader,
   PrimaryModal,
 } from 'components/modals/primary-modal';
-import { FC, useEffect, useState } from 'react';
 import { WheatherIcon } from 'assets/icons-components/wheather-icon';
-import styles from './wheather-modal.module.scss';
 import { Wheather, WheatherService } from './wheather-service';
 
 interface WheatherModalProps {
