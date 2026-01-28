@@ -3,43 +3,34 @@ import {
   ModalHeader,
   PrimaryModal,
 } from 'components/modals/primary-modal';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { WheatherIcon } from 'assets/icons-components/wheather-icon';
 import styles from './wheather-modal.module.scss';
+import { Wheather, WheatherService } from './wheather-service';
 
 interface WheatherModalProps {
   isOpen: boolean;
   closeModal: () => void;
 }
 
-interface WeatherData {
-  condition: string;
-  location: string;
-  temperature: number;
-  minTemp: number;
-  maxTemp: number;
-  humidity: number;
-  rainfall: number;
-  gusture: number;
-}
-
-// Mock data - replace with actual API data
-const mockWeatherData: WeatherData = {
-  condition: 'Partly Cloudy',
-  location: 'Bay Area, San Francisco',
-  temperature: 18.3,
-  minTemp: 14.0,
-  maxTemp: 20.0,
-  humidity: 74,
-  rainfall: 0,
-  gusture: 3,
-};
-
 export const WheatherModal: FC<WheatherModalProps> = ({
   isOpen,
   closeModal,
 }) => {
-  const weather = mockWeatherData;
+  const [wheather, setWheather] = useState<Wheather | null>(null);
+
+  useEffect(() => {
+    if (wheather || !isOpen) return;
+
+    (async () => {
+      try {
+        const result = await WheatherService.fetchCurrentWheather();
+        setWheather(result);
+      } catch (error) {
+        console.log('Error fetching weather data:', error);
+      }
+    })();
+  }, [isOpen, wheather]);
 
   return (
     <PrimaryModal isOpen={isOpen} closeModal={closeModal}>
@@ -50,23 +41,25 @@ export const WheatherModal: FC<WheatherModalProps> = ({
             <WheatherIcon size="48px" color="var(--clr-yellow)" />
           </div>
 
-          <p className={styles.condition}>{weather.condition}</p>
-          <p className={styles.location}>{weather.location}</p>
+          <p className={styles.condition}>{wheather?.weatherCode}</p>
+          <p className={styles.location}>{'location'}</p>
 
           <div className={styles.temperatureSection}>
             <span className={styles.temperature}>
-              {weather.temperature}
-              <span className={styles.degree}>°</span>
+              {wheather?.temperature.value}
+              <span className={styles.degree}>
+                {wheather?.temperature.unit}
+              </span>
             </span>
 
             <div className={styles.tempRange}>
               <span className={styles.minTemp}>
                 <span className={styles.arrow}>↓</span>
-                {weather.minTemp.toFixed(1)}°
+                {'min temp'}°
               </span>
               <span className={styles.maxTemp}>
                 <span className={styles.arrow}>↑</span>
-                {weather.maxTemp.toFixed(1)}°
+                {'max temp'}°
               </span>
             </div>
           </div>
@@ -74,21 +67,17 @@ export const WheatherModal: FC<WheatherModalProps> = ({
           <div className={styles.statsSection}>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>Humidity</span>
-              <span className={styles.statValue}>{weather.humidity}%</span>
+              <span className={styles.statValue}>{'na'}%</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>Rainfall</span>
-              <span className={styles.statValue}>{weather.rainfall} mm</span>
+              <span className={styles.statValue}>{'na'} mm</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>Gusture</span>
-              <span className={styles.statValue}>{weather.gusture} km/h</span>
+              <span className={styles.statValue}>{'na'} km/h</span>
             </div>
           </div>
-
-          <button type="button" className={styles.forecastButton}>
-            Today Forecast
-          </button>
         </div>
         <ModalFooter
           primaryButton={{
