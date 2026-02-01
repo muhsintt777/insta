@@ -7,6 +7,7 @@ import {
 } from 'components/modals/primary-modal';
 import { WheatherIcon } from 'assets/icons-components/wheather-icon';
 import { Wheather, WheatherService } from './wheather-service';
+import { useGeolocation } from 'features/geolocation/use-geolocation';
 
 interface WheatherModalProps {
   isOpen: boolean;
@@ -18,19 +19,24 @@ export const WheatherModal: FC<WheatherModalProps> = ({
   closeModal,
 }) => {
   const [wheather, setWheather] = useState<Wheather | null>(null);
+  const location = useGeolocation();
 
   useEffect(() => {
-    if (wheather || !isOpen) return;
+    if (wheather || !isOpen || !location.latitude || !location.longitude)
+      return;
 
     (async () => {
       try {
-        const result = await WheatherService.fetchCurrentWheather();
+        const result = await WheatherService.fetchCurrentWheather(
+          location.latitude!,
+          location.longitude!,
+        );
         setWheather(result);
       } catch (error) {
         console.log('Error fetching weather data:', error);
       }
     })();
-  }, [isOpen, wheather]);
+  }, [isOpen, wheather, location]);
 
   return (
     <PrimaryModal isOpen={isOpen} closeModal={closeModal}>
