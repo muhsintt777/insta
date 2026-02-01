@@ -16,10 +16,7 @@ export interface Wheather {
 }
 
 export class WheatherService {
-  static async fetchCurrentWheather(
-    latitude: string = '12.9719',
-    longitude: string = '77.5937',
-  ) {
+  static async fetchCurrentWheather(latitude: number, longitude: number) {
     const res = await http.get(
       `/weather/current?latitude=${latitude}&longitude=${longitude}`,
     );
