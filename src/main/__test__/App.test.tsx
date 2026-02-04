@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, waitFor } from 'test-utils';
-import { App } from './App';
+import { App } from '../App';
 
 vi.mock('features/loader', () => ({
   BackdropLoader: () => <div data-testid="backdrop-loader">BackdropLoader</div>,

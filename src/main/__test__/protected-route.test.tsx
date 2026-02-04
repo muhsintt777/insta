@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen, render } from 'test-utils';
-import { ProtectedRoute } from './protected-route';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { MemoryRouter } from 'react-router-dom';
+import { ProtectedRoute } from 'main/protected-route';
 
 vi.mock('hooks/redux-hooks', () => ({
   useAppSelector: vi.fn(),

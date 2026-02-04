@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen, render } from 'test-utils';
-import { protect } from './with-protected-route';
+import { protect } from '../with-protected-route';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { MemoryRouter } from 'react-router-dom';
 import { FC } from 'react';
