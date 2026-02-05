@@ -54,7 +54,7 @@ vi.mock('layouts/secondary-layout', () => ({
   ),
 }));
 
-vi.mock('./with-protected-route', () => ({
+vi.mock('../with-protected-route', () => ({
   protect: (Component: React.FC) => <Component />,
 }));
 
