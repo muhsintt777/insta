@@ -71,12 +71,16 @@ export const WheatherModal: FC<WheatherModalProps> = ({
 
                 <div className={styles.tempRange}>
                   <span className={styles.minTemp}>
-                    <span className={styles.arrow}>↓</span>
-                    {'min temp'}°
+                    <span className={styles.arrow}>
+                      ↓ {wheather?.minTemperature.value}
+                    </span>
+                    {wheather?.minTemperature.unit}
                   </span>
                   <span className={styles.maxTemp}>
-                    <span className={styles.arrow}>↑</span>
-                    {'max temp'}°
+                    <span className={styles.arrow}>
+                      ↑ {wheather?.maxTemperature.value}
+                    </span>
+                    {wheather?.maxTemperature.unit}
                   </span>
                 </div>
               </div>
@@ -84,15 +88,21 @@ export const WheatherModal: FC<WheatherModalProps> = ({
               <div className={styles.statsSection}>
                 <div className={styles.statItem}>
                   <span className={styles.statLabel}>Humidity</span>
-                  <span className={styles.statValue}>{'na'}%</span>
+                  <span
+                    className={styles.statValue}
+                  >{`${wheather?.humidity.value} ${wheather?.humidity.unit}`}</span>
                 </div>
                 <div className={styles.statItem}>
-                  <span className={styles.statLabel}>Rainfall</span>
-                  <span className={styles.statValue}>{'na'} mm</span>
+                  <span className={styles.statLabel}>Wind Speed</span>
+                  <span
+                    className={styles.statValue}
+                  >{`${wheather?.windSpeed.value} ${wheather?.windSpeed.unit}`}</span>
                 </div>
                 <div className={styles.statItem}>
-                  <span className={styles.statLabel}>Gusture</span>
-                  <span className={styles.statValue}>{'na'} km/h</span>
+                  <span className={styles.statLabel}>Wind Direction</span>
+                  <span
+                    className={styles.statValue}
+                  >{`${wheather?.windDirection.value} ${wheather?.windDirection.unit}`}</span>
                 </div>
               </div>
             </>

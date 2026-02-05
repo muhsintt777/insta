@@ -10,6 +10,10 @@ type WheatherCode = 'CLEAR_SKY' | 'PARTLY_CLOUDY' | 'CLOUDY' | 'RAIN' | 'SNOW';
 
 export interface Wheather {
   temperature: Measurement;
+  minTemperature: Measurement;
+  maxTemperature: Measurement;
+  humidity: Measurement;
+  windDirection: Measurement;
   windSpeed: Measurement;
   weatherCode: WheatherCode;
   isDay: boolean;
