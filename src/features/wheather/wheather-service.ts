@@ -9,6 +9,7 @@ interface Measurement {
 type WheatherCode = 'CLEAR_SKY' | 'PARTLY_CLOUDY' | 'CLOUDY' | 'RAIN' | 'SNOW';
 
 export interface Wheather {
+  cityName: string;
   temperature: Measurement;
   minTemperature: Measurement;
   maxTemperature: Measurement;

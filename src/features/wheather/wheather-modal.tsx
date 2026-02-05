@@ -59,7 +59,7 @@ export const WheatherModal: FC<WheatherModalProps> = ({
               </div>
 
               <p className={styles.condition}>{wheather?.weatherCode}</p>
-              <p className={styles.location}>{'location'}</p>
+              <p className={styles.location}>{wheather?.cityName}</p>
 
               <div className={styles.temperatureSection}>
                 <span className={styles.temperature}>
