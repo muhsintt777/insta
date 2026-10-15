@@ -1,89 +1,139 @@
-## Insta - Social (React + Redux + TypeScript)
+# Insta Social
 
-An Instagram-like SPA built with React 18, Vite, and TypeScript (strict mode). It uses Redux Toolkit for state, React Router v6 for routing, axios for HTTP with interceptors, MUI for UI primitives, react-hook-form + zod for form validation, and SCSS modules for styling.
+**A full-stack-connected social app built with React, TypeScript, and Redux Toolkit.**
 
-This README covers setup, scripts, architecture, routes, environment config, and development conventions.
+An Instagram-inspired single-page application for sharing posts and interacting with a community. The project emphasizes domain-oriented organization, typed state and forms, resilient authentication requests, and behavior-focused component tests.
 
-## Quick start
+</div>
 
-Prerequisites:
+## Product Scope
 
-- Node.js 22
-- yarn
+- Browse a post feed, create and edit image posts, and manage captions.
+- Like posts and open comments for discussion.
+- Sign up, sign in, view and edit a profile, and manage friends.
+- Navigate chat and notifications areas within the authenticated application.
+- Use shared loading, toast, and theme state for consistent application feedback.
 
-Install and run the dev server:
+## Engineering Highlights
+
+- **Feature-oriented architecture:** UI, services, validation, and tests are grouped by product domain instead of being organized only by technical layer.
+- **Explicit application state:** Redux Toolkit slices represent user/session, auth token, theme, loader, and toast state; typed hooks provide the React integration point.
+- **Centralized API boundary:** a configured Axios client applies credentials and authorization consistently, and handles expired-token refresh and signed-out responses.
+- **Route and layout composition:** React Router nests authenticated application pages under layouts while keeping login and signup public.
+- **Validated form boundaries:** React Hook Form and Zod schemas keep form types, constraints, and user-facing validation close to each feature.
+- **Testable UI composition:** Vitest, Testing Library, and a shared render helper provide Redux and router context for component-level behavior tests.
+- **Reusable presentation system:** shared controls, headers, menus, modals, loaders, and SCSS modules keep feature screens composable.
+
+## Architecture
+
+```mermaid
+flowchart TD
+	Browser[Browser] --> App[React app and route layouts]
+	App --> Features[Feature domains]
+	Features --> Components[Shared components]
+	Features --> Store[Redux Toolkit store]
+	Features --> Services[Domain API services]
+	Services --> Http[Axios client]
+	Http --> API[Social app API]
+	Http --> Auth[Auth refresh and sign-out handling]
+	Store --> Feedback[Loader, toast, theme, and user state]
+```
+
+### Request and authentication lifecycle
+
+The app fetches the current user during startup. The configured HTTP client sends cookies and the current authorization token, refreshes credentials when the API reports an expired token, and clears user state when the API reports a signed-out session. Protected routes render only when user details are available; otherwise, navigation redirects to `/auth/login`.
+
+### Code organization
+
+| Area                        | Responsibility                                                                                                                       |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/main`                  | App composition, route definitions, global styles, and protected-route behavior                                                      |
+| `src/layouts`               | Shared page shells for authenticated, authentication, and secondary pages                                                            |
+| `src/features`              | Domain workflows and state, including auth, posts, likes, comments, friends, chat, notifications, user profiles, theme, and feedback |
+| `src/components`            | Reusable UI primitives such as buttons, inputs, menus, modals, and loaders                                                           |
+| `src/configs`               | Redux store, Axios client, API environment, and shared constants                                                                     |
+| `src/hooks` and `src/utils` | Typed Redux hooks and cross-feature helpers, schemas, and date utilities                                                             |
+| `src/test-utils`            | Shared render helpers for components using Redux and React Router                                                                    |
+
+### State ownership
+
+Redux stores cross-cutting state: authenticated user details and loading status, the auth token, theme preference, global loader visibility, and toast messages. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
+
+## Stack
+
+- React 18, TypeScript 5 (strict mode), and Vite 7
+- Redux Toolkit and React Redux
+- React Router 6
+- Axios
+- Material UI with Emotion
+- React Hook Form, Zod, and `@hookform/resolvers`
+- SCSS modules
+- Vitest, jsdom, and React Testing Library
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 22 or newer
+- Yarn 1.22
+
+### Install and run
 
 ```bash
 yarn install
 yarn dev
 ```
 
-Build and preview production:
+The development server prints its local URL when it starts.
+
+### Build and preview
 
 ```bash
 yarn build
 yarn preview
 ```
 
-Code quality:
+`yarn build` runs the TypeScript compiler before creating the Vite production bundle.
+
+## Quality Checks
 
 ```bash
-# Lint (eslint)
-yarn lint
-
-# Format (prettier)
-yarn format
+yarn test:run       # Run the test suite once
+yarn test:coverage  # Run tests with V8 coverage
+yarn lint           # Run ESLint with warnings treated as errors
+yarn format         # Format source files with Prettier
 ```
 
-## Tech stack
+Tests live alongside the source they exercise. The suite uses jsdom and Testing Library for user-visible behavior, with shared providers for stateful and routed components. Coverage can be inspected with `yarn test:coverage`; no coverage threshold is currently enforced by the Vitest configuration.
 
-- Build: Vite 7, TypeScript 5
-- UI: React 18, @mui/material
-- State: Redux Toolkit, react-redux
-- Routing: react-router-dom v6
-- Forms: react-hook-form, @hookform/resolvers, zod
-- HTTP: axios (withCredentials, interceptors)
-- Styling: SCSS/CSS modules; global styles in `src/main/index.css` and `src/main/global-style.ts`
+## Routes
 
-## Scripts (from package.json)
+| Route            | Access    | Screen        |
+| ---------------- | --------- | ------------- |
+| `/`              | Protected | Home feed     |
+| `/friends`       | Protected | Friends       |
+| `/chat`          | Protected | Chat          |
+| `/notifications` | Protected | Notifications |
+| `/profile`       | Protected | Profile       |
+| `/auth/login`    | Public    | Login         |
+| `/auth/signup`   | Public    | Sign up       |
 
-- `dev` — start Vite dev server
-- `build` — type-check (tsc) and build
-- `preview` — preview the production build
-- `lint` — run ESLint
-- `format` — run Prettier over `./src`
+## API Configuration
 
-## Architecture overview
+The API base URL and server mode are defined in `src/configs/env.ts`. The current configuration points to the hosted API. Update `API_URL` there when using another backend.
 
-Key layers/components:
+The Axios client uses `withCredentials: true`, so the API must allow credentialed cross-origin requests from the app origin and configure cookie attributes appropriately. Authentication refresh and protected-route behavior depend on the API's auth endpoints and error types.
 
-- Routing (`src/main/App.tsx`): React Router v6 with nested layouts. Public auth routes and protected app routes.
-- Protected routes (`src/main/protected-route.tsx` and `src/main/with-protected-route.tsx`): Redirect unauthenticated users to `/auth/login`.
-- State (`src/configs/store.ts`): Redux Toolkit store with `user`, `toast`, and `loader` slices.
-- HTTP (`src/configs/http.ts`): axios instance with base URL, JSON headers, and credentials enabled; response interceptor handles token refresh and unauthorized logout.
-- Environment (`src/configs/env.ts`): central place to set `API_URL` and `SERVER_TYPE`.
-- UI feedback: `features/loader` provides a backdrop loader; `features/toast` provides MUI Snackbar toasts.
+## Scripts
 
-## Styling & design system
-
-- SCSS/CSS modules for component styles
-- Global styles in `src/main/index.css` and theme tokens/utilities in `src/main/global-style.ts`
-- Avoid direct DOM access; prefer React patterns and MUI components
-
-## Forms & validation
-
-- `react-hook-form` for form state
-- `zod` schemas via `@hookform/resolvers` for validation (see feature form components and `utils/schema.ts`)
-
-## Development conventions
-
-- TypeScript strict mode is enabled (`tsconfig.json`)
-- Keep code modern, concise, and secure; avoid deprecated APIs
-- Prefer feature-based folder structure and small, reusable components
-- Commit messages: short and prefixed with `feat:`, `fix:`, `chore:`
-
-## Troubleshooting
-
-- Node version: ensure 22+ for vite 7
-- CORS/auth: axios is configured with `withCredentials`; your API must set proper CORS headers for cookies
-- API URL: update `src/configs/env.ts` if your backend differs
+| Command              | Description                            |
+| -------------------- | -------------------------------------- |
+| `yarn dev`           | Start the Vite development server      |
+| `yarn build`         | Type-check and build for production    |
+| `yarn preview`       | Serve the production build locally     |
+| `yarn test`          | Start Vitest in watch mode             |
+| `yarn test:run`      | Run Vitest once                        |
+| `yarn test:ui`       | Open the Vitest UI                     |
+| `yarn test:coverage` | Run tests and report V8 coverage       |
+| `yarn lint`          | Run ESLint                             |
+| `yarn format`        | Format files under `src` with Prettier |
