@@ -1,5 +1,5 @@
 import { store } from 'configs/store';
-import { CustomError } from 'utils/custom-error';
+import { CustomError } from 'shared/lib/errors/custom-error';
 import { toastActions } from './toast-slice';
 import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 

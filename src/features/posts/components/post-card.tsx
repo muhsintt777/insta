@@ -12,7 +12,7 @@ import { LikeIcon } from 'assets/icons-components/like-icon';
 import { CommentIcon } from 'assets/icons-components/comment-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
-import { DateUtils } from 'utils/date-utils';
+import { DateUtils } from 'shared/lib/date-utils';
 import { SecondaryButton } from 'components/buttons/secondary-button';
 import { LikedIcon } from 'assets/icons-components/liked-icon';
 import { CustomMenu } from 'components/menus/custom-menu';

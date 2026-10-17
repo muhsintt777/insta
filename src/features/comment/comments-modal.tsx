@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { PrimaryModal, ModalHeader } from 'components/modals/primary-modal';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { TextInput } from 'components/input-field/text-input';
-import { LoaderStatus } from 'utils/types';
+import { LoaderStatus } from 'features/loader/types';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { CircleLoader } from 'features/loader/Circle-loader';
 import { CommentService } from './comment-service';

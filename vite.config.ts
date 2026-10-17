@@ -12,6 +12,7 @@ export default defineConfig({
       hooks: '/src/hooks',
       layouts: '/src/layouts',
       main: '/src/main',
+      shared: '/src/shared',
       utils: '/src/utils',
       'test-utils': '/src/test-utils',
     },

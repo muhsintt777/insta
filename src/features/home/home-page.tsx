@@ -1,6 +1,6 @@
 import styles from './home-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
-import { LoaderStatus } from 'utils/types';
+import { LoaderStatus } from 'features/loader/types';
 import {
   PostCard,
   PostCardSkeleton,

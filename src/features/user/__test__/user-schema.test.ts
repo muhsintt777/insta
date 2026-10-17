@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { GetCurrentUserSchema } from '../schema';
+import { GetCurrentUserSchema } from '../user-schema';
 
 describe('GetCurrentUserSchema', () => {
   const validUser = {

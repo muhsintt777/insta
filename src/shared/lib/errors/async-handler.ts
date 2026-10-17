@@ -2,10 +2,6 @@ import { AxiosError } from 'axios';
 import { ERROR_TYPE } from 'configs/constants';
 import { CustomError } from './custom-error';
 
-export const trimAllWhitespace = (text: string): string => {
-  return text.replace(/\s+/g, '');
-};
-
 export const asyncHandler = async <T>(fn: () => Promise<T>) => {
   try {
     return await fn();
@@ -23,8 +19,4 @@ export const asyncHandler = async <T>(fn: () => Promise<T>) => {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Unknown error');
     }
   }
-};
-
-export const addMultipleClassNames = (...classNames: string[]) => {
-  return classNames.join(' ');
 };

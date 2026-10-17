@@ -1,7 +1,7 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
 import { http } from 'configs/http';
 import { store } from 'configs/store';
-import { CustomError } from 'utils/custom-error';
+import { CustomError } from 'shared/lib/errors/custom-error';
 import { authActions } from './auth-slice';
 
 interface CreateUserParams {

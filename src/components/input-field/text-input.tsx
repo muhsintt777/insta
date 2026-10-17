@@ -1,6 +1,6 @@
 import styles from './input-field.module.scss';
 import { CSSProperties, FC, memo, useMemo } from 'react';
-import { addMultipleClassNames } from 'utils/common';
+import { addMultipleClassNames } from 'shared/lib/class-names';
 
 interface TextInputProps {
   value: string | null;

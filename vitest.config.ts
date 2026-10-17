@@ -22,6 +22,7 @@ export default defineConfig({
       hooks: path.resolve(__dirname, 'src/hooks'),
       layouts: path.resolve(__dirname, 'src/layouts'),
       main: path.resolve(__dirname, 'src/main'),
+      shared: path.resolve(__dirname, 'src/shared'),
       utils: path.resolve(__dirname, 'src/utils'),
       'test-utils': path.resolve(__dirname, 'src/test-utils'),
     },

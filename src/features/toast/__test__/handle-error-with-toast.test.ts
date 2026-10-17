@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { handleErrorWithToast } from '../handle-error-with-toast';
 import { store } from 'configs/store';
 import { toastActions } from '../toast-slice';
-import { CustomError } from 'utils/custom-error';
+import { CustomError } from 'shared/lib/errors/custom-error';
 import { COMMON_ERROR_MESSAGE } from 'configs/constants';
 
 vi.mock('configs/store', () => ({

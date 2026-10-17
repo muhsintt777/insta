@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { screen, renderWithProviders } from 'test-utils';
 import { SideNavTab } from '../side-navTab';
 import { FC } from 'react';
-import { IconsProps } from 'utils/types';
+import { IconsProps } from 'shared/types/icons';
 
 // Mock Icon component for testing
 const MockIcon: FC<IconsProps> = ({ color }) => (

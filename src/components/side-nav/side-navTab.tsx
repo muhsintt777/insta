@@ -2,7 +2,7 @@ import styles from './side-navStyle.module.scss';
 import { FC, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { IconsProps } from 'utils/types';
+import { IconsProps } from 'shared/types/icons';
 
 const customStyle = {
   activeColor: 'var(--clr-black)',

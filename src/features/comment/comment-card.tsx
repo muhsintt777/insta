@@ -12,7 +12,7 @@ import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
 import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
 import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
 import { CustomMenu } from 'components/menus/custom-menu';
-import { DateUtils } from 'utils/date-utils';
+import { DateUtils } from 'shared/lib/date-utils';
 
 interface CommentCardProps {
   authorName: string;

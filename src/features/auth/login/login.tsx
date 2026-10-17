@@ -5,7 +5,7 @@ import { REGEX } from 'configs/constants';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { FormField } from 'components/input-field/form-field';
-import { trimAllWhitespace } from 'utils/common';
+import { trimAllWhitespace } from 'shared/lib/string-utils';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { UserService } from 'features/user/user-service';
 import { userActions } from 'features/user/user-slice';

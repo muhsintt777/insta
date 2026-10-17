@@ -1,17 +1,6 @@
-import { describe, it, expect, vi, beforeAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
-// Mock dependencies that `common.ts` imports so the module can be loaded in isolation
-vi.mock('configs/constants', () => ({ ERROR_TYPE: {} }));
-vi.mock('axios', () => ({ AxiosError: class AxiosError extends Error {} }));
-vi.mock('../custom-error', () => ({
-  CustomError: class CustomError extends Error {},
-}));
-
-let addMultipleClassNames: (...c: string[]) => string;
-beforeAll(async () => {
-  const mod = await import('../common');
-  addMultipleClassNames = mod.addMultipleClassNames;
-});
+import { addMultipleClassNames } from '../class-names';
 
 describe('addMultipleClassNames', () => {
   it('joins multiple class names with a single space', () => {
