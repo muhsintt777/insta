@@ -11,7 +11,7 @@ import { FileInput } from 'shared/components/input-field/file-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
-import { useAppDispatch } from 'hooks/redux-hooks';
+import { useAppDispatch } from 'shared/hooks/redux-hooks';
 import { userActions } from 'features/user/user-slice';
 
 interface CreatePostModalProps {

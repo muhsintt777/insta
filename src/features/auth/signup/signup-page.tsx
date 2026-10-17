@@ -7,7 +7,7 @@ import { APP_ROUTES } from 'main/app-routes';
 import { FormField } from 'shared/components/input-field/form-field';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { useAppDispatch } from 'hooks/redux-hooks';
+import { useAppDispatch } from 'shared/hooks/redux-hooks';
 import { useToast } from 'features/toast/useToast';
 import { UserService } from 'features/user/user-service';
 import { userActions } from 'features/user/user-slice';

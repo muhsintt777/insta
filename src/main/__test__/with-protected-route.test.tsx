@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen, render } from 'test-utils';
 import { protect } from '../with-protected-route';
-import { useAppSelector } from 'hooks/redux-hooks';
+import { useAppSelector } from 'shared/hooks/redux-hooks';
 import { MemoryRouter } from 'react-router-dom';
 import { FC } from 'react';
 
-vi.mock('hooks/redux-hooks', () => ({
+vi.mock('shared/hooks/redux-hooks', () => ({
   useAppSelector: vi.fn(),
   useAppDispatch: vi.fn(() => vi.fn()),
 }));

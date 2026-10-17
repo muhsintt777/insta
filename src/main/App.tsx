@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import appLogo from 'assets/images/app-logo.svg';
 import { DotLoader } from 'shared/components/loaders/dot-loader';
 import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';

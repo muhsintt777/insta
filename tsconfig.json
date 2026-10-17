@@ -26,7 +26,6 @@
     "paths": {
       "assets/*": ["./assets/*"],
       "features/*": ["./features/*"],
-      "hooks/*": ["./hooks/*"],
       "layouts/*": ["./layouts/*"],
       "main/*": ["./main/*"],
       "shared/*": ["./shared/*"],

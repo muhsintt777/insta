@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from 'hooks/redux-hooks';
+import { useAppSelector } from 'shared/hooks/redux-hooks';
 import { selectUser } from 'features/user/user-slice';
 
 export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {

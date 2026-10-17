@@ -1,7 +1,7 @@
 import styles from './profile-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import { EditIcon } from 'assets/icons-components/edit-icon';
 import { AppBar } from 'features/user/components/app-bar/app-bar';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';

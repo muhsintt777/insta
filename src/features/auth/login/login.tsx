@@ -2,7 +2,7 @@ import styles from './loginStyle.module.scss';
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { REGEX } from 'shared/constants';
-import { useAppDispatch } from 'hooks/redux-hooks';
+import { useAppDispatch } from 'shared/hooks/redux-hooks';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { FormField } from 'shared/components/input-field/form-field';
 import { trimAllWhitespace } from 'shared/lib/string-utils';

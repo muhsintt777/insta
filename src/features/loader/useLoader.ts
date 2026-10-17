@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import { loaderActions, selectLoader } from './loader-slice';
 
 export const useLoader = () => {

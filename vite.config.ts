@@ -7,7 +7,6 @@ export default defineConfig({
     alias: {
       assets: '/src/assets',
       features: '/src/features',
-      hooks: '/src/hooks',
       layouts: '/src/layouts',
       main: '/src/main',
       shared: '/src/shared',
