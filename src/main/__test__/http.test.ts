@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import axios from 'axios';
-import { ERROR_TYPE } from '../constants';
+import { ERROR_TYPE } from 'shared/constants';
 
 // Mock dependencies before importing http
 vi.mock('../store', () => ({

@@ -1,7 +1,7 @@
-import { store } from 'configs/store';
+import { store } from 'main/store';
 import { CustomError } from 'shared/lib/errors/custom-error';
 import { toastActions } from './toast-slice';
-import { COMMON_ERROR_MESSAGE } from 'configs/constants';
+import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 
 export const handleErrorWithToast = (error: any) => {
   const dispatch = store.dispatch;

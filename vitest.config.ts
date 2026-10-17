@@ -17,7 +17,6 @@ export default defineConfig({
     alias: {
       assets: path.resolve(__dirname, 'src/assets'),
       components: path.resolve(__dirname, 'src/components'),
-      configs: path.resolve(__dirname, 'src/configs'),
       features: path.resolve(__dirname, 'src/features'),
       hooks: path.resolve(__dirname, 'src/hooks'),
       layouts: path.resolve(__dirname, 'src/layouts'),

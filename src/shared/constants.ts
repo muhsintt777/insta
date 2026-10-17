@@ -4,8 +4,6 @@ export const REGEX = {
   name: /^[a-zA-Z]+(?: [a-zA-Z]+)*$/,
 };
 
-export const FILE_SIZE = { postImage: 5 * 1024 * 1024 };
-
 export const ERROR_TYPE = {
   AUTH_INVALID_CREDENTIALS: 'AUTH_INVALID_CREDENTIALS',
   AUTH_TOKEN_EXPIRED: 'AUTH_TOKEN_EXPIRED',

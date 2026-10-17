@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REGEX } from 'configs/constants';
+import { REGEX } from 'shared/constants';
 
 export const userEditSchema = z.object({
   fullName: z

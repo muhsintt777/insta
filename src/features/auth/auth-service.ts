@@ -1,6 +1,6 @@
-import { ERROR_TYPE, HTTP_STATUS_CODES } from 'configs/constants';
-import { http } from 'configs/http';
-import { store } from 'configs/store';
+import { ERROR_TYPE, HTTP_STATUS_CODES } from 'shared/constants';
+import { http } from 'main/http';
+import { store } from 'main/store';
 import { CustomError } from 'shared/lib/errors/custom-error';
 import { authActions } from './auth-slice';
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Rootstate } from 'configs/store';
-import { COMMON_ERROR_MESSAGE } from 'configs/constants';
+import type { Rootstate } from 'main/store';
+import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import { AuthService } from 'features/auth/auth-service';
 import { User, UserSlice } from './user';
 import { UserService } from './user-service';

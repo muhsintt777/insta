@@ -1,7 +1,7 @@
 import styles from './loginStyle.module.scss';
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { REGEX } from 'configs/constants';
+import { REGEX } from 'shared/constants';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { FormField } from 'components/input-field/form-field';

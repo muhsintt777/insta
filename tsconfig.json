@@ -26,7 +26,6 @@
     "paths": {
       "assets/*": ["./assets/*"],
       "components/*": ["./components/*"],
-      "configs/*": ["./configs/*"],
       "features/*": ["./features/*"],
       "hooks/*": ["./hooks/*"],
       "layouts/*": ["./layouts/*"],

@@ -1,5 +1,5 @@
-import { http } from 'configs/http';
-import { HTTP_STATUS_CODES } from 'configs/constants';
+import { http } from 'main/http';
+import { HTTP_STATUS_CODES } from 'shared/constants';
 import { User } from './user';
 
 interface EditUserProfileParams {

@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { APP_ROUTES } from 'configs/app-routes';
+import { APP_ROUTES } from 'main/app-routes';
 import { FormField } from 'components/input-field/form-field';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';

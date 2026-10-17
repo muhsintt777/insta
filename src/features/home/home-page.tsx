@@ -10,7 +10,7 @@ import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
 import { CommentsModal } from 'features/comment/comments-modal';
 import { AddPost } from './components/add-post/add-post';
-import { COMMON_ERROR_MESSAGE } from 'configs/constants';
+import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 
 export const HomePage = () => {
   const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');

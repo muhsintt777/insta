@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Rootstate } from 'configs/store';
+import { Rootstate } from 'main/store';
 
 interface LoaderState {
   showBackdrop: boolean;

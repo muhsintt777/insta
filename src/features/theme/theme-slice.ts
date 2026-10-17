@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { Rootstate } from 'configs/store';
+import type { Rootstate } from 'main/store';
 
 const STORAGE_KEY = 'app:theme';
 

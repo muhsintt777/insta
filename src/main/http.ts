@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { userActions } from 'features/user/user-slice';
 import { AuthService } from 'features/auth/auth-service';
-import { ERROR_TYPE } from './constants';
+import { ERROR_TYPE } from 'shared/constants';
 import { store } from './store';
 import { ENV } from './env';
 
