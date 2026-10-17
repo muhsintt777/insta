@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, renderWithProviders, waitFor } from 'test-utils';
+import { screen, renderWithProviders, waitFor } from 'test';
 import { App } from '../App';
 
 vi.mock('features/loader', () => ({

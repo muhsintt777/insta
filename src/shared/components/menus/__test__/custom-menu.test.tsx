@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { screen, renderWithProviders, userEvent } from 'test-utils';
+import { screen, renderWithProviders, userEvent } from 'test';
 import { CustomMenu } from '../custom-menu';
 
 describe('CustomMenu', () => {

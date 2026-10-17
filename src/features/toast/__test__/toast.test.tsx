@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, renderWithProviders, userEvent, waitFor } from 'test-utils';
+import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { Toast } from '../toast';
 
 describe('Toast', () => {

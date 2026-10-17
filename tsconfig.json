@@ -27,8 +27,7 @@
       "features/*": ["./features/*"],
       "app/*": ["./app/*"],
       "shared/*": ["./shared/*"],
-      "test-utils": ["./test"],
-      "test-utils/*": ["./test/*"]
+      "test/*": ["./test/*"]
     }
   },
   "include": ["src"],

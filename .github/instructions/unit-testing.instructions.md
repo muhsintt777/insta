@@ -14,13 +14,13 @@ applyTo: '**'
 ## File Structure
 
 - Place test files alongside the component: `component-name.test.tsx`
-- Use the `test-utils` alias for imports
+- Use the `test` alias for imports
 
 ## Standard Test Pattern
 
 ```tsx
 import { describe, it, expect, vi } from 'vitest';
-import { screen, renderWithProviders, userEvent } from 'test-utils';
+import { screen, renderWithProviders, userEvent } from 'test';
 import { MyComponent } from './my-component';
 
 describe('MyComponent', () => {
@@ -47,8 +47,8 @@ describe('MyComponent', () => {
 
 ### Rendering
 
-- Use `renderWithProviders` from `test-utils` for components that need Redux or Router context
-- Use standard `render` from `test-utils` for simple components without context needs
+- Use `renderWithProviders` from `test` for components that need Redux or Router context
+- Use standard `render` from `test` for simple components without context needs
 
 ### Queries (Priority Order)
 

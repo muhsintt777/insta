@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { screen, renderWithProviders } from 'test-utils';
+import { screen, renderWithProviders } from 'test';
 import { SectionHeader } from '../section-header';
 
 describe('SectionHeader', () => {

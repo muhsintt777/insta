@@ -19,7 +19,7 @@ export default defineConfig({
       features: path.resolve(__dirname, 'src/features'),
       app: path.resolve(__dirname, 'src/app'),
       shared: path.resolve(__dirname, 'src/shared'),
-      'test-utils': path.resolve(__dirname, 'src/test'),
+      test: path.resolve(__dirname, 'src/test'),
     },
   },
 });

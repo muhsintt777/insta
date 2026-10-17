@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { screen, renderWithProviders } from 'test-utils';
+import { screen, renderWithProviders } from 'test';
 import { SecondaryLayout } from '../secondary-layout';
 import { Route, Routes } from 'react-router-dom';
 

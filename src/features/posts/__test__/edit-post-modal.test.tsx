@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, renderWithProviders, userEvent, waitFor } from 'test-utils';
+import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { EditPostModal } from '../edit-post-modal';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 

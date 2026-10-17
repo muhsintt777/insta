@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { screen, renderWithProviders, userEvent } from 'test-utils';
+import { screen, renderWithProviders, userEvent } from 'test';
 import { PrimaryIconButton } from '../primary-icon-button';
 
 describe('PrimaryIconButton', () => {

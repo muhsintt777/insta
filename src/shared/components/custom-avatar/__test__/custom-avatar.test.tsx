@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { renderWithProviders } from 'test-utils';
+import { renderWithProviders } from 'test';
 import { CustomAvatar } from '../custom-avatar';
 
 describe('CustomAvatar', () => {

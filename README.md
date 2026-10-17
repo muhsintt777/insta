@@ -53,7 +53,7 @@ The app fetches the current user during startup. The configured HTTP client send
 | `src/components`            | Reusable UI primitives such as buttons, inputs, menus, modals, and loaders                                                           |
 | `src/configs`               | Redux store, Axios client, API environment, and shared constants                                                                     |
 | `src/hooks` and `src/utils` | Typed Redux hooks and cross-feature helpers, schemas, and date utilities                                                             |
-| `src/test-utils`            | Shared render helpers for components using Redux and React Router                                                                    |
+| `src/test`                  | Shared render helpers for components using Redux and React Router                                                                    |
 
 ### State ownership
 

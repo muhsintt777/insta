@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, render, userEvent } from 'test-utils';
+import { screen, render, userEvent } from 'test';
 import { PostCard, PostCardSkeleton } from '../post-card';
 
 describe('PostCard', () => {

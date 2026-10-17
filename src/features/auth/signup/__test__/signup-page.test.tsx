@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { screen, renderWithProviders, userEvent, waitFor } from 'test-utils';
+import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { SignupPage } from '../signup-page';
 import { AuthService } from '../../auth-service';
 import { UserService } from 'features/user/user-service';

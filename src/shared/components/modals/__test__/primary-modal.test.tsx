@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { screen, renderWithProviders, userEvent } from 'test-utils';
+import { screen, renderWithProviders, userEvent } from 'test';
 import { PrimaryModal, ModalHeader, ModalFooter } from '../primary-modal';
 
 describe('PrimaryModal', () => {

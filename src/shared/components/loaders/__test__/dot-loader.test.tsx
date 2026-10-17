@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { renderWithProviders } from 'test-utils';
+import { renderWithProviders } from 'test';
 import { DotLoader } from '../dot-loader';
 
 describe('DotLoader', () => {
