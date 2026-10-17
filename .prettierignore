@@ -1,1 +1,7 @@
 src/configs/env.ts
+
+# common
+node_modules
+dist
+coverage
+pnpm-lock.yaml
