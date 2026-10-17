@@ -28,8 +28,8 @@
       "features/*": ["./features/*"],
       "app/*": ["./app/*"],
       "shared/*": ["./shared/*"],
-      "test-utils": ["./test-utils"],
-      "test-utils/*": ["./test-utils/*"]
+      "test-utils": ["./test"],
+      "test-utils/*": ["./test/*"]
     }
   },
   "include": ["src"],

@@ -9,7 +9,7 @@ export default defineConfig({
       features: '/src/features',
       app: '/src/app',
       shared: '/src/shared',
-      'test-utils': '/src/test-utils',
+      'test-utils': '/src/test',
     },
   },
 });
