@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { DotLoader } from 'components/loaders/dot-loader';
+import { DotLoader } from 'shared/components/loaders/dot-loader';
 import { FC, ReactNode } from 'react';
 
 interface SecondaryButtonProps {

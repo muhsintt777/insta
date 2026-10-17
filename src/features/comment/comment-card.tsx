@@ -9,9 +9,9 @@ import {
   useState,
 } from 'react';
 import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
-import { PrimaryIconButton } from 'components/buttons/primary-icon-button';
-import { CustomAvatar } from 'components/custom-avatar/custom-avatar';
-import { CustomMenu } from 'components/menus/custom-menu';
+import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
+import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
+import { CustomMenu } from 'shared/components/menus/custom-menu';
 import { DateUtils } from 'shared/lib/date-utils';
 
 interface CommentCardProps {

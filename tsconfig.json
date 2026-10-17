@@ -25,13 +25,11 @@
     "baseUrl": "./src",
     "paths": {
       "assets/*": ["./assets/*"],
-      "components/*": ["./components/*"],
       "features/*": ["./features/*"],
       "hooks/*": ["./hooks/*"],
       "layouts/*": ["./layouts/*"],
       "main/*": ["./main/*"],
       "shared/*": ["./shared/*"],
-      "utils/*": ["./utils/*"],
       "test-utils": ["./test-utils"],
       "test-utils/*": ["./test-utils/*"]
     }

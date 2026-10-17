@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormField } from 'components/input-field/form-field';
+import { FormField } from 'shared/components/input-field/form-field';
 import {
   PrimaryModal,
   ModalHeader,
   ModalFooter,
-} from 'components/modals/primary-modal';
+} from 'shared/components/modals/primary-modal';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { EditPostFormSchema, editPostFormSchema } from './post-validation';
 

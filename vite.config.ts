@@ -6,13 +6,11 @@ export default defineConfig({
   resolve: {
     alias: {
       assets: '/src/assets',
-      components: '/src/components',
       features: '/src/features',
       hooks: '/src/hooks',
       layouts: '/src/layouts',
       main: '/src/main',
       shared: '/src/shared',
-      utils: '/src/utils',
       'test-utils': '/src/test-utils',
     },
   },

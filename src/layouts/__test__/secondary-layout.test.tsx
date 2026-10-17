@@ -4,7 +4,7 @@ import { SecondaryLayout } from '../secondary-layout';
 import { Route, Routes } from 'react-router-dom';
 
 // Mock the Header component to avoid AuthService import chain
-vi.mock('components/headers/app-header', () => ({
+vi.mock('layouts/components/headers/app-header', () => ({
   Header: () => <header data-testid="mock-header">Header</header>,
 }));
 

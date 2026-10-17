@@ -1,13 +1,13 @@
 import { FC, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormField } from 'components/input-field/form-field';
+import { FormField } from 'shared/components/input-field/form-field';
 import {
   PrimaryModal,
   ModalHeader,
   ModalFooter,
-} from 'components/modals/primary-modal';
-import { FileInput } from 'components/input-field/file-input';
+} from 'shared/components/modals/primary-modal';
+import { FileInput } from 'shared/components/input-field/file-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';

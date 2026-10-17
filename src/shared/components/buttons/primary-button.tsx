@@ -1,6 +1,6 @@
 import { CSSProperties, FC } from 'react';
 import { Button } from '@mui/material';
-import { DotLoader } from 'components/loaders/dot-loader';
+import { DotLoader } from 'shared/components/loaders/dot-loader';
 
 interface PrimaryButtonProps {
   text: string;

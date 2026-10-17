@@ -58,7 +58,7 @@ vi.mock('../with-protected-route', () => ({
   protect: (Component: React.FC) => <Component />,
 }));
 
-vi.mock('components/loaders/dot-loader', () => ({
+vi.mock('shared/components/loaders/dot-loader', () => ({
   DotLoader: () => <div data-testid="dot-loader">Loading...</div>,
 }));
 

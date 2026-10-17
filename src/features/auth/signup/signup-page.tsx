@@ -4,8 +4,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { APP_ROUTES } from 'main/app-routes';
-import { FormField } from 'components/input-field/form-field';
-import { PrimaryButton } from 'components/buttons/primary-button';
+import { FormField } from 'shared/components/input-field/form-field';
+import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { useToast } from 'features/toast/useToast';
@@ -14,7 +14,7 @@ import { userActions } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
-import { FileInput } from 'components/input-field/file-input';
+import { FileInput } from 'shared/components/input-field/file-input';
 
 export const SignupPage = () => {
   const navigate = useNavigate();

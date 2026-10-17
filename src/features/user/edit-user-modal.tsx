@@ -3,14 +3,14 @@ import {
   ModalFooter,
   ModalHeader,
   PrimaryModal,
-} from 'components/modals/primary-modal';
+} from 'shared/components/modals/primary-modal';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { FC, useEffect, useState } from 'react';
 import { selectUser, userActions } from './user-slice';
 import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TextInput } from 'components/input-field/text-input';
+import { TextInput } from 'shared/components/input-field/text-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { UserService } from './user-service';
 import { User } from './user';
