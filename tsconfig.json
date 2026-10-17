@@ -24,7 +24,6 @@
 
     "baseUrl": "./src",
     "paths": {
-      "assets/*": ["./assets/*"],
       "features/*": ["./features/*"],
       "app/*": ["./app/*"],
       "shared/*": ["./shared/*"],

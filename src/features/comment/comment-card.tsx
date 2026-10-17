@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
+import { VerticalDotIcon } from 'shared/assets/icons/vertical-dot-icon';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { CustomMenu } from 'shared/components/menus/custom-menu';

@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface ChatIconProps {
-  color?: string;
-  size?: string;
-}
-
-const ChatIconComp: FC<ChatIconProps> = ({
+const ChatIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

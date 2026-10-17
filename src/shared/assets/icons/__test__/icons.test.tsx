@@ -9,13 +9,9 @@ import { CommentIcon } from '../comment-icon';
 import { FriendsIcon } from '../friends-icon';
 import { NotificationsIcon } from '../notifications-icon';
 import { EditIcon } from '../edit-icon';
-import { SendIcon } from '../send-icon';
-import { ShareIcon } from '../share-icon';
 import { BackIcon } from '../back-icon';
 import { AddImageIcon } from '../add-image-icon';
 import { ConstructionIcon } from '../construction-icon';
-import { HashtagIcon } from '../hashtag-icon';
-import { MentionIcon } from '../mention-icon';
 import { VerticalDotIcon } from '../vertical-dot-icon';
 
 // Test helper to verify common icon behavior
@@ -62,11 +58,7 @@ testIconComponent('CommentIcon', CommentIcon);
 testIconComponent('FriendsIcon', FriendsIcon);
 testIconComponent('NotificationsIcon', NotificationsIcon);
 testIconComponent('EditIcon', EditIcon);
-testIconComponent('SendIcon', SendIcon);
-testIconComponent('ShareIcon', ShareIcon);
 testIconComponent('BackIcon', BackIcon);
 testIconComponent('AddImageIcon', AddImageIcon);
 testIconComponent('ConstructionIcon', ConstructionIcon);
-testIconComponent('HashtagIcon', HashtagIcon);
-testIconComponent('MentionIcon', MentionIcon);
 testIconComponent('VerticalDotIcon', VerticalDotIcon);

@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface VerticalDotIconProps {
-  color?: string;
-  size?: string;
-}
-
-const VerticalDotIconComp: FC<VerticalDotIconProps> = ({
+const VerticalDotIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

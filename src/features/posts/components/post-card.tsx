@@ -7,14 +7,14 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { VerticalDotIcon } from 'assets/icons-components/vertical-dot-icon';
-import { LikeIcon } from 'assets/icons-components/like-icon';
-import { CommentIcon } from 'assets/icons-components/comment-icon';
+import { VerticalDotIcon } from 'shared/assets/icons/vertical-dot-icon';
+import { LikeIcon } from 'shared/assets/icons/like-icon';
+import { CommentIcon } from 'shared/assets/icons/comment-icon';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { DateUtils } from 'shared/lib/date-utils';
 import { SecondaryButton } from 'shared/components/buttons/secondary-button';
-import { LikedIcon } from 'assets/icons-components/liked-icon';
+import { LikedIcon } from 'shared/assets/icons/liked-icon';
 import { CustomMenu } from 'shared/components/menus/custom-menu';
 
 interface PostCardProps {

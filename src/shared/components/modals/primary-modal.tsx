@@ -2,7 +2,7 @@ import styles from './primary-modal.module.scss';
 import { FC, ReactElement } from 'react';
 import { Modal } from '@mui/material';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
-import { CloseIcon } from 'assets/icons-components/close-icon';
+import { CloseIcon } from 'shared/assets/icons/close-icon';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { SecondaryButton } from 'shared/components/buttons/secondary-button';
 

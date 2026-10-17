@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface HomeIconProps {
-  color?: string;
-  size?: string;
-}
-
-const HomeIconComp: FC<HomeIconProps> = ({
+const HomeIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

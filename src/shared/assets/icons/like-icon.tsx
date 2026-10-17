@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface LikeIconProps {
-  color?: string;
-  size?: string;
-}
-
-const LikeIconComp: FC<LikeIconProps> = ({
+const LikeIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

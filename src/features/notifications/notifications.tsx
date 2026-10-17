@@ -1,5 +1,5 @@
 import styles from './notificationsStyle.module.scss';
-import { ConstructionIcon } from 'assets/icons-components/construction-icon';
+import { ConstructionIcon } from 'shared/assets/icons/construction-icon';
 
 export const Notifications = () => {
   return (

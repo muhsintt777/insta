@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface CommentIconProps {
-  color?: string;
-  size?: string;
-}
-
-const CommentIconComp: FC<CommentIconProps> = ({
+const CommentIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

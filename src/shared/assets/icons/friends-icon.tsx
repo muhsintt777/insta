@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface FriendsIconProps {
-  color?: string;
-  size?: string;
-}
-
-const FriendsIconComp: FC<FriendsIconProps> = ({
+const FriendsIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

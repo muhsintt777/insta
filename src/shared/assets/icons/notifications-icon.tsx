@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface NotificationsIconProps {
-  color?: string;
-  size?: string;
-}
-
-const NotificationsIconComp: FC<NotificationsIconProps> = ({
+const NotificationsIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

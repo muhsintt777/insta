@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface ConstructionIconProps {
-  color?: string;
-  size?: string;
-}
-
-const ConstructionIconComp: FC<ConstructionIconProps> = ({
+const ConstructionIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {

@@ -1,6 +1,6 @@
 import styles from './app-bar.module.scss';
 import { CSSProperties, FC } from 'react';
-import { BackIcon } from 'assets/icons-components/back-icon';
+import { BackIcon } from 'shared/assets/icons/back-icon';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
 
 interface AppBarProps {

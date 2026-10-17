@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
 
-interface BackIconProps {
-  color?: string;
-  size?: string;
-}
-
-const BackIconComp: FC<BackIconProps> = ({
+const BackIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',
   size = '16px',
 }) => {
