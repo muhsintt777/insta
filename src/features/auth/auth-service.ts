@@ -1,5 +1,5 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'shared/constants';
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 import { store } from 'app/store';
 import { CustomError } from 'shared/lib/errors/custom-error';
 import { authActions } from './auth-slice';

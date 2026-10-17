@@ -1,9 +1,19 @@
 import axios from 'axios';
-import { userActions } from 'features/user/user-slice';
-import { AuthService } from 'features/auth/auth-service';
 import { ERROR_TYPE } from 'shared/constants';
-import { store } from './store';
 import { ENV } from './env';
+
+interface HttpHandlers {
+  getToken: () => string | null;
+  onTokenExpired: () => Promise<unknown>;
+  onSignedOut: () => Promise<unknown>;
+}
+
+let handlers: HttpHandlers | undefined;
+
+// Called once at startup so this module does not depend on the store or features.
+export const configureHttp = (config: HttpHandlers) => {
+  handlers = config;
+};
 
 export const http = axios.create({
   baseURL: ENV.API_URL,
@@ -14,8 +24,7 @@ export const http = axios.create({
 });
 
 http.interceptors.request.use((config) => {
-  const { token } = store.getState().auth;
-  config.headers.Authorization = token;
+  config.headers.Authorization = handlers?.getToken();
   return config;
 });
 
@@ -29,11 +38,10 @@ http.interceptors.response.use(
     console.log({ statusCode, errorType });
 
     if (errorType === ERROR_TYPE.AUTH_TOKEN_EXPIRED) {
-      await AuthService.refreshAuth();
+      await handlers?.onTokenExpired();
       return http.request(err.config);
     } else if (errorType === ERROR_TYPE.SIGNED_OUT) {
-      await AuthService.signout();
-      store.dispatch(userActions.logout());
+      await handlers?.onSignedOut();
     }
 
     throw err;

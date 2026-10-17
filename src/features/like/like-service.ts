@@ -1,5 +1,5 @@
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 
 export class LikeService {
   static async createLike(postId: string) {

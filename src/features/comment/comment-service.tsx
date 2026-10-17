@@ -1,4 +1,4 @@
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 
 export class CommentService {
   static async listPostComments(postId: string) {

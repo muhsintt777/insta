@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 import { CommentService } from '../comment-service';
 
-vi.mock('app/http', () => ({
+vi.mock('shared/lib/http', () => ({
   http: {
     get: vi.fn(),
     post: vi.fn(),

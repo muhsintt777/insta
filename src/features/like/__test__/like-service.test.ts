@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import { LikeService } from '../like-service';
 
-vi.mock('app/http', () => ({
+vi.mock('shared/lib/http', () => ({
   http: {
     post: vi.fn(),
     delete: vi.fn(),

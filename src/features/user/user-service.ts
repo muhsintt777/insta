@@ -1,4 +1,4 @@
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 import { HTTP_STATUS_CODES } from 'shared/constants';
 import { User } from './user';
 

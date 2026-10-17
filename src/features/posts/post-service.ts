@@ -1,5 +1,5 @@
 import { HTTP_STATUS_CODES } from 'shared/constants';
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 
 interface CreatePostParams {
   image: File;

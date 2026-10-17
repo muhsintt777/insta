@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from 'app/http';
+import { http } from 'shared/lib/http';
 import { store } from 'app/store';
 import { HTTP_STATUS_CODES, ERROR_TYPE } from 'shared/constants';
 import { AuthService } from '../auth-service';
 import { authActions } from '../auth-slice';
 
-vi.mock('app/http', () => ({
+vi.mock('shared/lib/http', () => ({
   http: {
     post: vi.fn(),
   },
