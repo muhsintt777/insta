@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from 'main/http';
+import { http } from 'app/http';
 import { UserService } from '../user-service';
 
-vi.mock('main/http', () => ({
+vi.mock('app/http', () => ({
   http: {
     get: vi.fn(),
     put: vi.fn(),

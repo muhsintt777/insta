@@ -40,15 +40,15 @@ vi.mock('features/auth/signup/signup-page', () => ({
   SignupPage: () => <div data-testid="signup-page">SignupPage</div>,
 }));
 
-vi.mock('layouts/primary-layout/primary-layout', () => ({
+vi.mock('app/layouts/primary-layout/primary-layout', () => ({
   PrimaryLayout: () => <div data-testid="primary-layout">PrimaryLayout</div>,
 }));
 
-vi.mock('layouts/auth-layout/auth-layout', () => ({
+vi.mock('app/layouts/auth-layout/auth-layout', () => ({
   AuthLayout: () => <div data-testid="auth-layout">AuthLayout</div>,
 }));
 
-vi.mock('layouts/secondary-layout', () => ({
+vi.mock('app/layouts/secondary-layout', () => ({
   SecondaryLayout: () => (
     <div data-testid="secondary-layout">SecondaryLayout</div>
   ),

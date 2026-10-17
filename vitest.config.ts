@@ -17,8 +17,7 @@ export default defineConfig({
     alias: {
       assets: path.resolve(__dirname, 'src/assets'),
       features: path.resolve(__dirname, 'src/features'),
-      layouts: path.resolve(__dirname, 'src/layouts'),
-      main: path.resolve(__dirname, 'src/main'),
+      app: path.resolve(__dirname, 'src/app'),
       shared: path.resolve(__dirname, 'src/shared'),
       'test-utils': path.resolve(__dirname, 'src/test-utils'),
     },

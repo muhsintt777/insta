@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { handleErrorWithToast } from '../handle-error-with-toast';
-import { store } from 'main/store';
+import { store } from 'app/store';
 import { toastActions } from '../toast-slice';
 import { CustomError } from 'shared/lib/errors/custom-error';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 
-vi.mock('main/store', () => ({
+vi.mock('app/store', () => ({
   store: {
     dispatch: vi.fn(),
   },

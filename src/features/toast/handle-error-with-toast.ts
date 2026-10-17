@@ -1,4 +1,4 @@
-import { store } from 'main/store';
+import { store } from 'app/store';
 import { CustomError } from 'shared/lib/errors/custom-error';
 import { toastActions } from './toast-slice';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';

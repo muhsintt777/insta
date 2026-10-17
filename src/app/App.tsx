@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import appLogo from 'assets/images/app-logo.svg';
 import { DotLoader } from 'shared/components/loaders/dot-loader';
-import { PrimaryLayout } from 'layouts/primary-layout/primary-layout';
-import { AuthLayout } from 'layouts/auth-layout/auth-layout';
-import { SecondaryLayout } from 'layouts/secondary-layout';
+import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
+import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
+import { SecondaryLayout } from 'app/layouts/secondary-layout';
 import {
   initialUserFetch,
   selectUserApiStatus,

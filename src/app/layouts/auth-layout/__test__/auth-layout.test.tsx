@@ -4,7 +4,7 @@ import { AuthLayout } from '../auth-layout';
 import { Route, Routes } from 'react-router-dom';
 
 // Mock the Header component to avoid AuthService import chain
-vi.mock('layouts/components/headers/app-header', () => ({
+vi.mock('app/layouts/components/headers/app-header', () => ({
   Header: () => <header data-testid="mock-header">Header</header>,
 }));
 
