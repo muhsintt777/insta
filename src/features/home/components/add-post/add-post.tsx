@@ -1,9 +1,10 @@
 import styles from './add-postStyle.module.scss';
 import { FC, useState, memo } from 'react';
-import { useAppSelector } from 'shared/hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { CreatePostModal } from 'features/posts/create-post-modal';
 import { selectUser } from 'features/user/user-slice';
+import { userActions } from 'features/user/user-slice';
 
 interface AddPostProps {
   onPostCreated?: () => void;
@@ -11,12 +12,23 @@ interface AddPostProps {
 
 const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
   const userDetails = useAppSelector(selectUser).details!;
+  const dispatch = useAppDispatch();
 
   const [showCreatePostModal, setShowCreatePostModal] =
     useState<boolean>(false);
 
   const toggleCreatePostModal = () => {
     setShowCreatePostModal(!showCreatePostModal);
+  };
+
+  const handlePostCreated = () => {
+    dispatch(
+      userActions.updateUserResourceCount({
+        type: 'increament',
+        key: 'postCount',
+      }),
+    );
+    onPostCreated?.();
   };
 
   return (
@@ -29,7 +41,7 @@ const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
         <CreatePostModal
           isOpen={showCreatePostModal}
           closeModal={toggleCreatePostModal}
-          onSubmit={onPostCreated}
+          onPostCreated={handlePostCreated}
         />
       )}
     </div>

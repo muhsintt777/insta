@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { POST_IMAGE_MAX_SIZE_BYTES } from './post-constants';
 
 export const postFormSchema = z.object({
   caption: z
@@ -10,7 +11,8 @@ export const postFormSchema = z.object({
     .refine(
       (file) =>
         !file ||
-        (file.type.startsWith('image/') && file.size <= 2 * 1024 * 1024),
+        (file.type.startsWith('image/') &&
+          file.size <= POST_IMAGE_MAX_SIZE_BYTES),
       {
         message: 'Image must be less than 2MB and of image type',
       },

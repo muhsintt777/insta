@@ -18,7 +18,7 @@ describe('CreatePostModal', () => {
   const defaultProps = {
     isOpen: true,
     closeModal: vi.fn(),
-    onSubmit: vi.fn(),
+    onPostCreated: vi.fn(),
   };
 
   beforeEach(() => {
@@ -105,14 +105,14 @@ describe('CreatePostModal', () => {
   it('submits form successfully with valid data', async () => {
     const user = userEvent.setup();
     const closeModal = vi.fn();
-    const onSubmit = vi.fn();
+    const onPostCreated = vi.fn();
     (PostService.createPost as Mock).mockResolvedValue({});
 
     renderWithProviders(
       <CreatePostModal
         isOpen={true}
         closeModal={closeModal}
-        onSubmit={onSubmit}
+        onPostCreated={onPostCreated}
       />,
     );
 

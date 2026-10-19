@@ -10,6 +10,7 @@ import {
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
 import { EditPostFormSchema, editPostFormSchema } from './post-validation';
+import type { EditPostParams } from './post-types';
 
 interface EditPostModalProps {
   closeModal: () => void;

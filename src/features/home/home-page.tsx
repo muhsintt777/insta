@@ -12,6 +12,7 @@ import { LikeService } from 'features/like/like-service';
 import { CommentsModal } from 'features/comment/comments-modal';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
+import type { Post } from 'features/posts/post-types';
 
 export const HomePage = () => {
   const { showToast } = useToast();
@@ -26,32 +27,35 @@ export const HomePage = () => {
       const result = await PostService.fetchPosts();
       setPosts(result);
     } catch (error) {
-      //
+      handleErrorWithToast(error, showToast);
     }
-  }, []);
+  }, [showToast]);
 
-  const handleLike = useCallback(async (postId: string, isLiked: boolean) => {
-    try {
-      if (isLiked) {
-        await LikeService.deleteLike(postId);
-      } else {
-        await LikeService.createLike(postId);
+  const handleLike = useCallback(
+    async (postId: string, isLiked: boolean) => {
+      try {
+        if (isLiked) {
+          await LikeService.deleteLike(postId);
+        } else {
+          await LikeService.createLike(postId);
+        }
+        setPosts((prev) =>
+          prev.map((post) =>
+            post.id === postId
+              ? {
+                  ...post,
+                  isLiked: !isLiked,
+                  likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
+                }
+              : post,
+          ),
+        );
+      } catch (error) {
+        handleErrorWithToast(error, showToast);
       }
-      setPosts((prev) =>
-        prev.map((post) =>
-          post.id === postId
-            ? {
-                ...post,
-                isLiked: !isLiked,
-                likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
-              }
-            : post,
-        ),
-      );
-    } catch (error) {
-      //
-    }
-  }, []);
+    },
+    [showToast],
+  );
 
   const openCommentsModal = useCallback((postId: string) => {
     setSelectedPostIdForComments(postId);
@@ -67,12 +71,13 @@ export const HomePage = () => {
         prev.map((post) => {
           if (post.id !== postId) return post;
 
-          if (type === 'increament') {
-            post.commentCount = post.commentCount + 1;
-          } else {
-            post.commentCount = post.commentCount - 1;
-          }
-          return post;
+          return {
+            ...post,
+            commentCount:
+              type === 'increament'
+                ? post.commentCount + 1
+                : post.commentCount - 1,
+          };
         }),
       );
     },
@@ -101,10 +106,10 @@ export const HomePage = () => {
           <PostCardSkeleton />
           <PostCardSkeleton />
         </>
-      ) : posts.length === 0 ? (
-        <div className="info">No posts to display.</div>
       ) : showLoader === 'FAILED' ? (
         <div className="error">{COMMON_ERROR_MESSAGE}</div>
+      ) : posts.length === 0 ? (
+        <div className="info">No posts to display.</div>
       ) : (
         posts.map((post) => (
           <PostCard

@@ -1,10 +1,6 @@
 import { HTTP_STATUS_CODES } from 'shared/constants';
 import { http } from 'shared/lib/http';
-
-interface CreatePostParams {
-  image: File;
-  caption: string;
-}
+import type { CreatePostParams, Post } from './post-types';
 
 export class PostService {
   static async fetchUserPosts() {

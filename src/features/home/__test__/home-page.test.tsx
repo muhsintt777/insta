@@ -4,6 +4,7 @@ import { HomePage } from '../home-page';
 import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import type { Post } from 'features/posts/post-types';
 
 vi.mock('features/posts/post-service', () => ({
   PostService: {

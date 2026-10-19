@@ -1,4 +1,4 @@
-interface Post {
+export interface Post {
   id: string;
   image: string;
   caption: string;
@@ -15,7 +15,12 @@ interface Post {
   updatedAt: string;
 }
 
-interface EditPostParams {
+export interface EditPostParams {
   postId: string;
+  caption: string;
+}
+
+export interface CreatePostParams {
+  image: File;
   caption: string;
 }

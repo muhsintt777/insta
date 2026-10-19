@@ -1,1 +1,2 @@
-export const FILE_SIZE = { postImage: 5 * 1024 * 1024 };
+export const POST_IMAGE_MAX_SIZE_MB = 2;
+export const POST_IMAGE_MAX_SIZE_BYTES = POST_IMAGE_MAX_SIZE_MB * 1024 * 1024;

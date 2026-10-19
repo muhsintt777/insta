@@ -6,11 +6,11 @@ vi.mock('features/posts/create-post-modal', () => ({
   CreatePostModal: ({
     isOpen,
     closeModal,
-    onSubmit,
+    onPostCreated,
   }: {
     isOpen: boolean;
     closeModal: () => void;
-    onSubmit?: () => void;
+    onPostCreated?: () => void;
   }) =>
     isOpen ? (
       <div data-testid="create-post-modal">
@@ -19,7 +19,7 @@ vi.mock('features/posts/create-post-modal', () => ({
         </button>
         <button
           onClick={() => {
-            onSubmit?.();
+            onPostCreated?.();
             closeModal();
           }}
           data-testid="submit-post"

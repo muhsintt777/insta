@@ -12,22 +12,20 @@ import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
-import { useAppDispatch } from 'shared/hooks/redux-hooks';
-import { userActions } from 'features/user/user-slice';
+import { POST_IMAGE_MAX_SIZE_MB } from './post-constants';
 
 interface CreatePostModalProps {
   closeModal: () => void;
-  onSubmit?: () => void;
+  onPostCreated?: () => void;
   isOpen: boolean;
 }
 
 export const CreatePostModal: FC<CreatePostModalProps> = ({
   isOpen,
   closeModal,
-  onSubmit,
+  onPostCreated,
 }) => {
   const { showToast } = useToast();
-  const dispatch = useAppDispatch();
   const [showPostLoader, setShowPostLoader] = useState(false);
   const {
     handleSubmit,
@@ -41,14 +39,11 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   const handlePostSubmit = async (data: PostFormSchema) => {
     try {
       setShowPostLoader(true);
-      await PostService.createPost(data as any);
-      onSubmit?.();
-      dispatch(
-        userActions.updateUserResourceCount({
-          type: 'increament',
-          key: 'postCount',
-        }),
-      );
+      await PostService.createPost({
+        image: data.image,
+        caption: data.caption,
+      });
+      onPostCreated?.();
       reset();
       closeModal();
     } catch (error) {
@@ -97,7 +92,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
                 error={errors.image?.message || null}
                 label="Image"
                 name="image"
-                sizeLabelInMb={2}
+                sizeLabelInMb={POST_IMAGE_MAX_SIZE_MB}
                 onChange={field.onChange}
                 value={field.value}
               />

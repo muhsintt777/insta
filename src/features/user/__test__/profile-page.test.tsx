@@ -4,6 +4,7 @@ import { ProfilePage } from '../profile-page';
 import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import type { Post } from 'features/posts/post-types';
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();
