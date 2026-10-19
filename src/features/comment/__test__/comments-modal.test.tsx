@@ -129,7 +129,10 @@ describe('CommentsModal', () => {
       await waitFor(() => {
         expect(screen.getByText('Failed to load comments')).toBeInTheDocument();
       });
-      expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+      expect(handleErrorWithToast).toHaveBeenCalledWith(
+        mockError,
+        expect.any(Function),
+      );
     });
   });
 
@@ -186,7 +189,10 @@ describe('CommentsModal', () => {
       await user.click(sendButton);
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+        expect(handleErrorWithToast).toHaveBeenCalledWith(
+          mockError,
+          expect.any(Function),
+        );
       });
     });
   });

@@ -18,9 +18,9 @@ import { Login } from 'features/auth/login/login';
 import { Toast } from 'features/toast/toast';
 import { Chat } from 'features/chat/chat';
 import { HomePage } from 'features/home/home-page';
-import { protect } from './with-protected-route';
 import { BackdropLoader } from 'features/loader';
-import { colors } from './global-style';
+import { colors } from 'shared/styles/global-style';
+import { ProtectedRoute } from './protected-route';
 
 export const App = () => {
   const dispath = useAppDispatch();
@@ -48,11 +48,17 @@ export const App = () => {
         </div>
       ) : (
         <Routes>
-          <Route path="/" element={<PrimaryLayout />}>
-            <Route index element={protect(HomePage)} />
-            <Route path="friends" element={protect(Friends)} />
-            <Route path="chat" element={protect(Chat)} />
-            <Route path="notifications" element={protect(Notifications)} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<PrimaryLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="friends" element={<Friends />} />
+              <Route path="chat" element={<Chat />} />
+              <Route path="notifications" element={<Notifications />} />
+            </Route>
+
+            <Route element={<SecondaryLayout />}>
+              <Route path="profile" element={<ProfilePage />} />
+            </Route>
           </Route>
 
           <Route path="/auth" element={<AuthLayout />}>
@@ -60,15 +66,9 @@ export const App = () => {
             <Route path="signup" element={<SignupPage />} />
           </Route>
 
-          <Route element={<SecondaryLayout />}>
-            <Route path="profile" element={protect(ProfilePage)} />
-          </Route>
-
           <Route path="*" element={<p>page not found</p>} />
         </Routes>
       )}
-
-      <Toast />
     </>
   );
 };

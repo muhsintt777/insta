@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { Rootstate } from 'app/store';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import { AuthService } from 'features/auth/auth-service';
+import { AuthService, authActions } from 'features/auth';
 import { User, UserSlice } from './user';
 import { UserService } from './user-service';
 
@@ -74,8 +74,9 @@ export const userSlice = createSlice({
 
 export const initialUserFetch = createAsyncThunk(
   'user/initialUserFetch',
-  async () => {
-    await AuthService.refreshAuth();
+  async (_, { dispatch }) => {
+    const token = await AuthService.refreshAuth();
+    dispatch(authActions.setToken(token));
     const result = await UserService.fetchCurrentUser();
     return result;
   },

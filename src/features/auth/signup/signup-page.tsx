@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { APP_ROUTES } from 'app/app-routes';
+import { APP_ROUTES } from 'shared/routes';
 import { FormField } from 'shared/components/input-field/form-field';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
@@ -13,6 +13,7 @@ import { UserService } from 'features/user/user-service';
 import { userActions } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
+import { authActions } from '../auth-slice';
 import { AuthHeader } from '../components/auth-header';
 import { FileInput } from 'shared/components/input-field/file-input';
 
@@ -43,13 +44,17 @@ export const SignupPage = () => {
       try {
         setShowFormSubmitLoader(true);
         await AuthService.createUser(data as any);
-        await AuthService.login({ email: data.email, password: data.password });
+        const token = await AuthService.login({
+          email: data.email,
+          password: data.password,
+        });
+        dispath(authActions.setToken(token));
         const user = await UserService.fetchCurrentUser();
         dispath(userActions.login(user));
         showToast('success', 'Account created successfully');
         navigate(APP_ROUTES.HOME);
       } catch (error) {
-        handleErrorWithToast(error);
+        handleErrorWithToast(error, showToast);
       } finally {
         setShowFormSubmitLoader(false);
       }

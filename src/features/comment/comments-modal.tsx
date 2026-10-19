@@ -7,6 +7,7 @@ import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { TextInput } from 'shared/components/input-field/text-input';
 import { LoaderStatus } from 'features/loader/types';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { CircleLoader } from 'features/loader/Circle-loader';
 import { CommentService } from './comment-service';
 import { CommentCard } from './comment-card';
@@ -27,6 +28,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
   onSubmit,
   onDelete,
 }) => {
+  const { showToast } = useToast();
   const [screenStatus, setScreenStatus] = useState<LoaderStatus>('IDLE');
   const [comments, setComments] = useState<CommentDetails[]>([]);
   const [showCommentLoader, setShowCommentLoader] = useState(false);
@@ -51,7 +53,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
       onSubmit?.();
       reset();
     } catch (error) {
-      handleErrorWithToast(error);
+      handleErrorWithToast(error, showToast);
     } finally {
       setShowCommentLoader(false);
     }
@@ -79,10 +81,10 @@ export const CommentsModal: FC<CommentsModalProps> = ({
         setScreenStatus('SUCCESS');
       } catch (error) {
         setScreenStatus('FAILED');
-        handleErrorWithToast(error);
+        handleErrorWithToast(error, showToast);
       }
     })();
-  }, [postId]);
+  }, [postId, showToast]);
 
   return (
     <PrimaryModal isOpen={isOpen}>

@@ -147,7 +147,7 @@ describe('SignupPage', () => {
       const mockUser = { id: '1', username: 'john_doe_123' };
 
       (AuthService.createUser as Mock).mockResolvedValue({});
-      (AuthService.login as Mock).mockResolvedValue({});
+      (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
       (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
 
       renderWithProviders(<SignupPage />);
@@ -219,7 +219,10 @@ describe('SignupPage', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+        expect(handleErrorWithToast).toHaveBeenCalledWith(
+          mockError,
+          expect.any(Function),
+        );
       });
     });
   });

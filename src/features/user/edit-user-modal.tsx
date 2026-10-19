@@ -12,6 +12,7 @@ import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput } from 'shared/components/input-field/text-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { UserService } from './user-service';
 import { User } from './user';
 
@@ -24,6 +25,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
   isOpen,
   closeModal,
 }) => {
+  const { showToast } = useToast();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
 
@@ -69,7 +71,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
       setShowLoader(false);
       closeModal();
     } catch (error) {
-      handleErrorWithToast(error);
+      handleErrorWithToast(error, showToast);
       setShowLoader(false);
     }
   };

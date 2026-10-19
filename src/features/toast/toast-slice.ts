@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Rootstate } from 'app/store';
+import type { Rootstate } from 'app/store';
 import { ToastSeverity } from './toast-types';
 
 interface Toast {

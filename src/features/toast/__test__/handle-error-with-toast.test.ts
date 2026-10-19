@@ -1,69 +1,50 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { handleErrorWithToast } from '../handle-error-with-toast';
-import { store } from 'app/store';
-import { toastActions } from '../toast-slice';
 import { CustomError } from 'shared/lib/errors/custom-error';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 
-vi.mock('app/store', () => ({
-  store: {
-    dispatch: vi.fn(),
-  },
-}));
-
 describe('handleErrorWithToast', () => {
+  const showToast = vi.fn();
+
   beforeEach(() => {
-    vi.clearAllMocks();
+    showToast.mockClear();
   });
 
   it('dispatches toast with CustomError message', () => {
     const customError = new CustomError('CUSTOM_TYPE', 'Custom error message');
 
-    handleErrorWithToast(customError);
+    handleErrorWithToast(customError, showToast);
 
-    expect(store.dispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'error', message: 'Custom error message' }),
-    );
+    expect(showToast).toHaveBeenCalledWith('error', 'Custom error message');
   });
 
   it('dispatches toast with Error message', () => {
     const error = new Error('Standard error message');
 
-    handleErrorWithToast(error);
+    handleErrorWithToast(error, showToast);
 
-    expect(store.dispatch).toHaveBeenCalledWith(
-      toastActions.show({
-        severity: 'error',
-        message: 'Standard error message',
-      }),
-    );
+    expect(showToast).toHaveBeenCalledWith('error', 'Standard error message');
   });
 
   it('dispatches toast with error.message for generic object error', () => {
     const error = { message: 'Object error message' };
 
-    handleErrorWithToast(error);
+    handleErrorWithToast(error, showToast);
 
-    expect(store.dispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'error', message: 'Object error message' }),
-    );
+    expect(showToast).toHaveBeenCalledWith('error', 'Object error message');
   });
 
   it('dispatches toast with COMMON_ERROR_MESSAGE when no message available', () => {
     const error = {};
 
-    handleErrorWithToast(error);
+    handleErrorWithToast(error, showToast);
 
-    expect(store.dispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'error', message: COMMON_ERROR_MESSAGE }),
-    );
+    expect(showToast).toHaveBeenCalledWith('error', COMMON_ERROR_MESSAGE);
   });
 
   it('dispatches toast with string error', () => {
-    handleErrorWithToast('String error');
+    handleErrorWithToast('String error', showToast);
 
-    expect(store.dispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'error', message: COMMON_ERROR_MESSAGE }),
-    );
+    expect(showToast).toHaveBeenCalledWith('error', COMMON_ERROR_MESSAGE);
   });
 });

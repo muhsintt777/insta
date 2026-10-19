@@ -218,7 +218,10 @@ describe('EditUserModal', () => {
     await user.click(screen.getByRole('button', { name: 'SAVE' }));
 
     await waitFor(() => {
-      expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+      expect(handleErrorWithToast).toHaveBeenCalledWith(
+        mockError,
+        expect.any(Function),
+      );
     });
   });
 

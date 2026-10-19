@@ -1,8 +1,6 @@
 import { ERROR_TYPE, HTTP_STATUS_CODES } from 'shared/constants';
 import { http } from 'shared/lib/http';
-import { store } from 'app/store';
 import { CustomError } from 'shared/lib/errors/custom-error';
-import { authActions } from './auth-slice';
 
 interface CreateUserParams {
   email: string;
@@ -47,9 +45,7 @@ export class AuthService {
     if (response.status !== HTTP_STATUS_CODES.OK) {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to login');
     }
-    store.dispatch(
-      authActions.setToken(`Bearer ${response.data.data?.accessToken}`),
-    );
+    return `Bearer ${response.data.data?.accessToken}`;
   }
 
   static async signout() {
@@ -57,7 +53,6 @@ export class AuthService {
     if (res.status !== HTTP_STATUS_CODES.OK) {
       throw new CustomError(ERROR_TYPE.UNKNOWN_API_ERROR, 'Failed to logout');
     }
-    store.dispatch(authActions.clearToken());
   }
 
   static async refreshAuth() {
@@ -65,6 +60,6 @@ export class AuthService {
     if (result.errorType) {
       throw new Error('Failed to refresh auth');
     }
-    store.dispatch(authActions.setToken(`Bearer ${result.data?.accessToken}`));
+    return `Bearer ${result.data?.accessToken}`;
   }
 }

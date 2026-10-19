@@ -8,6 +8,7 @@ import {
   ModalFooter,
 } from 'shared/components/modals/primary-modal';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { EditPostFormSchema, editPostFormSchema } from './post-validation';
 
 interface EditPostModalProps {
@@ -25,6 +26,7 @@ export const EditPostModal: FC<EditPostModalProps> = ({
   postId,
   currentCaption,
 }) => {
+  const { showToast } = useToast();
   const [showPostLoader, setShowPostLoader] = useState(false);
 
   const {
@@ -46,7 +48,7 @@ export const EditPostModal: FC<EditPostModalProps> = ({
       reset();
       closeModal();
     } catch (error) {
-      handleErrorWithToast(error);
+      handleErrorWithToast(error, showToast);
     } finally {
       setShowPostLoader(false);
     }

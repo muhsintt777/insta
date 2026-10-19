@@ -144,7 +144,10 @@ describe('EditPostModal', () => {
     await user.click(screen.getByRole('button', { name: 'UPDATE' }));
 
     await waitFor(() => {
-      expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+      expect(handleErrorWithToast).toHaveBeenCalledWith(
+        mockError,
+        expect.any(Function),
+      );
     });
   });
 

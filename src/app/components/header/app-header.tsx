@@ -1,19 +1,21 @@
 import styles from './app-header.module.scss';
 import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { APP_ROUTES } from 'app/app-routes';
+import { APP_ROUTES } from 'shared/routes';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import appLogo from 'shared/assets/images/app-logo.svg';
 import { CustomMenu } from 'shared/components/menus/custom-menu';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
+import { AuthService, authActions } from 'features/auth';
 import { selectUser, userActions } from 'features/user/user-slice';
-import { AuthService } from 'features/auth/auth-service';
 import { themeActions } from 'features/theme/theme-slice';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 
 export const Header = memo(() => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { showToast } = useToast();
   const user = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -40,11 +42,12 @@ export const Header = memo(() => {
   const handleLogout = useCallback(async () => {
     try {
       await AuthService.signout();
+      dispatch(authActions.clearToken());
       dispatch(userActions.logout());
     } catch (error) {
-      handleErrorWithToast(error);
+      handleErrorWithToast(error, showToast);
     }
-  }, [dispatch]);
+  }, [dispatch, showToast]);
 
   const menuItems = useMemo(
     () => [

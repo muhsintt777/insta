@@ -1,19 +1,11 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { http } from 'shared/lib/http';
-import { store } from 'app/store';
 import { HTTP_STATUS_CODES, ERROR_TYPE } from 'shared/constants';
 import { AuthService } from '../auth-service';
-import { authActions } from '../auth-slice';
 
 vi.mock('shared/lib/http', () => ({
   http: {
     post: vi.fn(),
-  },
-}));
-
-vi.mock('app/store', () => ({
-  store: {
-    dispatch: vi.fn(),
   },
 }));
 
@@ -86,12 +78,11 @@ describe('AuthService', () => {
         data: { data: { accessToken: mockToken } },
       });
 
-      await AuthService.login(loginParams);
+      await expect(AuthService.login(loginParams)).resolves.toBe(
+        `Bearer ${mockToken}`,
+      );
 
       expect(http.post).toHaveBeenCalledWith('auth/login', loginParams);
-      expect(store.dispatch).toHaveBeenCalledWith(
-        authActions.setToken(`Bearer ${mockToken}`),
-      );
     });
 
     it('logs in successfully with username and password', async () => {
@@ -105,7 +96,9 @@ describe('AuthService', () => {
         data: { data: { accessToken: mockToken } },
       });
 
-      await AuthService.login(usernameLoginParams);
+      await expect(AuthService.login(usernameLoginParams)).resolves.toBe(
+        `Bearer ${mockToken}`,
+      );
 
       expect(http.post).toHaveBeenCalledWith('auth/login', usernameLoginParams);
     });
@@ -131,7 +124,6 @@ describe('AuthService', () => {
       await AuthService.signout();
 
       expect(http.post).toHaveBeenCalledWith('auth/logout');
-      expect(store.dispatch).toHaveBeenCalledWith(authActions.clearToken());
     });
 
     it('throws error when signout fails', async () => {
@@ -153,12 +145,11 @@ describe('AuthService', () => {
         data: { data: { accessToken: mockToken } },
       });
 
-      await AuthService.refreshAuth();
+      await expect(AuthService.refreshAuth()).resolves.toBe(
+        `Bearer ${mockToken}`,
+      );
 
       expect(http.post).toHaveBeenCalledWith('auth/refresh');
-      expect(store.dispatch).toHaveBeenCalledWith(
-        authActions.setToken(`Bearer ${mockToken}`),
-      );
     });
 
     it('throws error when refresh fails', async () => {

@@ -130,7 +130,7 @@ describe('Login', () => {
         email: 'test@example.com',
       };
 
-      (AuthService.login as Mock).mockResolvedValue({});
+      (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
       (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
 
       renderWithProviders(<Login />);
@@ -176,7 +176,10 @@ describe('Login', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+        expect(handleErrorWithToast).toHaveBeenCalledWith(
+          mockError,
+          expect.any(Function),
+        );
       });
     });
 
@@ -184,7 +187,7 @@ describe('Login', () => {
       const user = userEvent.setup();
       const mockUser = { id: '1', username: 'testuser' };
 
-      (AuthService.login as Mock).mockResolvedValue({});
+      (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
       (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
 
       renderWithProviders(<Login />);

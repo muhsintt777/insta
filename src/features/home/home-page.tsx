@@ -6,6 +6,7 @@ import {
   PostCardSkeleton,
 } from 'features/posts/components/post-card';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
 import { CommentsModal } from 'features/comment/comments-modal';
@@ -13,6 +14,7 @@ import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 
 export const HomePage = () => {
+  const { showToast } = useToast();
   const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPostIdForComments, setSelectedPostIdForComments] = useState<
@@ -84,11 +86,11 @@ export const HomePage = () => {
         setPosts(resut);
         setShowLoader('SUCCESS');
       } catch (error) {
-        handleErrorWithToast(error);
+        handleErrorWithToast(error, showToast);
         setShowLoader('FAILED');
       }
     })();
-  }, []);
+  }, [showToast]);
 
   return (
     <div className={styles.container}>

@@ -1,6 +1,6 @@
 import { FC, memo, useMemo } from 'react';
 import { CircularProgress } from '@mui/material';
-import { colors } from 'app/global-style';
+import { colors } from 'shared/styles/global-style';
 
 interface CircleLoaderProps {
   size?: 'small' | 'medium' | 'large';

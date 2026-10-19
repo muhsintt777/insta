@@ -7,9 +7,11 @@ import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { FormField } from 'shared/components/input-field/form-field';
 import { trimAllWhitespace } from 'shared/lib/string-utils';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { UserService } from 'features/user/user-service';
 import { userActions } from 'features/user/user-slice';
 import { AuthService } from '../auth-service';
+import { authActions } from '../auth-slice';
 import { AuthHeader } from '../components/auth-header';
 
 interface EmailInpType {
@@ -26,6 +28,7 @@ interface PasswordInpType {
 export const Login = () => {
   const navigate = useNavigate();
   const dispath = useAppDispatch();
+  const { showToast } = useToast();
 
   const [showLoader, setShowLoader] = useState(false);
   const [emailInp, setEmailInp] = useState<EmailInpType>({
@@ -66,15 +69,16 @@ export const Login = () => {
       setShowLoader(true);
       const trimmedEmail = trimAllWhitespace(emailInp.value);
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
-      await AuthService.login({
+      const token = await AuthService.login({
         email: trimmedEmail,
         password: trimmedPassword,
       });
+      dispath(authActions.setToken(token));
       const userDetails = await UserService.fetchCurrentUser();
       dispath(userActions.login(userDetails));
       navigate('/', { replace: true });
     } catch (err) {
-      handleErrorWithToast(err);
+      handleErrorWithToast(err, showToast);
     } finally {
       setShowLoader(false);
     }

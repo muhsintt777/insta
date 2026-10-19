@@ -1,20 +1,17 @@
-import { store } from 'app/store';
 import { CustomError } from 'shared/lib/errors/custom-error';
-import { toastActions } from './toast-slice';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
+import { ToastSeverity } from './toast-types';
 
-export const handleErrorWithToast = (error: any) => {
-  const dispatch = store.dispatch;
-  if (error instanceof CustomError) {
-    dispatch(toastActions.show({ severity: 'error', message: error.message }));
-  } else if (error instanceof Error) {
-    dispatch(toastActions.show({ severity: 'error', message: error.message }));
-  } else {
-    dispatch(
-      toastActions.show({
-        severity: 'error',
-        message: error.message || COMMON_ERROR_MESSAGE,
-      }),
-    );
-  }
+export const handleErrorWithToast = (
+  error: unknown,
+  showToast: (severity: ToastSeverity, message: string) => void,
+) => {
+  const message =
+    error instanceof Error
+      ? error.message
+      : typeof error === 'object' && error !== null && 'message' in error
+        ? String(error.message || COMMON_ERROR_MESSAGE)
+        : COMMON_ERROR_MESSAGE;
+
+  showToast('error', message);
 };

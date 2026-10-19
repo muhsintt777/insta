@@ -7,6 +7,7 @@ import { AppBar } from 'features/user/components/app-bar/app-bar';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { PostService } from 'features/posts/post-service';
 import { useLoader } from 'features/loader/useLoader';
 import { selectUser, userActions } from './user-slice';
@@ -21,6 +22,7 @@ import { EditUserModal } from './edit-user-modal';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
   const { showGlobalBackdrop, hideGlobalBackdrop } = useLoader();
@@ -48,12 +50,12 @@ export const ProfilePage = () => {
           }),
         );
       } catch (error) {
-        handleErrorWithToast(error);
+        handleErrorWithToast(error, showToast);
       } finally {
         hideGlobalBackdrop();
       }
     },
-    [showGlobalBackdrop, hideGlobalBackdrop, dispatch],
+    [showGlobalBackdrop, hideGlobalBackdrop, dispatch, showToast],
   );
 
   const editPost = useCallback(
@@ -69,12 +71,12 @@ export const ProfilePage = () => {
           ),
         );
       } catch (error) {
-        handleErrorWithToast(error);
+        handleErrorWithToast(error, showToast);
       } finally {
         hideGlobalBackdrop();
       }
     },
-    [hideGlobalBackdrop, showGlobalBackdrop],
+    [hideGlobalBackdrop, showGlobalBackdrop, showToast],
   );
 
   const closeEditModal = useCallback(() => {
@@ -144,12 +146,12 @@ export const ProfilePage = () => {
         const result = await PostService.fetchUserPosts();
         setPosts(result);
       } catch (error) {
-        handleErrorWithToast(error);
+        handleErrorWithToast(error, showToast);
       } finally {
         setPostLoader(false);
       }
     })();
-  }, []);
+  }, [showToast]);
 
   return (
     <div className={styles.container}>

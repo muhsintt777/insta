@@ -1,12 +1,11 @@
-import { FC, PropsWithChildren } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAppSelector } from 'shared/hooks/redux-hooks';
 import { selectUser } from 'features/user/user-slice';
 
-export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
+export const ProtectedRoute = () => {
   const user = useAppSelector(selectUser);
   if (user.details) {
-    return <>{children}</>;
+    return <Outlet />;
   } else {
     return <Navigate to="/auth/login" replace={true} />;
   }

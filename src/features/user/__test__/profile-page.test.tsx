@@ -221,7 +221,10 @@ describe('ProfilePage', () => {
       });
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+        expect(handleErrorWithToast).toHaveBeenCalledWith(
+          mockError,
+          expect.any(Function),
+        );
       });
     });
   });
@@ -400,7 +403,10 @@ describe('ProfilePage', () => {
         await user.click(screen.getByText('Delete'));
 
         await waitFor(() => {
-          expect(handleErrorWithToast).toHaveBeenCalledWith(mockError);
+          expect(handleErrorWithToast).toHaveBeenCalledWith(
+            mockError,
+            expect.any(Function),
+          );
         });
       }
     });

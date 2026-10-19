@@ -54,10 +54,6 @@ vi.mock('app/layouts/secondary-layout', () => ({
   ),
 }));
 
-vi.mock('../with-protected-route', () => ({
-  protect: (Component: React.FC) => <Component />,
-}));
-
 vi.mock('shared/components/loaders/dot-loader', () => ({
   DotLoader: () => <div data-testid="dot-loader">Loading...</div>,
 }));
@@ -135,7 +131,7 @@ describe('App', () => {
         route: '/',
       });
 
-      expect(screen.getAllByTestId('toast')).toHaveLength(2);
+      expect(screen.getAllByTestId('toast')).toHaveLength(1);
     });
 
     it('renders routes when user is loaded', async () => {

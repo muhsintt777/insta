@@ -9,6 +9,7 @@ import {
 } from 'shared/components/modals/primary-modal';
 import { FileInput } from 'shared/components/input-field/file-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { useToast } from 'features/toast/useToast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
 import { useAppDispatch } from 'shared/hooks/redux-hooks';
@@ -25,6 +26,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   closeModal,
   onSubmit,
 }) => {
+  const { showToast } = useToast();
   const dispatch = useAppDispatch();
   const [showPostLoader, setShowPostLoader] = useState(false);
   const {
@@ -50,7 +52,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
       reset();
       closeModal();
     } catch (error) {
-      handleErrorWithToast(error);
+      handleErrorWithToast(error, showToast);
     } finally {
       setShowPostLoader(false);
     }
