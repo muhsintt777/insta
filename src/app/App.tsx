@@ -6,7 +6,7 @@ import { DotLoader } from 'shared/components/loaders/dot-loader';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
-import { selectUserApiStatus } from 'features/user/user-slice';
+import { selectUserStatus } from 'features/user/user-slice';
 import { Notifications } from 'features/notifications/notifications';
 import { ProfilePage } from 'features/user/profile-page';
 import { Friends } from 'features/friends/friends';
@@ -20,7 +20,7 @@ import { ProtectedRoute } from './protected-route';
 
 export const App = () => {
   const dispath = useAppDispatch();
-  const userApiStatus = useAppSelector(selectUserApiStatus);
+  const userApiStatus = useAppSelector(selectUserStatus);
   const apiRef = useRef({ restoreSession: false });
 
   useEffect(() => {

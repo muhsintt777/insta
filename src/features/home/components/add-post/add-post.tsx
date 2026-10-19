@@ -24,7 +24,7 @@ const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
   const handlePostCreated = () => {
     dispatch(
       userActions.updateUserResourceCount({
-        type: 'increament',
+        type: 'increment',
         key: 'postCount',
       }),
     );

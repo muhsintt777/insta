@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   bio: string;
   gender: string | null;
   mobileNo: string | null;
@@ -13,29 +13,31 @@ interface User {
   id: string;
 }
 
-interface UserSuccessSlice {
+export type EditUserProfileParams = Partial<Pick<User, 'fullName' | 'bio'>>;
+
+export interface UserSuccessState {
   status: 'SUCCESS';
   details: User;
 }
 
-interface UserFailedSlice {
+export interface UserFailedState {
   status: 'FAILED';
   details: null;
   error: string;
 }
 
-interface UserLoadingSlice {
+export interface UserLoadingState {
   status: 'LOADING';
   details: null;
 }
 
-interface UserLoggedOutSlice {
+export interface UserLoggedOutState {
   status: 'LOGGED_OUT';
   details: null;
 }
 
-export type UserSlice =
-  | UserSuccessSlice
-  | UserFailedSlice
-  | UserLoadingSlice
-  | UserLoggedOutSlice;
+export type UserState =
+  | UserSuccessState
+  | UserFailedState
+  | UserLoadingState
+  | UserLoggedOutState;

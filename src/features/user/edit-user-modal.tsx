@@ -14,7 +14,7 @@ import { TextInput } from 'shared/components/input-field/text-input';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
 import { UserService } from './user-service';
-import { User } from './user';
+import type { EditUserProfileParams, User } from './user-types';
 
 interface EditUserModalProps {
   isOpen: boolean;
@@ -45,7 +45,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
     formData: UserEditSchema,
     currentUserDetails: User,
   ) => {
-    const changedValues: any = {};
+    const changedValues: EditUserProfileParams = {};
     if (formData.fullName !== currentUserDetails.fullName) {
       changedValues.fullName = formData.fullName;
     }
@@ -55,7 +55,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
     if (Object.keys(changedValues).length === 0) {
       return null;
     }
-    return changedValues as Partial<User>;
+    return changedValues;
   };
 
   const handleSave = async (data: UserEditSchema) => {
@@ -68,10 +68,10 @@ export const EditUserModal: FC<EditUserModalProps> = ({
       setShowLoader(true);
       await UserService.editUserProfile(changedValues);
       dispatch(userActions.editUser(changedValues));
-      setShowLoader(false);
       closeModal();
     } catch (error) {
       handleErrorWithToast(error, showToast);
+    } finally {
       setShowLoader(false);
     }
   };

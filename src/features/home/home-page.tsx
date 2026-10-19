@@ -66,7 +66,7 @@ export const HomePage = () => {
   }, []);
 
   const updateCommentCount = useCallback(
-    (postId: string, type: 'increament' | 'decreament') => {
+    (postId: string, type: 'increment' | 'decrement') => {
       setPosts((prev) =>
         prev.map((post) => {
           if (post.id !== postId) return post;
@@ -74,7 +74,7 @@ export const HomePage = () => {
           return {
             ...post,
             commentCount:
-              type === 'increament'
+              type === 'increment'
                 ? post.commentCount + 1
                 : post.commentCount - 1,
           };
@@ -133,10 +133,10 @@ export const HomePage = () => {
         isOpen={Boolean(selectedPostIdForComments)}
         postId={selectedPostIdForComments}
         onDelete={() =>
-          updateCommentCount(selectedPostIdForComments!, 'decreament')
+          updateCommentCount(selectedPostIdForComments!, 'decrement')
         }
         onSubmit={() =>
-          updateCommentCount(selectedPostIdForComments!, 'increament')
+          updateCommentCount(selectedPostIdForComments!, 'increment')
         }
       />
     </div>

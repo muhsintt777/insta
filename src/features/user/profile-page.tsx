@@ -46,7 +46,7 @@ export const ProfilePage = () => {
         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
         dispatch(
           userActions.updateUserResourceCount({
-            type: 'decreament',
+            type: 'decrement',
             key: 'postCount',
           }),
         );
@@ -127,7 +127,7 @@ export const ProfilePage = () => {
   }, []);
 
   const updateCommentCount = useCallback(
-    (postId: string, type: 'increament' | 'decreament') => {
+    (postId: string, type: 'increment' | 'decrement') => {
       setPosts((prev) =>
         prev.map((post) => {
           if (post.id !== postId) return post;
@@ -135,7 +135,7 @@ export const ProfilePage = () => {
           return {
             ...post,
             commentCount:
-              type === 'increament'
+              type === 'increment'
                 ? post.commentCount + 1
                 : post.commentCount - 1,
           };
@@ -216,13 +216,13 @@ export const ProfilePage = () => {
       />
       <CommentsModal
         onSubmit={() =>
-          updateCommentCount(selectedPostIdForComments!, 'increament')
+          updateCommentCount(selectedPostIdForComments!, 'increment')
         }
         closeModal={closeCommentsModal}
         isOpen={Boolean(selectedPostIdForComments)}
         postId={selectedPostIdForComments}
         onDelete={() =>
-          updateCommentCount(selectedPostIdForComments!, 'decreament')
+          updateCommentCount(selectedPostIdForComments!, 'decrement')
         }
       />
       <EditUserModal

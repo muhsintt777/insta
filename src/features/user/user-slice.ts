@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { Rootstate } from 'app/store';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import { User, UserSlice } from './user';
+import type { User, UserState } from './user-types';
 
 const initialState = {
   status: 'LOADING',
   details: null,
-} as UserSlice;
+} as UserState;
 
 export const userSlice = createSlice({
   name: 'user',
@@ -23,11 +23,11 @@ export const userSlice = createSlice({
       });
     },
     logout: (state) => {
-      const newState: UserSlice = { status: 'LOGGED_OUT', details: null };
+      const newState: UserState = { status: 'LOGGED_OUT', details: null };
       Object.assign(state, newState);
     },
     login: (state, action: PayloadAction<User>) => {
-      const newState: UserSlice = {
+      const newState: UserState = {
         status: 'SUCCESS',
         details: action.payload,
       };
@@ -36,13 +36,13 @@ export const userSlice = createSlice({
     updateUserResourceCount: (
       state,
       action: PayloadAction<{
-        type: 'increament' | 'decreament';
+        type: 'increment' | 'decrement';
         key: 'postCount' | 'friendsCount';
       }>,
     ) => {
       if (state.status !== 'SUCCESS' || state.details === null) return;
 
-      if (action.payload.type === 'increament') {
+      if (action.payload.type === 'increment') {
         state.details[action.payload.key] += 1;
       } else {
         state.details[action.payload.key] -= 1;
@@ -58,6 +58,6 @@ export const userSlice = createSlice({
 export const userActions = userSlice.actions;
 
 export const selectUser = (state: Rootstate) => state.user;
-export const selectUserApiStatus = (state: Rootstate) => state.user.status;
+export const selectUserStatus = (state: Rootstate) => state.user.status;
 
 export const userReducer = userSlice.reducer;

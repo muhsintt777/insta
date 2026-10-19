@@ -1,15 +1,11 @@
 import { http } from 'shared/lib/http';
 import { HTTP_STATUS_CODES } from 'shared/constants';
-import { User } from './user';
+import type { EditUserProfileParams, User } from './user-types';
 
-interface EditUserProfileParams {
-  fullName?: string;
-  bio?: string;
-}
 export class UserService {
   static async fetchCurrentUser(): Promise<User> {
     const res = await http.get('/users/currentuser');
-    if (res.status !== HTTP_STATUS_CODES.OK) {
+    if (res.status !== HTTP_STATUS_CODES.OK || !res.data?.data) {
       throw new Error('Failed to fetch user details');
     }
     return res.data.data as User;

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { userActions, userReducer } from '../user-slice';
-import type { User, UserSlice, UserSuccessSlice } from '../user';
+import type { User, UserState, UserSuccessState } from '../user-types';
 
 describe('userSlice', () => {
   const mockUser: User = {
@@ -20,7 +20,7 @@ describe('userSlice', () => {
 
   describe('reducers', () => {
     it('logout should set status to LOGGED_OUT and details to null', () => {
-      const state: UserSuccessSlice = {
+      const state: UserSuccessState = {
         status: 'SUCCESS',
         details: mockUser,
       };
@@ -32,7 +32,7 @@ describe('userSlice', () => {
     });
 
     it('login should set status to SUCCESS and store user details', () => {
-      const state: UserSlice = {
+      const state: UserState = {
         status: 'LOADING',
         details: null,
       };
@@ -45,7 +45,7 @@ describe('userSlice', () => {
 
     describe('updateUserResourceCount', () => {
       it('increments postCount', () => {
-        const state: UserSuccessSlice = {
+        const state: UserSuccessState = {
           status: 'SUCCESS',
           details: { ...mockUser, postCount: 10 },
         };
@@ -53,7 +53,7 @@ describe('userSlice', () => {
         const newState = userReducer(
           state,
           userActions.updateUserResourceCount({
-            type: 'increament',
+            type: 'increment',
             key: 'postCount',
           }),
         );
@@ -62,7 +62,7 @@ describe('userSlice', () => {
       });
 
       it('decrements postCount', () => {
-        const state: UserSuccessSlice = {
+        const state: UserSuccessState = {
           status: 'SUCCESS',
           details: { ...mockUser, postCount: 10 },
         };
@@ -70,7 +70,7 @@ describe('userSlice', () => {
         const newState = userReducer(
           state,
           userActions.updateUserResourceCount({
-            type: 'decreament',
+            type: 'decrement',
             key: 'postCount',
           }),
         );
@@ -79,7 +79,7 @@ describe('userSlice', () => {
       });
 
       it('increments friendsCount', () => {
-        const state: UserSuccessSlice = {
+        const state: UserSuccessState = {
           status: 'SUCCESS',
           details: { ...mockUser, friendsCount: 5 },
         };
@@ -87,7 +87,7 @@ describe('userSlice', () => {
         const newState = userReducer(
           state,
           userActions.updateUserResourceCount({
-            type: 'increament',
+            type: 'increment',
             key: 'friendsCount',
           }),
         );
@@ -96,7 +96,7 @@ describe('userSlice', () => {
       });
 
       it('does nothing when status is not SUCCESS', () => {
-        const state: UserSlice = {
+        const state: UserState = {
           status: 'LOADING',
           details: null,
         };
@@ -104,7 +104,7 @@ describe('userSlice', () => {
         const newState = userReducer(
           state,
           userActions.updateUserResourceCount({
-            type: 'increament',
+            type: 'increment',
             key: 'postCount',
           }),
         );
@@ -115,7 +115,7 @@ describe('userSlice', () => {
 
     describe('editUser', () => {
       it('updates user details partially', () => {
-        const state: UserSuccessSlice = {
+        const state: UserSuccessState = {
           status: 'SUCCESS',
           details: mockUser,
         };
@@ -131,7 +131,7 @@ describe('userSlice', () => {
       });
 
       it('does nothing when status is not SUCCESS', () => {
-        const state: UserSlice = {
+        const state: UserState = {
           status: 'LOADING',
           details: null,
         };
@@ -147,7 +147,7 @@ describe('userSlice', () => {
   });
 
   it('startLoading clears existing user details', () => {
-    const state: UserSuccessSlice = { status: 'SUCCESS', details: mockUser };
+    const state: UserSuccessState = { status: 'SUCCESS', details: mockUser };
 
     const newState = userReducer(state, userActions.startLoading());
 
@@ -155,12 +155,9 @@ describe('userSlice', () => {
   });
 
   it('loadFailed sets the failed state', () => {
-    const state: UserSlice = { status: 'LOADING', details: null };
+    const state: UserState = { status: 'LOADING', details: null };
 
-    const newState = userReducer(
-      state,
-      userActions.loadFailed('Fetch failed'),
-    );
+    const newState = userReducer(state, userActions.loadFailed('Fetch failed'));
 
     expect(newState).toMatchObject({
       status: 'FAILED',
