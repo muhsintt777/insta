@@ -18,6 +18,7 @@ import { LikedIcon } from 'shared/assets/icons/liked-icon';
 import { CustomMenu } from 'shared/components/menus/custom-menu';
 
 interface PostCardProps {
+  id?: string;
   fullname: string;
   image: string;
   caption: string;
@@ -34,6 +35,7 @@ interface PostCardProps {
 }
 
 export const PostCard: FC<PostCardProps> = ({
+  id,
   caption,
   commentCount,
   createdAt,
@@ -99,7 +101,7 @@ export const PostCard: FC<PostCardProps> = ({
   }, [handleDelete, handleEdit, onDelete, onEdit]);
 
   return (
-    <article style={customStyles} className={styles.container}>
+    <article id={id} style={customStyles} className={styles.container}>
       <div className={styles.head}>
         <CustomAvatar src={userProfileImage} />
         <div>

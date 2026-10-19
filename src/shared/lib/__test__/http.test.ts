@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ERROR_TYPE } from 'shared/constants';
+import { ENV } from 'shared/lib/env';
 import { http, configureHttp } from '../http';
 
 type RequestHandler = {
@@ -36,9 +37,7 @@ describe('http', () => {
 
   describe('axios instance creation', () => {
     it('creates axios instance with correct baseURL', () => {
-      expect(http.defaults.baseURL).toBe(
-        'https://insta-server-k0gd.onrender.com/api',
-      );
+      expect(http.defaults.baseURL).toBe(ENV.API_URL);
     });
 
     it('creates axios instance with correct headers', () => {
