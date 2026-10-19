@@ -1,14 +1,18 @@
-import { COMMON_ERROR_MESSAGE } from 'shared/constants';
+import { COMMON_ERROR_MESSAGE, HTTP_STATUS_CODES } from 'shared/constants';
 import { http } from 'shared/lib/http';
 
 export class LikeService {
   static async createLike(postId: string) {
     const res = await http.post('likes', { postId });
-    if (res.status !== 201) throw new Error(COMMON_ERROR_MESSAGE);
+    if (res.status !== HTTP_STATUS_CODES.CREATED) {
+      throw new Error(COMMON_ERROR_MESSAGE);
+    }
   }
 
   static async deleteLike(postId: string) {
     const res = await http.delete(`likes/${postId}`);
-    if (res.status !== 200) throw new Error(COMMON_ERROR_MESSAGE);
+    if (res.status !== HTTP_STATUS_CODES.OK) {
+      throw new Error(COMMON_ERROR_MESSAGE);
+    }
   }
 }

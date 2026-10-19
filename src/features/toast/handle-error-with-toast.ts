@@ -1,6 +1,5 @@
-import { CustomError } from 'shared/lib/errors/custom-error';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import { ToastSeverity } from './toast-types';
+import type { ToastSeverity } from './toast-types';
 
 export const handleErrorWithToast = (
   error: unknown,

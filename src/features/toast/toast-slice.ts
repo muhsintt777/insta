@@ -1,19 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { Rootstate } from 'app/store';
-import { ToastSeverity } from './toast-types';
+import type { ShowToastPayload, ToastState } from './toast-types';
 
-interface Toast {
-  show: boolean;
-  severity: ToastSeverity;
-  message: string;
-}
-
-interface ShowToastPayload {
-  severity: ToastSeverity;
-  message: string;
-}
-
-const initialState: Toast = {
+const initialState: ToastState = {
   show: false,
   severity: 'info',
   message: '',
@@ -23,12 +12,12 @@ export const toastSlice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    show: (state, action: PayloadAction<ShowToastPayload>) => {
+    showToast: (state, action: PayloadAction<ShowToastPayload>) => {
       state.show = true;
       state.message = action.payload.message;
       state.severity = action.payload.severity;
     },
-    hide: (state) => {
+    hideToast: (state) => {
       state.show = false;
     },
   },
@@ -36,5 +25,5 @@ export const toastSlice = createSlice({
 
 export const toastActions = toastSlice.actions;
 
-export const selectToastConfigs = (state: Rootstate) => state.toast;
+export const selectToast = (state: Rootstate) => state.toast;
 export const toastReducer = toastSlice.reducer;

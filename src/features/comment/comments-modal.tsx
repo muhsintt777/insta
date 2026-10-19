@@ -8,10 +8,10 @@ import {
 } from 'shared/components/modals/primary-modal';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { TextInput } from 'shared/components/input-field/text-input';
-import { LoaderStatus } from 'features/loader/types';
+import type { LoaderStatus } from 'features/loader';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
-import { CircleLoader } from 'features/loader/Circle-loader';
+import { CircleLoader } from 'features/loader';
 import { CommentService } from './comment-service';
 import { CommentCard } from './comment-card';
 import { commentFormSchema, CommentFormSchema } from './comment-validation';

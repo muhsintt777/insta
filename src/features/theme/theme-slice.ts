@@ -1,12 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { Rootstate } from 'app/store';
+import type { Theme, ThemeState } from './theme-types';
 
 const STORAGE_KEY = 'app:theme';
-
-type Theme = 'light' | 'dark';
-interface ThemeState {
-  theme: Theme;
-}
 
 const initialState: ThemeState = {
   theme: 'light',
@@ -29,11 +25,11 @@ export const themeActions = themeSlice.actions;
 export const selectTheme = (state: Rootstate) => state.theme.theme;
 export const themeReducer = themeSlice.reducer;
 
-export const getInitialTheme = (): 'light' | 'dark' => {
+export const getInitialTheme = (): Theme => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored === 'dark' ? 'dark' : 'light';
-  } catch (e) {
+  } catch {
     //
   }
   return 'light';

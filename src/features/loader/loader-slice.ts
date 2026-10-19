@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { Rootstate } from 'app/store';
-
-interface LoaderState {
-  showBackdrop: boolean;
-}
+import type { LoaderState } from './types';
 
 const initialState: LoaderState = {
   showBackdrop: false,

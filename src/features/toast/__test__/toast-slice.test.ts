@@ -8,11 +8,14 @@ describe('toastSlice', () => {
     message: '',
   };
 
-  describe('show', () => {
+  describe('showToast', () => {
     it('shows toast with success severity', () => {
       const state = toastReducer(
         initialState,
-        toastActions.show({ severity: 'success', message: 'Success message' }),
+        toastActions.showToast({
+          severity: 'success',
+          message: 'Success message',
+        }),
       );
 
       expect(state.show).toBe(true);
@@ -23,7 +26,10 @@ describe('toastSlice', () => {
     it('shows toast with error severity', () => {
       const state = toastReducer(
         initialState,
-        toastActions.show({ severity: 'error', message: 'Error occurred' }),
+        toastActions.showToast({
+          severity: 'error',
+          message: 'Error occurred',
+        }),
       );
 
       expect(state.show).toBe(true);
@@ -34,7 +40,10 @@ describe('toastSlice', () => {
     it('shows toast with warning severity', () => {
       const state = toastReducer(
         initialState,
-        toastActions.show({ severity: 'warning', message: 'Warning message' }),
+        toastActions.showToast({
+          severity: 'warning',
+          message: 'Warning message',
+        }),
       );
 
       expect(state.severity).toBe('warning');
@@ -43,7 +52,7 @@ describe('toastSlice', () => {
     it('shows toast with info severity', () => {
       const state = toastReducer(
         initialState,
-        toastActions.show({ severity: 'info', message: 'Info message' }),
+        toastActions.showToast({ severity: 'info', message: 'Info message' }),
       );
 
       expect(state.severity).toBe('info');
@@ -57,7 +66,7 @@ describe('toastSlice', () => {
       };
       const state = toastReducer(
         previousState,
-        toastActions.show({ severity: 'error', message: 'New message' }),
+        toastActions.showToast({ severity: 'error', message: 'New message' }),
       );
 
       expect(state.severity).toBe('error');
@@ -65,14 +74,14 @@ describe('toastSlice', () => {
     });
   });
 
-  describe('hide', () => {
+  describe('hideToast', () => {
     it('hides the toast', () => {
       const visibleState = {
         show: true,
         severity: 'success' as const,
         message: 'Some message',
       };
-      const state = toastReducer(visibleState, toastActions.hide());
+      const state = toastReducer(visibleState, toastActions.hideToast());
 
       expect(state.show).toBe(false);
     });
@@ -83,7 +92,7 @@ describe('toastSlice', () => {
         severity: 'error' as const,
         message: 'Error message',
       };
-      const state = toastReducer(visibleState, toastActions.hide());
+      const state = toastReducer(visibleState, toastActions.hideToast());
 
       expect(state.show).toBe(false);
       expect(state.severity).toBe('error');

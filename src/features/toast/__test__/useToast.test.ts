@@ -24,7 +24,10 @@ describe('useToast', () => {
     });
 
     expect(mockDispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'success', message: 'Success message' }),
+      toastActions.showToast({
+        severity: 'success',
+        message: 'Success message',
+      }),
     );
   });
 
@@ -36,7 +39,7 @@ describe('useToast', () => {
     });
 
     expect(mockDispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'error', message: 'Error message' }),
+      toastActions.showToast({ severity: 'error', message: 'Error message' }),
     );
   });
 
@@ -48,7 +51,10 @@ describe('useToast', () => {
     });
 
     expect(mockDispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'warning', message: 'Warning message' }),
+      toastActions.showToast({
+        severity: 'warning',
+        message: 'Warning message',
+      }),
     );
   });
 
@@ -60,7 +66,7 @@ describe('useToast', () => {
     });
 
     expect(mockDispatch).toHaveBeenCalledWith(
-      toastActions.show({ severity: 'info', message: 'Info message' }),
+      toastActions.showToast({ severity: 'info', message: 'Info message' }),
     );
   });
 

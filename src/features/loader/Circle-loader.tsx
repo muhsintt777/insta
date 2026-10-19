@@ -1,27 +1,24 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo } from 'react';
 import { CircularProgress } from '@mui/material';
 import { colors } from 'shared/styles/global-style';
+import type { LoaderSize } from './types';
 
 interface CircleLoaderProps {
-  size?: 'small' | 'medium' | 'large';
+  size?: LoaderSize;
 }
 
-const CircleLoaderComp: FC<CircleLoaderProps> = ({ size }) => {
-  const convertedSize = useMemo(() => {
-    switch (size) {
-      case 'small':
-        return '20px';
-      case 'medium':
-        return '25px';
-      case 'large':
-        return '30px';
-      default:
-        return '25px';
-    }
-  }, [size]);
+const LOADER_SIZES: Record<LoaderSize, string> = {
+  small: '20px',
+  medium: '25px',
+  large: '30px',
+};
 
+const CircleLoaderComp: FC<CircleLoaderProps> = ({ size }) => {
   return (
-    <CircularProgress sx={{ color: colors.PRIMARY }} size={convertedSize} />
+    <CircularProgress
+      sx={{ color: colors.PRIMARY }}
+      size={LOADER_SIZES[size || 'medium']}
+    />
   );
 };
 
