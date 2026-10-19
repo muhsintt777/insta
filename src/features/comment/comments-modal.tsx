@@ -2,7 +2,10 @@ import styles from './comments-modal.module.scss';
 import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PrimaryModal, ModalHeader } from 'shared/components/modals/primary-modal';
+import {
+  PrimaryModal,
+  ModalHeader,
+} from 'shared/components/modals/primary-modal';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { TextInput } from 'shared/components/input-field/text-input';
 import { LoaderStatus } from 'features/loader/types';

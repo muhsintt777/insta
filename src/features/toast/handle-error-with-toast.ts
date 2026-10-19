@@ -10,8 +10,8 @@ export const handleErrorWithToast = (
     error instanceof Error
       ? error.message
       : typeof error === 'object' && error !== null && 'message' in error
-        ? String(error.message || COMMON_ERROR_MESSAGE)
-        : COMMON_ERROR_MESSAGE;
+      ? String(error.message || COMMON_ERROR_MESSAGE)
+      : COMMON_ERROR_MESSAGE;
 
   showToast('error', message);
 };

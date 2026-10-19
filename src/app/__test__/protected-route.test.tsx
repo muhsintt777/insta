@@ -17,7 +17,9 @@ describe('ProtectedRoute', () => {
           <Route element={<ProtectedRoute />}>
             <Route
               path="/profile"
-              element={<div data-testid="protected-content">Protected Content</div>}
+              element={
+                <div data-testid="protected-content">Protected Content</div>
+              }
             />
           </Route>
           <Route path="/auth/login" element={<LocationProbe />} />
