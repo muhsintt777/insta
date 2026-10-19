@@ -1,5 +1,5 @@
-import { Header } from 'app/layouts/components/headers/app-header';
-import styles from './auth-layoutStyle.module.css';
+import { Header } from 'app/components/header/app-header';
+import styles from './auth-layoutStyle.module.scss';
 import { Outlet } from 'react-router-dom';
 
 export const AuthLayout = () => {

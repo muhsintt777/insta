@@ -1,6 +1,6 @@
 import styles from './secondary-layout.module.scss';
 import { Outlet } from 'react-router-dom';
-import { Header } from 'app/layouts/components/headers/app-header';
+import { Header } from 'app/components/header/app-header';
 
 export const SecondaryLayout = () => {
   return (
