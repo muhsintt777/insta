@@ -9,11 +9,9 @@ import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useAppDispatch } from 'shared/hooks/redux-hooks';
 import { useToast } from 'features/toast/useToast';
-import { UserService } from 'features/user/user-service';
-import { userActions } from 'features/user/user-slice';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
-import { authActions } from '../auth-slice';
+import { signIn } from '../session';
 import { AuthHeader } from '../components/auth-header';
 import { FileInput } from 'shared/components/input-field/file-input';
 
@@ -43,14 +41,17 @@ export const SignupPage = () => {
     async (data: SignupFormSchema) => {
       try {
         setShowFormSubmitLoader(true);
-        await AuthService.createUser(data as any);
-        const token = await AuthService.login({
+        await AuthService.createUser({
+          fullName: data.fullName,
+          username: data.username,
+          email: data.email,
+          password: data.password,
+          profileImage: data.profileImage || undefined,
+        });
+        await signIn(dispath, {
           email: data.email,
           password: data.password,
         });
-        dispath(authActions.setToken(token));
-        const user = await UserService.fetchCurrentUser();
-        dispath(userActions.login(user));
         showToast('success', 'Account created successfully');
         navigate(APP_ROUTES.HOME);
       } catch (error) {

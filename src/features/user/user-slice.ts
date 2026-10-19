@@ -1,9 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { Rootstate } from 'app/store';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import { AuthService, authActions } from 'features/auth';
 import { User, UserSlice } from './user';
-import { UserService } from './user-service';
 
 const initialState = {
   status: 'LOADING',
@@ -14,6 +12,16 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    startLoading: (state) => {
+      Object.assign(state, { status: 'LOADING', details: null });
+    },
+    loadFailed: (state, action: PayloadAction<string | undefined>) => {
+      Object.assign(state, {
+        status: 'FAILED',
+        details: null,
+        error: action.payload || COMMON_ERROR_MESSAGE,
+      });
+    },
     logout: (state) => {
       const newState: UserSlice = { status: 'LOGGED_OUT', details: null };
       Object.assign(state, newState);
@@ -45,42 +53,7 @@ export const userSlice = createSlice({
       state.details = { ...state.details, ...action.payload };
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(initialUserFetch.pending, (state) => {
-        const newState: UserSlice = { status: 'LOADING', details: null };
-        Object.assign(state, newState);
-      })
-      .addCase(
-        initialUserFetch.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          const newState: UserSlice = {
-            status: 'SUCCESS',
-            details: action.payload,
-          };
-          Object.assign(state, newState);
-        },
-      )
-      .addCase(initialUserFetch.rejected, (state, action) => {
-        const newState: UserSlice = {
-          status: 'FAILED',
-          details: null,
-          error: action.error.message || COMMON_ERROR_MESSAGE,
-        };
-        Object.assign(state, newState);
-      });
-  },
 });
-
-export const initialUserFetch = createAsyncThunk(
-  'user/initialUserFetch',
-  async (_, { dispatch }) => {
-    const token = await AuthService.refreshAuth();
-    dispatch(authActions.setToken(token));
-    const result = await UserService.fetchCurrentUser();
-    return result;
-  },
-);
 
 export const userActions = userSlice.actions;
 

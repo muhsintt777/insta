@@ -8,10 +8,7 @@ import { FormField } from 'shared/components/input-field/form-field';
 import { trimAllWhitespace } from 'shared/lib/string-utils';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
-import { UserService } from 'features/user/user-service';
-import { userActions } from 'features/user/user-slice';
-import { AuthService } from '../auth-service';
-import { authActions } from '../auth-slice';
+import { signIn } from '../session';
 import { AuthHeader } from '../components/auth-header';
 
 interface EmailInpType {
@@ -25,7 +22,7 @@ interface PasswordInpType {
   error: null | string;
 }
 
-export const Login = () => {
+export const LoginPage = () => {
   const navigate = useNavigate();
   const dispath = useAppDispatch();
   const { showToast } = useToast();
@@ -69,13 +66,10 @@ export const Login = () => {
       setShowLoader(true);
       const trimmedEmail = trimAllWhitespace(emailInp.value);
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
-      const token = await AuthService.login({
+      await signIn(dispath, {
         email: trimmedEmail,
         password: trimmedPassword,
       });
-      dispath(authActions.setToken(token));
-      const userDetails = await UserService.fetchCurrentUser();
-      dispath(userActions.login(userDetails));
       navigate('/', { replace: true });
     } catch (err) {
       handleErrorWithToast(err, showToast);

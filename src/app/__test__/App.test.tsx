@@ -32,11 +32,9 @@ vi.mock('features/user/profile-page', () => ({
   ProfilePage: () => <div data-testid="profile-page">ProfilePage</div>,
 }));
 
-vi.mock('features/auth/login/login', () => ({
-  Login: () => <div data-testid="login-page">Login</div>,
-}));
-
-vi.mock('features/auth/signup/signup-page', () => ({
+vi.mock('features/auth', () => ({
+  restoreSession: () => ({ type: 'auth/restoreSession' }),
+  LoginPage: () => <div data-testid="login-page">Login</div>,
   SignupPage: () => <div data-testid="signup-page">SignupPage</div>,
 }));
 

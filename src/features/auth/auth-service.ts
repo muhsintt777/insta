@@ -2,7 +2,7 @@ import { ERROR_TYPE, HTTP_STATUS_CODES } from 'shared/constants';
 import { http } from 'shared/lib/http';
 import { CustomError } from 'shared/lib/errors/custom-error';
 
-interface CreateUserParams {
+export interface CreateUserParams {
   email: string;
   password: string;
   fullName: string;
@@ -10,7 +10,7 @@ interface CreateUserParams {
   profileImage?: File;
 }
 
-type LoginParams =
+export type LoginParams =
   | { email: string; password: string }
   | { username: string; password: string };
 

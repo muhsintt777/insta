@@ -6,15 +6,11 @@ import { DotLoader } from 'shared/components/loaders/dot-loader';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
-import {
-  initialUserFetch,
-  selectUserApiStatus,
-} from 'features/user/user-slice';
+import { selectUserApiStatus } from 'features/user/user-slice';
 import { Notifications } from 'features/notifications/notifications';
 import { ProfilePage } from 'features/user/profile-page';
-import { SignupPage } from 'features/auth/signup/signup-page';
 import { Friends } from 'features/friends/friends';
-import { Login } from 'features/auth/login/login';
+import { restoreSession, LoginPage, SignupPage } from 'features/auth';
 import { Toast } from 'features/toast/toast';
 import { Chat } from 'features/chat/chat';
 import { HomePage } from 'features/home/home-page';
@@ -25,12 +21,12 @@ import { ProtectedRoute } from './protected-route';
 export const App = () => {
   const dispath = useAppDispatch();
   const userApiStatus = useAppSelector(selectUserApiStatus);
-  const apiRef = useRef({ initialUserFetch: false });
+  const apiRef = useRef({ restoreSession: false });
 
   useEffect(() => {
-    if (apiRef.current.initialUserFetch) return;
-    dispath(initialUserFetch());
-    apiRef.current.initialUserFetch = true;
+    if (apiRef.current.restoreSession) return;
+    dispath(restoreSession());
+    apiRef.current.restoreSession = true;
   }, [dispath]);
 
   return (
@@ -62,7 +58,7 @@ export const App = () => {
           </Route>
 
           <Route path="/auth" element={<AuthLayout />}>
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignupPage />} />
           </Route>
 

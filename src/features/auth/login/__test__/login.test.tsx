@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
-import { Login } from '../login';
+import { LoginPage } from '../login';
 import { AuthService } from '../../auth-service';
 import { UserService } from 'features/user/user-service';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
@@ -30,13 +30,13 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-describe('Login', () => {
+describe('LoginPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('renders login form with all elements', () => {
-    renderWithProviders(<Login />);
+    renderWithProviders(<LoginPage />);
 
     expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
     expect(screen.getByPlaceholderText('john@email.com')).toBeInTheDocument();
@@ -49,14 +49,14 @@ describe('Login', () => {
   });
 
   it('shows link to signup page', () => {
-    renderWithProviders(<Login />);
+    renderWithProviders(<LoginPage />);
 
     const signupLink = screen.getByRole('link', { name: /create account/i });
     expect(signupLink).toHaveAttribute('href', '/auth/signup');
   });
 
   it('shows SSO coming soon message', () => {
-    renderWithProviders(<Login />);
+    renderWithProviders(<LoginPage />);
 
     expect(screen.getByText(/sso coming soon/i)).toBeInTheDocument();
   });
@@ -64,7 +64,7 @@ describe('Login', () => {
   describe('email validation', () => {
     it('shows error for invalid email', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       await user.type(emailInput, 'invalid-email');
@@ -74,7 +74,7 @@ describe('Login', () => {
 
     it('does not show error for valid email', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       await user.type(emailInput, 'test@example.com');
@@ -88,7 +88,7 @@ describe('Login', () => {
   describe('password validation', () => {
     it('shows error for invalid password', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const passwordInput = screen.getByPlaceholderText('Password@123');
       await user.type(passwordInput, 'weak');
@@ -100,7 +100,7 @@ describe('Login', () => {
 
     it('does not show error for valid password', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const passwordInput = screen.getByPlaceholderText('Password@123');
       await user.type(passwordInput, 'Password@123');
@@ -114,7 +114,7 @@ describe('Login', () => {
   describe('form submission', () => {
     it('does not submit when fields are invalid', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const submitButton = screen.getByRole('button', { name: /login/i });
       await user.click(submitButton);
@@ -133,7 +133,7 @@ describe('Login', () => {
       (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
       (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
 
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       const passwordInput = screen.getByPlaceholderText('Password@123');
@@ -165,7 +165,7 @@ describe('Login', () => {
 
       (AuthService.login as Mock).mockRejectedValue(mockError);
 
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       const passwordInput = screen.getByPlaceholderText('Password@123');
@@ -190,7 +190,7 @@ describe('Login', () => {
       (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
       (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
 
-      renderWithProviders(<Login />);
+      renderWithProviders(<LoginPage />);
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       const passwordInput = screen.getByPlaceholderText('Password@123');

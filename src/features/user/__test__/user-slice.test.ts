@@ -1,26 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  userSlice,
-  userActions,
-  userReducer,
-  initialUserFetch,
-} from '../user-slice';
+import { describe, it, expect } from 'vitest';
+import { userActions, userReducer } from '../user-slice';
 import type { User, UserSlice, UserSuccessSlice } from '../user';
-import { configureStore } from '@reduxjs/toolkit';
-import { UserService } from '../user-service';
-import { AuthService } from 'features/auth/auth-service';
-
-vi.mock('../user-service', () => ({
-  UserService: {
-    fetchCurrentUser: vi.fn(),
-  },
-}));
-
-vi.mock('features/auth/auth-service', () => ({
-  AuthService: {
-    refreshAuth: vi.fn(),
-  },
-}));
 
 describe('userSlice', () => {
   const mockUser: User = {
@@ -166,48 +146,26 @@ describe('userSlice', () => {
     });
   });
 
-  describe('extraReducers - initialUserFetch', () => {
-    beforeEach(() => {
-      vi.clearAllMocks();
-    });
+  it('startLoading clears existing user details', () => {
+    const state: UserSuccessSlice = { status: 'SUCCESS', details: mockUser };
 
-    it('sets status to LOADING when pending', () => {
-      const store = configureStore({ reducer: { user: userReducer } });
+    const newState = userReducer(state, userActions.startLoading());
 
-      store.dispatch(initialUserFetch.pending('requestId'));
+    expect(newState).toMatchObject({ status: 'LOADING', details: null });
+  });
 
-      expect(store.getState().user.status).toBe('LOADING');
-      expect(store.getState().user.details).toBeNull();
-    });
+  it('loadFailed sets the failed state', () => {
+    const state: UserSlice = { status: 'LOADING', details: null };
 
-    it('sets status to SUCCESS and stores user on fulfilled', async () => {
-      (AuthService.refreshAuth as ReturnType<typeof vi.fn>).mockResolvedValue(
-        undefined,
-      );
-      (
-        UserService.fetchCurrentUser as ReturnType<typeof vi.fn>
-      ).mockResolvedValue(mockUser);
+    const newState = userReducer(
+      state,
+      userActions.loadFailed('Fetch failed'),
+    );
 
-      const store = configureStore({ reducer: { user: userReducer } });
-
-      await store.dispatch(initialUserFetch());
-
-      expect(store.getState().user.status).toBe('SUCCESS');
-      expect(store.getState().user.details).toEqual(mockUser);
-    });
-
-    it('sets status to FAILED on rejected', () => {
-      const store = configureStore({ reducer: { user: userReducer } });
-
-      store.dispatch(
-        initialUserFetch.rejected(new Error('Fetch failed'), 'requestId'),
-      );
-
-      const userState = store.getState().user;
-      expect(userState.status).toBe('FAILED');
-      if (userState.status === 'FAILED') {
-        expect(userState.error).toBe('Fetch failed');
-      }
+    expect(newState).toMatchObject({
+      status: 'FAILED',
+      details: null,
+      error: 'Fetch failed',
     });
   });
 });
