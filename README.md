@@ -59,6 +59,20 @@ Toast, loader, and theme are cross-cutting feature modules under `src/features`,
 
 Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary and prevents `shared` from importing feature modules.
 
+### Feature dependencies
+
+Current domain dependencies are intentional UI or use-case composition:
+
+| Feature   | Depends on                                    |
+| --------- | --------------------------------------------- |
+| `auth`    | `user`, `toast`                               |
+| `home`    | `posts`, `like`, `comment`, `user`, `toast`   |
+| `user`    | `posts`, `like`, `comment`, `loader`, `toast` |
+| `comment` | `toast`                                       |
+| `posts`   | `toast`                                       |
+
+The app composes feature modules, while cross-cutting modules may be consumed by domain features. Keep this graph acyclic; add a dependency only when a feature needs that module's public capability. If a dependency would create a cycle, keep the coordination at the screen or app-composition level instead of adding reciprocal imports.
+
 ### State ownership
 
 Redux stores application state such as authenticated user details and the auth token, plus cross-cutting theme, loader, and toast state. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
