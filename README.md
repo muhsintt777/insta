@@ -6,15 +6,14 @@ An Instagram-inspired single-page application for sharing posts and interacting 
 
 ## Product Scope
 
-- Browse a post feed, create and edit image posts, and manage captions.
-- Like posts and open comments for discussion.
-- Sign up, sign in, view and edit a profile, and manage friends.
-- Navigate chat and notifications areas within the authenticated application.
+- Browse the authenticated feed; create and edit image posts, like posts, and discuss them in comments.
+- Sign up, sign in, restore an existing session, and view or edit a profile.
+- Friends, chat, and notifications routes are present as under-construction placeholders; those workflows are not implemented yet.
 - Use cross-cutting loader, toast, and theme capabilities for consistent application feedback.
 
 ## Engineering Highlights
 
-- **Domain-oriented modules:** features keep UI, service calls, validation, state, and focused tests together, with `index.ts` files defining their supported public APIs.
+- **Domain-oriented modules:** feature modules group the UI, service calls, validation, state, and focused tests relevant to each capability. Modules stay lightweight when a layer is not needed, and `index.ts` files define their supported public APIs.
 - **Enforced dependency direction:** ESLint prevents shared code from depending on app or feature modules, prevents features from depending on app-store composition, and restricts feature-to-feature imports to public entry points.
 - **Composition at the application edge:** the app owns route and layout composition; `main.tsx` wires the Redux provider, router, and HTTP callbacks without pushing those concerns into domain modules.
 - **Explicit state ownership:** Redux Toolkit holds session, user, theme, loader, and toast state. Screen-specific data and interactions remain local when they do not need to be shared.
@@ -135,15 +134,15 @@ Tests live alongside the source they exercise. The suite uses jsdom and Testing 
 
 ## Routes
 
-| Route            | Access    | Screen        |
-| ---------------- | --------- | ------------- |
-| `/`              | Protected | Home feed     |
-| `/friends`       | Protected | Friends       |
-| `/chat`          | Protected | Chat          |
-| `/notifications` | Protected | Notifications |
-| `/profile`       | Protected | Profile       |
-| `/auth/login`    | Public    | Login         |
-| `/auth/signup`   | Public    | Sign up       |
+| Route            | Access    | Screen                    |
+| ---------------- | --------- | ------------------------- |
+| `/`              | Protected | Home feed                 |
+| `/friends`       | Protected | Friends (placeholder)     |
+| `/chat`          | Protected | Chat (placeholder)        |
+| `/notifications` | Protected | Notifications (placeholder) |
+| `/profile`       | Protected | Profile                   |
+| `/auth/login`    | Public    | Login                     |
+| `/auth/signup`   | Public    | Sign up                   |
 
 ## API Configuration
 
