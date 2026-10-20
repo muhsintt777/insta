@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { Rootstate } from 'app/store';
 import type { LoaderState } from './types';
 
 const initialState: LoaderState = {
@@ -21,5 +20,5 @@ export const loaderSlice = createSlice({
 
 export const loaderActions = loaderSlice.actions;
 
-export const selectLoader = (state: Rootstate) => state.loader;
+export const selectLoader = (state: { loader: LoaderState }) => state.loader;
 export const loaderReducer = loaderSlice.reducer;

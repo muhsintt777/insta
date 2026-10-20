@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Rootstate } from 'app/store';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import type { User, UserState } from './user-types';
 
@@ -41,6 +40,6 @@ export const userSlice = createSlice({
 
 export const userActions = userSlice.actions;
 
-export const selectUser = (state: Rootstate) => state.user;
+export const selectUser = (state: { user: UserState }) => state.user;
 
 export const userReducer = userSlice.reducer;

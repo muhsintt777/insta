@@ -1,5 +1,5 @@
 import { Alert, Snackbar } from '@mui/material';
-import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { selectToast, toastActions } from './toast-slice';
 
 export const Toast = () => {

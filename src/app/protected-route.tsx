@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAppSelector } from 'shared/hooks/redux-hooks';
+import { useAppSelector } from 'app/hooks/redux-hooks';
 import { selectAuthStatus } from 'features/auth';
 
 export const ProtectedRoute = () => {

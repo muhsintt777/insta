@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useToast } from '../useToast';
-import { useAppDispatch } from 'shared/hooks/redux-hooks';
+import { useAppDispatch } from 'app/hooks/redux-hooks';
 import { toastActions } from '../toast-slice';
 
-vi.mock('shared/hooks/redux-hooks', () => ({
+vi.mock('app/hooks/redux-hooks', () => ({
   useAppDispatch: vi.fn(),
 }));
 

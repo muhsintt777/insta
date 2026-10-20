@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useAppDispatch } from 'shared/hooks/redux-hooks';
+import { useAppDispatch } from 'app/hooks/redux-hooks';
 import type { ToastSeverity } from './toast-types';
 import { toastActions } from './toast-slice';
 

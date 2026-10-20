@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { Rootstate } from 'app/store';
 import type { Theme, ThemeState } from './theme-types';
 
 const STORAGE_KEY = 'app:theme';
@@ -22,7 +21,7 @@ export const themeSlice = createSlice({
 });
 
 export const themeActions = themeSlice.actions;
-export const selectTheme = (state: Rootstate) => state.theme.theme;
+export const selectTheme = (state: { theme: ThemeState }) => state.theme.theme;
 export const themeReducer = themeSlice.reducer;
 
 export const getInitialTheme = (): Theme => {

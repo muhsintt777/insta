@@ -7,7 +7,7 @@ import { APP_ROUTES } from 'shared/routes';
 import { FormField } from 'shared/components/input-field/form-field';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { handleErrorWithToast } from 'features/toast';
-import { useAppDispatch } from 'shared/hooks/redux-hooks';
+import { useAppDispatch } from 'app/hooks/redux-hooks';
 import { useToast } from 'features/toast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';

@@ -1,6 +1,6 @@
 import styles from './add-postStyle.module.scss';
 import { FC, useState, memo } from 'react';
-import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { CreatePostModal } from 'features/posts';
 import { selectUser, userActions } from 'features/user';

@@ -4,7 +4,7 @@ import {
   ModalHeader,
   PrimaryModal,
 } from 'shared/components/modals/primary-modal';
-import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { FC, useEffect, useState } from 'react';
 import { selectUser, userActions } from './user-slice';
 import { Controller, useForm } from 'react-hook-form';

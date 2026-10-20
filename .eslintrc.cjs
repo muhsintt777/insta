@@ -32,6 +32,28 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['src/features/**/*.{ts,tsx}'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: ['features/*/**'],
+                message:
+                  'Import feature APIs from features/<feature>, not implementation paths.',
+              },
+              {
+                group: ['app/store', 'app/store/**'],
+                message:
+                  'Feature modules must not depend directly on app store composition.',
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
       files: ['src/shared/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
@@ -39,8 +61,16 @@ module.exports = {
           {
             patterns: [
               {
-                group: ['features', 'features/*', 'features/*/**'],
-                message: 'Shared modules must not depend on feature modules.',
+                group: [
+                  'features',
+                  'features/*',
+                  'features/*/**',
+                  'app',
+                  'app/*',
+                  'app/*/**',
+                ],
+                message:
+                  'Shared modules must not depend on app or feature modules.',
               },
             ],
           },
