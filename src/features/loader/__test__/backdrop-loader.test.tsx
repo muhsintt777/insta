@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { screen, renderWithProviders } from 'test';
 import { BackdropLoader } from '../backdrop-loader';
 
-vi.mock('../Circle-loader', () => ({
+vi.mock('shared/components/loaders/circle-loader', () => ({
   CircleLoader: ({ size }: { size: string }) => (
     <div data-testid="circle-loader" data-size={size}>
       Loading

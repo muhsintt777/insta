@@ -8,13 +8,14 @@ import {
 } from 'shared/components/modals/primary-modal';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { TextInput } from 'shared/components/input-field/text-input';
-import type { LoaderStatus } from 'features/loader';
 import { handleErrorWithToast, useToast } from 'features/toast';
-import { CircleLoader } from 'features/loader';
+import { CircleLoader } from 'shared/components/loaders/circle-loader';
 import { CommentService } from './comment-service';
 import type { CommentDetails } from './comment-types';
 import { CommentCard } from './comment-card';
 import { commentFormSchema, CommentFormSchema } from './comment-validation';
+
+type CommentLoadStatus = 'IDLE' | 'LOADING' | 'SUCCESS' | 'FAILED';
 
 interface CommentsModalProps {
   closeModal: () => void;
@@ -32,7 +33,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
   onDelete,
 }) => {
   const { showToast } = useToast();
-  const [screenStatus, setScreenStatus] = useState<LoaderStatus>('IDLE');
+  const [screenStatus, setScreenStatus] = useState<CommentLoadStatus>('IDLE');
   const [comments, setComments] = useState<CommentDetails[]>([]);
   const [showCommentLoader, setShowCommentLoader] = useState(false);
 

@@ -1,6 +1,6 @@
 import Backdrop from '@mui/material/Backdrop';
 import { useLoader } from './useLoader';
-import { CircleLoader } from './Circle-loader';
+import { CircleLoader } from 'shared/components/loaders/circle-loader';
 
 export const BackdropLoader = () => {
   const { isBackdropVisible } = useLoader();

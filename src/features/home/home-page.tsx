@@ -1,6 +1,5 @@
 import styles from './home-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
-import { LoaderStatus } from 'features/loader';
 import { PostCard, PostCardSkeleton, PostService } from 'features/posts';
 import { handleErrorWithToast, useToast } from 'features/toast';
 import { LikeService } from 'features/like';
@@ -9,9 +8,11 @@ import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import type { Post } from 'features/posts';
 
+type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';
+
 export const HomePage = () => {
   const { showToast } = useToast();
-  const [showLoader, setShowLoader] = useState<LoaderStatus>('LOADING');
+  const [showLoader, setShowLoader] = useState<FeedLoadStatus>('LOADING');
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPostIdForComments, setSelectedPostIdForComments] = useState<
     string | null
