@@ -17,5 +17,35 @@ module.exports = {
     ],
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/no-explicit-any': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: ['features/*/**'],
+            message:
+              'Import feature APIs from features/<feature>, not implementation paths.',
+          },
+        ],
+      },
+    ],
   },
+  overrides: [
+    {
+      files: ['src/shared/**/*.{ts,tsx}'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: ['features', 'features/*', 'features/*/**'],
+                message: 'Shared modules must not depend on feature modules.',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
 };
