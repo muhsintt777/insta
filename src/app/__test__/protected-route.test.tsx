@@ -27,10 +27,10 @@ describe('ProtectedRoute', () => {
       </MemoryRouter>,
     );
 
-  it('renders children when user is logged in', () => {
-    (useAppSelector as ReturnType<typeof vi.fn>).mockReturnValue({
-      details: { id: 'user-1', fullName: 'John Doe' },
-    });
+  it('renders outlet content when authenticated', () => {
+    (useAppSelector as ReturnType<typeof vi.fn>).mockReturnValue(
+      'AUTHENTICATED',
+    );
 
     renderProtectedRoute();
 
@@ -38,10 +38,10 @@ describe('ProtectedRoute', () => {
     expect(screen.getByText('Protected Content')).toBeInTheDocument();
   });
 
-  it('redirects to login when user is not logged in', () => {
-    (useAppSelector as ReturnType<typeof vi.fn>).mockReturnValue({
-      details: null,
-    });
+  it('redirects to login when unauthenticated', () => {
+    (useAppSelector as ReturnType<typeof vi.fn>).mockReturnValue(
+      'UNAUTHENTICATED',
+    );
 
     renderProtectedRoute();
 
@@ -49,10 +49,8 @@ describe('ProtectedRoute', () => {
     expect(screen.getByTestId('current-path')).toHaveTextContent('/auth/login');
   });
 
-  it('redirects when user details is undefined', () => {
-    (useAppSelector as ReturnType<typeof vi.fn>).mockReturnValue({
-      details: undefined,
-    });
+  it('redirects when auth status is not authenticated', () => {
+    (useAppSelector as ReturnType<typeof vi.fn>).mockReturnValue('FAILED');
 
     renderProtectedRoute();
 

@@ -8,17 +8,12 @@ import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
 // This avoids importing actual slices which pull in axios through circular dependencies
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    status: 'LOGGED_OUT' as 'LOGGED_OUT' | 'SUCCESS' | 'LOADING' | 'FAILED',
-    details: null as null | Record<string, unknown>,
-  },
+  initialState: { details: null as null | Record<string, unknown> },
   reducers: {
-    login: (state, action) => {
-      state.status = 'SUCCESS';
+    setProfile: (state, action) => {
       state.details = action.payload;
     },
-    logout: (state) => {
-      state.status = 'LOGGED_OUT';
+    clearProfile: (state) => {
       state.details = null;
     },
   },
@@ -58,8 +53,29 @@ const loaderSlice = createSlice({
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { token: null as string | null },
+  initialState: {
+    token: null as string | null,
+    status: 'UNAUTHENTICATED' as
+      | 'LOADING'
+      | 'AUTHENTICATED'
+      | 'UNAUTHENTICATED'
+      | 'FAILED',
+  },
   reducers: {
+    sessionLoading: (state) => {
+      state.status = 'LOADING';
+    },
+    sessionAuthenticated: (state) => {
+      state.status = 'AUTHENTICATED';
+    },
+    sessionUnauthenticated: (state) => {
+      state.status = 'UNAUTHENTICATED';
+      state.token = null;
+    },
+    sessionFailed: (state) => {
+      state.status = 'FAILED';
+      state.token = null;
+    },
     setToken: (state, action) => {
       state.token = action.payload;
     },
@@ -101,7 +117,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'wrapper'> {
  * @example
  * ```tsx
  * const { store } = renderWithProviders(<MyComponent />, {
- *   preloadedState: { user: { status: 'SUCCESS', details: mockUser } },
+ *   preloadedState: { user: { details: mockUser } },
  *   route: '/profile',
  * });
  * ```

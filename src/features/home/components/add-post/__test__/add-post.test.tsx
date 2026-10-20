@@ -48,7 +48,6 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'SUCCESS',
         },
       },
     });
@@ -63,7 +62,6 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'SUCCESS',
         },
       },
     });
@@ -83,7 +81,6 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'SUCCESS',
         },
       },
     });
@@ -111,7 +108,6 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'SUCCESS',
         },
       },
     });
@@ -132,7 +128,6 @@ describe('AddPost', () => {
       preloadedState: {
         user: {
           details: mockUserDetails,
-          status: 'SUCCESS',
         },
       },
     });

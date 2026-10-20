@@ -25,7 +25,7 @@ describe('Header', () => {
     it('does not render profile section when user status is not SUCCESS', () => {
       renderWithProviders(<Header />, {
         preloadedState: {
-          user: { status: 'LOADING', details: null },
+          user: { details: null },
         },
       });
 
@@ -38,7 +38,6 @@ describe('Header', () => {
   describe('when user is logged in', () => {
     const loggedInState = {
       user: {
-        status: 'SUCCESS' as const,
         details: {
           id: 1,
           username: 'johndoe',

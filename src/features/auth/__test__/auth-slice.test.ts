@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { authReducer, authActions } from '../auth-slice';
 
 describe('authSlice', () => {
-  const initialState = { token: null };
+  const initialState = { token: null, status: 'LOADING' as const };
 
   describe('setToken', () => {
     it('sets the token', () => {
@@ -13,7 +13,10 @@ describe('authSlice', () => {
     });
 
     it('overwrites existing token', () => {
-      const existingState = { token: 'Bearer old-token' };
+      const existingState = {
+        token: 'Bearer old-token',
+        status: 'AUTHENTICATED' as const,
+      };
       const newToken = 'Bearer new-token';
       const state = authReducer(existingState, authActions.setToken(newToken));
 
@@ -23,7 +26,10 @@ describe('authSlice', () => {
 
   describe('clearToken', () => {
     it('clears the token', () => {
-      const existingState = { token: 'Bearer abc123' };
+      const existingState = {
+        token: 'Bearer abc123',
+        status: 'AUTHENTICATED' as const,
+      };
       const state = authReducer(existingState, authActions.clearToken());
 
       expect(state.token).toBeNull();
@@ -33,6 +39,35 @@ describe('authSlice', () => {
       const state = authReducer(initialState, authActions.clearToken());
 
       expect(state.token).toBeNull();
+    });
+  });
+
+  describe('session status', () => {
+    it('marks a session as authenticated', () => {
+      const state = authReducer(
+        initialState,
+        authActions.sessionAuthenticated(),
+      );
+
+      expect(state.status).toBe('AUTHENTICATED');
+    });
+
+    it('marks a failed session and clears its token', () => {
+      const state = authReducer(
+        { token: 'Bearer abc123', status: 'LOADING' as const },
+        authActions.sessionFailed(),
+      );
+
+      expect(state).toEqual({ token: null, status: 'FAILED' });
+    });
+
+    it('marks a signed-out session and clears its token', () => {
+      const state = authReducer(
+        { token: 'Bearer abc123', status: 'AUTHENTICATED' as const },
+        authActions.sessionUnauthenticated(),
+      );
+
+      expect(state).toEqual({ token: null, status: 'UNAUTHENTICATED' });
     });
   });
 

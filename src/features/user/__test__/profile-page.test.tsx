@@ -99,9 +99,7 @@ describe('ProfilePage', () => {
   describe('rendering', () => {
     it('renders profile header with PROFILE title', async () => {
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       expect(screen.getByText('PROFILE')).toBeInTheDocument();
@@ -109,9 +107,7 @@ describe('ProfilePage', () => {
 
     it('renders user name', async () => {
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       expect(screen.getByText('John Doe')).toBeInTheDocument();
@@ -119,9 +115,7 @@ describe('ProfilePage', () => {
 
     it('renders user stats', async () => {
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       expect(screen.getByText('5 posts | 10 friends')).toBeInTheDocument();
@@ -129,9 +123,7 @@ describe('ProfilePage', () => {
 
     it('renders user bio', async () => {
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       expect(screen.getByText('Test bio')).toBeInTheDocument();
@@ -140,9 +132,7 @@ describe('ProfilePage', () => {
     it('renders "Add bio..." when user has no bio', async () => {
       const userWithNoBio = { ...mockUserDetails, bio: '' };
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: userWithNoBio },
-        },
+        preloadedState: { user: { details: userWithNoBio } },
       });
 
       expect(screen.getByText('Add bio...')).toBeInTheDocument();
@@ -150,9 +140,7 @@ describe('ProfilePage', () => {
 
     it('renders edit profile button', async () => {
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       // Find the IconButton for edit
@@ -173,9 +161,7 @@ describe('ProfilePage', () => {
       );
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       // Component starts loading posts
@@ -186,9 +172,7 @@ describe('ProfilePage', () => {
   describe('posts display', () => {
     it('shows posts after loading', async () => {
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -201,9 +185,7 @@ describe('ProfilePage', () => {
       (PostService.fetchUserPosts as Mock).mockResolvedValue([]);
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -216,9 +198,7 @@ describe('ProfilePage', () => {
       (PostService.fetchUserPosts as Mock).mockRejectedValue(mockError);
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -235,9 +215,7 @@ describe('ProfilePage', () => {
       const user = userEvent.setup();
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       // Find and click the back button (first button in AppBar)
@@ -253,9 +231,7 @@ describe('ProfilePage', () => {
       const user = userEvent.setup();
 
       const { container } = renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -282,9 +258,7 @@ describe('ProfilePage', () => {
       (LikeService.createLike as Mock).mockResolvedValue({});
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -312,9 +286,7 @@ describe('ProfilePage', () => {
       (LikeService.deleteLike as Mock).mockResolvedValue({});
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -343,9 +315,7 @@ describe('ProfilePage', () => {
       (PostService.deletePost as Mock).mockResolvedValue({});
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -379,9 +349,7 @@ describe('ProfilePage', () => {
       (PostService.deletePost as Mock).mockRejectedValue(mockError);
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -418,9 +386,7 @@ describe('ProfilePage', () => {
       const user = userEvent.setup();
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {
@@ -449,9 +415,7 @@ describe('ProfilePage', () => {
       const user = userEvent.setup();
 
       renderWithProviders(<ProfilePage />, {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       });
 
       await waitFor(() => {

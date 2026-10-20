@@ -43,9 +43,7 @@ describe('EditUserModal', () => {
 
   it('renders modal with title', () => {
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(screen.getByText('Edit Profile')).toBeInTheDocument();
@@ -53,9 +51,7 @@ describe('EditUserModal', () => {
 
   it('renders fullname input field', () => {
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(screen.getByText('Fullname')).toBeInTheDocument();
@@ -64,9 +60,7 @@ describe('EditUserModal', () => {
 
   it('renders bio input field', () => {
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(screen.getByText('Bio')).toBeInTheDocument();
@@ -75,9 +69,7 @@ describe('EditUserModal', () => {
 
   it('pre-fills form with user details', () => {
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(getFullnameInput()).toHaveValue('John Doe');
@@ -86,9 +78,7 @@ describe('EditUserModal', () => {
 
   it('renders SAVE button', () => {
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(screen.getByRole('button', { name: 'SAVE' })).toBeInTheDocument();
@@ -96,9 +86,7 @@ describe('EditUserModal', () => {
 
   it('renders CANCEL button', () => {
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(screen.getByRole('button', { name: 'CANCEL' })).toBeInTheDocument();
@@ -111,9 +99,7 @@ describe('EditUserModal', () => {
     renderWithProviders(
       <EditUserModal isOpen={true} closeModal={closeModal} />,
       {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       },
     );
 
@@ -129,9 +115,7 @@ describe('EditUserModal', () => {
     renderWithProviders(
       <EditUserModal isOpen={true} closeModal={closeModal} />,
       {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       },
     );
 
@@ -155,9 +139,7 @@ describe('EditUserModal', () => {
     renderWithProviders(
       <EditUserModal isOpen={true} closeModal={closeModal} />,
       {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       },
     );
 
@@ -185,9 +167,7 @@ describe('EditUserModal', () => {
     renderWithProviders(
       <EditUserModal isOpen={true} closeModal={closeModal} />,
       {
-        preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
-        },
+        preloadedState: { user: { details: mockUserDetails } },
       },
     );
 
@@ -206,9 +186,7 @@ describe('EditUserModal', () => {
     (UserService.editUserProfile as Mock).mockRejectedValue(mockError);
 
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     const fullnameInput = getFullnameInput();
@@ -227,9 +205,7 @@ describe('EditUserModal', () => {
 
   it('does not render when isOpen is false', () => {
     renderWithProviders(<EditUserModal isOpen={false} closeModal={vi.fn()} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     expect(screen.queryByText('Edit Profile')).not.toBeInTheDocument();
@@ -239,9 +215,7 @@ describe('EditUserModal', () => {
     const user = userEvent.setup();
 
     renderWithProviders(<EditUserModal {...defaultProps} />, {
-      preloadedState: {
-        user: { status: 'SUCCESS', details: mockUserDetails },
-      },
+      preloadedState: { user: { details: mockUserDetails } },
     });
 
     const fullnameInput = getFullnameInput();

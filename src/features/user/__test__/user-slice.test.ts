@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { userActions, userReducer } from '../user-slice';
-import type { User, UserState, UserSuccessState } from '../user-types';
+import type { User } from '../user-types';
 
 describe('userSlice', () => {
   const mockUser: User = {
@@ -18,151 +18,74 @@ describe('userSlice', () => {
     updatedAt: '2024-01-01T00:00:00.000Z',
   };
 
-  describe('reducers', () => {
-    it('logout should set status to LOGGED_OUT and details to null', () => {
-      const state: UserSuccessState = {
-        status: 'SUCCESS',
-        details: mockUser,
-      };
+  it('sets the profile', () => {
+    const state = userReducer(
+      { details: null },
+      userActions.setProfile(mockUser),
+    );
+    expect(state.details).toEqual(mockUser);
+  });
 
-      const newState = userReducer(state, userActions.logout());
+  it('clears the profile', () => {
+    const state = userReducer(
+      { details: mockUser },
+      userActions.clearProfile(),
+    );
+    expect(state.details).toBeNull();
+  });
 
-      expect(newState.status).toBe('LOGGED_OUT');
-      expect(newState.details).toBeNull();
+  describe('updateUserResourceCount', () => {
+    it('increments postCount', () => {
+      const state = userReducer(
+        { details: mockUser },
+        userActions.updateUserResourceCount({
+          type: 'increment',
+          key: 'postCount',
+        }),
+      );
+      expect(state.details?.postCount).toBe(11);
     });
 
-    it('login should set status to SUCCESS and store user details', () => {
-      const state: UserState = {
-        status: 'LOADING',
-        details: null,
-      };
-
-      const newState = userReducer(state, userActions.login(mockUser));
-
-      expect(newState.status).toBe('SUCCESS');
-      expect(newState.details).toEqual(mockUser);
+    it('decrements postCount', () => {
+      const state = userReducer(
+        { details: mockUser },
+        userActions.updateUserResourceCount({
+          type: 'decrement',
+          key: 'postCount',
+        }),
+      );
+      expect(state.details?.postCount).toBe(9);
     });
 
-    describe('updateUserResourceCount', () => {
-      it('increments postCount', () => {
-        const state: UserSuccessState = {
-          status: 'SUCCESS',
-          details: { ...mockUser, postCount: 10 },
-        };
-
-        const newState = userReducer(
-          state,
-          userActions.updateUserResourceCount({
-            type: 'increment',
-            key: 'postCount',
-          }),
-        );
-
-        expect(newState.details?.postCount).toBe(11);
-      });
-
-      it('decrements postCount', () => {
-        const state: UserSuccessState = {
-          status: 'SUCCESS',
-          details: { ...mockUser, postCount: 10 },
-        };
-
-        const newState = userReducer(
-          state,
-          userActions.updateUserResourceCount({
-            type: 'decrement',
-            key: 'postCount',
-          }),
-        );
-
-        expect(newState.details?.postCount).toBe(9);
-      });
-
-      it('increments friendsCount', () => {
-        const state: UserSuccessState = {
-          status: 'SUCCESS',
-          details: { ...mockUser, friendsCount: 5 },
-        };
-
-        const newState = userReducer(
-          state,
-          userActions.updateUserResourceCount({
-            type: 'increment',
-            key: 'friendsCount',
-          }),
-        );
-
-        expect(newState.details?.friendsCount).toBe(6);
-      });
-
-      it('does nothing when status is not SUCCESS', () => {
-        const state: UserState = {
-          status: 'LOADING',
-          details: null,
-        };
-
-        const newState = userReducer(
-          state,
-          userActions.updateUserResourceCount({
-            type: 'increment',
-            key: 'postCount',
-          }),
-        );
-
-        expect(newState.details).toBeNull();
-      });
-    });
-
-    describe('editUser', () => {
-      it('updates user details partially', () => {
-        const state: UserSuccessState = {
-          status: 'SUCCESS',
-          details: mockUser,
-        };
-
-        const newState = userReducer(
-          state,
-          userActions.editUser({ fullName: 'Jane Doe', bio: 'New bio' }),
-        );
-
-        expect(newState.details?.fullName).toBe('Jane Doe');
-        expect(newState.details?.bio).toBe('New bio');
-        expect(newState.details?.email).toBe('john@example.com');
-      });
-
-      it('does nothing when status is not SUCCESS', () => {
-        const state: UserState = {
-          status: 'LOADING',
-          details: null,
-        };
-
-        const newState = userReducer(
-          state,
-          userActions.editUser({ fullName: 'Jane Doe' }),
-        );
-
-        expect(newState.details).toBeNull();
-      });
+    it('does nothing when no profile is loaded', () => {
+      const state = userReducer(
+        { details: null },
+        userActions.updateUserResourceCount({
+          type: 'increment',
+          key: 'postCount',
+        }),
+      );
+      expect(state.details).toBeNull();
     });
   });
 
-  it('startLoading clears existing user details', () => {
-    const state: UserSuccessState = { status: 'SUCCESS', details: mockUser };
+  describe('editUser', () => {
+    it('updates user details partially', () => {
+      const state = userReducer(
+        { details: mockUser },
+        userActions.editUser({ fullName: 'Jane Doe', bio: 'New bio' }),
+      );
+      expect(state.details?.fullName).toBe('Jane Doe');
+      expect(state.details?.bio).toBe('New bio');
+      expect(state.details?.email).toBe('john@example.com');
+    });
 
-    const newState = userReducer(state, userActions.startLoading());
-
-    expect(newState).toMatchObject({ status: 'LOADING', details: null });
-  });
-
-  it('loadFailed sets the failed state', () => {
-    const state: UserState = { status: 'LOADING', details: null };
-
-    const newState = userReducer(state, userActions.loadFailed('Fetch failed'));
-
-    expect(newState).toMatchObject({
-      status: 'FAILED',
-      details: null,
-      error: 'Fetch failed',
+    it('does nothing when no profile is loaded', () => {
+      const state = userReducer(
+        { details: null },
+        userActions.editUser({ fullName: 'Jane Doe' }),
+      );
+      expect(state.details).toBeNull();
     });
   });
 });

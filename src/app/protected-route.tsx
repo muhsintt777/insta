@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAppSelector } from 'shared/hooks/redux-hooks';
-import { selectUser } from 'features/user/user-slice';
+import { selectAuthStatus } from 'features/auth';
 
 export const ProtectedRoute = () => {
-  const user = useAppSelector(selectUser);
-  if (user.details) {
+  const authStatus = useAppSelector(selectAuthStatus);
+  if (authStatus === 'AUTHENTICATED') {
     return <Outlet />;
   } else {
     return <Navigate to="/auth/login" replace={true} />;

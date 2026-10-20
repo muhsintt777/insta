@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import appLogo from 'shared/assets/images/app-logo.svg';
 import { CustomMenu } from 'shared/components/menus/custom-menu';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
-import { AuthService, authActions } from 'features/auth';
-import { selectUser, userActions } from 'features/user/user-slice';
+import { signOut } from 'features/auth';
+import { selectUser } from 'features/user';
 import { themeActions } from 'features/theme/theme-slice';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
@@ -41,9 +41,7 @@ export const Header = memo(() => {
 
   const handleLogout = useCallback(async () => {
     try {
-      await AuthService.signout();
-      dispatch(authActions.clearToken());
-      dispatch(userActions.logout());
+      await signOut(dispatch);
     } catch (error) {
       handleErrorWithToast(error, showToast);
     }
@@ -75,7 +73,7 @@ export const Header = memo(() => {
       <header className={styles.container}>
         <div className={styles.contentWrap}>
           <img src={appLogo} alt="app-logo" />
-          {user.status === 'SUCCESS' && (
+          {user.details && (
             <>
               <div className={styles.profile} onClick={handleClick}>
                 <p>{user.details.username}</p>

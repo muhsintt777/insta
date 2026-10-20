@@ -34,6 +34,7 @@ vi.mock('features/user/profile-page', () => ({
 
 vi.mock('features/auth', () => ({
   restoreSession: () => ({ type: 'auth/restoreSession' }),
+  selectAuthStatus: (state: { auth: { status: string } }) => state.auth.status,
   LoginPage: () => <div data-testid="login-page">Login</div>,
   SignupPage: () => <div data-testid="signup-page">SignupPage</div>,
 }));
@@ -73,10 +74,10 @@ describe('App', () => {
   });
 
   describe('loading state', () => {
-    it('shows loader when user status is LOADING', () => {
+    it('shows loader while auth status is LOADING', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'LOADING', details: null },
+          auth: { status: 'LOADING', token: null },
         },
         route: '/',
       });
@@ -87,7 +88,7 @@ describe('App', () => {
     it('shows app logo during loading', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'LOADING', details: null },
+          auth: { status: 'LOADING', token: null },
         },
         route: '/',
       });
@@ -98,7 +99,7 @@ describe('App', () => {
     it('shows loading note message', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'LOADING', details: null },
+          auth: { status: 'LOADING', token: null },
         },
         route: '/',
       });
@@ -113,7 +114,8 @@ describe('App', () => {
     it('renders BackdropLoader', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
+          auth: { status: 'AUTHENTICATED', token: 'Bearer test-token' },
+          user: { details: mockUserDetails },
         },
         route: '/',
       });
@@ -124,7 +126,8 @@ describe('App', () => {
     it('renders Toast component', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
+          auth: { status: 'AUTHENTICATED', token: 'Bearer test-token' },
+          user: { details: mockUserDetails },
         },
         route: '/',
       });
@@ -135,7 +138,8 @@ describe('App', () => {
     it('renders routes when user is loaded', async () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'SUCCESS', details: mockUserDetails },
+          auth: { status: 'AUTHENTICATED', token: 'Bearer test-token' },
+          user: { details: mockUserDetails },
         },
         route: '/',
       });
@@ -147,10 +151,10 @@ describe('App', () => {
   });
 
   describe('failed state', () => {
-    it('renders routes when user status is FAILED', () => {
+    it('renders routes when auth status is FAILED', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'FAILED', details: null },
+          auth: { status: 'FAILED', token: null },
         },
         route: '/',
       });
@@ -160,10 +164,10 @@ describe('App', () => {
   });
 
   describe('logged out state', () => {
-    it('renders routes when user is LOGGED_OUT', () => {
+    it('renders routes when auth status is UNAUTHENTICATED', () => {
       renderWithProviders(<App />, {
         preloadedState: {
-          user: { status: 'LOGGED_OUT', details: null },
+          auth: { status: 'UNAUTHENTICATED', token: null },
         },
         route: '/',
       });
