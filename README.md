@@ -1,10 +1,8 @@
 # Insta Social
 
-**A full-stack-connected social app built with React, TypeScript, and Redux Toolkit.**
+**An API-connected social app built with React, TypeScript, and Redux Toolkit.**
 
 An Instagram-inspired single-page application for sharing posts and interacting with a community. The project emphasizes domain-oriented organization, typed state and forms, resilient authentication requests, and behavior-focused component tests.
-
-</div>
 
 ## Product Scope
 
@@ -16,33 +14,36 @@ An Instagram-inspired single-page application for sharing posts and interacting 
 
 ## Engineering Highlights
 
-- **Feature-oriented architecture:** UI, services, validation, and tests are grouped by product domain instead of being organized only by technical layer.
-- **Explicit application state:** Redux Toolkit slices represent user/session and auth state, with cross-cutting theme, loader, and toast state exposed through typed hooks.
-- **Centralized API boundary:** a configured Axios client applies credentials and authorization consistently, and handles expired-token refresh and signed-out responses.
-- **Route and layout composition:** React Router nests authenticated application pages under layouts while keeping login and signup public.
-- **Validated form boundaries:** React Hook Form and Zod schemas keep form types, constraints, and user-facing validation close to each feature.
-- **Testable UI composition:** Vitest, Testing Library, and a shared render helper provide Redux and router context for component-level behavior tests.
-- **Reusable presentation system:** shared controls, headers, menus, modals, loaders, and SCSS modules keep feature screens composable.
+- **Domain-oriented modules:** features keep UI, service calls, validation, state, and focused tests together, with `index.ts` files defining their supported public APIs.
+- **Enforced dependency direction:** ESLint prevents shared code from depending on app or feature modules, prevents features from depending on app-store composition, and restricts feature-to-feature imports to public entry points.
+- **Composition at the application edge:** the app owns route and layout composition; `main.tsx` wires the Redux provider, router, and HTTP callbacks without pushing those concerns into domain modules.
+- **Explicit state ownership:** Redux Toolkit holds session, user, theme, loader, and toast state. Screen-specific data and interactions remain local when they do not need to be shared.
+- **Centralized request and auth handling:** feature services use one Axios client for credentials and authorization. An app-level adapter supplies token and session callbacks, keeping the HTTP utility independent of the store and auth feature.
+- **Validated form and API boundaries:** Zod schemas define constraints and inferred form types; service methods handle endpoint details, multipart post uploads, empty responses, and unexpected status codes.
+- **Behavior-focused testing:** Vitest and Testing Library cover routes, forms, services, schemas, Redux slices, and shared UI. A reusable render helper supplies isolated Redux and router context.
+- **Reusable presentation layer:** shared controls and utilities complement feature-owned screens, with SCSS modules for component-level styling.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-	Browser[Browser] --> App[App composition and routes]
-	App --> Domains[Domain feature modules]
-	App --> CrossCutting[Cross-cutting feature modules]
-	App --> Store[Redux store composition]
-	Domains --> CrossCutting
-	Domains --> Shared[Shared UI and infrastructure]
-	CrossCutting --> Shared
-	Domains --> Services[Domain API services]
+	Browser[Browser] --> Main[main.tsx: providers and HTTP setup]
+	Main --> App[App: routes and layouts]
+	Main --> Store[Redux store]
+	App --> Features[Feature modules]
+	Features -->|when needed| CrossCutting[Toast, loader, and theme APIs]
+	Features --> SharedUI[Shared UI and utilities]
+	Features -->|API-backed features| Services[Feature services]
 	Services --> Http[Shared Axios client]
 	Http --> API[Social app API]
+	Http -. auth callbacks .-> Adapter[App HTTP adapter]
+	Adapter --> Auth[Auth session operations]
+	Auth --> Store
 ```
 
 ### Request and authentication lifecycle
 
-The app fetches the current user during startup. The configured HTTP client sends cookies and the current authorization token, refreshes credentials when the API reports an expired token, and clears user state when the API reports a signed-out session. Protected routes render only when user details are available; otherwise, navigation redirects to `/auth/login`.
+At startup, `main.tsx` configures the HTTP callbacks before rendering the app. The app restores the session, obtains a token, then fetches the current user; the loading state is shown while this is in progress. Requests use cookies and the current authorization token. If the API reports an expired token, the client refreshes it and retries the failed request; a signed-out response clears the session. Protected routes render only for an authenticated session, otherwise redirecting to `/auth/login`.
 
 ### Code organization
 
@@ -53,11 +54,19 @@ The app fetches the current user during startup. The configured HTTP client send
 | `src/shared`   | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
 | `src/test`     | Shared render helpers and test setup                                                             |
 
+### Implementation examples
+
+| Concern                  | Example                                                                                                                                                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTP and auth boundary   | [`http.ts`](src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](src/app/configure-http.ts) injects app-owned auth callbacks. |
+| Typed form validation    | [`post-validation.ts`](src/features/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                       |
+| Isolated component tests | [`render.tsx`](src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.               |
+
 ### Cross-cutting capabilities
 
-Toast, loader, and theme are cross-cutting feature modules under `src/features`, not generic `shared` primitives. They own app-wide behavior and state, and expose the capabilities other modules need through their public entry points. Domain features may depend on those public APIs; `shared` must remain domain-agnostic and must not own feature workflows or business state.
+Toast, loader, and theme are cross-cutting feature modules under `src/features`, not generic `shared` primitives. They own app-wide behavior and state, and expose the capabilities other modules need through their public entry points. Domain features may depend on those public APIs; `shared` remains domain-agnostic and does not own feature workflows or business state.
 
-Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary and prevents `shared` from importing feature modules.
+Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary, prevents feature modules from importing app-store composition, and prevents `shared` from importing app or feature modules.
 
 ### Feature dependencies
 
@@ -138,9 +147,9 @@ Tests live alongside the source they exercise. The suite uses jsdom and Testing 
 
 ## API Configuration
 
-The API base URL and server mode are defined in `src/configs/env.ts`. The current configuration points to the hosted API. Update `API_URL` there when using another backend.
+The API base URL and server mode are defined in `src/shared/lib/env.ts`. The current base URL is `http://localhost:4000/api`; change `ENV.API_URL` there to use another backend. The configuration is currently a source constant rather than a Vite environment variable.
 
-The Axios client uses `withCredentials: true`, so the API must allow credentialed cross-origin requests from the app origin and configure cookie attributes appropriately. Authentication refresh and protected-route behavior depend on the API's auth endpoints and error types.
+The Axios client uses `withCredentials: true`, so a cross-origin API must allow credentialed requests from the app origin and configure cookie attributes appropriately. Authentication refresh and protected-route behavior depend on the API's auth endpoints and error types.
 
 ## Scripts
 
