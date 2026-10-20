@@ -13,6 +13,7 @@ import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
 import { CircleLoader } from 'features/loader';
 import { CommentService } from './comment-service';
+import type { CommentDetails } from './comment-types';
 import { CommentCard } from './comment-card';
 import { commentFormSchema, CommentFormSchema } from './comment-validation';
 

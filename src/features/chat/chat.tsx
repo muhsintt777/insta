@@ -1,11 +1,3 @@
-import styles from './chatStyle.module.scss';
-import { ConstructionIcon } from 'shared/assets/icons/construction-icon';
+import { UnderConstruction } from 'shared/components/under-construction/under-construction';
 
-export const Chat = () => {
-  return (
-    <div className={styles.container}>
-      <ConstructionIcon size="50px" color="grey" />
-      <p>Under construction...</p>
-    </div>
-  );
-};
+export const Chat = () => <UnderConstruction />;

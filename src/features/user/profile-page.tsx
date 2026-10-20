@@ -8,18 +8,18 @@ import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
-import { PostService } from 'features/posts/post-service';
-import { useLoader } from 'features/loader/useLoader';
-import { selectUser, userActions } from './user-slice';
 import {
+  EditPostModal,
   PostCard,
   PostCardSkeleton,
-} from 'features/posts/components/post-card';
-import { EditPostModal } from 'features/posts/edit-post-modal';
+  PostService,
+} from 'features/posts';
+import { useLoader } from 'features/loader/useLoader';
+import { selectUser, userActions } from './user-slice';
 import { LikeService } from 'features/like/like-service';
-import { CommentsModal } from 'features/comment/comments-modal';
+import { CommentsModal } from 'features/comment';
 import { EditUserModal } from './edit-user-modal';
-import type { EditPostParams, Post } from 'features/posts/post-types';
+import type { EditPostParams, Post } from 'features/posts';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();

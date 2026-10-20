@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { http } from 'shared/lib/http';
 import { CommentService } from '../comment-service';
+import type { CommentDetails } from '../comment-types';
 
 vi.mock('shared/lib/http', () => ({
   http: {

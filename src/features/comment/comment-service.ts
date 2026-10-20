@@ -1,4 +1,5 @@
 import { http } from 'shared/lib/http';
+import type { CommentDetails } from './comment-types';
 
 export class CommentService {
   static async listPostComments(postId: string) {

@@ -1,4 +1,4 @@
-interface CommentDetails {
+export interface CommentDetails {
   id: string;
   content: string;
   creator: {

@@ -23,7 +23,7 @@ vi.mock('features/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
-vi.mock('features/comment/comments-modal', () => ({
+vi.mock('features/comment', () => ({
   CommentsModal: ({ isOpen }: { isOpen: boolean }) =>
     isOpen ? <div data-testid="comments-modal">Comments Modal</div> : null,
 }));

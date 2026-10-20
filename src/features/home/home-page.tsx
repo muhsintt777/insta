@@ -1,18 +1,14 @@
 import styles from './home-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { LoaderStatus } from 'features/loader/types';
-import {
-  PostCard,
-  PostCardSkeleton,
-} from 'features/posts/components/post-card';
+import { PostCard, PostCardSkeleton, PostService } from 'features/posts';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 import { useToast } from 'features/toast/useToast';
-import { PostService } from 'features/posts/post-service';
 import { LikeService } from 'features/like/like-service';
-import { CommentsModal } from 'features/comment/comments-modal';
+import { CommentsModal } from 'features/comment';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import type { Post } from 'features/posts/post-types';
+import type { Post } from 'features/posts';
 
 export const HomePage = () => {
   const { showToast } = useToast();

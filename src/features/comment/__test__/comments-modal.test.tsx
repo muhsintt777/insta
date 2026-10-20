@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { CommentsModal } from '../comments-modal';
 import { CommentService } from '../comment-service';
+import type { CommentDetails } from '../comment-types';
 import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
 
 vi.mock('../comment-service', () => ({
