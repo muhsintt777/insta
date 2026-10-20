@@ -12,12 +12,12 @@ An Instagram-inspired single-page application for sharing posts and interacting 
 - Like posts and open comments for discussion.
 - Sign up, sign in, view and edit a profile, and manage friends.
 - Navigate chat and notifications areas within the authenticated application.
-- Use shared loading, toast, and theme state for consistent application feedback.
+- Use cross-cutting loader, toast, and theme capabilities for consistent application feedback.
 
 ## Engineering Highlights
 
 - **Feature-oriented architecture:** UI, services, validation, and tests are grouped by product domain instead of being organized only by technical layer.
-- **Explicit application state:** Redux Toolkit slices represent user/session, auth token, theme, loader, and toast state; typed hooks provide the React integration point.
+- **Explicit application state:** Redux Toolkit slices represent user/session and auth state, with cross-cutting theme, loader, and toast state exposed through typed hooks.
 - **Centralized API boundary:** a configured Axios client applies credentials and authorization consistently, and handles expired-token refresh and signed-out responses.
 - **Route and layout composition:** React Router nests authenticated application pages under layouts while keeping login and signup public.
 - **Validated form boundaries:** React Hook Form and Zod schemas keep form types, constraints, and user-facing validation close to each feature.
@@ -28,15 +28,16 @@ An Instagram-inspired single-page application for sharing posts and interacting 
 
 ```mermaid
 flowchart TD
-	Browser[Browser] --> App[React app and route layouts]
-	App --> Features[Feature domains]
-	Features --> Components[Shared components]
-	Features --> Store[Redux Toolkit store]
-	Features --> Services[Domain API services]
-	Services --> Http[Axios client]
+	Browser[Browser] --> App[App composition and routes]
+	App --> Domains[Domain feature modules]
+	App --> CrossCutting[Cross-cutting feature modules]
+	App --> Store[Redux store composition]
+	Domains --> CrossCutting
+	Domains --> Shared[Shared UI and infrastructure]
+	CrossCutting --> Shared
+	Domains --> Services[Domain API services]
+	Services --> Http[Shared Axios client]
 	Http --> API[Social app API]
-	Http --> Auth[Auth refresh and sign-out handling]
-	Store --> Feedback[Loader, toast, theme, and user state]
 ```
 
 ### Request and authentication lifecycle
@@ -45,19 +46,22 @@ The app fetches the current user during startup. The configured HTTP client send
 
 ### Code organization
 
-| Area                        | Responsibility                                                                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/main`                  | App composition, route definitions, global styles, and protected-route behavior                                                      |
-| `src/layouts`               | Shared page shells for authenticated, authentication, and secondary pages                                                            |
-| `src/features`              | Domain workflows and state, including auth, posts, likes, comments, friends, chat, notifications, user profiles, theme, and feedback |
-| `src/components`            | Reusable UI primitives such as buttons, inputs, menus, modals, and loaders                                                           |
-| `src/configs`               | Redux store, Axios client, API environment, and shared constants                                                                     |
-| `src/hooks` and `src/utils` | Typed Redux hooks and cross-feature helpers, schemas, and date utilities                                                             |
-| `src/test`                  | Shared render helpers for components using Redux and React Router                                                                    |
+| Area           | Responsibility                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------ |
+| `src/app`      | Route and layout composition, application startup, Redux store composition, and app-level wiring |
+| `src/features` | Feature modules with their own UI, services, state, and public `index.ts` API                    |
+| `src/shared`   | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
+| `src/test`     | Shared render helpers and test setup                                                             |
+
+### Cross-cutting capabilities
+
+Toast, loader, and theme are cross-cutting feature modules under `src/features`, not generic `shared` primitives. They own app-wide behavior and state, and expose the capabilities other modules need through their public entry points. Domain features may depend on those public APIs; `shared` must remain domain-agnostic and must not own feature workflows or business state.
+
+Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary and prevents `shared` from importing feature modules.
 
 ### State ownership
 
-Redux stores cross-cutting state: authenticated user details and loading status, the auth token, theme preference, global loader visibility, and toast messages. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
+Redux stores application state such as authenticated user details and the auth token, plus cross-cutting theme, loader, and toast state. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
 
 ## Stack
 
