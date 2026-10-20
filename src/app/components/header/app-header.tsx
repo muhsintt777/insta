@@ -8,9 +8,8 @@ import { CustomMenu } from 'shared/components/menus/custom-menu';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { signOut } from 'features/auth';
 import { selectUser } from 'features/user';
-import { themeActions } from 'features/theme/theme-slice';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { useToast } from 'features/toast/useToast';
+import { themeActions } from 'features/theme';
+import { handleErrorWithToast, useToast } from 'features/toast';
 
 export const Header = memo(() => {
   const navigate = useNavigate();

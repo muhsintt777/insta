@@ -3,8 +3,7 @@ import { FC, useState, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { CreatePostModal } from 'features/posts';
-import { selectUser } from 'features/user/user-slice';
-import { userActions } from 'features/user/user-slice';
+import { selectUser, userActions } from 'features/user';
 
 interface AddPostProps {
   onPostCreated?: () => void;

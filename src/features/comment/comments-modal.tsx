@@ -9,8 +9,7 @@ import {
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { TextInput } from 'shared/components/input-field/text-input';
 import type { LoaderStatus } from 'features/loader';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { useToast } from 'features/toast/useToast';
+import { handleErrorWithToast, useToast } from 'features/toast';
 import { CircleLoader } from 'features/loader';
 import { CommentService } from './comment-service';
 import type { CommentDetails } from './comment-types';

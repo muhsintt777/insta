@@ -1,10 +1,9 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { ProfilePage } from '../profile-page';
-import { PostService } from 'features/posts/post-service';
-import { LikeService } from 'features/like/like-service';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import type { Post } from 'features/posts/post-types';
+import { PostService, type Post } from 'features/posts';
+import { LikeService } from 'features/like';
+import { handleErrorWithToast } from 'features/toast';
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();

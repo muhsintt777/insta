@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { CreatePostModal } from '../create-post-modal';
 import { PostService } from '../post-service';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
+import { handleErrorWithToast } from 'features/toast';
 
 vi.mock('../post-service', () => ({
   PostService: {

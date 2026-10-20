@@ -6,18 +6,18 @@ import { DotLoader } from 'shared/components/loaders/dot-loader';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
-import { Notifications } from 'features/notifications/notifications';
-import { ProfilePage } from 'features/user/profile-page';
-import { Friends } from 'features/friends/friends';
+import { Notifications } from 'features/notifications';
+import { ProfilePage } from 'features/user';
+import { Friends } from 'features/friends';
 import {
   restoreSession,
   LoginPage,
   SignupPage,
   selectAuthStatus,
 } from 'features/auth';
-import { Toast } from 'features/toast/toast';
-import { Chat } from 'features/chat/chat';
-import { HomePage } from 'features/home/home-page';
+import { Toast } from 'features/toast';
+import { Chat } from 'features/chat';
+import { HomePage } from 'features/home';
 import { BackdropLoader } from 'features/loader';
 import { colors } from 'shared/styles/global-style';
 import { ProtectedRoute } from './protected-route';

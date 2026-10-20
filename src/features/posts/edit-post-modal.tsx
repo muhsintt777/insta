@@ -7,8 +7,7 @@ import {
   ModalHeader,
   ModalFooter,
 } from 'shared/components/modals/primary-modal';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { useToast } from 'features/toast/useToast';
+import { handleErrorWithToast, useToast } from 'features/toast';
 import { EditPostFormSchema, editPostFormSchema } from './post-validation';
 import type { EditPostParams } from './post-types';
 

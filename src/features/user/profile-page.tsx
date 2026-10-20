@@ -3,20 +3,19 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/redux-hooks';
 import { EditIcon } from 'shared/assets/icons/edit-icon';
-import { AppBar } from 'features/user/components/app-bar/app-bar';
+import { AppBar } from './components/app-bar/app-bar';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
-import { handleErrorWithToast } from 'features/toast/handle-error-with-toast';
-import { useToast } from 'features/toast/useToast';
+import { handleErrorWithToast, useToast } from 'features/toast';
 import {
   EditPostModal,
   PostCard,
   PostCardSkeleton,
   PostService,
 } from 'features/posts';
-import { useLoader } from 'features/loader/useLoader';
+import { useLoader } from 'features/loader';
 import { selectUser, userActions } from './user-slice';
-import { LikeService } from 'features/like/like-service';
+import { LikeService } from 'features/like';
 import { CommentsModal } from 'features/comment';
 import { EditUserModal } from './edit-user-modal';
 import type { EditPostParams, Post } from 'features/posts';
