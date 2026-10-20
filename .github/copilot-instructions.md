@@ -4,8 +4,9 @@ applyTo: '**'
 
 # GitHub Copilot Custom Instructions
 
-## Package Management
+## Coding Standards
 
+- Dont over engineer
 - Use yarn for package management
 
 ## Git
