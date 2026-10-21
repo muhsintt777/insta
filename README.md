@@ -71,13 +71,12 @@ Feature-to-feature imports use the other feature's public entry point (`features
 
 Current domain dependencies are intentional UI or use-case composition:
 
-| Feature   | Depends on                                    |
-| --------- | --------------------------------------------- |
-| `auth`    | `user`, `toast`                               |
-| `home`    | `posts`, `like`, `comment`, `user`, `toast`   |
-| `user`    | `posts`, `like`, `comment`, `loader`, `toast` |
-| `comment` | `toast`                                       |
-| `posts`   | `toast`                                       |
+| Feature | Depends on                 |
+| ------- | -------------------------- |
+| `auth`  | `user`, `toast`            |
+| `home`  | `posts`, `user`, `toast`   |
+| `user`  | `posts`, `loader`, `toast` |
+| `posts` | `toast`                    |
 
 The app composes feature modules, while cross-cutting modules may be consumed by domain features. Keep this graph acyclic; add a dependency only when a feature needs that module's public capability. If a dependency would create a cycle, keep the coordination at the screen or app-composition level instead of adding reciprocal imports.
 
@@ -134,15 +133,15 @@ Tests live alongside the source they exercise. The suite uses jsdom and Testing 
 
 ## Routes
 
-| Route            | Access    | Screen                    |
-| ---------------- | --------- | ------------------------- |
-| `/`              | Protected | Home feed                 |
-| `/friends`       | Protected | Friends (placeholder)     |
-| `/chat`          | Protected | Chat (placeholder)        |
+| Route            | Access    | Screen                      |
+| ---------------- | --------- | --------------------------- |
+| `/`              | Protected | Home feed                   |
+| `/friends`       | Protected | Friends (placeholder)       |
+| `/chat`          | Protected | Chat (placeholder)          |
 | `/notifications` | Protected | Notifications (placeholder) |
-| `/profile`       | Protected | Profile                   |
-| `/auth/login`    | Public    | Login                     |
-| `/auth/signup`   | Public    | Sign up                   |
+| `/profile`       | Protected | Profile                     |
+| `/auth/login`    | Public    | Login                       |
+| `/auth/signup`   | Public    | Sign up                     |
 
 ## API Configuration
 
