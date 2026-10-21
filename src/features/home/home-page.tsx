@@ -1,9 +1,13 @@
 import styles from './home-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
-import { PostCard, PostCardSkeleton, PostService } from 'features/posts';
+import {
+  CommentsModal,
+  LikeService,
+  PostCard,
+  PostCardSkeleton,
+  PostService,
+} from 'features/posts';
 import { handleErrorWithToast, useToast } from 'features/toast';
-import { LikeService } from 'features/like';
-import { CommentsModal } from 'features/comment';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import type { Post } from 'features/posts';

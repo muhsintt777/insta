@@ -38,28 +38,21 @@ describe('CommentService', () => {
         status: 200,
         data: { data: mockComments },
       });
-
-      const result = await CommentService.listPostComments(mockPostId);
-
+      await expect(
+        CommentService.listPostComments(mockPostId),
+      ).resolves.toEqual(mockComments);
       expect(http.get).toHaveBeenCalledWith(`/comments/post/${mockPostId}`);
-      expect(result).toEqual(mockComments);
     });
 
-    it('returns empty array on 204 status', async () => {
-      (http.get as Mock).mockResolvedValue({
-        status: 204,
-      });
-
-      const result = await CommentService.listPostComments(mockPostId);
-
-      expect(result).toEqual([]);
+    it('returns an empty array for 204', async () => {
+      (http.get as Mock).mockResolvedValue({ status: 204 });
+      await expect(
+        CommentService.listPostComments(mockPostId),
+      ).resolves.toEqual([]);
     });
 
-    it('throws error on failure', async () => {
-      (http.get as Mock).mockResolvedValue({
-        status: 500,
-      });
-
+    it('throws when fetching fails', async () => {
+      (http.get as Mock).mockResolvedValue({ status: 500 });
       await expect(CommentService.listPostComments(mockPostId)).rejects.toThrow(
         'Failed to fetch comments',
       );
@@ -75,29 +68,22 @@ describe('CommentService', () => {
       createdAt: new Date().toISOString(),
     };
 
-    it('creates comment successfully', async () => {
+    it('creates a comment successfully', async () => {
       (http.post as Mock).mockResolvedValue({
         status: 201,
         data: { data: mockCreatedComment },
       });
-
-      const result = await CommentService.createComment(
-        mockPostId,
-        mockContent,
-      );
-
+      await expect(
+        CommentService.createComment(mockPostId, mockContent),
+      ).resolves.toEqual(mockCreatedComment);
       expect(http.post).toHaveBeenCalledWith('/comments', {
         content: mockContent,
         postId: mockPostId,
       });
-      expect(result).toEqual(mockCreatedComment);
     });
 
-    it('throws error on failure', async () => {
-      (http.post as Mock).mockResolvedValue({
-        status: 400,
-      });
-
+    it('throws when comment creation fails', async () => {
+      (http.post as Mock).mockResolvedValue({ status: 400 });
       await expect(
         CommentService.createComment(mockPostId, mockContent),
       ).rejects.toThrow('Failed to create comment');
@@ -107,23 +93,16 @@ describe('CommentService', () => {
   describe('deleteComment', () => {
     const mockCommentId = 'comment-123';
 
-    it('deletes comment successfully', async () => {
-      (http.delete as Mock).mockResolvedValue({
-        status: 200,
-      });
-
+    it('deletes a comment successfully', async () => {
+      (http.delete as Mock).mockResolvedValue({ status: 200 });
       await expect(
         CommentService.deleteComment(mockCommentId),
       ).resolves.toBeUndefined();
-
       expect(http.delete).toHaveBeenCalledWith(`/comments/${mockCommentId}`);
     });
 
-    it('throws error on failure', async () => {
-      (http.delete as Mock).mockResolvedValue({
-        status: 500,
-      });
-
+    it('throws when comment deletion fails', async () => {
+      (http.delete as Mock).mockResolvedValue({ status: 500 });
       await expect(CommentService.deleteComment(mockCommentId)).rejects.toThrow(
         'Failed to delete comment',
       );

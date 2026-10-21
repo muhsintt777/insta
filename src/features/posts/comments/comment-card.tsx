@@ -54,18 +54,13 @@ export const CommentCardComp: FC<CommentCardProps> = ({
   }, [handleMenuClose, onDelete]);
 
   const menuItems = useMemo(
-    () => [
-      {
-        label: 'Delete',
-        onClick: handleDelete,
-      },
-    ],
+    () => [{ label: 'Delete', onClick: handleDelete }],
     [handleDelete],
   );
 
   return (
     <div style={customStyle} className={styles.container}>
-      <CustomAvatar src={authorProfilePic} size={'45px'} />
+      <CustomAvatar src={authorProfilePic} size="45px" />
       <div className={styles.rightSection}>
         <div className={styles.authorName}>
           <span>{authorName}</span>
@@ -84,4 +79,5 @@ export const CommentCardComp: FC<CommentCardProps> = ({
     </div>
   );
 };
+
 export const CommentCard = memo(CommentCardComp);

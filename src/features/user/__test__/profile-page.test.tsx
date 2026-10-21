@@ -1,8 +1,7 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { ProfilePage } from '../profile-page';
-import { PostService, type Post } from 'features/posts';
-import { LikeService } from 'features/like';
+import { LikeService, PostService, type Post } from 'features/posts';
 import { handleErrorWithToast } from 'features/toast';
 
 // Mock react-router-dom
@@ -23,7 +22,7 @@ vi.mock('features/posts/post-service', () => ({
   },
 }));
 
-vi.mock('features/like/like-service', () => ({
+vi.mock('features/posts/likes/like-service', () => ({
   LikeService: {
     createLike: vi.fn(),
     deleteLike: vi.fn(),

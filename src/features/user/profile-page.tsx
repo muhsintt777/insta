@@ -8,15 +8,15 @@ import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { handleErrorWithToast, useToast } from 'features/toast';
 import {
+  CommentsModal,
   EditPostModal,
+  LikeService,
   PostCard,
   PostCardSkeleton,
   PostService,
 } from 'features/posts';
 import { useLoader } from 'features/loader';
 import { selectUser, userActions } from './user-slice';
-import { LikeService } from 'features/like';
-import { CommentsModal } from 'features/comment';
 import { EditUserModal } from './edit-user-modal';
 import type { EditPostParams, Post } from 'features/posts';
 

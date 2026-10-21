@@ -1,8 +1,7 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { HomePage } from '../home-page';
-import { PostService, type Post } from 'features/posts';
-import { LikeService } from 'features/like';
+import { LikeService, PostService, type Post } from 'features/posts';
 import { handleErrorWithToast } from 'features/toast';
 
 vi.mock('features/posts/post-service', () => ({
@@ -11,7 +10,7 @@ vi.mock('features/posts/post-service', () => ({
   },
 }));
 
-vi.mock('features/like/like-service', () => ({
+vi.mock('features/posts/likes/like-service', () => ({
   LikeService: {
     createLike: vi.fn(),
     deleteLike: vi.fn(),
@@ -22,7 +21,7 @@ vi.mock('features/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
-vi.mock('features/comment', () => ({
+vi.mock('features/posts/comments/comments-modal', () => ({
   CommentsModal: ({ isOpen }: { isOpen: boolean }) =>
     isOpen ? <div data-testid="comments-modal">Comments Modal</div> : null,
 }));
