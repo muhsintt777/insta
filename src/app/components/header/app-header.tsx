@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from 'shared/assets/images/app-logo.svg';
 import { CustomMenu } from 'shared/components/menus/custom-menu';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
-import { selectUser } from 'features/user';
-import { themeActions } from 'features/theme';
+import { selectUser } from 'modules/user';
+import { themeActions } from 'modules/theme';
 import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { signOut } from 'app/session-workflows';
 

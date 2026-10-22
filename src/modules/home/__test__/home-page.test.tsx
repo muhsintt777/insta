@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { HomePage } from '../home-page';
-import { LikeService, PostService, type Post } from 'features/posts';
+import { LikeService, PostService, type Post } from 'modules/posts';
 import { handleErrorWithToast } from 'shared/feedback/toast';
 
 vi.mock('features/posts/post-service', () => ({

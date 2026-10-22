@@ -14,11 +14,11 @@ import {
   PostCard,
   PostCardSkeleton,
   PostService,
-} from 'features/posts';
+} from 'modules/posts';
 import { useLoader } from 'shared/feedback/loader';
 import { selectUser, userActions } from './user-slice';
 import { EditUserModal } from './edit-user-modal';
-import type { EditPostParams, Post } from 'features/posts';
+import type { EditPostParams, Post } from 'modules/posts';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();

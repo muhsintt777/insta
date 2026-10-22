@@ -6,11 +6,11 @@ import {
   PostCard,
   PostCardSkeleton,
   PostService,
-} from 'features/posts';
+} from 'modules/posts';
 import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
-import type { Post } from 'features/posts';
+import type { Post } from 'modules/posts';
 
 type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';
 

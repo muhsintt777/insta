@@ -6,18 +6,18 @@ import { DotLoader } from 'shared/components/loaders/dot-loader';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
-import { Notifications } from 'features/notifications';
-import { ProfilePage } from 'features/user';
-import { Friends } from 'features/friends';
-import { LoginPage, SignupPage, selectAuthStatus } from 'features/auth';
+import { Notifications } from 'modules/notifications';
+import { ProfilePage } from 'modules/user';
+import { Friends } from 'modules/friends';
+import { LoginPage, SignupPage, selectAuthStatus } from 'modules/auth';
 import { ToastHost } from 'shared/feedback/toast';
-import { Chat } from 'features/chat';
-import { HomePage } from 'features/home';
+import { Chat } from 'modules/chat';
+import { HomePage } from 'modules/home';
 import { BackdropLoader } from 'shared/feedback/loader';
 import { colors } from 'shared/styles/global-style';
 import { ProtectedRoute } from './protected-route';
 import { restoreSession, signIn } from './session-workflows';
-import type { LoginParams } from 'features/auth';
+import type { LoginParams } from 'modules/auth';
 
 export const App = () => {
   const dispatch = useAppDispatch();

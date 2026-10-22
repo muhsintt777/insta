@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { toastReducer } from 'shared/feedback/toast';
-import { userReducer } from 'features/user';
+import { userReducer } from 'modules/user';
 import { loaderReducer } from 'shared/feedback/loader';
-import { authReducer } from 'features/auth';
-import { getInitialTheme, themeReducer } from 'features/theme';
+import { authReducer } from 'modules/auth';
+import { getInitialTheme, themeReducer } from 'modules/theme';
 
 export const store = configureStore({
   reducer: {

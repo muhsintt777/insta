@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { AuthService, authActions } from 'features/auth';
-import { UserService, userActions } from 'features/user';
-import type { User } from 'features/user';
+import { AuthService, authActions } from 'modules/auth';
+import { UserService, userActions } from 'modules/user';
+import type { User } from 'modules/user';
 import { signIn } from '../session-workflows';
 
 describe('session workflows', () => {
