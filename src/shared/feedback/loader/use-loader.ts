@@ -1,10 +1,13 @@
 import { useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import { loaderActions, selectLoader } from './loader-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import type { LoaderState } from './loader-types';
+import { loaderActions } from './loader-slice';
 
 export const useLoader = () => {
-  const dispatch = useAppDispatch();
-  const loaderState = useAppSelector(selectLoader);
+  const dispatch = useDispatch();
+  const loaderState = useSelector(
+    (state: { loader: LoaderState }) => state.loader,
+  );
 
   const showGlobalBackdrop = useCallback(() => {
     dispatch(loaderActions.showBackdrop());

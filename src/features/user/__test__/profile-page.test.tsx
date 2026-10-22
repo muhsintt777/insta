@@ -35,7 +35,7 @@ vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
 
 const mockShowBackdrop = vi.fn();
 const mockHideBackdrop = vi.fn();
-vi.mock('features/loader/useLoader', () => ({
+vi.mock('shared/feedback/loader/use-loader', () => ({
   useLoader: () => ({
     showGlobalBackdrop: mockShowBackdrop,
     hideGlobalBackdrop: mockHideBackdrop,

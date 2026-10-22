@@ -13,31 +13,25 @@ vi.mock('shared/components/loaders/circle-loader', () => ({
 describe('BackdropLoader', () => {
   it('renders backdrop when showBackdrop is true', () => {
     renderWithProviders(<BackdropLoader />, {
-      preloadedState: {
-        loader: { showBackdrop: true },
-      },
+      preloadedState: { loader: { showBackdrop: true } },
     });
 
     expect(screen.getByTestId('circle-loader')).toBeInTheDocument();
   });
 
-  it('renders backdrop with open=false when showBackdrop is false', () => {
+  it('hides the backdrop when showBackdrop is false', () => {
     const { container } = renderWithProviders(<BackdropLoader />, {
-      preloadedState: {
-        loader: { showBackdrop: false },
-      },
+      preloadedState: { loader: { showBackdrop: false } },
     });
 
-    // Backdrop is not visible when closed
-    const backdrop = container.querySelector('.MuiBackdrop-root');
-    expect(backdrop).toHaveStyle({ visibility: 'hidden' });
+    expect(container.querySelector('.MuiBackdrop-root')).toHaveStyle({
+      visibility: 'hidden',
+    });
   });
 
-  it('renders CircleLoader with large size', () => {
+  it('uses a large spinner', () => {
     renderWithProviders(<BackdropLoader />, {
-      preloadedState: {
-        loader: { showBackdrop: true },
-      },
+      preloadedState: { loader: { showBackdrop: true } },
     });
 
     expect(screen.getByTestId('circle-loader')).toHaveAttribute(

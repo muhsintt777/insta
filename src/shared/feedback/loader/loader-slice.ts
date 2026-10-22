@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { LoaderState } from './types';
+import type { LoaderState } from './loader-types';
 
 const initialState: LoaderState = {
   showBackdrop: false,
 };
 
-export const loaderSlice = createSlice({
+const loaderSlice = createSlice({
   name: 'loader',
   initialState,
   reducers: {
@@ -19,6 +19,5 @@ export const loaderSlice = createSlice({
 });
 
 export const loaderActions = loaderSlice.actions;
-
 export const selectLoader = (state: { loader: LoaderState }) => state.loader;
 export const loaderReducer = loaderSlice.reducer;

@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, waitFor } from 'test';
 import { App } from '../App';
 
-vi.mock('features/loader', () => ({
+vi.mock('shared/feedback/loader', () => ({
   BackdropLoader: () => <div data-testid="backdrop-loader">BackdropLoader</div>,
 }));
 

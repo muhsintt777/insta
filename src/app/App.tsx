@@ -18,7 +18,7 @@ import {
 import { ToastHost } from 'shared/feedback/toast';
 import { Chat } from 'features/chat';
 import { HomePage } from 'features/home';
-import { BackdropLoader } from 'features/loader';
+import { BackdropLoader } from 'shared/feedback/loader';
 import { colors } from 'shared/styles/global-style';
 import { ProtectedRoute } from './protected-route';
 

@@ -15,7 +15,7 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'features/posts';
-import { useLoader } from 'features/loader';
+import { useLoader } from 'shared/feedback/loader';
 import { selectUser, userActions } from './user-slice';
 import { EditUserModal } from './edit-user-modal';
 import type { EditPostParams, Post } from 'features/posts';

@@ -63,7 +63,7 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 
 ### Cross-cutting capabilities
 
-Loader and theme are cross-cutting feature modules under `src/features`. Toast is an app-wide feedback capability under `src/shared/feedback/toast`; it owns notification state, the display host, and the API used by other modules. Shared feedback remains domain-agnostic and does not own feature workflows or business state.
+Loader and Toast are app-wide feedback capabilities under `src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting feature module under `src/features`. Shared feedback remains domain-agnostic and does not own feature workflows or business state.
 
 Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary, prevents feature modules from importing app-store composition, and prevents `shared` from importing app or feature modules.
 
@@ -71,18 +71,18 @@ Feature-to-feature imports use the other feature's public entry point (`features
 
 Current domain dependencies are intentional UI or use-case composition:
 
-| Feature | Depends on        |
-| ------- | ----------------- |
-| `auth`  | `user`            |
-| `home`  | `posts`, `user`   |
-| `user`  | `posts`, `loader` |
-| `posts` |                   |
+| Feature | Depends on      |
+| ------- | --------------- |
+| `auth`  | `user`          |
+| `home`  | `posts`, `user` |
+| `user`  | `posts`         |
+| `posts` |                 |
 
 The app composes feature modules, while cross-cutting modules may be consumed by domain features. Keep this graph acyclic; add a dependency only when a feature needs that module's public capability. If a dependency would create a cycle, keep the coordination at the screen or app-composition level instead of adding reciprocal imports.
 
 ### State ownership
 
-Redux stores application state such as authenticated user details and the auth token, plus cross-cutting theme, loader, and toast state. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
+Redux stores application state such as authenticated user details and the auth token, plus shared feedback state for loader and toast and cross-cutting theme state. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
 
 ## Stack
 
