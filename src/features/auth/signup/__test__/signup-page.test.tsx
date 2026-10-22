@@ -3,7 +3,7 @@ import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { SignupPage } from '../signup-page';
 import { AuthService } from '../../auth-service';
 import { UserService } from 'features/user';
-import { handleErrorWithToast } from 'features/toast';
+import { handleErrorWithToast } from 'shared/feedback/toast';
 
 vi.mock('../../auth-service', () => ({
   AuthService: {
@@ -18,11 +18,11 @@ vi.mock('features/user/user-service', () => ({
   },
 }));
 
-vi.mock('features/toast/handle-error-with-toast', () => ({
+vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
-vi.mock('features/toast/useToast', () => ({
+vi.mock('shared/feedback/toast/use-toast', () => ({
   useToast: () => ({
     showToast: vi.fn(),
   }),

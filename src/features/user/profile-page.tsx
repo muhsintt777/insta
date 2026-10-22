@@ -6,7 +6,7 @@ import { EditIcon } from 'shared/assets/icons/edit-icon';
 import { AppBar } from './components/app-bar/app-bar';
 import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import {
   CommentsModal,
   EditPostModal,

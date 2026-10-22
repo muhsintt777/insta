@@ -8,7 +8,7 @@ import {
 } from 'shared/components/modals/primary-modal';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { TextInput } from 'shared/components/input-field/text-input';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { CircleLoader } from 'shared/components/loaders/circle-loader';
 import { CommentService } from './comment-service';
 import type { CommentDetails } from './comment-types';

@@ -63,7 +63,7 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 
 ### Cross-cutting capabilities
 
-Toast, loader, and theme are cross-cutting feature modules under `src/features`, not generic `shared` primitives. They own app-wide behavior and state, and expose the capabilities other modules need through their public entry points. Domain features may depend on those public APIs; `shared` remains domain-agnostic and does not own feature workflows or business state.
+Loader and theme are cross-cutting feature modules under `src/features`. Toast is an app-wide feedback capability under `src/shared/feedback/toast`; it owns notification state, the display host, and the API used by other modules. Shared feedback remains domain-agnostic and does not own feature workflows or business state.
 
 Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary, prevents feature modules from importing app-store composition, and prevents `shared` from importing app or feature modules.
 
@@ -71,12 +71,12 @@ Feature-to-feature imports use the other feature's public entry point (`features
 
 Current domain dependencies are intentional UI or use-case composition:
 
-| Feature | Depends on                 |
-| ------- | -------------------------- |
-| `auth`  | `user`, `toast`            |
-| `home`  | `posts`, `user`, `toast`   |
-| `user`  | `posts`, `loader`, `toast` |
-| `posts` | `toast`                    |
+| Feature | Depends on        |
+| ------- | ----------------- |
+| `auth`  | `user`            |
+| `home`  | `posts`, `user`   |
+| `user`  | `posts`, `loader` |
+| `posts` |                   |
 
 The app composes feature modules, while cross-cutting modules may be consumed by domain features. Keep this graph acyclic; add a dependency only when a feature needs that module's public capability. If a dependency would create a cycle, keep the coordination at the screen or app-composition level instead of adding reciprocal imports.
 

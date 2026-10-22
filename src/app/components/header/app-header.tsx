@@ -9,7 +9,7 @@ import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
 import { signOut } from 'features/auth';
 import { selectUser } from 'features/user';
 import { themeActions } from 'features/theme';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 
 export const Header = memo(() => {
   const navigate = useNavigate();

@@ -1,10 +1,13 @@
 import { Alert, Snackbar } from '@mui/material';
-import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import { selectToast, toastActions } from './toast-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import type { ToastState } from './toast-types';
+import { toastActions } from './toast-slice';
 
-export const Toast = () => {
-  const dispatch = useAppDispatch();
-  const { message, show, severity } = useAppSelector(selectToast);
+export const ToastHost = () => {
+  const dispatch = useDispatch();
+  const { message, show, severity } = useSelector(
+    (state: { toast: ToastState }) => state.toast,
+  );
 
   return (
     <Snackbar

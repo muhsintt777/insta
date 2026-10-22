@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { ProfilePage } from '../profile-page';
 import { LikeService, PostService, type Post } from 'features/posts';
-import { handleErrorWithToast } from 'features/toast';
+import { handleErrorWithToast } from 'shared/feedback/toast';
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();
@@ -29,7 +29,7 @@ vi.mock('features/posts/likes/like-service', () => ({
   },
 }));
 
-vi.mock('features/toast/handle-error-with-toast', () => ({
+vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 

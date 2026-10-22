@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { EditUserModal } from '../edit-user-modal';
 import { UserService } from '../user-service';
-import { handleErrorWithToast } from 'features/toast';
+import { handleErrorWithToast } from 'shared/feedback/toast';
 
 vi.mock('../user-service', () => ({
   UserService: {
@@ -10,7 +10,7 @@ vi.mock('../user-service', () => ({
   },
 }));
 
-vi.mock('features/toast/handle-error-with-toast', () => ({
+vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 

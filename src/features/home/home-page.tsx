@@ -7,7 +7,7 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'features/posts';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import type { Post } from 'features/posts';

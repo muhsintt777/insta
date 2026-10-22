@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { toastReducer } from 'features/toast';
+import { toastReducer } from 'shared/feedback/toast';
 import { userReducer } from 'features/user';
 import { loaderReducer } from 'features/loader';
 import { authReducer } from 'features/auth';

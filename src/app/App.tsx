@@ -15,7 +15,7 @@ import {
   SignupPage,
   selectAuthStatus,
 } from 'features/auth';
-import { Toast } from 'features/toast';
+import { ToastHost } from 'shared/feedback/toast';
 import { Chat } from 'features/chat';
 import { HomePage } from 'features/home';
 import { BackdropLoader } from 'features/loader';
@@ -36,7 +36,7 @@ export const App = () => {
   return (
     <>
       <BackdropLoader />
-      <Toast />
+      <ToastHost />
       {authStatus === 'LOADING' ? (
         <div className="loader-wrap">
           <img src={appLogo} alt="logo" />

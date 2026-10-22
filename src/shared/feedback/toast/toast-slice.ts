@@ -7,7 +7,7 @@ const initialState: ToastState = {
   message: '',
 };
 
-export const toastSlice = createSlice({
+const toastSlice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
@@ -23,6 +23,5 @@ export const toastSlice = createSlice({
 });
 
 export const toastActions = toastSlice.actions;
-
 export const selectToast = (state: { toast: ToastState }) => state.toast;
 export const toastReducer = toastSlice.reducer;

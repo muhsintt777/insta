@@ -8,7 +8,7 @@ import {
   ModalFooter,
 } from 'shared/components/modals/primary-modal';
 import { FileInput } from 'shared/components/input-field/file-input';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
 import { POST_IMAGE_MAX_SIZE_MB } from './post-constants';

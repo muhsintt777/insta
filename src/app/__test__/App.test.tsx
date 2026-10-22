@@ -6,8 +6,8 @@ vi.mock('features/loader', () => ({
   BackdropLoader: () => <div data-testid="backdrop-loader">BackdropLoader</div>,
 }));
 
-vi.mock('features/toast/toast', () => ({
-  Toast: () => <div data-testid="toast">Toast</div>,
+vi.mock('shared/feedback/toast', () => ({
+  ToastHost: () => <div data-testid="toast">Toast</div>,
 }));
 
 vi.mock('features/home/home-page', () => ({

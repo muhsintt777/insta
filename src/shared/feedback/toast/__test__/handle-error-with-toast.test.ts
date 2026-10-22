@@ -10,41 +10,31 @@ describe('handleErrorWithToast', () => {
     showToast.mockClear();
   });
 
-  it('dispatches toast with CustomError message', () => {
-    const customError = new CustomError('CUSTOM_TYPE', 'Custom error message');
-
-    handleErrorWithToast(customError, showToast);
-
+  it('uses a CustomError message', () => {
+    handleErrorWithToast(
+      new CustomError('CUSTOM_TYPE', 'Custom error message'),
+      showToast,
+    );
     expect(showToast).toHaveBeenCalledWith('error', 'Custom error message');
   });
 
-  it('dispatches toast with Error message', () => {
-    const error = new Error('Standard error message');
-
-    handleErrorWithToast(error, showToast);
-
+  it('uses an Error message', () => {
+    handleErrorWithToast(new Error('Standard error message'), showToast);
     expect(showToast).toHaveBeenCalledWith('error', 'Standard error message');
   });
 
-  it('dispatches toast with error.message for generic object error', () => {
-    const error = { message: 'Object error message' };
-
-    handleErrorWithToast(error, showToast);
-
+  it('uses a generic object message', () => {
+    handleErrorWithToast({ message: 'Object error message' }, showToast);
     expect(showToast).toHaveBeenCalledWith('error', 'Object error message');
   });
 
-  it('dispatches toast with COMMON_ERROR_MESSAGE when no message available', () => {
-    const error = {};
-
-    handleErrorWithToast(error, showToast);
-
+  it('uses the common message when the error has no message', () => {
+    handleErrorWithToast({}, showToast);
     expect(showToast).toHaveBeenCalledWith('error', COMMON_ERROR_MESSAGE);
   });
 
-  it('dispatches toast with string error', () => {
+  it('uses the common message for string errors', () => {
     handleErrorWithToast('String error', showToast);
-
     expect(showToast).toHaveBeenCalledWith('error', COMMON_ERROR_MESSAGE);
   });
 });

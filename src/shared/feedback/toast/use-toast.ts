@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
-import { useAppDispatch } from 'app/hooks/redux-hooks';
+import { useDispatch } from 'react-redux';
 import type { ToastSeverity } from './toast-types';
 import { toastActions } from './toast-slice';
 
 export const useToast = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const showToast = useCallback(
     (severity: ToastSeverity, message: string) => {

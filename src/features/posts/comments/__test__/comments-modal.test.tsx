@@ -3,7 +3,7 @@ import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { CommentsModal } from '../comments-modal';
 import { CommentService } from '../comment-service';
 import type { CommentDetails } from '../comment-types';
-import { handleErrorWithToast } from 'features/toast';
+import { handleErrorWithToast } from 'shared/feedback/toast';
 
 vi.mock('../comment-service', () => ({
   CommentService: {
@@ -13,7 +13,7 @@ vi.mock('../comment-service', () => ({
   },
 }));
 
-vi.mock('features/toast/handle-error-with-toast', () => ({
+vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 

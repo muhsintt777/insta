@@ -11,7 +11,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput } from 'shared/components/input-field/text-input';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { UserService } from './user-service';
 import type { EditUserProfileParams, User } from './user-types';
 

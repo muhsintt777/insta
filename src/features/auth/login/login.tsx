@@ -6,7 +6,7 @@ import { useAppDispatch } from 'app/hooks/redux-hooks';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { FormField } from 'shared/components/input-field/form-field';
 import { trimAllWhitespace } from 'shared/lib/string-utils';
-import { handleErrorWithToast, useToast } from 'features/toast';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
 import { signIn } from '../session';
 import { AuthHeader } from '../components/auth-header';
 
