@@ -33,11 +33,14 @@ flowchart TD
 	Features -->|when needed| CrossCutting[Toast, loader, and theme APIs]
 	Features --> SharedUI[Shared UI and utilities]
 	Features -->|API-backed features| Services[Feature services]
+	 App --> Session[Session workflows]
+	 Session --> Auth[Auth API and state]
+	 Session --> User[User API and state]
+	 Session --> Store
 	Services --> Http[Shared Axios client]
 	Http --> API[Social app API]
 	Http -. auth callbacks .-> Adapter[App HTTP adapter]
-	Adapter --> Auth[Auth session operations]
-	Auth --> Store
+	 Adapter --> Session
 ```
 
 ### Request and authentication lifecycle
@@ -58,6 +61,7 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 | Concern                  | Example                                                                                                                                                  |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HTTP and auth boundary   | [`http.ts`](src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](src/app/configure-http.ts) injects app-owned auth callbacks. |
+| Session coordination     | [`session-workflows.ts`](src/app/session-workflows.ts) composes Auth and User APIs without a direct feature-to-feature dependency.                       |
 | Typed form validation    | [`post-validation.ts`](src/features/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                       |
 | Isolated component tests | [`render.tsx`](src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.               |
 
@@ -73,12 +77,12 @@ Current domain dependencies are intentional UI or use-case composition:
 
 | Feature | Depends on      |
 | ------- | --------------- |
-| `auth`  | `user`          |
+| `auth`  |                 |
 | `home`  | `posts`, `user` |
 | `user`  | `posts`         |
 | `posts` |                 |
 
-The app composes feature modules, while cross-cutting modules may be consumed by domain features. Keep this graph acyclic; add a dependency only when a feature needs that module's public capability. If a dependency would create a cycle, keep the coordination at the screen or app-composition level instead of adding reciprocal imports.
+The app composes feature modules, including the Auth and User modules for session workflows. Cross-cutting modules may be consumed by domain features. Keep feature dependencies acyclic; when a workflow needs multiple features, coordinate them in `src/app` rather than adding reciprocal feature imports.
 
 ### State ownership
 

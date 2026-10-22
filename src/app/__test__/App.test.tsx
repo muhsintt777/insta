@@ -32,8 +32,12 @@ vi.mock('features/user/profile-page', () => ({
   ProfilePage: () => <div data-testid="profile-page">ProfilePage</div>,
 }));
 
-vi.mock('features/auth', () => ({
+vi.mock('app/session-workflows', () => ({
   restoreSession: () => ({ type: 'auth/restoreSession' }),
+  signIn: vi.fn(),
+}));
+
+vi.mock('features/auth', () => ({
   selectAuthStatus: (state: { auth: { status: string } }) => state.auth.status,
   LoginPage: () => <div data-testid="login-page">Login</div>,
   SignupPage: () => <div data-testid="signup-page">SignupPage</div>,

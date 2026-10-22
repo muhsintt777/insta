@@ -2,13 +2,16 @@ import styles from './loginStyle.module.scss';
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { REGEX } from 'shared/constants';
-import { useAppDispatch } from 'app/hooks/redux-hooks';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { FormField } from 'shared/components/input-field/form-field';
 import { trimAllWhitespace } from 'shared/lib/string-utils';
 import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
-import { signIn } from '../session';
+import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
+
+interface LoginPageProps {
+  onSignIn: (credentials: LoginParams) => Promise<void>;
+}
 
 interface EmailInpType {
   value: string;
@@ -21,9 +24,8 @@ interface PasswordInpType {
   error: null | string;
 }
 
-export const LoginPage = () => {
+export const LoginPage = ({ onSignIn }: LoginPageProps) => {
   const navigate = useNavigate();
-  const dispath = useAppDispatch();
   const { showToast } = useToast();
 
   const [showLoader, setShowLoader] = useState(false);
@@ -65,7 +67,7 @@ export const LoginPage = () => {
       setShowLoader(true);
       const trimmedEmail = trimAllWhitespace(emailInp.value);
       const trimmedPassword = trimAllWhitespace(passwordInp.value);
-      await signIn(dispath, {
+      await onSignIn({
         email: trimmedEmail,
         password: trimmedPassword,
       });

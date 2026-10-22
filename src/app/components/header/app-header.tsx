@@ -6,10 +6,10 @@ import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from 'shared/assets/images/app-logo.svg';
 import { CustomMenu } from 'shared/components/menus/custom-menu';
 import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
-import { signOut } from 'features/auth';
 import { selectUser } from 'features/user';
 import { themeActions } from 'features/theme';
 import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
+import { signOut } from 'app/session-workflows';
 
 export const Header = memo(() => {
   const navigate = useNavigate();

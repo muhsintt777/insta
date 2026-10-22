@@ -1,5 +1,5 @@
 import { configureHttp } from 'shared/lib/http';
-import { refreshAuthToken, signOut } from 'features/auth';
+import { refreshAuthToken, signOut } from './session-workflows';
 import { store } from './store';
 
 export const setupHttp = () => {

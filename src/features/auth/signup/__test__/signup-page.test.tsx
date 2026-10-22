@@ -2,19 +2,11 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { SignupPage } from '../signup-page';
 import { AuthService } from '../../auth-service';
-import { UserService } from 'features/user';
 import { handleErrorWithToast } from 'shared/feedback/toast';
 
 vi.mock('../../auth-service', () => ({
   AuthService: {
     createUser: vi.fn(),
-    login: vi.fn(),
-  },
-}));
-
-vi.mock('features/user/user-service', () => ({
-  UserService: {
-    fetchCurrentUser: vi.fn(),
   },
 }));
 
@@ -29,6 +21,7 @@ vi.mock('shared/feedback/toast/use-toast', () => ({
 }));
 
 const mockNavigate = vi.fn();
+const mockOnSignIn = vi.fn().mockResolvedValue(undefined);
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
   return {
@@ -40,10 +33,11 @@ vi.mock('react-router-dom', async () => {
 describe('SignupPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockOnSignIn.mockResolvedValue(undefined);
   });
 
   it('renders signup form with all elements', () => {
-    renderWithProviders(<SignupPage />);
+    renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
     expect(
       screen.getByRole('heading', { name: /signup/i }),
@@ -60,14 +54,14 @@ describe('SignupPage', () => {
   });
 
   it('shows link to login page', () => {
-    renderWithProviders(<SignupPage />);
+    renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
     const loginLink = screen.getByRole('link', { name: /login/i });
     expect(loginLink).toHaveAttribute('href', '/auth/login');
   });
 
   it('shows profile image upload field', () => {
-    renderWithProviders(<SignupPage />);
+    renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
     expect(screen.getByText(/profile image/i)).toBeInTheDocument();
   });
@@ -75,7 +69,7 @@ describe('SignupPage', () => {
   describe('form validation', () => {
     it('shows validation errors for empty required fields on submit', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<SignupPage />);
+      renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
       const submitButton = screen.getByRole('button', {
         name: /create account/i,
@@ -91,7 +85,7 @@ describe('SignupPage', () => {
 
     it('shows error for invalid email', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<SignupPage />);
+      renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
       const emailInput = screen.getByPlaceholderText('johndoe@gmail.com');
       await user.type(emailInput, 'invalid-email');
@@ -108,7 +102,7 @@ describe('SignupPage', () => {
 
     it('shows error for password mismatch', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<SignupPage />);
+      renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
       // Fill all required fields first
       await user.type(screen.getByPlaceholderText('John Doe'), 'John Doe');
@@ -144,13 +138,9 @@ describe('SignupPage', () => {
 
     it('submits form with valid data', async () => {
       const user = userEvent.setup();
-      const mockUser = { id: '1', username: 'john_doe_123' };
-
       (AuthService.createUser as Mock).mockResolvedValue({});
-      (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
-      (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
 
-      renderWithProviders(<SignupPage />);
+      renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
       await user.type(
         screen.getByPlaceholderText('John Doe'),
@@ -178,7 +168,7 @@ describe('SignupPage', () => {
       });
 
       await waitFor(() => {
-        expect(AuthService.login).toHaveBeenCalledWith({
+        expect(mockOnSignIn).toHaveBeenCalledWith({
           email: validFormData.email,
           password: validFormData.password,
         });
@@ -195,7 +185,7 @@ describe('SignupPage', () => {
 
       (AuthService.createUser as Mock).mockRejectedValue(mockError);
 
-      renderWithProviders(<SignupPage />);
+      renderWithProviders(<SignupPage onSignIn={mockOnSignIn} />);
 
       await user.type(
         screen.getByPlaceholderText('John Doe'),

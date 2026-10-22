@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserService, userActions } from 'features/user';
-import { AuthService } from './auth-service';
-import type { LoginParams } from './auth-service';
-import { authActions } from './auth-slice';
+import { AuthService, authActions } from 'features/auth';
+import type { LoginParams } from 'features/auth';
 
 const loadCurrentUser = async (dispatch: (action: unknown) => unknown) => {
   const user = await UserService.fetchCurrentUser();

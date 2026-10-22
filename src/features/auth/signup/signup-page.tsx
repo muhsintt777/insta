@@ -7,17 +7,19 @@ import { APP_ROUTES } from 'shared/routes';
 import { FormField } from 'shared/components/input-field/form-field';
 import { PrimaryButton } from 'shared/components/buttons/primary-button';
 import { handleErrorWithToast } from 'shared/feedback/toast';
-import { useAppDispatch } from 'app/hooks/redux-hooks';
 import { useToast } from 'shared/feedback/toast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
-import { signIn } from '../session';
+import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 import { FileInput } from 'shared/components/input-field/file-input';
 
-export const SignupPage = () => {
+interface SignupPageProps {
+  onSignIn: (credentials: LoginParams) => Promise<void>;
+}
+
+export const SignupPage = ({ onSignIn }: SignupPageProps) => {
   const navigate = useNavigate();
-  const dispath = useAppDispatch();
   const { showToast } = useToast();
   const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
 
@@ -48,7 +50,7 @@ export const SignupPage = () => {
           password: data.password,
           profileImage: data.profileImage || undefined,
         });
-        await signIn(dispath, {
+        await onSignIn({
           email: data.email,
           password: data.password,
         });
@@ -60,7 +62,7 @@ export const SignupPage = () => {
         setShowFormSubmitLoader(false);
       }
     },
-    [showToast, navigate, dispath],
+    [showToast, navigate, onSignIn],
   );
 
   return (

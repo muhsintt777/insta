@@ -1,25 +1,15 @@
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { LoginPage } from '../login';
-import { AuthService } from '../../auth-service';
-import { UserService } from 'features/user';
 import { handleErrorWithToast } from 'shared/feedback/toast';
-
-vi.mock('../../auth-service', () => ({
-  AuthService: {
-    login: vi.fn(),
-  },
-}));
-
-vi.mock('features/user/user-service', () => ({
-  UserService: {
-    fetchCurrentUser: vi.fn(),
-  },
-}));
 
 vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
+
+const mockOnSignIn = vi.fn().mockResolvedValue(undefined);
+const renderLoginPage = () =>
+  renderWithProviders(<LoginPage onSignIn={mockOnSignIn} />);
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
@@ -33,10 +23,11 @@ vi.mock('react-router-dom', async () => {
 describe('LoginPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockOnSignIn.mockResolvedValue(undefined);
   });
 
   it('renders login form with all elements', () => {
-    renderWithProviders(<LoginPage />);
+    renderLoginPage();
 
     expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
     expect(screen.getByPlaceholderText('john@email.com')).toBeInTheDocument();
@@ -49,14 +40,14 @@ describe('LoginPage', () => {
   });
 
   it('shows link to signup page', () => {
-    renderWithProviders(<LoginPage />);
+    renderLoginPage();
 
     const signupLink = screen.getByRole('link', { name: /create account/i });
     expect(signupLink).toHaveAttribute('href', '/auth/signup');
   });
 
   it('shows SSO coming soon message', () => {
-    renderWithProviders(<LoginPage />);
+    renderLoginPage();
 
     expect(screen.getByText(/sso coming soon/i)).toBeInTheDocument();
   });
@@ -64,7 +55,7 @@ describe('LoginPage', () => {
   describe('email validation', () => {
     it('shows error for invalid email', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       await user.type(emailInput, 'invalid-email');
@@ -74,7 +65,7 @@ describe('LoginPage', () => {
 
     it('does not show error for valid email', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       await user.type(emailInput, 'test@example.com');
@@ -88,7 +79,7 @@ describe('LoginPage', () => {
   describe('password validation', () => {
     it('shows error for invalid password', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const passwordInput = screen.getByPlaceholderText('Password@123');
       await user.type(passwordInput, 'weak');
@@ -100,7 +91,7 @@ describe('LoginPage', () => {
 
     it('does not show error for valid password', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const passwordInput = screen.getByPlaceholderText('Password@123');
       await user.type(passwordInput, 'Password@123');
@@ -114,26 +105,17 @@ describe('LoginPage', () => {
   describe('form submission', () => {
     it('does not submit when fields are invalid', async () => {
       const user = userEvent.setup();
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const submitButton = screen.getByRole('button', { name: /login/i });
       await user.click(submitButton);
 
-      expect(AuthService.login).not.toHaveBeenCalled();
+      expect(mockOnSignIn).not.toHaveBeenCalled();
     });
 
     it('submits form with valid credentials', async () => {
       const user = userEvent.setup();
-      const mockUser = {
-        id: '1',
-        username: 'testuser',
-        email: 'test@example.com',
-      };
-
-      (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
-      (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
-
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       const passwordInput = screen.getByPlaceholderText('Password@123');
@@ -144,14 +126,10 @@ describe('LoginPage', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(AuthService.login).toHaveBeenCalledWith({
+        expect(mockOnSignIn).toHaveBeenCalledWith({
           email: 'test@example.com',
           password: 'Password@123',
         });
-      });
-
-      await waitFor(() => {
-        expect(UserService.fetchCurrentUser).toHaveBeenCalled();
       });
 
       await waitFor(() => {
@@ -163,9 +141,9 @@ describe('LoginPage', () => {
       const user = userEvent.setup();
       const mockError = new Error('Login failed');
 
-      (AuthService.login as Mock).mockRejectedValue(mockError);
+      mockOnSignIn.mockRejectedValue(mockError);
 
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       const passwordInput = screen.getByPlaceholderText('Password@123');
@@ -185,12 +163,7 @@ describe('LoginPage', () => {
 
     it('trims whitespace from email and password', async () => {
       const user = userEvent.setup();
-      const mockUser = { id: '1', username: 'testuser' };
-
-      (AuthService.login as Mock).mockResolvedValue('Bearer test-token');
-      (UserService.fetchCurrentUser as Mock).mockResolvedValue(mockUser);
-
-      renderWithProviders(<LoginPage />);
+      renderLoginPage();
 
       const emailInput = screen.getByPlaceholderText('john@email.com');
       const passwordInput = screen.getByPlaceholderText('Password@123');
@@ -201,7 +174,7 @@ describe('LoginPage', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(AuthService.login).toHaveBeenCalledWith({
+        expect(mockOnSignIn).toHaveBeenCalledWith({
           email: 'test@example.com',
           password: 'Password@123',
         });
