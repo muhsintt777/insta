@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { COMMON_ERROR_MESSAGE } from 'shared/constants';
 import type { User, UserState } from './user-types';
 
 const initialState = {
