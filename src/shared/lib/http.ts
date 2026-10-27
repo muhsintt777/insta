@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { ERROR_TYPE } from 'shared/constants';
-import { ENV } from './env';
 
 interface HttpHandlers {
   getToken: () => string | null;
@@ -10,13 +9,13 @@ interface HttpHandlers {
 
 let handlers: HttpHandlers | undefined;
 
-// Called once at startup so this module does not depend on the store or features.
+// Called once at startup so this module does not depend on the store or modules.
 export const configureHttp = (config: HttpHandlers) => {
   handlers = config;
 };
 
 export const http = axios.create({
-  baseURL: ENV.API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
