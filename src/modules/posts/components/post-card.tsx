@@ -52,7 +52,6 @@ export const PostCard: FC<PostCardProps> = ({
 }) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
 
-  const open = Boolean(menuAnchorEl);
   const enableOptions = useMemo(
     () => Boolean(onDelete || onEdit),
     [onDelete, onEdit],
