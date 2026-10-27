@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--clr-bg-secondary);
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding-top: 8px;
+}
+
+.outlet {
+  margin: 0px 8px 8px 8px;
+}

@@ -1,0 +1,146 @@
+/* font imports */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400;500;600;700;800;900&display=swap');
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-red: #df002c;
+  --clr-black: #141c1a;
+  --clr-shadedBlack: #0e0f13;
+  --clr-green: #20c35b;
+  --clr-darkBlue: #151822;
+  --clr-purple: #af7dff;
+  --clr-yellow: #ffaf21;
+  --clr-white: #ffffff;
+  --clr-shadedWhite: #f0f6fc;
+  --clr-grey: #677572;
+  --clr-lightGrey: #dfe5e4;
+  --clr-darkGrey: #3d444d;
+  --clr-lightShadow: rgba(0, 0, 0, 0.32);
+  --clr-whiteShadow: rgba(255, 255, 255, 0.02);
+
+  --fnt-primary: 'Lexend Zetta', sans-serif;
+  --fnt-secondary: 'Work Sans', sans-serif;
+
+  --clr-primary: var(--clr-red);
+  --clr-fnt-primary: var(--clr-black);
+  --clr-fnt-secondary: var(--clr-grey);
+  --clr-fnt-error: var(--clr-red);
+
+  --clr-border: var(--clr-lightGrey);
+  --clr-icon: var(--clr-grey);
+
+  --clr-bg-primary: var(--clr-white);
+  --clr-bg-secondary: var(--clr-shadedWhite);
+
+  --clr-scroll-track: var(--clr-shadedWhite);
+  --clr-scroll-thumb: var(--clr-lightGrey);
+  --clr-scroll-thumb-hover: var(--clr-grey);
+
+  --clr-shadow-default: var(--clr-lightShadow);
+}
+:root[data-theme='dark'] {
+  --clr-fnt-primary: var(--clr-shadedWhite);
+
+  --clr-border: var(--clr-darkGrey);
+  --clr-icon: var(--clr-lightGrey);
+
+  --clr-bg-primary: var(--clr-shadedBlack);
+  --clr-bg-secondary: var(--clr-darkBlue);
+
+  --clr-scroll-track: var(--clr-darkBlue);
+  --clr-scroll-thumb: var(--clr-grey);
+  --clr-scroll-thumb-hover: var(--clr-lightGrey);
+
+  --clr-shadow-default: var(--clr-whiteShadow);
+}
+
+body {
+  font-family: var(--fnt-secondary);
+  color: var(--clr-fnt-primary);
+}
+
+a {
+  all: unset;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: 900;
+  font-family: var(--fnt-primary);
+  letter-spacing: -0.12rem;
+  color: var(--clr-fnt-primary);
+}
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 36px;
+  height: 36px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--clr-scroll-track);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--clr-scroll-thumb);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--clr-scroll-thumb-hover);
+}
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--clr-scroll-thumb) var(--clr-scroll-track);
+}
+
+#root {
+  width: 100vw;
+  height: 100dvh;
+  background-color: var(--clr-bg-secondary);
+}
+
+.app-container {
+  padding: 0px 200px;
+}
+
+.loader-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 12px;
+  width: 100%;
+  height: 100%;
+}
+.loader-wrap > img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.info {
+  text-align: center;
+  width: 100%;
+  margin: 20px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clr-fnt-secondary);
+}
+
+.error {
+  text-align: center;
+  width: 100%;
+  margin: 20px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clr-primary);
+}

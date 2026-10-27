@@ -1,0 +1,35 @@
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-bg-primary);
+  border-radius: 4px;
+  min-width: 500px;
+  max-width: 90vw;
+  min-height: 400px;
+  max-height: 90vh;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0px 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--clr-border);
+
+  > h1 {
+    text-transform: uppercase;
+    color: var(--clr-fnt-primary);
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  padding: 0px 10px;
+  border-top: 1px solid var(--clr-border);
+}

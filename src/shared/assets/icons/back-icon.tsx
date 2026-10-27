@@ -1,0 +1,21 @@
+import { FC, memo } from 'react';
+import { IconsProps } from 'shared/types/icons';
+
+const BackIconComp: FC<IconsProps> = ({
+  color = 'var(--clr-icon)',
+  size = '16px',
+}) => {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill={color}
+      height={size}
+      width={size}
+    >
+      <path d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"></path>
+    </svg>
+  );
+};
+
+export const BackIcon = memo(BackIconComp);

@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "types": ["vite/client", "vitest"],
 
     /* Linting */
     "strict": true,
@@ -23,14 +24,10 @@
 
     "baseUrl": "./src",
     "paths": {
-      "assets/*": ["./assets/*"],
-      "components/*": ["./components/*"],
-      "configs/*": ["./configs/*"],
       "features/*": ["./features/*"],
-      "hooks/*": ["./hooks/*"],
-      "layouts/*": ["./layouts/*"],
-      "main/*": ["./main/*"],
-      "utils/*": ["./utils/*"]
+      "app/*": ["./app/*"],
+      "shared/*": ["./shared/*"],
+      "test/*": ["./test/*"]
     }
   },
   "include": ["src"],

@@ -1,89 +1,168 @@
-## Insta - Social (React + Redux + TypeScript)
+# Insta Social
 
-An Instagram-like SPA built with React 18, Vite, and TypeScript (strict mode). It uses Redux Toolkit for state, React Router v6 for routing, axios for HTTP with interceptors, MUI for UI primitives, react-hook-form + zod for form validation, and SCSS modules for styling.
+**An API-connected social app built with React, TypeScript, and Redux Toolkit.**
 
-This README covers setup, scripts, architecture, routes, environment config, and development conventions.
+An Instagram-inspired single-page application for sharing posts and interacting with a community. The project emphasizes domain-oriented organization, typed state and forms, resilient authentication requests, and behavior-focused component tests.
 
-## Quick start
+## Product Scope
 
-Prerequisites:
+- Browse the authenticated feed; create and edit image posts, like posts, and discuss them in comments.
+- Sign up, sign in, restore an existing session, and view or edit a profile.
+- Friends, chat, and notifications routes are present as under-construction placeholders; those workflows are not implemented yet.
+- Use cross-cutting loader, toast, and theme capabilities for consistent application feedback.
 
-- Node.js 22
-- yarn
+## Engineering Highlights
 
-Install and run the dev server:
+- **Domain-oriented modules:** feature modules group the UI, service calls, validation, state, and focused tests relevant to each capability. Modules stay lightweight when a layer is not needed, and `index.ts` files define their supported public APIs.
+- **Enforced dependency direction:** ESLint prevents shared code from depending on app or feature modules, prevents features from depending on app-store composition, and restricts feature-to-feature imports to public entry points.
+- **Composition at the application edge:** the app owns route and layout composition; `main.tsx` wires the Redux provider, router, and HTTP callbacks without pushing those concerns into domain modules.
+- **Explicit state ownership:** Redux Toolkit holds session, user, theme, loader, and toast state. Screen-specific data and interactions remain local when they do not need to be shared.
+- **Centralized request and auth handling:** feature services use one Axios client for credentials and authorization. An app-level adapter supplies token and session callbacks, keeping the HTTP utility independent of the store and auth feature.
+- **Validated form and API boundaries:** Zod schemas define constraints and inferred form types; service methods handle endpoint details, multipart post uploads, empty responses, and unexpected status codes.
+- **Behavior-focused testing:** Vitest and Testing Library cover routes, forms, services, schemas, Redux slices, and shared UI. A reusable render helper supplies isolated Redux and router context.
+- **Reusable presentation layer:** shared controls and utilities complement feature-owned screens, with SCSS modules for component-level styling.
+
+## Architecture
+
+```mermaid
+flowchart TD
+	Browser[Browser] --> Main[main.tsx: providers and HTTP setup]
+	Main --> App[App: routes and layouts]
+	Main --> Store[Redux store]
+	App --> Features[Feature modules]
+	Features -->|when needed| CrossCutting[Toast, loader, and theme APIs]
+	Features --> SharedUI[Shared UI and utilities]
+	Features -->|API-backed features| Services[Feature services]
+	 App --> Session[Session workflows]
+	 Session --> Auth[Auth API and state]
+	 Session --> User[User API and state]
+	 Session --> Store
+	Services --> Http[Shared Axios client]
+	Http --> API[Social app API]
+	Http -. auth callbacks .-> Adapter[App HTTP adapter]
+	 Adapter --> Session
+```
+
+### Request and authentication lifecycle
+
+At startup, `main.tsx` configures the HTTP callbacks before rendering the app. The app restores the session, obtains a token, then fetches the current user; the loading state is shown while this is in progress. Requests use cookies and the current authorization token. If the API reports an expired token, the client refreshes it and retries the failed request; a signed-out response clears the session. Protected routes render only for an authenticated session, otherwise redirecting to `/auth/login`.
+
+### Code organization
+
+| Area           | Responsibility                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------ |
+| `src/app`      | Route and layout composition, application startup, Redux store composition, and app-level wiring |
+| `src/features` | Feature modules with their own UI, services, state, and public `index.ts` API                    |
+| `src/shared`   | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
+| `src/test`     | Shared render helpers and test setup                                                             |
+
+### Implementation examples
+
+| Concern                  | Example                                                                                                                                                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTP and auth boundary   | [`http.ts`](src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](src/app/configure-http.ts) injects app-owned auth callbacks. |
+| Session coordination     | [`session-workflows.ts`](src/app/session-workflows.ts) composes Auth and User APIs without a direct feature-to-feature dependency.                       |
+| Typed form validation    | [`post-validation.ts`](src/features/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                       |
+| Isolated component tests | [`render.tsx`](src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.               |
+
+### Cross-cutting capabilities
+
+Loader and Toast are app-wide feedback capabilities under `src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting feature module under `src/features`. Shared feedback remains domain-agnostic and does not own feature workflows or business state.
+
+Feature-to-feature imports use the other feature's public entry point (`features/<feature>`), not its implementation files. ESLint enforces this boundary, prevents feature modules from importing app-store composition, and prevents `shared` from importing app or feature modules.
+
+### Feature dependencies
+
+Current domain dependencies are intentional UI or use-case composition:
+
+| Feature | Depends on      |
+| ------- | --------------- |
+| `auth`  |                 |
+| `home`  | `posts`, `user` |
+| `user`  | `posts`         |
+| `posts` |                 |
+
+The app composes feature modules, including the Auth and User modules for session workflows. Cross-cutting modules may be consumed by domain features. Keep feature dependencies acyclic; when a workflow needs multiple features, coordinate them in `src/app` rather than adding reciprocal feature imports.
+
+### State ownership
+
+Redux stores application state such as authenticated user details and the auth token, plus shared feedback state for loader and toast and cross-cutting theme state. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
+
+## Stack
+
+- React 18, TypeScript 5 (strict mode), and Vite 7
+- Redux Toolkit and React Redux
+- React Router 6
+- Axios
+- Material UI with Emotion
+- React Hook Form, Zod, and `@hookform/resolvers`
+- SCSS modules
+- Vitest, jsdom, and React Testing Library
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 22 or newer
+- Yarn 1.22
+
+### Install and run
 
 ```bash
 yarn install
 yarn dev
 ```
 
-Build and preview production:
+The development server prints its local URL when it starts.
+
+### Build and preview
 
 ```bash
 yarn build
 yarn preview
 ```
 
-Code quality:
+`yarn build` runs the TypeScript compiler before creating the Vite production bundle.
+
+## Quality Checks
 
 ```bash
-# Lint (eslint)
-yarn lint
-
-# Format (prettier)
-yarn format
+yarn test:run       # Run the test suite once
+yarn test:coverage  # Run tests with V8 coverage
+yarn lint           # Run ESLint with warnings treated as errors
+yarn format         # Format source files with Prettier
 ```
 
-## Tech stack
+Tests live alongside the source they exercise. The suite uses jsdom and Testing Library for user-visible behavior, with shared providers for stateful and routed components. Coverage can be inspected with `yarn test:coverage`; no coverage threshold is currently enforced by the Vitest configuration.
 
-- Build: Vite 7, TypeScript 5
-- UI: React 18, @mui/material
-- State: Redux Toolkit, react-redux
-- Routing: react-router-dom v6
-- Forms: react-hook-form, @hookform/resolvers, zod
-- HTTP: axios (withCredentials, interceptors)
-- Styling: SCSS/CSS modules; global styles in `src/main/index.css` and `src/main/global-style.ts`
+## Routes
 
-## Scripts (from package.json)
+| Route            | Access    | Screen                      |
+| ---------------- | --------- | --------------------------- |
+| `/`              | Protected | Home feed                   |
+| `/friends`       | Protected | Friends (placeholder)       |
+| `/chat`          | Protected | Chat (placeholder)          |
+| `/notifications` | Protected | Notifications (placeholder) |
+| `/profile`       | Protected | Profile                     |
+| `/auth/login`    | Public    | Login                       |
+| `/auth/signup`   | Public    | Sign up                     |
 
-- `dev` — start Vite dev server
-- `build` — type-check (tsc) and build
-- `preview` — preview the production build
-- `lint` — run ESLint
-- `format` — run Prettier over `./src`
+## API Configuration
 
-## Architecture overview
+The API base URL and server mode are defined in `src/shared/lib/env.ts`. The current base URL is `http://localhost:4000/api`; change `ENV.API_URL` there to use another backend. The configuration is currently a source constant rather than a Vite environment variable.
 
-Key layers/components:
+The Axios client uses `withCredentials: true`, so a cross-origin API must allow credentialed requests from the app origin and configure cookie attributes appropriately. Authentication refresh and protected-route behavior depend on the API's auth endpoints and error types.
 
-- Routing (`src/main/App.tsx`): React Router v6 with nested layouts. Public auth routes and protected app routes.
-- Protected routes (`src/main/protected-route.tsx` and `src/main/with-protected-route.tsx`): Redirect unauthenticated users to `/auth/login`.
-- State (`src/configs/store.ts`): Redux Toolkit store with `user`, `toast`, and `loader` slices.
-- HTTP (`src/configs/http.ts`): axios instance with base URL, JSON headers, and credentials enabled; response interceptor handles token refresh and unauthorized logout.
-- Environment (`src/configs/env.ts`): central place to set `API_URL` and `SERVER_TYPE`.
-- UI feedback: `features/loader` provides a backdrop loader; `features/toast` provides MUI Snackbar toasts.
+## Scripts
 
-## Styling & design system
-
-- SCSS/CSS modules for component styles
-- Global styles in `src/main/index.css` and theme tokens/utilities in `src/main/global-style.ts`
-- Avoid direct DOM access; prefer React patterns and MUI components
-
-## Forms & validation
-
-- `react-hook-form` for form state
-- `zod` schemas via `@hookform/resolvers` for validation (see feature form components and `utils/schema.ts`)
-
-## Development conventions
-
-- TypeScript strict mode is enabled (`tsconfig.json`)
-- Keep code modern, concise, and secure; avoid deprecated APIs
-- Prefer feature-based folder structure and small, reusable components
-- Commit messages: short and prefixed with `feat:`, `fix:`, `chore:`
-
-## Troubleshooting
-
-- Node version: ensure 22+ for vite 7
-- CORS/auth: axios is configured with `withCredentials`; your API must set proper CORS headers for cookies
-- API URL: update `src/configs/env.ts` if your backend differs
+| Command              | Description                            |
+| -------------------- | -------------------------------------- |
+| `yarn dev`           | Start the Vite development server      |
+| `yarn build`         | Type-check and build for production    |
+| `yarn preview`       | Serve the production build locally     |
+| `yarn test`          | Start Vitest in watch mode             |
+| `yarn test:run`      | Run Vitest once                        |
+| `yarn test:ui`       | Open the Vitest UI                     |
+| `yarn test:coverage` | Run tests and report V8 coverage       |
+| `yarn lint`          | Run ESLint                             |
+| `yarn format`        | Format files under `src` with Prettier |

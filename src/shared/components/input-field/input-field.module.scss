@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 35px;
+}
+
+.label {
+  position: absolute;
+  top: -15px;
+  left: 8px;
+  font-size: 10px;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  font-family: var(--fnt-secondary);
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: var(--clr-bg-secondary);
+  transition: border-color 0.2s;
+  color: var(--clr-fnt-primary);
+
+  &::placeholder {
+    font-size: 10px;
+    color: var(--clr-fnt-secondary);
+  }
+
+  &:focus {
+    border-color: var(--clr-border);
+  }
+}
+
+.error {
+  position: absolute;
+  bottom: -12px;
+  left: 8px;
+  font-size: 10px;
+  color: var(--clr-fnt-error);
+  transition: all 0.2s;
+}
+
+.errorMessageHide {
+  opacity: 0;
+}
+
+.errorMessageShow {
+  opacity: 1;
+}

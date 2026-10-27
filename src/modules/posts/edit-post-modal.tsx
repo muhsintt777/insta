@@ -1,0 +1,105 @@
+import { FC, useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormField } from 'shared/components/input-field/form-field';
+import {
+  PrimaryModal,
+  ModalHeader,
+  ModalFooter,
+} from 'shared/components/modals/primary-modal';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
+import { EditPostFormSchema, editPostFormSchema } from './post-validation';
+import type { EditPostParams } from './post-types';
+
+interface EditPostModalProps {
+  closeModal: () => void;
+  onSubmit?: (params: EditPostParams) => Promise<void>;
+  isOpen: boolean;
+  postId: string;
+  currentCaption: string;
+}
+
+export const EditPostModal: FC<EditPostModalProps> = ({
+  isOpen,
+  closeModal,
+  onSubmit,
+  postId,
+  currentCaption,
+}) => {
+  const { showToast } = useToast();
+  const [showPostLoader, setShowPostLoader] = useState(false);
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<EditPostFormSchema>({
+    resolver: zodResolver(editPostFormSchema),
+    defaultValues: {
+      caption: '',
+    },
+  });
+
+  const handlePostSubmit = async (data: EditPostFormSchema) => {
+    try {
+      setShowPostLoader(true);
+      await onSubmit?.({ postId, caption: data.caption });
+      reset();
+      closeModal();
+    } catch (error) {
+      handleErrorWithToast(error, showToast);
+    } finally {
+      setShowPostLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && currentCaption) {
+      reset({ caption: currentCaption });
+    }
+  }, [isOpen, currentCaption, reset]);
+
+  return (
+    <PrimaryModal isOpen={isOpen}>
+      <>
+        <ModalHeader title="EDIT POST" onClose={closeModal} />
+        <form
+          onSubmit={handleSubmit(handlePostSubmit)}
+          style={{
+            flex: 1,
+            width: '100%',
+            padding: '0px 12px',
+            overflowY: 'auto',
+          }}
+        >
+          <Controller
+            name="caption"
+            control={control}
+            render={({ field }) => (
+              <FormField
+                error={errors.caption?.message || null}
+                label="Caption"
+                name="caption"
+                placeholder="What's on your mind?"
+                controls={{
+                  type: 'TEXT',
+                  value: field.value,
+                  onchange: field.onChange,
+                }}
+              />
+            )}
+          />
+        </form>
+        <ModalFooter
+          secondaryButton={{ onClick: closeModal, text: 'CANCEL' }}
+          primaryButton={{
+            text: 'UPDATE',
+            showLoader: showPostLoader,
+            onClick: handleSubmit(handlePostSubmit),
+          }}
+        />
+      </>
+    </PrimaryModal>
+  );
+};

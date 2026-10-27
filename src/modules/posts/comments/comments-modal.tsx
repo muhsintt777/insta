@@ -1,0 +1,156 @@
+import styles from './comments-modal.module.scss';
+import { FC, useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  PrimaryModal,
+  ModalHeader,
+} from 'shared/components/modals/primary-modal';
+import { PrimaryButton } from 'shared/components/buttons/primary-button';
+import { TextInput } from 'shared/components/input-field/text-input';
+import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
+import { CircleLoader } from 'shared/components/loaders/circle-loader';
+import { CommentService } from './comment-service';
+import type { CommentDetails } from './comment-types';
+import { CommentCard } from './comment-card';
+import { commentFormSchema, CommentFormSchema } from './comment-validation';
+
+type CommentLoadStatus = 'IDLE' | 'LOADING' | 'SUCCESS' | 'FAILED';
+
+interface CommentsModalProps {
+  closeModal: () => void;
+  isOpen: boolean;
+  postId: string | null;
+  onSubmit?: () => void;
+  onDelete?: () => void;
+}
+
+export const CommentsModal: FC<CommentsModalProps> = ({
+  isOpen,
+  closeModal,
+  postId,
+  onSubmit,
+  onDelete,
+}) => {
+  const { showToast } = useToast();
+  const [screenStatus, setScreenStatus] = useState<CommentLoadStatus>('IDLE');
+  const [comments, setComments] = useState<CommentDetails[]>([]);
+  const [showCommentLoader, setShowCommentLoader] = useState(false);
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<CommentFormSchema>({
+    resolver: zodResolver(commentFormSchema),
+    defaultValues: { comment: '' },
+  });
+
+  const onCommentSubmit = async (data: CommentFormSchema) => {
+    try {
+      if (!postId || screenStatus !== 'SUCCESS' || showCommentLoader) return;
+      setShowCommentLoader(true);
+      await CommentService.createComment(postId, data.comment);
+      const newComment = await CommentService.listPostComments(postId);
+      setComments(newComment);
+      onSubmit?.();
+      reset();
+    } catch (error) {
+      handleErrorWithToast(error, showToast);
+    } finally {
+      setShowCommentLoader(false);
+    }
+  };
+
+  const onDeleteComment = async (commentId: string) => {
+    try {
+      if (!postId) return;
+      await CommentService.deleteComment(commentId);
+      const updatedComments = await CommentService.listPostComments(postId);
+      setComments(updatedComments);
+      onDelete?.();
+    } catch (error) {
+      //
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (!postId) return;
+      try {
+        setScreenStatus('LOADING');
+        const result = await CommentService.listPostComments(postId);
+        setComments(result);
+        setScreenStatus('SUCCESS');
+      } catch (error) {
+        setScreenStatus('FAILED');
+        handleErrorWithToast(error, showToast);
+      }
+    })();
+  }, [postId, showToast]);
+
+  return (
+    <PrimaryModal isOpen={isOpen}>
+      <>
+        <ModalHeader title="COMMENTS" onClose={closeModal} />
+        <div className={styles.body}>
+          {screenStatus === 'LOADING' && (
+            <div className={styles.screenStatusWrap}>
+              <CircleLoader />
+            </div>
+          )}
+          {screenStatus === 'FAILED' && (
+            <div className={styles.screenStatusWrap}>
+              {' '}
+              <p>Failed to load comments</p>{' '}
+            </div>
+          )}
+          {screenStatus === 'SUCCESS' && comments.length === 0 && (
+            <div className={styles.screenStatusWrap}>
+              <p>No comments yet</p>
+            </div>
+          )}
+          {screenStatus === 'SUCCESS' && (
+            <div className={styles.commentsList}>
+              {comments.map((comment) => (
+                <CommentCard
+                  key={comment.id}
+                  commentText={comment.content}
+                  authorName={comment.creator.username}
+                  authorProfilePic={comment.creator.profileImage}
+                  commentedAt={comment.createdAt}
+                  onDelete={() => onDeleteComment(comment.id)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        <form
+          className={styles.footer}
+          onSubmit={handleSubmit(onCommentSubmit)}
+        >
+          <Controller
+            name="comment"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                error={errors.comment?.message || null}
+                name="comment"
+                onchange={field.onChange}
+                value={field.value}
+                placeholder="Add a comment..."
+              />
+            )}
+          />
+          <PrimaryButton
+            customStyles={{ width: '100px' }}
+            text="SEND"
+            type="submit"
+            showLoader={showCommentLoader}
+          />
+        </form>
+      </>
+    </PrimaryModal>
+  );
+};
