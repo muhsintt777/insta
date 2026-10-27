@@ -14,7 +14,7 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-vi.mock('features/posts/post-service', () => ({
+vi.mock('modules/posts/post-service', () => ({
   PostService: {
     fetchUserPosts: vi.fn(),
     deletePost: vi.fn(),
@@ -22,7 +22,7 @@ vi.mock('features/posts/post-service', () => ({
   },
 }));
 
-vi.mock('features/posts/likes/like-service', () => ({
+vi.mock('modules/posts/likes/like-service', () => ({
   LikeService: {
     createLike: vi.fn(),
     deleteLike: vi.fn(),

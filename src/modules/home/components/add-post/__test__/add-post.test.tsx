@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { AddPost } from '../add-post';
 
-vi.mock('features/posts/create-post-modal', () => ({
+vi.mock('modules/posts/create-post-modal', () => ({
   CreatePostModal: ({
     isOpen,
     closeModal,

@@ -24,7 +24,7 @@
 
     "baseUrl": "./src",
     "paths": {
-      "features/*": ["./features/*"],
+      "modules/*": ["./modules/*"],
       "app/*": ["./app/*"],
       "shared/*": ["./shared/*"],
       "test/*": ["./test/*"]

@@ -16,7 +16,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      features: path.resolve(__dirname, 'src/features'),
+      modules: path.resolve(__dirname, 'src/modules'),
       app: path.resolve(__dirname, 'src/app'),
       shared: path.resolve(__dirname, 'src/shared'),
       test: path.resolve(__dirname, 'src/test'),

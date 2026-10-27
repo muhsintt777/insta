@@ -10,25 +10,25 @@ vi.mock('shared/feedback/toast', () => ({
   ToastHost: () => <div data-testid="toast">Toast</div>,
 }));
 
-vi.mock('features/home/home-page', () => ({
+vi.mock('modules/home/home-page', () => ({
   HomePage: () => <div data-testid="home-page">HomePage</div>,
 }));
 
-vi.mock('features/friends/friends', () => ({
+vi.mock('modules/friends/friends', () => ({
   Friends: () => <div data-testid="friends-page">Friends</div>,
 }));
 
-vi.mock('features/chat/chat', () => ({
+vi.mock('modules/chat/chat', () => ({
   Chat: () => <div data-testid="chat-page">Chat</div>,
 }));
 
-vi.mock('features/notifications/notifications', () => ({
+vi.mock('modules/notifications/notifications', () => ({
   Notifications: () => (
     <div data-testid="notifications-page">Notifications</div>
   ),
 }));
 
-vi.mock('features/user/profile-page', () => ({
+vi.mock('modules/user/profile-page', () => ({
   ProfilePage: () => <div data-testid="profile-page">ProfilePage</div>,
 }));
 
@@ -37,7 +37,7 @@ vi.mock('app/session-workflows', () => ({
   signIn: vi.fn(),
 }));
 
-vi.mock('features/auth', () => ({
+vi.mock('modules/auth', () => ({
   selectAuthStatus: (state: { auth: { status: string } }) => state.auth.status,
   LoginPage: () => <div data-testid="login-page">Login</div>,
   SignupPage: () => <div data-testid="signup-page">SignupPage</div>,

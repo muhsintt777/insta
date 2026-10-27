@@ -4,13 +4,13 @@ import { HomePage } from '../home-page';
 import { LikeService, PostService, type Post } from 'modules/posts';
 import { handleErrorWithToast } from 'shared/feedback/toast';
 
-vi.mock('features/posts/post-service', () => ({
+vi.mock('modules/posts/post-service', () => ({
   PostService: {
     fetchPosts: vi.fn(),
   },
 }));
 
-vi.mock('features/posts/likes/like-service', () => ({
+vi.mock('modules/posts/likes/like-service', () => ({
   LikeService: {
     createLike: vi.fn(),
     deleteLike: vi.fn(),
@@ -21,7 +21,7 @@ vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
-vi.mock('features/posts/comments/comments-modal', () => ({
+vi.mock('modules/posts/comments/comments-modal', () => ({
   CommentsModal: ({ isOpen }: { isOpen: boolean }) =>
     isOpen ? <div data-testid="comments-modal">Comments Modal</div> : null,
 }));
@@ -34,7 +34,7 @@ vi.mock('../components/add-post/add-post', () => ({
   ),
 }));
 
-vi.mock('features/posts/components/post-card', () => ({
+vi.mock('modules/posts/components/post-card', () => ({
   PostCard: ({
     id,
     caption,

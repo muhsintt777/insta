@@ -22,9 +22,9 @@ module.exports = {
       {
         patterns: [
           {
-            group: ['features/*/**'],
+            group: ['modules/*/**'],
             message:
-              'Import feature APIs from features/<feature>, not implementation paths.',
+              'Import module APIs from modules/<module>, not implementation paths.',
           },
         ],
       },
@@ -32,16 +32,16 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/features/**/*.{ts,tsx}'],
+      files: ['src/modules/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',
           {
             patterns: [
               {
-                group: ['features/*/**'],
+                group: ['modules/*/**'],
                 message:
-                  'Import feature APIs from features/<feature>, not implementation paths.',
+                  'Import module APIs from modules/<module>, not implementation paths.',
               },
               {
                 group: ['app/store', 'app/store/**'],
@@ -62,15 +62,14 @@ module.exports = {
             patterns: [
               {
                 group: [
-                  'features',
-                  'features/*',
-                  'features/*/**',
+                  'modules',
+                  'modules/*',
+                  'modules/*/**',
                   'app',
                   'app/*',
                   'app/*/**',
                 ],
-                message:
-                  'Shared modules must not depend on app or feature modules.',
+                message: 'Shared modules must not depend on app or  modules.',
               },
             ],
           },
