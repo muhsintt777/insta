@@ -2,7 +2,7 @@
 
 **An API-connected social app built with React, TypeScript, and Redux Toolkit.**
 
-An Instagram-inspired single-page application for sharing posts and interacting with a community. The project emphasizes domain-oriented organization, typed state and forms, resilient authentication requests, and behavior-focused component tests.
+An Instagram-inspired single-page application for sharing posts and interacting with a community. The project emphasizes domain-oriented organization, typed state and forms, resilient authentication requests, and behavior-focused component tests..
 
 ## Product Scope
 
