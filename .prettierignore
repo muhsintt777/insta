@@ -1,5 +1,3 @@
-src/configs/env.ts
-
 # common
 node_modules
 dist
