@@ -13,14 +13,14 @@ An Instagram-inspired single-page application for sharing posts and interacting 
 
 ## Engineering Highlights
 
-- **Domain-oriented modules:** feature modules group the UI, service calls, validation, state, and focused tests relevant to each capability. Modules stay lightweight when a layer is not needed, and `index.ts` files define their supported public APIs.
-- **Enforced dependency direction:** ESLint prevents shared code from depending on app or feature modules, prevents modules from depending on app-store composition, and restricts feature-to-feature imports to public entry points.
+- **Domain-oriented modules:** modules group the UI, service calls, validation, state, and focused tests relevant to each capability. They stay lightweight when a layer is not needed, and `index.ts` files define their supported public APIs.
+- **Enforced dependency direction:** ESLint prevents shared code from depending on app or domain modules, prevents modules from depending on app-store composition, and restricts module-to-module imports to public entry points.
 - **Composition at the application edge:** the app owns route and layout composition; `main.tsx` wires the Redux provider, router, and HTTP callbacks without pushing those concerns into domain modules.
 - **Explicit state ownership:** Redux Toolkit holds session, user, theme, loader, and toast state. Screen-specific data and interactions remain local when they do not need to be shared.
-- **Centralized request and auth handling:** feature services use one Axios client for credentials and authorization. An app-level adapter supplies token and session callbacks, keeping the HTTP utility independent of the store and auth feature.
+- **Centralized request and auth handling:** module services use one Axios client for credentials and authorization. An app-level adapter supplies token and session callbacks, keeping the HTTP utility independent of the store and auth module.
 - **Validated form and API boundaries:** Zod schemas define constraints and inferred form types; service methods handle endpoint details, multipart post uploads, empty responses, and unexpected status codes.
 - **Behavior-focused testing:** Vitest and Testing Library cover routes, forms, services, schemas, Redux slices, and shared UI. A reusable render helper supplies isolated Redux and router context.
-- **Reusable presentation layer:** shared controls and utilities complement feature-owned screens, with SCSS modules for component-level styling.
+- **Reusable presentation layer:** shared controls and utilities complement module-owned screens, with SCSS modules for component-level styling.
 
 ## Architecture
 
@@ -29,10 +29,10 @@ flowchart TD
 	Browser[Browser] --> Main[main.tsx: providers and HTTP setup]
 	Main --> App[App: routes and layouts]
 	Main --> Store[Redux store]
-	App --> Features[Feature modules]
-	Features -->|when needed| CrossCutting[Toast, loader, and theme APIs]
-	Features --> SharedUI[Shared UI and utilities]
-	Features -->|API-backed modules| Services[Feature services]
+	App --> Modules[Domain modules]
+	Modules -->|when needed| CrossCutting[Toast, loader, and theme APIs]
+	Modules --> SharedUI[Shared UI and utilities]
+	Modules -->|API-backed modules| Services[Module services]
 	 App --> Session[Session workflows]
 	 Session --> Auth[Auth API and state]
 	 Session --> User[User API and state]
@@ -52,7 +52,7 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 | Area          | Responsibility                                                                                   |
 | ------------- | ------------------------------------------------------------------------------------------------ |
 | `src/app`     | Route and layout composition, application startup, Redux store composition, and app-level wiring |
-| `src/modules` | Feature modules with their own UI, services, state, and public `index.ts` API                    |
+| `src/modules` | Domain modules with their own UI, services, state, and public `index.ts` API                     |
 | `src/shared`  | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
 | `src/test`    | Shared render helpers and test setup                                                             |
 
@@ -61,32 +61,32 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 | Concern                  | Example                                                                                                                                                  |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HTTP and auth boundary   | [`http.ts`](src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](src/app/configure-http.ts) injects app-owned auth callbacks. |
-| Session coordination     | [`session-workflows.ts`](src/app/session-workflows.ts) composes Auth and User APIs without a direct feature-to-feature dependency.                       |
+| Session coordination     | [`session-workflows.ts`](src/app/session-workflows.ts) composes Auth and User APIs without a direct module-to-module dependency.                         |
 | Typed form validation    | [`post-validation.ts`](src/modules/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                        |
 | Isolated component tests | [`render.tsx`](src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.               |
 
 ### Cross-cutting capabilities
 
-Loader and Toast are app-wide feedback capabilities under `src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting feature module under `src/modules`. Shared feedback remains domain-agnostic and does not own feature workflows or business state.
+Loader and Toast are app-wide feedback capabilities under `src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting module under `src/modules`. Shared feedback remains domain-agnostic and does not own module workflows or business state.
 
-Feature-to-feature imports use the other feature's public entry point (`modules/<feature>`), not its implementation files. ESLint enforces this boundary, prevents feature modules from importing app-store composition, and prevents `shared` from importing app or feature modules.
+Module-to-module imports use the other module's public entry point (`modules/<module>`), not its implementation files. ESLint enforces this boundary and prevents modules from importing app store composition, routing, layouts, startup, or session workflows. Modules may use `app/hooks/redux-hooks` as their typed Redux integration API. Shared code cannot import app or domain modules.
 
-### Feature dependencies
+### Module dependencies
 
 Current domain dependencies are intentional UI or use-case composition:
 
-| Feature | Depends on      |
+| Module  | Depends on      |
 | ------- | --------------- |
 | `auth`  |                 |
 | `home`  | `posts`, `user` |
 | `user`  | `posts`         |
 | `posts` |                 |
 
-The app composes feature modules, including the Auth and User modules for session workflows. Cross-cutting modules may be consumed by domain modules. Keep feature dependencies acyclic; when a workflow needs multiple modules, coordinate them in `src/app` rather than adding reciprocal feature imports.
+The app composes modules, including Auth and User for session workflows. Cross-cutting modules may be consumed by domain modules. Keep module dependencies acyclic; when a workflow needs multiple modules, coordinate them in `src/app` rather than adding reciprocal module imports.
 
 ### State ownership
 
-Redux stores application state such as authenticated user details and the auth token, plus shared feedback state for loader and toast and cross-cutting theme state. Feature screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
+Redux stores application state such as authenticated user details and the auth token, plus shared feedback state for loader and toast and cross-cutting theme state. Module screens keep short-lived interaction state local when it does not need to be shared; for example, the home feed owns its loaded posts and selected comment modal.
 
 ## Stack
 
