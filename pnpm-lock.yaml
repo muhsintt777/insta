@@ -255,6 +255,9 @@ importers:
       '@insta/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@mui/icons-material':
+        specifier: 5.14.9
+        version: 5.14.9(@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react@18.3.1)
       '@mui/material':
         specifier: 'catalog:'
         version: 5.18.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1031,6 +1034,17 @@ packages:
 
   '@mui/core-downloads-tracker@5.18.0':
     resolution: {integrity: sha512-jbhwoQ1AY200PSSOrNXmrFCaSDSJWP7qk6urkTmIirvRXDROkqe+QwcLlUiw/PrREwsIF/vm3/dAXvjlMHF0RA==}
+
+  '@mui/icons-material@5.14.9':
+    resolution: {integrity: sha512-xTRQbDsogsJo7tY5Og8R9zbuG2q+KIPVIM6JQoKxtJlz9DPOw1u0T2fGrvwD+XAOVifQf6epNMcGCDLfJAz4Nw==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@mui/material@5.18.0':
     resolution: {integrity: sha512-bbH/HaJZpFtXGvWg3TsBWG4eyt3gah3E7nCNU8GLyRjVoWcA91Vm/T+sjHfUcwgJSw9iLtucfHBoq+qW/T30aA==}
@@ -3878,6 +3892,14 @@ snapshots:
       - supports-color
 
   '@mui/core-downloads-tracker@5.18.0': {}
+
+  '@mui/icons-material@5.14.9(@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react@18.3.1)':
+    dependencies:
+      '@babel/runtime': 7.29.10
+      '@mui/material': 5.18.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.31
 
   '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:

@@ -20,6 +20,7 @@
     "@hookform/resolvers": "catalog:",
     "@insta/core": "workspace:*",
     "@insta/ui": "workspace:*",
+    "@mui/icons-material": "5.14.9",
     "@mui/material": "catalog:",
     "@reduxjs/toolkit": "catalog:",
     "axios": "catalog:",
@@ -31,12 +32,12 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@insta/test-utils": "workspace:*",
     "@module-federation/vite": "^1.23.6",
     "@testing-library/dom": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@testing-library/user-event": "catalog:",
-    "@insta/test-utils": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react-swc": "catalog:",

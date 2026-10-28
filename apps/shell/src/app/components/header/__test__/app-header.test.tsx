@@ -60,6 +60,32 @@ describe('Header', () => {
       expect(screen.getByText('johndoe')).toBeInTheDocument();
     });
 
+    it('renders links for the available app sections and marks the current page', () => {
+      renderWithProviders(<Header />, {
+        preloadedState: loggedInState,
+        route: '/',
+      });
+
+      expect(
+        screen.getByRole('navigation', { name: 'Main navigation' }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute(
+        'aria-current',
+        'page',
+      );
+      expect(screen.getByRole('link', { name: 'My Network' })).toHaveAttribute(
+        'href',
+        '/friends',
+      );
+      expect(screen.getByRole('link', { name: 'Messaging' })).toHaveAttribute(
+        'href',
+        '/chat',
+      );
+      expect(
+        screen.getByRole('link', { name: 'Notifications' }),
+      ).toHaveAttribute('href', '/notifications');
+    });
+
     it('opens menu when profile is clicked', async () => {
       const user = userEvent.setup();
       renderWithProviders(<Header />, {

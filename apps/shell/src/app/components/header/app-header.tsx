@@ -10,6 +10,22 @@ import { selectUser } from 'modules/user';
 import { themeActions } from 'modules/theme';
 import { handleErrorWithToast, useToast } from '@insta/ui/feedback/toast';
 import { signOut } from 'app/session-workflows';
+import { NavLink } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import GroupsIcon from '@mui/icons-material/Groups';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+
+const navigationItems = [
+  { label: 'Home', to: APP_ROUTES.HOME, Icon: HomeIcon },
+  { label: 'My Network', to: APP_ROUTES.FRIENDS, Icon: GroupsIcon },
+  { label: 'Messaging', to: APP_ROUTES.CHAT, Icon: ChatBubbleIcon },
+  {
+    label: 'Notifications',
+    to: APP_ROUTES.NOTIFICATIONS,
+    Icon: NotificationsIcon,
+  },
+];
 
 export const Header = memo(() => {
   const navigate = useNavigate();
@@ -73,12 +89,29 @@ export const Header = memo(() => {
         <div className={styles.contentWrap}>
           <img src={appLogo} alt="app-logo" />
           {user.details && (
-            <>
-              <div className={styles.profile} onClick={handleClick}>
-                <p>{user.details.username}</p>
-                <CustomAvatar src={user.details.profileImage} size="40px" />
-              </div>
-            </>
+            <nav className={styles.navigation} aria-label="Main navigation">
+              {navigationItems.map(({ label, to, Icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === APP_ROUTES.HOME}
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.navigationLink} ${styles.active}`
+                      : styles.navigationLink
+                  }
+                >
+                  <Icon fontSize="small" />
+                  <span>{label}</span>
+                </NavLink>
+              ))}
+            </nav>
+          )}
+          {user.details && (
+            <div className={styles.profile} onClick={handleClick}>
+              <p>{user.details.username}</p>
+              <CustomAvatar src={user.details.profileImage} size="40px" />
+            </div>
           )}
         </div>
       </header>
