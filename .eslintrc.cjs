@@ -32,7 +32,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/modules/**/*.{ts,tsx}'],
+      files: ['apps/shell/src/modules/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -75,7 +75,7 @@ module.exports = {
       },
     },
     {
-      files: ['src/shared/**/*.{ts,tsx}'],
+      files: ['apps/shell/src/shared/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',

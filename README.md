@@ -49,25 +49,25 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 
 ### Code organization
 
-| Area          | Responsibility                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `src/app`     | Route and layout composition, application startup, Redux store composition, and app-level wiring |
-| `src/modules` | Domain modules with their own UI, services, state, and public `index.ts` API                     |
-| `src/shared`  | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
-| `src/test`    | Shared render helpers and test setup                                                             |
+| Area                     | Responsibility                                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------ |
+| `apps/shell/src/app`     | Route and layout composition, application startup, Redux store composition, and app-level wiring |
+| `apps/shell/src/modules` | Domain modules with their own UI, services, state, and public `index.ts` API                     |
+| `apps/shell/src/shared`  | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
+| `apps/shell/src/test`    | Shared render helpers and test setup                                                             |
 
 ### Implementation examples
 
-| Concern                  | Example                                                                                                                                                  |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| HTTP and auth boundary   | [`http.ts`](src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](src/app/configure-http.ts) injects app-owned auth callbacks. |
-| Session coordination     | [`session-workflows.ts`](src/app/session-workflows.ts) composes Auth and User APIs without a direct module-to-module dependency.                         |
-| Typed form validation    | [`post-validation.ts`](src/modules/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                        |
-| Isolated component tests | [`render.tsx`](src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.               |
+| Concern                  | Example                                                                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| HTTP and auth boundary   | [`http.ts`](apps/shell/src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](apps/shell/src/app/configure-http.ts) injects app-owned auth callbacks. |
+| Session coordination     | [`session-workflows.ts`](apps/shell/src/app/session-workflows.ts) composes Auth and User APIs without a direct module-to-module dependency.                                    |
+| Typed form validation    | [`post-validation.ts`](apps/shell/src/modules/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                                   |
+| Isolated component tests | [`render.tsx`](apps/shell/src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.                          |
 
 ### Cross-cutting capabilities
 
-Loader and Toast are app-wide feedback capabilities under `src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting module under `src/modules`. Shared feedback remains domain-agnostic and does not own module workflows or business state.
+Loader and Toast are app-wide feedback capabilities under `apps/shell/src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting module under `apps/shell/src/modules`. Shared feedback remains domain-agnostic and does not own module workflows or business state.
 
 Module-to-module imports use the other module's public entry point (`modules/<module>`), not its implementation files. ESLint enforces this boundary and prevents modules from importing app store composition, routing, layouts, startup, or session workflows. Modules may use `app/hooks/redux-hooks` as their typed Redux integration API. Shared code cannot import app or domain modules.
 
@@ -82,7 +82,7 @@ Current domain dependencies are intentional UI or use-case composition:
 | `user`  | `posts`         |
 | `posts` |                 |
 
-The app composes modules, including Auth and User for session workflows. Cross-cutting modules may be consumed by domain modules. Keep module dependencies acyclic; when a workflow needs multiple modules, coordinate them in `src/app` rather than adding reciprocal module imports.
+The app composes modules, including Auth and User for session workflows. Cross-cutting modules may be consumed by domain modules. Keep module dependencies acyclic; when a workflow needs multiple modules, coordinate them in `apps/shell/src/app` rather than adding reciprocal module imports.
 
 ### State ownership
 
@@ -149,7 +149,7 @@ Tests live alongside the source they exercise. The suite uses jsdom and Testing 
 
 ## API Configuration
 
-The API base URL and server mode are defined in `src/shared/lib/env.ts`. The current base URL is `http://localhost:4000/api`; change `ENV.VITE_API_URL` there to use another backend. The configuration is currently a source constant rather than a Vite environment variable.
+The API base URL and server mode are defined in `apps/shell/src/shared/lib/env.ts`. The current base URL is `http://localhost:4000/api`; change `ENV.VITE_API_URL` there to use another backend. The configuration is currently a source constant rather than a Vite environment variable.
 
 The Axios client uses `withCredentials: true`, so a cross-origin API must allow credentialed requests from the app origin and configure cookie attributes appropriately. Authentication refresh and protected-route behavior depend on the API's auth endpoints and error types.
 
