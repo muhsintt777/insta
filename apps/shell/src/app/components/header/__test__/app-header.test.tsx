@@ -73,7 +73,7 @@ describe('Header', () => {
         'aria-current',
         'page',
       );
-      expect(screen.getByRole('link', { name: 'My Network' })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: 'Friends' })).toHaveAttribute(
         'href',
         '/friends',
       );

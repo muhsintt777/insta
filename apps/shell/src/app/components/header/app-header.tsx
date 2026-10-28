@@ -18,7 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const navigationItems = [
   { label: 'Home', to: APP_ROUTES.HOME, Icon: HomeIcon },
-  { label: 'My Network', to: APP_ROUTES.FRIENDS, Icon: GroupsIcon },
+  { label: 'Friends', to: APP_ROUTES.FRIENDS, Icon: GroupsIcon },
   { label: 'Messaging', to: APP_ROUTES.CHAT, Icon: ChatBubbleIcon },
   {
     label: 'Notifications',
