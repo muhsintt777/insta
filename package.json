@@ -4,15 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @insta/shell dev",
-    "dev:prod": "pnpm --filter @insta/shell dev:prod",
-    "build": "pnpm --filter @insta/shell build:prod",
-    "build:dev": "pnpm --filter @insta/shell build:dev",
-    "build:prod": "pnpm --filter @insta/shell build:prod",
+    "build": "pnpm --filter @insta/shell build",
     "lint": "pnpm --filter @insta/shell lint",
     "preview": "pnpm --filter @insta/shell preview",
     "format": "pnpm --filter @insta/shell format",
     "test": "pnpm --filter @insta/shell test",
-    "test:run": "pnpm --filter @insta/shell test",
     "test:watch": "pnpm --filter @insta/shell test:watch",
     "test:coverage": "pnpm --filter @insta/shell test:coverage"
   },
