@@ -15,7 +15,8 @@ export default defineConfig({
     alias: {
       modules: '/src/modules',
       app: '/src/app',
-      '@insta/shared': path.resolve(__dirname, '../../packages/shared/src'),
+      '@insta/core': path.resolve(__dirname, '../../packages/core/src'),
+      '@insta/ui': path.resolve(__dirname, '../../packages/ui/src'),
     },
   },
 });

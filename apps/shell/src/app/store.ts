@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { toastReducer } from '@insta/shared/feedback/toast';
+import { toastReducer } from '@insta/ui/feedback/toast';
 import { userReducer } from 'modules/user';
-import { loaderReducer } from '@insta/shared/feedback/loader';
+import { loaderReducer } from '@insta/ui/feedback/loader';
 import { authReducer } from 'modules/auth';
 import { getInitialTheme, themeReducer } from 'modules/theme';
 

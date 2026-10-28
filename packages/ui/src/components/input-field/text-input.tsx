@@ -1,6 +1,6 @@
 import styles from './input-field.module.scss';
 import { CSSProperties, FC, memo, useMemo } from 'react';
-import { addMultipleClassNames } from '../../lib/class-names';
+import { addMultipleClassNames } from '@insta/core/lib/class-names';
 
 interface TextInputProps {
   value: string | null;

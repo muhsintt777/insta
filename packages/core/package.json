@@ -1,0 +1,23 @@
+{
+  "name": "@insta/core",
+  "description": "Framework-independent constants, routes, and application utilities.",
+  "private": true,
+  "version": "2.0.1",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write ./src",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "axios": "catalog:"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

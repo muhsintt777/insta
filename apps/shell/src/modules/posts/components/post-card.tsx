@@ -7,15 +7,15 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { VerticalDotIcon } from '@insta/shared/assets/icons/vertical-dot-icon';
-import { LikeIcon } from '@insta/shared/assets/icons/like-icon';
-import { CommentIcon } from '@insta/shared/assets/icons/comment-icon';
-import { PrimaryIconButton } from '@insta/shared/components/buttons/primary-icon-button';
-import { CustomAvatar } from '@insta/shared/components/custom-avatar/custom-avatar';
-import { DateUtils } from '@insta/shared/lib/date-utils';
-import { SecondaryButton } from '@insta/shared/components/buttons/secondary-button';
-import { LikedIcon } from '@insta/shared/assets/icons/liked-icon';
-import { CustomMenu } from '@insta/shared/components/menus/custom-menu';
+import { VerticalDotIcon } from '@insta/ui/assets/icons/vertical-dot-icon';
+import { LikeIcon } from '@insta/ui/assets/icons/like-icon';
+import { CommentIcon } from '@insta/ui/assets/icons/comment-icon';
+import { PrimaryIconButton } from '@insta/ui/components/buttons/primary-icon-button';
+import { CustomAvatar } from '@insta/ui/components/custom-avatar/custom-avatar';
+import { DateUtils } from '@insta/core/lib/date-utils';
+import { SecondaryButton } from '@insta/ui/components/buttons/secondary-button';
+import { LikedIcon } from '@insta/ui/assets/icons/liked-icon';
+import { CustomMenu } from '@insta/ui/components/menus/custom-menu';
 
 interface PostCardProps {
   id?: string;

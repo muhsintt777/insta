@@ -1,6 +1,6 @@
-import { ERROR_TYPE, HTTP_STATUS_CODES } from '@insta/shared/constants';
-import { http } from '@insta/shared/lib/http';
-import { CustomError } from '@insta/shared/lib/errors/custom-error';
+import { ERROR_TYPE, HTTP_STATUS_CODES } from '@insta/core/constants';
+import { http } from '@insta/core/lib/http';
+import { CustomError } from '@insta/core/lib/errors/custom-error';
 
 export interface CreateUserParams {
   email: string;

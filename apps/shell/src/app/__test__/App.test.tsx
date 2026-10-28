@@ -2,11 +2,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, waitFor } from 'test';
 import { App } from '../App';
 
-vi.mock('@insta/shared/feedback/loader', () => ({
+vi.mock('@insta/ui/feedback/loader', () => ({
   BackdropLoader: () => <div data-testid="backdrop-loader">BackdropLoader</div>,
 }));
 
-vi.mock('@insta/shared/feedback/toast', () => ({
+vi.mock('@insta/ui/feedback/toast', () => ({
   ToastHost: () => <div data-testid="toast">Toast</div>,
 }));
 
@@ -57,7 +57,7 @@ vi.mock('app/layouts/secondary-layout', () => ({
   ),
 }));
 
-vi.mock('@insta/shared/components/loaders/dot-loader', () => ({
+vi.mock('@insta/ui/components/loaders/dot-loader', () => ({
   DotLoader: () => <div data-testid="dot-loader">Loading...</div>,
 }));
 

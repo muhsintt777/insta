@@ -7,9 +7,9 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'modules/posts';
-import { handleErrorWithToast, useToast } from '@insta/shared/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/ui/feedback/toast';
 import { AddPost } from './components/add-post/add-post';
-import { COMMON_ERROR_MESSAGE } from '@insta/shared/constants';
+import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
 import type { Post } from 'modules/posts';
 
 type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';

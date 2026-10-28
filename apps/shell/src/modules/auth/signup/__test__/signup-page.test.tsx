@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { SignupPage } from '../signup-page';
 import { AuthService } from '../../auth-service';
-import { handleErrorWithToast } from '@insta/shared/feedback/toast';
+import { handleErrorWithToast } from '@insta/ui/feedback/toast';
 
 vi.mock('../../auth-service', () => ({
   AuthService: {
@@ -10,11 +10,11 @@ vi.mock('../../auth-service', () => ({
   },
 }));
 
-vi.mock('@insta/shared/feedback/toast/handle-error-with-toast', () => ({
+vi.mock('@insta/ui/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
-vi.mock('@insta/shared/feedback/toast/use-toast', () => ({
+vi.mock('@insta/ui/feedback/toast/use-toast', () => ({
   useToast: () => ({
     showToast: vi.fn(),
   }),

@@ -5,9 +5,10 @@
     "paths": {
       "modules/*": ["./modules/*"],
       "app/*": ["./app/*"],
-      "@insta/shared/*": ["../../../packages/shared/src/*"],
-      "test": ["../../../packages/shared/src/test"],
-      "test/*": ["../../../packages/shared/src/test/*"]
+      "@insta/core/*": ["../../../packages/core/src/*"],
+      "@insta/ui/*": ["../../../packages/ui/src/*"],
+      "test": ["../../../packages/test-utils/src/test"],
+      "test/*": ["../../../packages/test-utils/src/test/*"]
     }
   },
   "include": ["src"],

@@ -1,0 +1,36 @@
+{
+  "name": "@insta/test-utils",
+  "description": "Shared React testing helpers for Insta workspaces.",
+  "private": true,
+  "version": "2.0.1",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write ./src"
+  },
+  "peerDependencies": {
+    "@reduxjs/toolkit": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@testing-library/user-event": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-redux": "catalog:",
+    "react-router-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "catalog:",
+    "@testing-library/dom": "catalog:",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@testing-library/user-event": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-redux": "catalog:",
+    "react-router-dom": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

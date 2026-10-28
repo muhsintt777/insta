@@ -3,16 +3,16 @@ import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { APP_ROUTES } from '@insta/shared/routes';
-import { FormField } from '@insta/shared/components/input-field/form-field';
-import { PrimaryButton } from '@insta/shared/components/buttons/primary-button';
-import { handleErrorWithToast } from '@insta/shared/feedback/toast';
-import { useToast } from '@insta/shared/feedback/toast';
+import { APP_ROUTES } from '@insta/core/routes';
+import { FormField } from '@insta/ui/components/input-field/form-field';
+import { PrimaryButton } from '@insta/ui/components/buttons/primary-button';
+import { handleErrorWithToast } from '@insta/ui/feedback/toast';
+import { useToast } from '@insta/ui/feedback/toast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
 import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
-import { FileInput } from '@insta/shared/components/input-field/file-input';
+import { FileInput } from '@insta/ui/components/input-field/file-input';
 
 interface SignupPageProps {
   onSignIn: (credentials: LoginParams) => Promise<void>;

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@insta/core/*": ["../../core/src/*"],
+      "test": ["../../test-utils/src/test"],
+      "test/*": ["../../test-utils/src/test/*"]
+    }
+  },
+  "include": ["src"]
+}

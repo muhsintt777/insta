@@ -1,3 +1,3 @@
-import { UnderConstruction } from '@insta/shared/components/under-construction/under-construction';
+import { UnderConstruction } from '@insta/ui/components/under-construction/under-construction';
 
 export const Notifications = () => <UnderConstruction />;

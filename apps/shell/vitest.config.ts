@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: '../../packages/shared/src/test/setup.ts',
+    setupFiles: '../../packages/test-utils/src/test/setup.ts',
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     coverage: {
       provider: 'v8',
@@ -18,8 +18,9 @@ export default defineConfig({
     alias: {
       modules: path.resolve(__dirname, 'src/modules'),
       app: path.resolve(__dirname, 'src/app'),
-      '@insta/shared': path.resolve(__dirname, '../../packages/shared/src'),
-      test: path.resolve(__dirname, '../../packages/shared/src/test'),
+      '@insta/core': path.resolve(__dirname, '../../packages/core/src'),
+      '@insta/ui': path.resolve(__dirname, '../../packages/ui/src'),
+      test: path.resolve(__dirname, '../../packages/test-utils/src/test'),
     },
   },
 });

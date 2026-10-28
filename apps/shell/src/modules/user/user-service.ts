@@ -1,5 +1,5 @@
-import { http } from '@insta/shared/lib/http';
-import { HTTP_STATUS_CODES } from '@insta/shared/constants';
+import { http } from '@insta/core/lib/http';
+import { HTTP_STATUS_CODES } from '@insta/core/constants';
 import type { EditUserProfileParams, User } from './user-types';
 
 export class UserService {

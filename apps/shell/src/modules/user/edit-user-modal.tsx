@@ -3,15 +3,15 @@ import {
   ModalFooter,
   ModalHeader,
   PrimaryModal,
-} from '@insta/shared/components/modals/primary-modal';
+} from '@insta/ui/components/modals/primary-modal';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { FC, useEffect, useState } from 'react';
 import { selectUser, userActions } from './user-slice';
 import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TextInput } from '@insta/shared/components/input-field/text-input';
-import { handleErrorWithToast, useToast } from '@insta/shared/feedback/toast';
+import { TextInput } from '@insta/ui/components/input-field/text-input';
+import { handleErrorWithToast, useToast } from '@insta/ui/feedback/toast';
 import { UserService } from './user-service';
 import type { EditUserProfileParams, User } from './user-types';
 
