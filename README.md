@@ -128,9 +128,10 @@ yarn preview
 
 ```bash
 yarn test:run       # Run the test suite once
+yarn test:watch     # Run tests in watch mode
 yarn test:coverage  # Run tests with V8 coverage
 yarn lint           # Run ESLint with warnings treated as errors
-yarn format         # Format source files with Prettier
+yarn format         # Format shell source files with Prettier
 ```
 
 Tests live alongside the source they exercise. The suite uses jsdom and Testing Library for user-visible behavior, with shared providers for stateful and routed components. Coverage can be inspected with `yarn test:coverage`; no coverage threshold is currently enforced by the Vitest configuration.
@@ -160,9 +161,9 @@ The Axios client uses `withCredentials: true`, so a cross-origin API must allow 
 | `yarn dev`           | Start the Vite development server      |
 | `yarn build`         | Type-check and build for production    |
 | `yarn preview`       | Serve the production build locally     |
-| `yarn test`          | Start Vitest in watch mode             |
+| `yarn test`          | Run Vitest once                        |
 | `yarn test:run`      | Run Vitest once                        |
-| `yarn test:ui`       | Open the Vitest UI                     |
+| `yarn test:watch`    | Start Vitest in watch mode             |
 | `yarn test:coverage` | Run tests and report V8 coverage       |
 | `yarn lint`          | Run ESLint                             |
 | `yarn format`        | Format files under `src` with Prettier |

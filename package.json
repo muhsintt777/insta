@@ -9,12 +9,14 @@
   "scripts": {
     "dev": "yarn workspace @insta/shell dev",
     "dev:prod": "yarn workspace @insta/shell dev:prod",
+    "build": "yarn workspace @insta/shell build:prod",
     "build:dev": "yarn workspace @insta/shell build:dev",
     "build:prod": "yarn workspace @insta/shell build:prod",
     "lint": "yarn workspace @insta/shell lint",
     "preview": "yarn workspace @insta/shell preview",
     "format": "yarn workspace @insta/shell format",
     "test": "yarn workspace @insta/shell test",
+    "test:run": "yarn workspace @insta/shell test",
     "test:watch": "yarn workspace @insta/shell test:watch",
     "test:coverage": "yarn workspace @insta/shell test:coverage"
   },
