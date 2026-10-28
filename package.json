@@ -3,22 +3,31 @@
   "description": "A social media application built with React, Redux Toolkit, React Router, and Material-UI.",
   "private": true,
   "scripts": {
-    "dev": "yarn workspace @insta/shell dev",
-    "dev:prod": "yarn workspace @insta/shell dev:prod",
-    "build:dev": "yarn workspace @insta/shell build:dev",
-    "build:prod": "yarn workspace @insta/shell build:prod",
-    "lint": "yarn workspace @insta/shell lint",
-    "preview": "yarn workspace @insta/shell preview",
-    "format": "yarn workspace @insta/shell format",
-    "test": "yarn workspace @insta/shell test",
-    "test:watch": "yarn workspace @insta/shell test:watch",
-    "test:coverage": "yarn workspace @insta/shell test:coverage"
+    "dev": "pnpm --filter @insta/shell dev",
+    "dev:prod": "pnpm --filter @insta/shell dev:prod",
+    "build": "pnpm --filter @insta/shell build:prod",
+    "build:dev": "pnpm --filter @insta/shell build:dev",
+    "build:prod": "pnpm --filter @insta/shell build:prod",
+    "lint": "pnpm --filter @insta/shell lint",
+    "preview": "pnpm --filter @insta/shell preview",
+    "format": "pnpm --filter @insta/shell format",
+    "test": "pnpm --filter @insta/shell test",
+    "test:run": "pnpm --filter @insta/shell test",
+    "test:watch": "pnpm --filter @insta/shell test:watch",
+    "test:coverage": "pnpm --filter @insta/shell test:coverage"
   },
-  "workspaces": [
-    "apps/*"
-  ],
-  "packageManager": "yarn@1.22.22",
-  "resolutions": {
-    "get-intrinsic": "1.2.4"
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "eslint-plugin-react-refresh": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=22"
   }
 }

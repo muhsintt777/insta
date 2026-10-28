@@ -1,7 +1,7 @@
 ## GitHub Copilot Custom Instructions
 
 - Dont over engineer
-- Use yarn for package management
+- Use pnpm for package management
 
 ### Git
 

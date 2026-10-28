@@ -104,13 +104,13 @@ Redux stores application state such as authenticated user details and the auth t
 ### Prerequisites
 
 - Node.js 22 or newer
-- Yarn 1.22
+- pnpm 10 (`corepack enable` picks the pinned version)
 
 ### Install and run
 
 ```bash
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 The development server prints its local URL when it starts.
@@ -118,23 +118,23 @@ The development server prints its local URL when it starts.
 ### Build and preview
 
 ```bash
-yarn build
-yarn preview
+pnpm build
+pnpm preview
 ```
 
-`yarn build` runs the TypeScript compiler before creating the Vite production bundle.
+`pnpm build` runs the TypeScript compiler before creating the Vite production bundle.
 
 ## Quality Checks
 
 ```bash
-yarn test:run       # Run the test suite once
-yarn test:watch     # Run tests in watch mode
-yarn test:coverage  # Run tests with V8 coverage
-yarn lint           # Run ESLint with warnings treated as errors
-yarn format         # Format shell source files with Prettier
+pnpm test:run       # Run the test suite once
+pnpm test:watch     # Run tests in watch mode
+pnpm test:coverage  # Run tests with V8 coverage
+pnpm lint           # Run ESLint with warnings treated as errors
+pnpm format         # Format shell source files with Prettier
 ```
 
-Tests live alongside the source they exercise. The suite uses jsdom and Testing Library for user-visible behavior, with shared providers for stateful and routed components. Coverage can be inspected with `yarn test:coverage`; no coverage threshold is currently enforced by the Vitest configuration.
+Tests live alongside the source they exercise. The suite uses jsdom and Testing Library for user-visible behavior, with shared providers for stateful and routed components. Coverage can be inspected with `pnpm test:coverage`; no coverage threshold is currently enforced by the Vitest configuration.
 
 ## Routes
 
@@ -158,12 +158,12 @@ The Axios client uses `withCredentials: true`, so a cross-origin API must allow 
 
 | Command              | Description                            |
 | -------------------- | -------------------------------------- |
-| `yarn dev`           | Start the Vite development server      |
-| `yarn build`         | Type-check and build for production    |
-| `yarn preview`       | Serve the production build locally     |
-| `yarn test`          | Run Vitest once                        |
-| `yarn test:run`      | Run Vitest once                        |
-| `yarn test:watch`    | Start Vitest in watch mode             |
-| `yarn test:coverage` | Run tests and report V8 coverage       |
-| `yarn lint`          | Run ESLint                             |
-| `yarn format`        | Format files under `src` with Prettier |
+| `pnpm dev`           | Start the Vite development server      |
+| `pnpm build`         | Type-check and build for production    |
+| `pnpm preview`       | Serve the production build locally     |
+| `pnpm test`          | Run Vitest once                        |
+| `pnpm test:run`      | Run Vitest once                        |
+| `pnpm test:watch`    | Start Vitest in watch mode             |
+| `pnpm test:coverage` | Run tests and report V8 coverage       |
+| `pnpm lint`          | Run ESLint                             |
+| `pnpm format`        | Format files under `src` with Prettier |

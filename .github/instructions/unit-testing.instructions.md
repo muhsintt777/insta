@@ -124,7 +124,7 @@ expect(element.style.backgroundColor).toBe('red');
 ## Running Tests
 
 ```bash
-yarn test          # Watch mode
-yarn test:run      # Single run
-yarn test:coverage # With coverage
+pnpm test          # Single run
+pnpm test:watch    # Watch mode
+pnpm test:coverage # With coverage
 ```
