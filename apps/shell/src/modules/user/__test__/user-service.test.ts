@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from 'shared/lib/http';
+import { http } from '@insta/shared/lib/http';
 import { UserService } from '../user-service';
 
-vi.mock('shared/lib/http', () => ({
+vi.mock('@insta/shared/lib/http', () => ({
   http: {
     get: vi.fn(),
     put: vi.fn(),

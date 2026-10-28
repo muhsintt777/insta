@@ -53,21 +53,20 @@ At startup, `main.tsx` configures the HTTP callbacks before rendering the app. T
 | ------------------------ | ------------------------------------------------------------------------------------------------ |
 | `apps/shell/src/app`     | Route and layout composition, application startup, Redux store composition, and app-level wiring |
 | `apps/shell/src/modules` | Domain modules with their own UI, services, state, and public `index.ts` API                     |
-| `apps/shell/src/shared`  | Domain-agnostic UI primitives, utilities, constants, and infrastructure such as the HTTP client  |
-| `apps/shell/src/test`    | Shared render helpers and test setup                                                             |
+| `packages/shared/src`    | `@insta/shared`: domain-agnostic UI, feedback, HTTP client, and test helpers (`test` alias)      |
 
 ### Implementation examples
 
-| Concern                  | Example                                                                                                                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| HTTP and auth boundary   | [`http.ts`](apps/shell/src/shared/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](apps/shell/src/app/configure-http.ts) injects app-owned auth callbacks. |
-| Session coordination     | [`session-workflows.ts`](apps/shell/src/app/session-workflows.ts) composes Auth and User APIs without a direct module-to-module dependency.                                    |
-| Typed form validation    | [`post-validation.ts`](apps/shell/src/modules/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                                   |
-| Isolated component tests | [`render.tsx`](apps/shell/src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.                          |
+| Concern                  | Example                                                                                                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTP and auth boundary   | [`http.ts`](packages/shared/src/lib/http.ts) centralizes request interceptors; [`configure-http.ts`](apps/shell/src/app/configure-http.ts) injects app-owned auth callbacks. |
+| Session coordination     | [`session-workflows.ts`](apps/shell/src/app/session-workflows.ts) composes Auth and User APIs without a direct module-to-module dependency.                                  |
+| Typed form validation    | [`post-validation.ts`](apps/shell/src/modules/posts/post-validation.ts) defines Zod constraints and derives the form types from the schemas.                                 |
+| Isolated component tests | [`render.tsx`](packages/shared/src/test/render.tsx) provides a test Redux store and memory router so components can be tested with their required context.                   |
 
 ### Cross-cutting capabilities
 
-Loader and Toast are app-wide feedback capabilities under `apps/shell/src/shared/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting module under `apps/shell/src/modules`. Shared feedback remains domain-agnostic and does not own module workflows or business state.
+Loader and Toast are app-wide feedback capabilities under `packages/shared/src/feedback`; they own global progress/notification state, display hosts, and APIs used by other modules. Theme remains a cross-cutting module under `apps/shell/src/modules`. Shared feedback remains domain-agnostic and does not own module workflows or business state.
 
 Module-to-module imports use the other module's public entry point (`modules/<module>`), not its implementation files. ESLint enforces this boundary and prevents modules from importing app store composition, routing, layouts, startup, or session workflows. Modules may use `app/hooks/redux-hooks` as their typed Redux integration API. Shared code cannot import app or domain modules.
 

@@ -8,11 +8,11 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { VerticalDotIcon } from 'shared/assets/icons/vertical-dot-icon';
-import { PrimaryIconButton } from 'shared/components/buttons/primary-icon-button';
-import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
-import { CustomMenu } from 'shared/components/menus/custom-menu';
-import { DateUtils } from 'shared/lib/date-utils';
+import { VerticalDotIcon } from '@insta/shared/assets/icons/vertical-dot-icon';
+import { PrimaryIconButton } from '@insta/shared/components/buttons/primary-icon-button';
+import { CustomAvatar } from '@insta/shared/components/custom-avatar/custom-avatar';
+import { CustomMenu } from '@insta/shared/components/menus/custom-menu';
+import { DateUtils } from '@insta/shared/lib/date-utils';
 
 interface CommentCardProps {
   authorName: string;

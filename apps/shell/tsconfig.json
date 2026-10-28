@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "vitest"],
+    "types": ["vite/client", "vitest", "@testing-library/jest-dom"],
 
     /* Linting */
     "strict": true,
@@ -26,8 +26,9 @@
     "paths": {
       "modules/*": ["./modules/*"],
       "app/*": ["./app/*"],
-      "shared/*": ["./shared/*"],
-      "test/*": ["./test/*"]
+      "@insta/shared/*": ["../../../packages/shared/src/*"],
+      "test": ["../../../packages/shared/src/test"],
+      "test/*": ["../../../packages/shared/src/test/*"]
     }
   },
   "include": ["src"],

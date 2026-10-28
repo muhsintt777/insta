@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from 'shared/lib/http';
-import { HTTP_STATUS_CODES, ERROR_TYPE } from 'shared/constants';
+import { http } from '@insta/shared/lib/http';
+import { HTTP_STATUS_CODES, ERROR_TYPE } from '@insta/shared/constants';
 import { AuthService } from '../auth-service';
 
-vi.mock('shared/lib/http', () => ({
+vi.mock('@insta/shared/lib/http', () => ({
   http: {
     post: vi.fn(),
   },

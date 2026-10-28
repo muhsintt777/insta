@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormField } from 'shared/components/input-field/form-field';
+import { FormField } from '@insta/shared/components/input-field/form-field';
 import {
   PrimaryModal,
   ModalHeader,
   ModalFooter,
-} from 'shared/components/modals/primary-modal';
-import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
+} from '@insta/shared/components/modals/primary-modal';
+import { handleErrorWithToast, useToast } from '@insta/shared/feedback/toast';
 import { EditPostFormSchema, editPostFormSchema } from './post-validation';
 import type { EditPostParams } from './post-types';
 

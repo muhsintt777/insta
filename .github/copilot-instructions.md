@@ -9,4 +9,4 @@
 
 ### Global Style Guide
 
-- Refer to apps/shell/src/app/index.css and apps/shell/src/shared/styles/global-style.ts for global styles
+- Refer to apps/shell/src/app/index.css and packages/shared/src/styles/global-style.ts for global styles

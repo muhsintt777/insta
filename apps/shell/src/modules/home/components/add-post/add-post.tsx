@@ -1,7 +1,7 @@
 import styles from './add-postStyle.module.scss';
 import { FC, useState, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
+import { CustomAvatar } from '@insta/shared/components/custom-avatar/custom-avatar';
 import { CreatePostModal } from 'modules/posts';
 import { selectUser, userActions } from 'modules/user';
 

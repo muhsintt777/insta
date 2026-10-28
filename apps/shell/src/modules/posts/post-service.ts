@@ -1,5 +1,5 @@
-import { HTTP_STATUS_CODES } from 'shared/constants';
-import { http } from 'shared/lib/http';
+import { HTTP_STATUS_CODES } from '@insta/shared/constants';
+import { http } from '@insta/shared/lib/http';
 import type { CreatePostParams, Post } from './post-types';
 
 export class PostService {

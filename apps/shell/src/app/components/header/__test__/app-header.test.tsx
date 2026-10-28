@@ -10,7 +10,7 @@ vi.mock('modules/auth/auth-service', () => ({
 }));
 
 // Mock handleErrorWithToast
-vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
+vi.mock('@insta/shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 

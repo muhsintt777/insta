@@ -1,5 +1,6 @@
 packages:
   - apps/*
+  - packages/*
 
 # Single source of truth for versions shared across workspaces.
 catalog:

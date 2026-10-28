@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { ProfilePage } from '../profile-page';
 import { LikeService, PostService, type Post } from 'modules/posts';
-import { handleErrorWithToast } from 'shared/feedback/toast';
+import { handleErrorWithToast } from '@insta/shared/feedback/toast';
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();
@@ -29,13 +29,13 @@ vi.mock('modules/posts/likes/like-service', () => ({
   },
 }));
 
-vi.mock('shared/feedback/toast/handle-error-with-toast', () => ({
+vi.mock('@insta/shared/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
 const mockShowBackdrop = vi.fn();
 const mockHideBackdrop = vi.fn();
-vi.mock('shared/feedback/loader/use-loader', () => ({
+vi.mock('@insta/shared/feedback/loader/use-loader', () => ({
   useLoader: () => ({
     showGlobalBackdrop: mockShowBackdrop,
     hideGlobalBackdrop: mockHideBackdrop,

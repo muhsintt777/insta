@@ -1,0 +1,27 @@
+import { FC, memo } from 'react';
+import { IconsProps } from '../../types/icons';
+
+const ChatIconComp: FC<IconsProps> = ({
+  color = 'var(--clr-icon)',
+  size = '16px',
+}) => {
+  return (
+    <svg
+      stroke={color}
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 24 24"
+      height={size}
+      width={size}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="none"
+        strokeWidth="2"
+        d="M9,7 L9,1 L23,1 L23,11 L20,11 L20,16 L15,12 M1,7 L15,7 L15,18 L9,18 L4,22 L4,18 L1,18 L1,7 Z"
+      ></path>
+    </svg>
+  );
+};
+
+export const ChatIcon = memo(ChatIconComp);

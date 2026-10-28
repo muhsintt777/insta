@@ -1,11 +1,11 @@
 import styles from './loginStyle.module.scss';
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { REGEX } from 'shared/constants';
-import { PrimaryButton } from 'shared/components/buttons/primary-button';
-import { FormField } from 'shared/components/input-field/form-field';
-import { trimAllWhitespace } from 'shared/lib/string-utils';
-import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
+import { REGEX } from '@insta/shared/constants';
+import { PrimaryButton } from '@insta/shared/components/buttons/primary-button';
+import { FormField } from '@insta/shared/components/input-field/form-field';
+import { trimAllWhitespace } from '@insta/shared/lib/string-utils';
+import { handleErrorWithToast, useToast } from '@insta/shared/feedback/toast';
 import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 

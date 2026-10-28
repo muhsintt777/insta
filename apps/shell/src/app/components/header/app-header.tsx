@@ -1,14 +1,14 @@
 import styles from './app-header.module.scss';
 import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { APP_ROUTES } from 'shared/routes';
+import { APP_ROUTES } from '@insta/shared/routes';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import appLogo from 'shared/assets/images/app-logo.svg';
-import { CustomMenu } from 'shared/components/menus/custom-menu';
-import { CustomAvatar } from 'shared/components/custom-avatar/custom-avatar';
+import appLogo from '@insta/shared/assets/images/app-logo.svg';
+import { CustomMenu } from '@insta/shared/components/menus/custom-menu';
+import { CustomAvatar } from '@insta/shared/components/custom-avatar/custom-avatar';
 import { selectUser } from 'modules/user';
 import { themeActions } from 'modules/theme';
-import { handleErrorWithToast, useToast } from 'shared/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/shared/feedback/toast';
 import { signOut } from 'app/session-workflows';
 
 export const Header = memo(() => {

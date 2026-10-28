@@ -75,7 +75,7 @@ module.exports = {
       },
     },
     {
-      files: ['apps/shell/src/shared/**/*.{ts,tsx}'],
+      files: ['packages/shared/src/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',

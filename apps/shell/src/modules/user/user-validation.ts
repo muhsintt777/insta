@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REGEX } from 'shared/constants';
+import { REGEX } from '@insta/shared/constants';
 
 export const userEditSchema = z.object({
   fullName: z

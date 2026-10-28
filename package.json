@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "pnpm --filter @insta/shell dev",
     "build": "pnpm --filter @insta/shell build",
-    "lint": "pnpm --filter @insta/shell lint",
+    "lint": "pnpm -r lint",
     "preview": "pnpm --filter @insta/shell preview",
-    "format": "pnpm --filter @insta/shell format",
-    "test": "pnpm --filter @insta/shell test",
+    "format": "pnpm -r format",
+    "test": "pnpm -r test",
     "test:watch": "pnpm --filter @insta/shell test:watch",
-    "test:coverage": "pnpm --filter @insta/shell test:coverage"
+    "test:coverage": "pnpm -r test:coverage"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "catalog:",
