@@ -15,10 +15,10 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@insta/shared": "workspace:*",
     "@emotion/react": "catalog:",
     "@emotion/styled": "catalog:",
     "@hookform/resolvers": "catalog:",
+    "@insta/shared": "workspace:*",
     "@mui/material": "catalog:",
     "@reduxjs/toolkit": "catalog:",
     "axios": "catalog:",
@@ -30,6 +30,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@module-federation/vite": "^1.23.6",
     "@testing-library/dom": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
