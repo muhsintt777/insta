@@ -1,9 +1,5 @@
 import { FC, memo } from 'react';
-
-interface IconsProps {
-  color?: string;
-  size?: string;
-}
+import { IconsProps } from '../types/icons';
 
 const ConstructionIconComp: FC<IconsProps> = ({
   color = 'var(--clr-icon)',

@@ -1,1 +1,14 @@
+export { AddImageIcon } from './add-image-icon';
+export { BackIcon } from './back-icon';
+export { ChatIcon } from './chat-icon';
+export { CloseIcon } from './close-icon';
+export { CommentIcon } from './comment-icon';
 export { ConstructionIcon } from './construction-icon';
+export { EditIcon } from './edit-icon';
+export { FriendsIcon } from './friends-icon';
+export { HomeIcon } from './home-icon';
+export { LikeIcon } from './like-icon';
+export { LikedIcon } from './liked-icon';
+export { NotificationsIcon } from './notifications-icon';
+export { VerticalDotIcon } from './vertical-dot-icon';
+export type { IconsProps } from '../types/icons';
