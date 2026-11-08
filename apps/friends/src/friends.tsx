@@ -1,4 +1,4 @@
-import { ConstructionIcon } from '@insta/ui';
+import { ConstructionIcon } from '@insta/ui/icons';
 
 export const Friends = () => (
   <main style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>

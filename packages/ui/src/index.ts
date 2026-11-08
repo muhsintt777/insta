@@ -1,1 +1,1 @@
-export { ConstructionIcon } from './icons/construction-icon';
+export { ConstructionIcon } from './icons';
