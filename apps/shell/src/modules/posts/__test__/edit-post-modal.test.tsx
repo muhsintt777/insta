@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { EditPostModal } from '../edit-post-modal';
-import { handleErrorWithToast } from '@insta/ui/feedback/toast';
+import { handleErrorWithToast } from '@insta/uii/feedback/toast';
 
-vi.mock('@insta/ui/feedback/toast/handle-error-with-toast', () => ({
+vi.mock('@insta/uii/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 

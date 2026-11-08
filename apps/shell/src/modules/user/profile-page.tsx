@@ -2,11 +2,11 @@ import styles from './profile-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import { EditIcon } from '@insta/ui/assets/icons/edit-icon';
+import { EditIcon } from '@insta/uii/assets/icons/edit-icon';
 import { AppBar } from './components/app-bar/app-bar';
-import { PrimaryIconButton } from '@insta/ui/components/buttons/primary-icon-button';
-import { CustomAvatar } from '@insta/ui/components/custom-avatar/custom-avatar';
-import { handleErrorWithToast, useToast } from '@insta/ui/feedback/toast';
+import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
+import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
+import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
 import {
   CommentsModal,
   EditPostModal,
@@ -15,7 +15,7 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'modules/posts';
-import { useLoader } from '@insta/ui/feedback/loader';
+import { useLoader } from '@insta/uii/feedback/loader';
 import { selectUser, userActions } from './user-slice';
 import { EditUserModal } from './edit-user-modal';
 import type { EditPostParams, Post } from 'modules/posts';

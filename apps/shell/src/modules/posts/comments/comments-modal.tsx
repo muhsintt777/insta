@@ -5,11 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   PrimaryModal,
   ModalHeader,
-} from '@insta/ui/components/modals/primary-modal';
-import { PrimaryButton } from '@insta/ui/components/buttons/primary-button';
-import { TextInput } from '@insta/ui/components/input-field/text-input';
-import { handleErrorWithToast, useToast } from '@insta/ui/feedback/toast';
-import { CircleLoader } from '@insta/ui/components/loaders/circle-loader';
+} from '@insta/uii/components/modals/primary-modal';
+import { PrimaryButton } from '@insta/uii/components/buttons/primary-button';
+import { TextInput } from '@insta/uii/components/input-field/text-input';
+import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { CircleLoader } from '@insta/uii/components/loaders/circle-loader';
 import { CommentService } from './comment-service';
 import type { CommentDetails } from './comment-types';
 import { CommentCard } from './comment-card';

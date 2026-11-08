@@ -6,7 +6,7 @@
       "modules/*": ["./modules/*"],
       "app/*": ["./app/*"],
       "@insta/core/*": ["../../../packages/core/src/*"],
-      "@insta/ui/*": ["../../../packages/ui/src/*"],
+      "@insta/uii/*": ["../../../packages/ui/src/*"],
       "test": ["../../../packages/test-utils/src/test"],
       "test/*": ["../../../packages/test-utils/src/test/*"]
     }

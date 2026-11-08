@@ -1,4 +1,4 @@
-import { UnderConstruction } from '@insta/ui/components/under-construction/under-construction';
+import { UnderConstruction } from '@insta/uii/components/under-construction/under-construction';
 
 export const Chat = () => <UnderConstruction />;
 

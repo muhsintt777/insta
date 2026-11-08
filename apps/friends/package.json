@@ -11,7 +11,7 @@
     "preview": "vite preview --mode prod"
   },
   "dependencies": {
-    "@insta/ui": "workspace:*",
+    "@insta/uii": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

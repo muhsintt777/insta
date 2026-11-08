@@ -23,7 +23,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@insta/ui': path.resolve(__dirname, '../../packages/ui/src'),
+      '@insta/uii': path.resolve(__dirname, '../../packages/ui/src'),
     },
   },
   server: {

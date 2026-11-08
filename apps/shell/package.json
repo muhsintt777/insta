@@ -20,7 +20,7 @@
     "@emotion/styled": "catalog:",
     "@hookform/resolvers": "catalog:",
     "@insta/core": "workspace:*",
-    "@insta/ui": "workspace:*",
+    "@insta/uii": "workspace:*",
     "@mui/icons-material": "5.14.9",
     "@mui/material": "catalog:",
     "@reduxjs/toolkit": "catalog:",

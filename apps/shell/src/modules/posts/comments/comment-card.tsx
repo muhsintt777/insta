@@ -8,10 +8,10 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { VerticalDotIcon } from '@insta/ui/assets/icons/vertical-dot-icon';
-import { PrimaryIconButton } from '@insta/ui/components/buttons/primary-icon-button';
-import { CustomAvatar } from '@insta/ui/components/custom-avatar/custom-avatar';
-import { CustomMenu } from '@insta/ui/components/menus/custom-menu';
+import { VerticalDotIcon } from '@insta/uii/assets/icons/vertical-dot-icon';
+import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
+import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
+import { CustomMenu } from '@insta/uii/components/menus/custom-menu';
 import { DateUtils } from '@insta/core/lib/date-utils';
 
 interface CommentCardProps {

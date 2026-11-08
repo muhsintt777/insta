@@ -243,7 +243,7 @@ importers:
 
   apps/friends:
     dependencies:
-      '@insta/ui':
+      '@insta/uii':
         specifier: workspace:*
         version: link:../../packages/ui
       react:
@@ -286,7 +286,7 @@ importers:
       '@insta/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@insta/ui':
+      '@insta/uii':
         specifier: workspace:*
         version: link:../../packages/ui
       '@mui/icons-material':

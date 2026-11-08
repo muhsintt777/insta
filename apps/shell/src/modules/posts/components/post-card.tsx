@@ -7,15 +7,15 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { VerticalDotIcon } from '@insta/ui/assets/icons/vertical-dot-icon';
-import { LikeIcon } from '@insta/ui/assets/icons/like-icon';
-import { CommentIcon } from '@insta/ui/assets/icons/comment-icon';
-import { PrimaryIconButton } from '@insta/ui/components/buttons/primary-icon-button';
-import { CustomAvatar } from '@insta/ui/components/custom-avatar/custom-avatar';
+import { VerticalDotIcon } from '@insta/uii/assets/icons/vertical-dot-icon';
+import { LikeIcon } from '@insta/uii/assets/icons/like-icon';
+import { CommentIcon } from '@insta/uii/assets/icons/comment-icon';
+import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
+import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
 import { DateUtils } from '@insta/core/lib/date-utils';
-import { SecondaryButton } from '@insta/ui/components/buttons/secondary-button';
-import { LikedIcon } from '@insta/ui/assets/icons/liked-icon';
-import { CustomMenu } from '@insta/ui/components/menus/custom-menu';
+import { SecondaryButton } from '@insta/uii/components/buttons/secondary-button';
+import { LikedIcon } from '@insta/uii/assets/icons/liked-icon';
+import { CustomMenu } from '@insta/uii/components/menus/custom-menu';
 
 interface PostCardProps {
   id?: string;
