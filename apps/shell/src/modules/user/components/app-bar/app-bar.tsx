@@ -1,6 +1,6 @@
 import styles from './app-bar.module.scss';
 import { CSSProperties, FC } from 'react';
-import { BackIcon } from '@insta/uii/assets/icons/back-icon';
+import { BackIcon } from '@insta/ui/icons';
 import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
 
 interface AppBarProps {

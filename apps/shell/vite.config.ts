@@ -5,7 +5,7 @@ import { federation } from '@module-federation/vite';
 import { dependencies } from './package.json';
 
 const sharedDependencies = Object.keys(dependencies).filter(
-  (dep) => !dep.startsWith('@insta/'),
+  (dep) => !dep.startsWith('@insta/') || dep === '@insta/ui',
 );
 
 export default defineConfig(({ mode }) => {

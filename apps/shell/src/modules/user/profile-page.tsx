@@ -2,7 +2,7 @@ import styles from './profile-page.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import { EditIcon } from '@insta/uii/assets/icons/edit-icon';
+import { EditIcon } from '@insta/ui/icons';
 import { AppBar } from './components/app-bar/app-bar';
 import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
 import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';

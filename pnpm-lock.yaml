@@ -286,6 +286,9 @@ importers:
       '@insta/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@insta/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@insta/uii':
         specifier: workspace:*
         version: link:../../packages/uii
