@@ -1,12 +1,7 @@
-import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { federation } from '@module-federation/vite';
 import { dependencies } from './package.json';
-
-const sharedDependencies = Object.keys(dependencies).filter(
-  (dependency) => !dependency.startsWith('@insta/'),
-);
 
 export default defineConfig({
   plugins: [
@@ -18,14 +13,9 @@ export default defineConfig({
       exposes: {
         './Friends': './src/friends.tsx',
       },
-      shared: sharedDependencies,
+      shared: Object.keys(dependencies),
     }),
   ],
-  resolve: {
-    alias: {
-      '@insta/uii': path.resolve(__dirname, '../../packages/uii/src'),
-    },
-  },
   server: {
     port: 5174,
     strictPort: true,
