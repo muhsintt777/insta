@@ -1,5 +1,5 @@
 import styles from './file-input.module.scss';
-import { AddImageIcon } from '../../assets/icons/add-image-icon';
+import { AddImageIcon } from '@insta/ui/icons';
 import { CSSProperties, FC, useRef } from 'react';
 
 interface FileInputProps {

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import appLogo from '@insta/uii/assets/images/app-logo.svg';
+import appLogo from '@insta/ui/images/app-logo.svg';
 import { DotLoader } from '@insta/uii/components/loaders/dot-loader';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';

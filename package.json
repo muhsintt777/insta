@@ -8,6 +8,7 @@
     "dev:friends": "pnpm --filter @insta/friends dev",
     "build:shell": "pnpm --filter @insta/shell build",
     "build:friends": "pnpm --filter @insta/friends build",
+    "build:pack:ui": "pnpm --filter @insta/ui build",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
     "test": "pnpm -r test",

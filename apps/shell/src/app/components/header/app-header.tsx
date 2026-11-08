@@ -3,7 +3,7 @@ import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { APP_ROUTES } from '@insta/core/routes';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
-import appLogo from '@insta/uii/assets/images/app-logo.svg';
+import appLogo from '@insta/ui/images/app-logo.svg';
 import { CustomMenu } from '@insta/uii/components/menus/custom-menu';
 import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
 import { selectUser } from 'modules/user';

@@ -17,10 +17,11 @@
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "import": "./dist/icons/index.js"
-    }
+    },
+    "./images/*": "./dist/images/*"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
     "prepack": "pnpm run build"
   },

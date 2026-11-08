@@ -450,6 +450,9 @@ importers:
       '@insta/core':
         specifier: workspace:*
         version: link:../core
+      '@insta/ui':
+        specifier: workspace:*
+        version: link:../ui
     devDependencies:
       '@emotion/react':
         specifier: 'catalog:'

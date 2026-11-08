@@ -2,9 +2,9 @@ import styles from './primary-modal.module.scss';
 import { FC, ReactElement } from 'react';
 import { Modal } from '@mui/material';
 import { PrimaryIconButton } from '../buttons/primary-icon-button';
-import { CloseIcon } from '../../assets/icons/close-icon';
 import { PrimaryButton } from '../buttons/primary-button';
 import { SecondaryButton } from '../buttons/secondary-button';
+import { CloseIcon } from '@insta/ui/icons';
 
 interface PrimaryModalProps {
   children: ReactElement;
