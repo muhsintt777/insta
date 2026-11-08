@@ -1,0 +1,26 @@
+{
+  "name": "@insta/friends",
+  "description": "The Insta Friends federated module.",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode dev",
+    "stop": "pkill -f \"$(pwd)/apps/friends/node_modules/[.]bin/[.][.]/vite/bin/vite[.]js\" && echo 'Stopped friends Vite server.' || echo 'No friends Vite server found.'",
+    "build": "tsc && vite build --mode prod",
+    "preview": "vite preview --mode prod"
+  },
+  "dependencies": {
+    "@insta/ui": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react-swc": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

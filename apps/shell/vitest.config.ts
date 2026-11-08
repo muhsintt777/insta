@@ -20,6 +20,10 @@ export default defineConfig({
       app: path.resolve(__dirname, 'src/app'),
       '@insta/core': path.resolve(__dirname, '../../packages/core/src'),
       '@insta/ui': path.resolve(__dirname, '../../packages/ui/src'),
+      'friends/Friends': path.resolve(
+        __dirname,
+        'src/modules/friends/__test__/friends-remote-mock.tsx',
+      ),
       test: path.resolve(__dirname, '../../packages/test-utils/src/test'),
     },
   },

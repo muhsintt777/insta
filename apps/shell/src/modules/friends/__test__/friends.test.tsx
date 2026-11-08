@@ -1,18 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from 'test';
 import { Friends } from '../friends';
 
 describe('Friends', () => {
-  it('renders under construction message', () => {
+  it('loads the friends remote', async () => {
     render(<Friends />);
 
-    expect(screen.getByText('Under construction...')).toBeInTheDocument();
-  });
-
-  it('renders construction icon', () => {
-    const { container } = render(<Friends />);
-
-    const svg = container.querySelector('svg');
-    expect(svg).toBeInTheDocument();
+    expect(await screen.findByTestId('friends-remote')).toBeInTheDocument();
   });
 });

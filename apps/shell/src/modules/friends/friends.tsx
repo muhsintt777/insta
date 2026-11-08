@@ -1,3 +1,9 @@
-import { UnderConstruction } from '@insta/ui/components/under-construction/under-construction';
+import { lazy, Suspense } from 'react';
 
-export const Friends = () => <UnderConstruction />;
+const FriendsRemote = lazy(() => import('friends/Friends'));
+
+export const Friends = () => (
+  <Suspense fallback={<div role="status">Loading friends...</div>}>
+    <FriendsRemote />
+  </Suspense>
+);
