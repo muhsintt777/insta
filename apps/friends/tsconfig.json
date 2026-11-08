@@ -4,7 +4,7 @@
     "baseUrl": "./src",
     "types": ["vite/client"],
     "paths": {
-      "@insta/uii/*": ["../../../packages/ui/src/*"]
+      "@insta/uii/*": ["../../../packages/uii/src/*"]
     }
   },
   "include": ["src"],

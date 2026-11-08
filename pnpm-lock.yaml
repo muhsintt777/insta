@@ -245,7 +245,7 @@ importers:
     dependencies:
       '@insta/uii':
         specifier: workspace:*
-        version: link:../../packages/ui
+        version: link:../../packages/uii
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -288,7 +288,7 @@ importers:
         version: link:../../packages/core
       '@insta/uii':
         specifier: workspace:*
-        version: link:../../packages/ui
+        version: link:../../packages/uii
       '@mui/icons-material':
         specifier: 5.14.9
         version: 5.14.9(@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react@18.3.1)(supports-color@7.2.0))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react@18.3.1)
@@ -430,7 +430,7 @@ importers:
         specifier: 'catalog:'
         version: 1.6.1(@types/node@26.6.5)(happy-dom@20.14.6)(jsdom@27.4.0(supports-color@7.2.0))(sass@1.106.1)(supports-color@7.2.0)
 
-  packages/ui:
+  packages/uii:
     dependencies:
       '@insta/core':
         specifier: workspace:*
