@@ -8,3 +8,5 @@ export const APP_ROUTES = {
   LOGIN: '/auth/login',
   SIGNUP: '/auth/signup',
 };
+
+// todo: split core into proper package
