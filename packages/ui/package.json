@@ -20,8 +20,8 @@
       "import": "./dist/icons/index.js"
     },
     "./buttons": {
-      "types": "./dist/components/buttons/index.d.ts",
-      "import": "./dist/components/buttons/index.js"
+      "types": "./dist/modules/buttons/index.d.ts",
+      "import": "./dist/modules/buttons/index.js"
     },
     "./images/*": "./dist/images/*"
   },

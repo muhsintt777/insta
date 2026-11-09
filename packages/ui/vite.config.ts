@@ -10,9 +10,9 @@ export default defineConfig({
       entry: {
         index: resolve(packageRoot, 'src/index.ts'),
         'icons/index': resolve(packageRoot, 'src/icons/index.ts'),
-        'components/buttons/index': resolve(
+        'modules/buttons/index': resolve(
           packageRoot,
-          'src/components/buttons/index.ts',
+          'src/modules/buttons/index.ts',
         ),
       },
       formats: ['es'],
