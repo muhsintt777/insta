@@ -2,7 +2,7 @@ import styles from './loginStyle.module.scss';
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { REGEX } from '@insta/core/constants';
-import { PrimaryButton } from '@insta/uii/components/buttons/primary-button';
+import { PrimaryButton } from '@insta/ui/buttons';
 import { FormField } from '@insta/uii/components/input-field/form-field';
 import { trimAllWhitespace } from '@insta/core/lib/string-utils';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';

@@ -16,14 +16,10 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@emotion/react": "catalog:",
-    "@emotion/styled": "catalog:",
     "@hookform/resolvers": "catalog:",
     "@insta/core": "workspace:*",
     "@insta/ui": "workspace:*",
     "@insta/uii": "workspace:*",
-    "@mui/icons-material": "5.14.9",
-    "@mui/material": "catalog:",
     "@reduxjs/toolkit": "catalog:",
     "axios": "catalog:",
     "react": "catalog:",

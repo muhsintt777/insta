@@ -9,17 +9,19 @@ import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar'
 import { selectUser } from 'modules/user';
 import { themeActions } from 'modules/theme';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import {
+  ChatIcon,
+  FriendsIcon,
+  HomeIcon,
+  NotificationsIcon,
+} from '@insta/ui/icons';
 import { signOut } from 'app/session-workflows';
 import { NavLink } from 'react-router-dom';
-import HomeIcon from '@mui/icons-material/Home';
-import GroupsIcon from '@mui/icons-material/Groups';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const navigationItems = [
   { label: 'Home', to: APP_ROUTES.HOME, Icon: HomeIcon },
-  { label: 'Friends', to: APP_ROUTES.FRIENDS, Icon: GroupsIcon },
-  { label: 'Messaging', to: APP_ROUTES.CHAT, Icon: ChatBubbleIcon },
+  { label: 'Friends', to: APP_ROUTES.FRIENDS, Icon: FriendsIcon },
+  { label: 'Messaging', to: APP_ROUTES.CHAT, Icon: ChatIcon },
   {
     label: 'Notifications',
     to: APP_ROUTES.NOTIFICATIONS,
@@ -101,7 +103,7 @@ export const Header = memo(() => {
                       : styles.navigationLink
                   }
                 >
-                  <Icon fontSize="small" />
+                  <Icon color="currentColor" size="20px" />
                   <span>{label}</span>
                 </NavLink>
               ))}

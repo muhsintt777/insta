@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { EditIcon } from '@insta/ui/icons';
 import { AppBar } from './components/app-bar/app-bar';
-import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
+import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
 import {

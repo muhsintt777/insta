@@ -13,10 +13,10 @@ import {
   LikedIcon,
   VerticalDotIcon,
 } from '@insta/ui/icons';
-import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
+import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
 import { DateUtils } from '@insta/core/lib/date-utils';
-import { SecondaryButton } from '@insta/uii/components/buttons/secondary-button';
+import { SecondaryButton } from '@insta/ui/buttons';
 import { CustomMenu } from '@insta/uii/components/menus/custom-menu';
 
 interface PostCardProps {

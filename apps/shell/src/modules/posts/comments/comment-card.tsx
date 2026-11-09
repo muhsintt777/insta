@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 import { VerticalDotIcon } from '@insta/ui/icons';
-import { PrimaryIconButton } from '@insta/uii/components/buttons/primary-icon-button';
+import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
 import { CustomMenu } from '@insta/uii/components/menus/custom-menu';
 import { DateUtils } from '@insta/core/lib/date-utils';

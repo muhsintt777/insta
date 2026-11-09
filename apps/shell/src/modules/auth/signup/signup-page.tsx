@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { APP_ROUTES } from '@insta/core/routes';
 import { FormField } from '@insta/uii/components/input-field/form-field';
-import { PrimaryButton } from '@insta/uii/components/buttons/primary-button';
+import { PrimaryButton } from '@insta/ui/buttons';
 import { handleErrorWithToast } from '@insta/uii/feedback/toast';
 import { useToast } from '@insta/uii/feedback/toast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
