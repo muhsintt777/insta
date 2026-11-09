@@ -12,9 +12,10 @@
     "typecheck:ui": "pnpm --filter @insta/ui typecheck",
     "lint": "pnpm -r lint",
     "format": "pnpm -r format",
-    "test": "pnpm -r test",
-    "test:watch": "pnpm --filter @insta/shell test:watch",
-    "test:coverage": "pnpm -r test:coverage"
+    "test:ui": "pnpm --filter @insta/ui test",
+    "test:watch:ui": "pnpm --filter @insta/ui test:watch",
+    "test:watch:shell": "pnpm --filter @insta/shell test:watch",
+    "test:coverage:ui": "pnpm --filter @insta/ui test:coverage"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "catalog:",

@@ -2,6 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
+    "paths": {
+      "test": ["../../packages/test-utils/src/test"],
+      "test/*": ["../../packages/test-utils/src/test/*"]
+    },
     "declaration": true,
     "declarationMap": true,
     "noEmit": false,
@@ -9,5 +13,11 @@
     "rootDir": "src",
     "types": []
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx"
+  ]
 }
