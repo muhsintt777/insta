@@ -1,6 +1,5 @@
 import styles from './input-field.module.scss';
-import { CSSProperties, FC, memo, useMemo } from 'react';
-import { addMultipleClassNames } from '@insta/core/lib/class-names';
+import { CSSProperties, FC, memo } from 'react';
 
 interface TextInputProps {
   value: string | null;
@@ -21,12 +20,10 @@ const TextInputComp: FC<TextInputProps> = ({
   customStyle,
   onchange,
 }) => {
-  const errorClassNames = useMemo(() => {
-    if (error) {
-      return addMultipleClassNames(styles.error, styles.errorMessageShow);
-    }
-    return addMultipleClassNames(styles.error, styles.errorMessageHide);
-  }, [error]);
+  const errorClassNames = [
+    styles.error,
+    error ? styles.errorMessageShow : styles.errorMessageHide,
+  ].join(' ');
 
   return (
     <div style={customStyle} className={styles.container}>

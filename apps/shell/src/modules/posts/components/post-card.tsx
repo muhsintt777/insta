@@ -17,7 +17,7 @@ import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
 import { DateUtils } from '@insta/core/lib/date-utils';
 import { SecondaryButton } from '@insta/ui/buttons';
-import { CustomMenu } from '@insta/uii/components/menus/custom-menu';
+import { CustomMenu } from '@insta/ui/menus';
 
 interface PostCardProps {
   id?: string;

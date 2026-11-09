@@ -14,9 +14,19 @@ export default defineConfig({
           packageRoot,
           'src/modules/buttons/index.ts',
         ),
+        'modules/modal/index': resolve(
+          packageRoot,
+          'src/modules/modal/index.ts',
+        ),
+        'modules/menu/index': resolve(packageRoot, 'src/modules/menu/index.ts'),
+        'modules/input-field/index': resolve(
+          packageRoot,
+          'src/modules/input-field/index.ts',
+        ),
       },
       formats: ['es'],
       fileName: (_format, entryName) => `${entryName}.js`,
+      cssFileName: 'styles',
     },
     rollupOptions: {
       external: (id) =>

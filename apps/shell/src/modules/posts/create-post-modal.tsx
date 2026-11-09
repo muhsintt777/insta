@@ -1,13 +1,8 @@
 import { FC, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormField } from '@insta/uii/components/input-field/form-field';
-import {
-  PrimaryModal,
-  ModalHeader,
-  ModalFooter,
-} from '@insta/uii/components/modals/primary-modal';
-import { FileInput } from '@insta/uii/components/input-field/file-input';
+import { FileInput, FormField } from '@insta/ui/input-fields';
+import { PrimaryModal, ModalHeader, ModalFooter } from '@insta/ui/modals';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';

@@ -1,3 +1,4 @@
+import '@insta/ui/styles.css';
 import './index.css';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';

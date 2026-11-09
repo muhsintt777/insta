@@ -2,12 +2,9 @@ import styles from './comments-modal.module.scss';
 import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  PrimaryModal,
-  ModalHeader,
-} from '@insta/uii/components/modals/primary-modal';
+import { PrimaryModal, ModalHeader } from '@insta/ui/modals';
 import { PrimaryButton } from '@insta/ui/buttons';
-import { TextInput } from '@insta/uii/components/input-field/text-input';
+import { TextInput } from '@insta/ui/input-fields';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
 import { CircleLoader } from '@insta/uii/components/loaders/circle-loader';
 import { CommentService } from './comment-service';

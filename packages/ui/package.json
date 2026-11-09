@@ -23,10 +23,24 @@
       "types": "./dist/modules/buttons/index.d.ts",
       "import": "./dist/modules/buttons/index.js"
     },
+    "./modals": {
+      "types": "./dist/modules/modal/index.d.ts",
+      "import": "./dist/modules/modal/index.js"
+    },
+    "./menus": {
+      "types": "./dist/modules/menu/index.d.ts",
+      "import": "./dist/modules/menu/index.js"
+    },
+    "./input-fields": {
+      "types": "./dist/modules/input-field/index.d.ts",
+      "import": "./dist/modules/input-field/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
     "./images/*": "./dist/images/*"
   },
   "scripts": {
     "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly && node scripts/copy-assets.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
@@ -48,6 +62,7 @@
     "jsdom": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "sass": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"

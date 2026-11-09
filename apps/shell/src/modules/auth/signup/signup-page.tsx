@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { APP_ROUTES } from '@insta/core/routes';
-import { FormField } from '@insta/uii/components/input-field/form-field';
+import { FormField, FileInput } from '@insta/ui/input-fields';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { handleErrorWithToast } from '@insta/uii/feedback/toast';
 import { useToast } from '@insta/uii/feedback/toast';
@@ -12,7 +12,6 @@ import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
 import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
-import { FileInput } from '@insta/uii/components/input-field/file-input';
 
 interface SignupPageProps {
   onSignIn: (credentials: LoginParams) => Promise<void>;
