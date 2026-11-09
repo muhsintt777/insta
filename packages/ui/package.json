@@ -35,6 +35,10 @@
       "types": "./dist/modules/input-field/index.d.ts",
       "import": "./dist/modules/input-field/index.js"
     },
+    "./avatars": {
+      "types": "./dist/modules/avatar/index.d.ts",
+      "import": "./dist/modules/avatar/index.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./images/*": "./dist/images/*"
   },

@@ -5,7 +5,7 @@ import { APP_ROUTES } from '@insta/core/routes';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from '@insta/ui/images/app-logo.svg';
 import { CustomMenu } from '@insta/ui/menus';
-import { CustomAvatar } from '@insta/uii/components/custom-avatar/custom-avatar';
+import { CustomAvatar } from '@insta/ui/avatars';
 import { selectUser } from 'modules/user';
 import { themeActions } from 'modules/theme';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';

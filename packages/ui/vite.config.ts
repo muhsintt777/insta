@@ -23,6 +23,10 @@ export default defineConfig({
           packageRoot,
           'src/modules/input-field/index.ts',
         ),
+        'modules/avatar/index': resolve(
+          packageRoot,
+          'src/modules/avatar/index.ts',
+        ),
       },
       formats: ['es'],
       fileName: (_format, entryName) => `${entryName}.js`,
