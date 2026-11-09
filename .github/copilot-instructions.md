@@ -5,7 +5,7 @@
 
 ### Git
 
-- Write short meaningful commit messages, use chore: feat: fix: for prefix.
+- Write short commit messages, use chore: feat: fix: for prefix.
 
 ### Global Style Guide
 
