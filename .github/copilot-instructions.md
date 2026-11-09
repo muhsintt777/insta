@@ -2,6 +2,7 @@
 
 - Dont over engineer
 - Use pnpm for package management
+- Ignore tests
 
 ### Git
 
