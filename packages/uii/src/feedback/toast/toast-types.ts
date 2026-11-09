@@ -1,4 +1,6 @@
-export type ToastSeverity = 'success' | 'error' | 'info' | 'warning';
+import type { ToastSeverity } from '@insta/ui/toasts';
+
+export type { ToastSeverity } from '@insta/ui/toasts';
 
 export interface ToastState {
   show: boolean;

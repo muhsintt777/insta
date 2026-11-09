@@ -28,6 +28,10 @@ export default defineConfig({
           'src/modules/avatar/index.ts',
         ),
         'styles/index': resolve(packageRoot, 'src/styles/index.ts'),
+        'modules/toast/index': resolve(
+          packageRoot,
+          'src/modules/toast/index.ts',
+        ),
       },
       formats: ['es'],
       fileName: (_format, entryName) => `${entryName}.js`,

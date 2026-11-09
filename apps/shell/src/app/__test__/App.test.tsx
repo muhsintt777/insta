@@ -6,8 +6,8 @@ vi.mock('@insta/uii/feedback/loader', () => ({
   BackdropLoader: () => <div data-testid="backdrop-loader">BackdropLoader</div>,
 }));
 
-vi.mock('@insta/uii/feedback/toast', () => ({
-  ToastHost: () => <div data-testid="toast">Toast</div>,
+vi.mock('@insta/ui/toasts', () => ({
+  ToastNotification: () => <div data-testid="toast">Toast</div>,
 }));
 
 vi.mock('modules/home/home-page', () => ({

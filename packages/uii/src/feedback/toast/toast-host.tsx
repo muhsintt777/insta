@@ -1,5 +1,5 @@
-import { Alert, Snackbar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastNotification } from '@insta/ui/toasts';
 import type { ToastState } from './toast-types';
 import { toastActions } from './toast-slice';
 
@@ -10,15 +10,11 @@ export const ToastHost = () => {
   );
 
   return (
-    <Snackbar
+    <ToastNotification
       open={show}
-      autoHideDuration={3000}
+      message={message}
+      severity={severity}
       onClose={() => dispatch(toastActions.hideToast())}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-    >
-      <Alert severity={severity} variant="standard" sx={{ width: '100%' }}>
-        {message}
-      </Alert>
-    </Snackbar>
+    />
   );
 };
