@@ -2,13 +2,14 @@
   "name": "@insta/ui",
   "version": "1.0.0",
   "description": "Reusable UI library for Insta apps.",
+  "private": true,
   "type": "module",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -22,8 +23,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
-    "typecheck": "tsc -p tsconfig.build.json --noEmit",
-    "prepack": "pnpm run build"
+    "typecheck": "tsc -p tsconfig.build.json --noEmit"
   },
   "peerDependencies": {
     "react": "catalog:"

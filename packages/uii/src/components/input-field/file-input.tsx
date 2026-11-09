@@ -1,7 +1,7 @@
 import styles from './file-input.module.scss';
 import { AddImageIcon } from '@insta/ui/icons';
 import { CSSProperties, FC, useRef } from 'react';
-
+// todo: split components into ui package
 interface FileInputProps {
   value: File | null;
   name: string;
