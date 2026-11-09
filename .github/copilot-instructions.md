@@ -6,7 +6,3 @@
 ### Git
 
 - Write short commit messages, use chore: feat: fix: for prefix.
-
-### Global Style Guide
-
-- Refer to apps/shell/src/app/index.css and packages/shared/src/styles/global-style.ts for global styles
