@@ -39,6 +39,10 @@
       "types": "./dist/modules/avatar/index.d.ts",
       "import": "./dist/modules/avatar/index.js"
     },
+    "./styles": {
+      "types": "./dist/styles/index.d.ts",
+      "import": "./dist/styles/index.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./images/*": "./dist/images/*"
   },

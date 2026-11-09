@@ -14,7 +14,7 @@ import { ToastHost } from '@insta/uii/feedback/toast';
 import { Chat } from 'modules/chat';
 import { HomePage } from 'modules/home';
 import { BackdropLoader } from '@insta/uii/feedback/loader';
-import { colors } from '@insta/uii/styles/global-style';
+import { colors } from '@insta/ui/styles';
 import { ProtectedRoute } from './protected-route';
 import { restoreSession, signIn } from './session-workflows';
 import type { LoginParams } from 'modules/auth';

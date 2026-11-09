@@ -27,6 +27,7 @@ export default defineConfig({
           packageRoot,
           'src/modules/avatar/index.ts',
         ),
+        'styles/index': resolve(packageRoot, 'src/styles/index.ts'),
       },
       formats: ['es'],
       fileName: (_format, entryName) => `${entryName}.js`,

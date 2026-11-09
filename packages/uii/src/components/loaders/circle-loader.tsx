@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { CircularProgress } from '@mui/material';
-import { colors } from '../../styles/global-style';
+import { colors } from '@insta/ui/styles';
 
 export type LoaderSize = 'small' | 'medium' | 'large';
 
