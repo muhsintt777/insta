@@ -1,6 +1,6 @@
 {
   "name": "@insta/core",
-  "description": "Framework-independent constants, routes, and application utilities.",
+  "description": "Framework-independent application constants and routes.",
   "private": true,
   "version": "2.0.1",
   "type": "module",

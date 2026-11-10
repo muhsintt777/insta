@@ -12,7 +12,7 @@ import { VerticalDotIcon } from '@insta/ui/icons';
 import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/ui/avatars';
 import { CustomMenu } from '@insta/ui/menus';
-import { DateUtils } from '@insta/core/lib/date-utils';
+import { DateUtils } from '@insta/utils/date-utils';
 
 interface CommentCardProps {
   authorName: string;

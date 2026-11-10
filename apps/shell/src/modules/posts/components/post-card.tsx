@@ -15,7 +15,7 @@ import {
 } from '@insta/ui/icons';
 import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { DateUtils } from '@insta/core/lib/date-utils';
+import { DateUtils } from '@insta/utils/date-utils';
 import { SecondaryButton } from '@insta/ui/buttons';
 import { CustomMenu } from '@insta/ui/menus';
 

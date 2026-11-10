@@ -19,6 +19,7 @@ export default defineConfig({
       modules: path.resolve(__dirname, 'src/modules'),
       app: path.resolve(__dirname, 'src/app'),
       '@insta/core': path.resolve(__dirname, '../../packages/core/src'),
+      '@insta/utils': path.resolve(__dirname, '../../packages/utils/src'),
       '@insta/uii': path.resolve(__dirname, '../../packages/uii/src'),
       'friends/Friends': path.resolve(
         __dirname,

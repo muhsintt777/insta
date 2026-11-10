@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { REGEX } from '@insta/core/constants';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { FormField } from '@insta/ui/input-fields';
-import { trimAllWhitespace } from '@insta/core/lib/string-utils';
+import { trimAllWhitespace } from '@insta/utils/string-utils';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
 import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
