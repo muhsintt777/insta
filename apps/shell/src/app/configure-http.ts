@@ -1,4 +1,4 @@
-import { configureHttp } from '@insta/core/lib/http';
+import { configureHttp } from '@insta/http';
 import { refreshAuthToken, signOut } from './session-workflows';
 import { store } from './store';
 

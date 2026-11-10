@@ -1,4 +1,4 @@
-import { http } from '@insta/core/lib/http';
+import { http } from '@insta/http';
 import type { CommentDetails } from './comment-types';
 
 export class CommentService {

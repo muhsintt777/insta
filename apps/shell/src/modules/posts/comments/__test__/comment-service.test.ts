@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from '@insta/core/lib/http';
+import { http } from '@insta/http';
 import { CommentService } from '../comment-service';
 import type { CommentDetails } from '../comment-types';
 
-vi.mock('@insta/core/lib/http', () => ({
+vi.mock('@insta/http', () => ({
   http: {
     get: vi.fn(),
     post: vi.fn(),

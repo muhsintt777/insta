@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { ERROR_TYPE } from '../../constants';
 import { CustomError } from './custom-error';
+import { ERROR_TYPE } from './constants';
 
 export const asyncHandler = async <T>(fn: () => Promise<T>) => {
   try {

@@ -1,9 +1,10 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { http } from '@insta/core/lib/http';
+import { http } from '@insta/http';
+import { HTTP_STATUS_CODES } from '@insta/http';
 import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
 import { LikeService } from '../like-service';
 
-vi.mock('@insta/core/lib/http', () => ({
+vi.mock('@insta/http', () => ({
   http: {
     post: vi.fn(),
     delete: vi.fn(),

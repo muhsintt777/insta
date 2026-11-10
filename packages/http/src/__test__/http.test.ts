@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { ERROR_TYPE } from '../../constants';
+import { ERROR_TYPE } from '../constants';
 import { http, configureHttp } from '../http';
 
 type RequestHandler = {

@@ -18,10 +18,10 @@
   "dependencies": {
     "@hookform/resolvers": "catalog:",
     "@insta/core": "workspace:*",
+    "@insta/http": "workspace:*",
     "@insta/ui": "workspace:*",
     "@insta/uii": "workspace:*",
     "@reduxjs/toolkit": "catalog:",
-    "axios": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-hook-form": "catalog:",

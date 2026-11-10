@@ -18,3 +18,5 @@ export const ToastHost = () => {
     />
   );
 };
+
+//todo: add a proper handle toasts mechanism globally

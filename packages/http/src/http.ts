@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ERROR_TYPE } from '../constants';
+import { ERROR_TYPE } from './constants';
 
 interface HttpHandlers {
   getToken: () => string | null;
@@ -9,7 +9,6 @@ interface HttpHandlers {
 
 let handlers: HttpHandlers | undefined;
 
-// Called once at startup so this module does not depend on the store or modules.
 export const configureHttp = (config: HttpHandlers) => {
   handlers = config;
 };

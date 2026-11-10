@@ -1,5 +1,5 @@
-import { COMMON_ERROR_MESSAGE, HTTP_STATUS_CODES } from '@insta/core/constants';
-import { http } from '@insta/core/lib/http';
+import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
+import { http, HTTP_STATUS_CODES } from '@insta/http';
 
 export class LikeService {
   static async createLike(postId: string) {
