@@ -384,9 +384,6 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
-      vite:
-        specifier: 'catalog:'
-        version: 7.3.7(@types/node@26.6.5)(sass@1.106.1)
       vitest:
         specifier: 'catalog:'
         version: 1.6.1(@types/node@26.6.5)(happy-dom@20.14.6)(jsdom@27.4.0(supports-color@7.2.0))(sass@1.106.1)(supports-color@7.2.0)

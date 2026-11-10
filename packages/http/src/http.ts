@@ -1,20 +1,21 @@
 import axios from 'axios';
 import { ERROR_TYPE } from './constants';
 
-interface HttpHandlers {
+export interface HttpConfig {
+  baseURL: string;
   getToken: () => string | null;
   onTokenExpired: () => Promise<unknown>;
   onSignedOut: () => Promise<unknown>;
 }
 
-let handlers: HttpHandlers | undefined;
+let handlers: HttpConfig | undefined;
 
-export const configureHttp = (config: HttpHandlers) => {
+export const configureHttp = (config: HttpConfig) => {
+  http.defaults.baseURL = config.baseURL;
   handlers = config;
 };
 
 export const http = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -22,6 +22,7 @@ const responseInterceptor = (
 ).handlers[0];
 
 describe('http', () => {
+  const apiUrl = 'https://api.example.test';
   const getToken = vi.fn();
   const onTokenExpired = vi.fn();
   const onSignedOut = vi.fn();
@@ -31,12 +32,17 @@ describe('http', () => {
     getToken.mockReturnValue('bearer-test-token');
     onTokenExpired.mockResolvedValue({});
     onSignedOut.mockResolvedValue({});
-    configureHttp({ getToken, onTokenExpired, onSignedOut });
+    configureHttp({
+      baseURL: apiUrl,
+      getToken,
+      onTokenExpired,
+      onSignedOut,
+    });
   });
 
   describe('axios instance creation', () => {
     it('creates axios instance with correct baseURL', () => {
-      expect(http.defaults.baseURL).toBe(import.meta.env.VITE_API_URL);
+      expect(http.defaults.baseURL).toBe(apiUrl);
     });
 
     it('creates axios instance with correct headers', () => {
