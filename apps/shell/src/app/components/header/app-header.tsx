@@ -1,7 +1,7 @@
 import styles from './app-header.module.scss';
 import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { APP_ROUTES } from '@insta/core/routes';
+import { APP_ROUTES } from 'app/routes';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from '@insta/ui/images/app-logo.svg';
 import { CustomMenu } from '@insta/ui/menus';

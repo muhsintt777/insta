@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import { REGEX } from '@insta/core/constants';
+
+const USER_NAME_REGEX = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
 
 export const userEditSchema = z.object({
   fullName: z
     .string()
     .trim()
-    .regex(REGEX.name, 'Invalid fullname')
+    .regex(USER_NAME_REGEX, 'Invalid fullname')
     .max(100, 'Fullname is too long'),
   bio: z.string().trim().max(200, 'Bio is too long'),
 });

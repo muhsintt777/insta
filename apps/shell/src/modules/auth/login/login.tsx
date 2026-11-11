@@ -1,7 +1,7 @@
 import styles from './loginStyle.module.scss';
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { REGEX } from '@insta/core/constants';
+import { AUTH_REGEX } from '../auth-validation';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { FormField } from '@insta/ui/input-fields';
 import { trimAllWhitespace } from '@insta/utils/string-utils';
@@ -43,7 +43,7 @@ export const LoginPage = ({ onSignIn }: LoginPageProps) => {
   function handleEmailInpChange(e: string) {
     const value = e;
     const trimmedValue = trimAllWhitespace(value);
-    const isValid = REGEX.email.test(trimmedValue);
+    const isValid = AUTH_REGEX.email.test(trimmedValue);
     const error = !isValid && trimmedValue ? 'Please enter valid email' : null;
 
     setEmailInp({ value, isValid, error });
@@ -52,7 +52,7 @@ export const LoginPage = ({ onSignIn }: LoginPageProps) => {
   function handlePasswordInpChange(e: string) {
     const value = e;
     const trimmedValue = trimAllWhitespace(value);
-    const isValid = REGEX.password.test(trimmedValue);
+    const isValid = AUTH_REGEX.password.test(trimmedValue);
     const error =
       !isValid && trimmedValue ? 'Please enter valid password' : null;
 

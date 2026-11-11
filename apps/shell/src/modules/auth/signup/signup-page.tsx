@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { APP_ROUTES } from '@insta/core/routes';
+import { APP_ROUTES } from 'app/routes';
 import { FormField, FileInput } from '@insta/ui/input-fields';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { handleErrorWithToast } from '@insta/uii/feedback/toast';
