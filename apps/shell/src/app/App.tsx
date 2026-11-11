@@ -14,7 +14,6 @@ import { LoginPage, SignupPage, selectAuthStatus } from 'modules/auth';
 import { selectToast, toastActions } from '@insta/uii/feedback/toast';
 import { Chat } from 'modules/chat';
 import { HomePage } from 'modules/home';
-import { BackdropLoader } from '@insta/uii/feedback/loader';
 import { colors } from '@insta/ui/styles';
 import { ProtectedRoute } from './protected-route';
 import { restoreSession, signIn } from './session-workflows';
@@ -36,7 +35,6 @@ export const App = () => {
 
   return (
     <>
-      <BackdropLoader />
       <ToastNotification
         open={show}
         message={message}

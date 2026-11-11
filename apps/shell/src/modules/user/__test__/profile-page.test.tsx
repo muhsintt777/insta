@@ -33,15 +33,6 @@ vi.mock('@insta/uii/feedback/toast/handle-error-with-toast', () => ({
   handleErrorWithToast: vi.fn(),
 }));
 
-const mockShowBackdrop = vi.fn();
-const mockHideBackdrop = vi.fn();
-vi.mock('@insta/uii/feedback/loader/use-loader', () => ({
-  useLoader: () => ({
-    showGlobalBackdrop: mockShowBackdrop,
-    hideGlobalBackdrop: mockHideBackdrop,
-  }),
-}));
-
 const mockUserDetails = {
   id: 'user-1',
   fullName: 'John Doe',

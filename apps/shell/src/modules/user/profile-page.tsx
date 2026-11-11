@@ -15,7 +15,6 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'modules/posts';
-import { useLoader } from '@insta/uii/feedback/loader';
 import { selectUser, userActions } from './user-slice';
 import { EditUserModal } from './edit-user-modal';
 import type { EditPostParams, Post } from 'modules/posts';
@@ -25,7 +24,6 @@ export const ProfilePage = () => {
   const { showToast } = useToast();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
-  const { showGlobalBackdrop, hideGlobalBackdrop } = useLoader();
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [showUserEditModal, setShowUserEditModal] = useState(false);
@@ -40,7 +38,6 @@ export const ProfilePage = () => {
   const deletePost = useCallback(
     async (postId: string) => {
       try {
-        showGlobalBackdrop();
         await PostService.deletePost(postId);
         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
         dispatch(
@@ -51,17 +48,14 @@ export const ProfilePage = () => {
         );
       } catch (error) {
         handleErrorWithToast(error, showToast);
-      } finally {
-        hideGlobalBackdrop();
       }
     },
-    [showGlobalBackdrop, hideGlobalBackdrop, dispatch, showToast],
+    [dispatch, showToast],
   );
 
   const editPost = useCallback(
     async (param: EditPostParams) => {
       try {
-        showGlobalBackdrop();
         await PostService.editPost(param.postId, param.caption);
         setPosts((prevPosts) =>
           prevPosts.map((post) =>
@@ -72,11 +66,9 @@ export const ProfilePage = () => {
         );
       } catch (error) {
         handleErrorWithToast(error, showToast);
-      } finally {
-        hideGlobalBackdrop();
       }
     },
-    [hideGlobalBackdrop, showGlobalBackdrop, showToast],
+    [showToast],
   );
 
   const closeEditModal = useCallback(() => {

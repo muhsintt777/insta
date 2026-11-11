@@ -2,10 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, waitFor } from 'test';
 import { App } from '../App';
 
-vi.mock('@insta/uii/feedback/loader', () => ({
-  BackdropLoader: () => <div data-testid="backdrop-loader">BackdropLoader</div>,
-}));
-
 vi.mock('@insta/ui/toasts', () => ({
   ToastNotification: () => <div data-testid="toast">Toast</div>,
 }));
@@ -115,18 +111,6 @@ describe('App', () => {
   });
 
   describe('loaded state', () => {
-    it('renders BackdropLoader', () => {
-      renderWithProviders(<App />, {
-        preloadedState: {
-          auth: { status: 'AUTHENTICATED', token: 'Bearer test-token' },
-          user: { details: mockUserDetails },
-        },
-        route: '/',
-      });
-
-      expect(screen.getByTestId('backdrop-loader')).toBeInTheDocument();
-    });
-
     it('renders Toast component', () => {
       renderWithProviders(<App />, {
         preloadedState: {
