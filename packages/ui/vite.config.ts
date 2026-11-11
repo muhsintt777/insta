@@ -27,6 +27,10 @@ export default defineConfig({
           packageRoot,
           'src/modules/avatar/index.ts',
         ),
+        'modules/loaders/index': resolve(
+          packageRoot,
+          'src/modules/loaders/index.ts',
+        ),
         'styles/index': resolve(packageRoot, 'src/styles/index.ts'),
         'modules/toast/index': resolve(
           packageRoot,

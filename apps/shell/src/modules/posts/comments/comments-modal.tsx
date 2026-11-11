@@ -6,7 +6,7 @@ import { PrimaryModal, ModalHeader } from '@insta/ui/modals';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { TextInput } from '@insta/ui/input-fields';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
-import { CircleLoader } from '@insta/uii/components/loaders/circle-loader';
+import { CircleLoader } from '@insta/ui/loaders';
 import { CommentService } from './comment-service';
 import type { CommentDetails } from './comment-types';
 import { CommentCard } from './comment-card';

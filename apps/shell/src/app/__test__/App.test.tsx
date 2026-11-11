@@ -53,7 +53,7 @@ vi.mock('app/layouts/secondary-layout', () => ({
   ),
 }));
 
-vi.mock('@insta/uii/components/loaders/dot-loader', () => ({
+vi.mock('@insta/ui/loaders', () => ({
   DotLoader: () => <div data-testid="dot-loader">Loading...</div>,
 }));
 
