@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "types": ["vitest"]
-  },
-  "include": ["src"]
-}

@@ -13,7 +13,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@insta/core": "workspace:*",
+    "@insta/http": "workspace:*",
     "@insta/ui": "workspace:*"
   },
   "peerDependencies": {
@@ -30,7 +30,6 @@
     "@emotion/react": "catalog:",
     "@emotion/styled": "catalog:",
     "@mui/material": "catalog:",
-    "@insta/http": "workspace:*",
     "@reduxjs/toolkit": "catalog:",
     "@testing-library/dom": "catalog:",
     "@testing-library/jest-dom": "catalog:",

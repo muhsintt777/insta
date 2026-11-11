@@ -1,4 +1,4 @@
-import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
+import { COMMON_ERROR_MESSAGE } from '@insta/http';
 import type { ToastSeverity } from './toast-types';
 
 export const handleErrorWithToast = (

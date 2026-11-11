@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
-    "@insta/core": "workspace:*",
     "@insta/http": "workspace:*",
     "@insta/utils": "workspace:*",
     "@insta/ui": "workspace:*",

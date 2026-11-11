@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@insta/core/*": ["../../core/src/*"],
+      "@insta/http": ["../../http/src/index.ts"],
       "test": ["../../test-utils/src/test"],
       "test/*": ["../../test-utils/src/test/*"]
     }

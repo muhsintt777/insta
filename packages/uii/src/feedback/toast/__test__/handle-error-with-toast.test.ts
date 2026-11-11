@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { handleErrorWithToast } from '../handle-error-with-toast';
 import { CustomError } from '@insta/http';
-import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
+import { COMMON_ERROR_MESSAGE } from '@insta/http';
 
 describe('handleErrorWithToast', () => {
   const showToast = vi.fn();

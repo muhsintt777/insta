@@ -1,4 +1,4 @@
-import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
+import { COMMON_ERROR_MESSAGE } from '@insta/http';
 import { http, HTTP_STATUS_CODES } from '@insta/http';
 
 export class LikeService {

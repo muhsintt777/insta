@@ -9,7 +9,7 @@ import {
 } from 'modules/posts';
 import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
 import { AddPost } from './components/add-post/add-post';
-import { COMMON_ERROR_MESSAGE } from '@insta/core/constants';
+import { COMMON_ERROR_MESSAGE } from '@insta/http';
 import type { Post } from 'modules/posts';
 
 type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';

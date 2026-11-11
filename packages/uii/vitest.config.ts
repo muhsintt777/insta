@@ -16,7 +16,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@insta/core': path.resolve(__dirname, '../core/src'),
+      '@insta/http': path.resolve(__dirname, '../http/src/index.ts'),
       test: path.resolve(__dirname, '../test-utils/src/test'),
     },
   },

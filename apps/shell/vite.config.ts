@@ -33,7 +33,6 @@ export default defineConfig(({ mode }) => {
       alias: {
         modules: '/src/modules',
         app: '/src/app',
-        '@insta/core': path.resolve(__dirname, '../../packages/core/src'),
         '@insta/utils': path.resolve(__dirname, '../../packages/utils/src'),
         '@insta/http': path.resolve(__dirname, '../../packages/http/src'),
         '@insta/uii': path.resolve(__dirname, '../../packages/uii/src'),
