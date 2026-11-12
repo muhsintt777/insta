@@ -4,9 +4,7 @@ import react from '@vitejs/plugin-react-swc';
 import { federation } from '@module-federation/vite';
 import { dependencies } from './package.json';
 
-const sharedDependencies = Object.keys(dependencies).filter(
-  (dep) => !dep.startsWith('@insta/') || dep === '@insta/ui',
-);
+const sharedDependencies = Object.keys(dependencies);
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname, 'VITE_');
@@ -33,8 +31,6 @@ export default defineConfig(({ mode }) => {
       alias: {
         modules: '/src/modules',
         app: '/src/app',
-        '@insta/utils': path.resolve(__dirname, '../../packages/utils/src'),
-        '@insta/http': path.resolve(__dirname, '../../packages/http/src'),
       },
     },
     server: {
