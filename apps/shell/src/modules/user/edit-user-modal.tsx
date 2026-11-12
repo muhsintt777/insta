@@ -7,7 +7,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput } from '@insta/ui/input-fields';
-import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/events';
 import { UserService } from './user-service';
 import type { EditUserProfileParams, User } from './user-types';
 

@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from '@insta/ui/images/app-logo.svg';
-import { ToastNotification } from '@insta/ui/toasts';
 import { DotLoader } from '@insta/ui/loaders';
+import { ToastHost } from 'app/components/toast-host';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
@@ -11,7 +11,6 @@ import { Notifications } from 'modules/notifications';
 import { ProfilePage } from 'modules/user';
 import { Friends } from 'modules/friends';
 import { LoginPage, SignupPage, selectAuthStatus } from 'modules/auth';
-import { selectToast, toastActions } from '@insta/uii/feedback/toast';
 import { Chat } from 'modules/chat';
 import { HomePage } from 'modules/home';
 import { colors } from '@insta/ui/styles';
@@ -22,7 +21,6 @@ import type { LoginParams } from 'modules/auth';
 export const App = () => {
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(selectAuthStatus);
-  const { message, show, severity } = useAppSelector(selectToast);
   const apiRef = useRef({ restoreSession: false });
   const handleSignIn = (credentials: LoginParams) =>
     signIn(dispatch, credentials);
@@ -35,12 +33,7 @@ export const App = () => {
 
   return (
     <>
-      <ToastNotification
-        open={show}
-        message={message}
-        severity={severity}
-        onClose={() => dispatch(toastActions.hideToast())}
-      />
+      <ToastHost />
       {authStatus === 'LOADING' ? (
         <div className="loader-wrap">
           <img src={appLogo} alt="logo" />

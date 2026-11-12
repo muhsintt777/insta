@@ -35,7 +35,6 @@ export default defineConfig(({ mode }) => {
         app: '/src/app',
         '@insta/utils': path.resolve(__dirname, '../../packages/utils/src'),
         '@insta/http': path.resolve(__dirname, '../../packages/http/src'),
-        '@insta/uii': path.resolve(__dirname, '../../packages/uii/src'),
       },
     },
     server: {

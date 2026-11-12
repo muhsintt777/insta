@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
+    "@insta/events": "workspace:*",
     "@insta/http": "workspace:*",
     "@insta/utils": "workspace:*",
     "@insta/ui": "workspace:*",
-    "@insta/uii": "workspace:*",
     "@reduxjs/toolkit": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",

@@ -7,7 +7,7 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'modules/posts';
-import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/events';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from '@insta/http';
 import type { Post } from 'modules/posts';

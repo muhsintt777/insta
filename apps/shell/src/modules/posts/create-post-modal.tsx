@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FileInput, FormField } from '@insta/ui/input-fields';
 import { PrimaryModal, ModalHeader, ModalFooter } from '@insta/ui/modals';
-import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/events';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
 import { POST_IMAGE_MAX_SIZE_MB } from './post-constants';

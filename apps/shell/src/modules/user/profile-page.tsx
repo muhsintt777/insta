@@ -6,7 +6,7 @@ import { EditIcon } from '@insta/ui/icons';
 import { AppBar } from './components/app-bar/app-bar';
 import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/events';
 import {
   CommentsModal,
   EditPostModal,

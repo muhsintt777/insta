@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { HomePage } from '../home-page';
 import { LikeService, PostService, type Post } from 'modules/posts';
-import { handleErrorWithToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast } from '@insta/events';
 
 vi.mock('modules/posts/post-service', () => ({
   PostService: {
@@ -17,8 +17,9 @@ vi.mock('modules/posts/likes/like-service', () => ({
   },
 }));
 
-vi.mock('@insta/uii/feedback/toast/handle-error-with-toast', () => ({
+vi.mock('@insta/events', () => ({
   handleErrorWithToast: vi.fn(),
+  useToast: () => ({ showToast: vi.fn() }),
 }));
 
 vi.mock('modules/posts/comments/comments-modal', () => ({

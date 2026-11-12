@@ -8,7 +8,7 @@ import { CustomMenu } from '@insta/ui/menus';
 import { CustomAvatar } from '@insta/ui/avatars';
 import { selectUser } from 'modules/user';
 import { themeActions } from 'modules/theme';
-import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/events';
 import {
   ChatIcon,
   FriendsIcon,

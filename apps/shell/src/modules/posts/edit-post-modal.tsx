@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from '@insta/ui/input-fields';
 import { PrimaryModal, ModalHeader, ModalFooter } from '@insta/ui/modals';
-import { handleErrorWithToast, useToast } from '@insta/uii/feedback/toast';
+import { handleErrorWithToast, useToast } from '@insta/events';
 import { EditPostFormSchema, editPostFormSchema } from './post-validation';
 import type { EditPostParams } from './post-types';
 
