@@ -3,7 +3,7 @@ import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { CommentsModal } from '../comments-modal';
 import { CommentService } from '../comment-service';
 import type { CommentDetails } from '../comment-types';
-import { handleErrorWithToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 
 vi.mock('../comment-service', () => ({
   CommentService: {
@@ -13,9 +13,8 @@ vi.mock('../comment-service', () => ({
   },
 }));
 
-vi.mock('@insta/events', () => ({
-  handleErrorWithToast: vi.fn(),
-  useToast: () => ({ showToast: vi.fn() }),
+vi.mock('app/emit-error-toast', () => ({
+  emitErrorToast: vi.fn(),
 }));
 
 const mockComments: CommentDetails[] = [
@@ -109,10 +108,7 @@ describe('CommentsModal', () => {
     await waitFor(() =>
       expect(screen.getByText('Failed to load comments')).toBeInTheDocument(),
     );
-    expect(handleErrorWithToast).toHaveBeenCalledWith(
-      error,
-      expect.any(Function),
-    );
+    expect(emitErrorToast).toHaveBeenCalledWith(error, expect.any(Function));
   });
 
   it('creates a comment and calls onSubmit', async () => {
@@ -149,10 +145,7 @@ describe('CommentsModal', () => {
     );
     await user.click(screen.getByRole('button', { name: /send/i }));
     await waitFor(() =>
-      expect(handleErrorWithToast).toHaveBeenCalledWith(
-        error,
-        expect.any(Function),
-      ),
+      expect(emitErrorToast).toHaveBeenCalledWith(error, expect.any(Function)),
     );
   });
 

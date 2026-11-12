@@ -8,7 +8,7 @@ import { CustomMenu } from '@insta/ui/menus';
 import { CustomAvatar } from '@insta/ui/avatars';
 import { selectUser } from 'modules/user';
 import { themeActions } from 'modules/theme';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import {
   ChatIcon,
   FriendsIcon,
@@ -32,7 +32,6 @@ const navigationItems = [
 export const Header = memo(() => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { showToast } = useToast();
   const user = useAppSelector(selectUser);
   const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -60,9 +59,9 @@ export const Header = memo(() => {
     try {
       await signOut(dispatch);
     } catch (error) {
-      handleErrorWithToast(error, showToast);
+      emitErrorToast(error);
     }
-  }, [dispatch, showToast]);
+  }, [dispatch]);
 
   const menuItems = useMemo(
     () => [

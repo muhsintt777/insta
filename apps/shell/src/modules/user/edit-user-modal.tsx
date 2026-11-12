@@ -7,7 +7,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { userEditSchema, UserEditSchema } from './user-validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextInput } from '@insta/ui/input-fields';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import { UserService } from './user-service';
 import type { EditUserProfileParams, User } from './user-types';
 
@@ -20,7 +20,6 @@ export const EditUserModal: FC<EditUserModalProps> = ({
   isOpen,
   closeModal,
 }) => {
-  const { showToast } = useToast();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
 
@@ -65,7 +64,7 @@ export const EditUserModal: FC<EditUserModalProps> = ({
       dispatch(userActions.editUser(changedValues));
       closeModal();
     } catch (error) {
-      handleErrorWithToast(error, showToast);
+      emitErrorToast(error);
     } finally {
       setShowLoader(false);
     }

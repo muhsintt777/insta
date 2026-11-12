@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { SignupPage } from '../signup-page';
 import { AuthService } from '../../auth-service';
-import { handleErrorWithToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 
 vi.mock('../../auth-service', () => ({
   AuthService: {
@@ -10,11 +10,8 @@ vi.mock('../../auth-service', () => ({
   },
 }));
 
-vi.mock('@insta/events', () => ({
-  handleErrorWithToast: vi.fn(),
-  useToast: () => ({
-    showToast: vi.fn(),
-  }),
+vi.mock('app/emit-error-toast', () => ({
+  emitErrorToast: vi.fn(),
 }));
 
 const mockNavigate = vi.fn();
@@ -206,7 +203,7 @@ describe('SignupPage', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(
+        expect(emitErrorToast).toHaveBeenCalledWith(
           mockError,
           expect.any(Function),
         );

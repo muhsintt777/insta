@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { PrimaryModal, ModalHeader } from '@insta/ui/modals';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { TextInput } from '@insta/ui/input-fields';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import { CircleLoader } from '@insta/ui/loaders';
 import { CommentService } from './comment-service';
 import type { CommentDetails } from './comment-types';
@@ -29,7 +29,6 @@ export const CommentsModal: FC<CommentsModalProps> = ({
   onSubmit,
   onDelete,
 }) => {
-  const { showToast } = useToast();
   const [screenStatus, setScreenStatus] = useState<CommentLoadStatus>('IDLE');
   const [comments, setComments] = useState<CommentDetails[]>([]);
   const [showCommentLoader, setShowCommentLoader] = useState(false);
@@ -54,7 +53,7 @@ export const CommentsModal: FC<CommentsModalProps> = ({
       onSubmit?.();
       reset();
     } catch (error) {
-      handleErrorWithToast(error, showToast);
+      emitErrorToast(error);
     } finally {
       setShowCommentLoader(false);
     }
@@ -82,10 +81,10 @@ export const CommentsModal: FC<CommentsModalProps> = ({
         setScreenStatus('SUCCESS');
       } catch (error) {
         setScreenStatus('FAILED');
-        handleErrorWithToast(error, showToast);
+        emitErrorToast(error);
       }
     })();
-  }, [postId, showToast]);
+  }, [postId]);
 
   return (
     <PrimaryModal isOpen={isOpen}>

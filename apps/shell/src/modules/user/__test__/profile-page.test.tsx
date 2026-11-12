@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { ProfilePage } from '../profile-page';
 import { LikeService, PostService, type Post } from 'modules/posts';
-import { handleErrorWithToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();
@@ -29,9 +29,8 @@ vi.mock('modules/posts/likes/like-service', () => ({
   },
 }));
 
-vi.mock('@insta/events', () => ({
-  handleErrorWithToast: vi.fn(),
-  useToast: () => ({ showToast: vi.fn() }),
+vi.mock('app/emit-error-toast', () => ({
+  emitErrorToast: vi.fn(),
 }));
 
 const mockUserDetails = {
@@ -192,7 +191,7 @@ describe('ProfilePage', () => {
       });
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(
+        expect(emitErrorToast).toHaveBeenCalledWith(
           mockError,
           expect.any(Function),
         );
@@ -362,7 +361,7 @@ describe('ProfilePage', () => {
         await user.click(screen.getByText('Delete'));
 
         await waitFor(() => {
-          expect(handleErrorWithToast).toHaveBeenCalledWith(
+          expect(emitErrorToast).toHaveBeenCalledWith(
             mockError,
             expect.any(Function),
           );

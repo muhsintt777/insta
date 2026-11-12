@@ -7,7 +7,7 @@ import {
   PostCardSkeleton,
   PostService,
 } from 'modules/posts';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from '@insta/http';
 import type { Post } from 'modules/posts';
@@ -15,7 +15,6 @@ import type { Post } from 'modules/posts';
 type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';
 
 export const HomePage = () => {
-  const { showToast } = useToast();
   const [showLoader, setShowLoader] = useState<FeedLoadStatus>('LOADING');
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPostIdForComments, setSelectedPostIdForComments] = useState<
@@ -27,35 +26,32 @@ export const HomePage = () => {
       const result = await PostService.fetchPosts();
       setPosts(result);
     } catch (error) {
-      handleErrorWithToast(error, showToast);
+      emitErrorToast(error);
     }
-  }, [showToast]);
+  }, []);
 
-  const handleLike = useCallback(
-    async (postId: string, isLiked: boolean) => {
-      try {
-        if (isLiked) {
-          await LikeService.deleteLike(postId);
-        } else {
-          await LikeService.createLike(postId);
-        }
-        setPosts((prev) =>
-          prev.map((post) =>
-            post.id === postId
-              ? {
-                  ...post,
-                  isLiked: !isLiked,
-                  likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
-                }
-              : post,
-          ),
-        );
-      } catch (error) {
-        handleErrorWithToast(error, showToast);
+  const handleLike = useCallback(async (postId: string, isLiked: boolean) => {
+    try {
+      if (isLiked) {
+        await LikeService.deleteLike(postId);
+      } else {
+        await LikeService.createLike(postId);
       }
-    },
-    [showToast],
-  );
+      setPosts((prev) =>
+        prev.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                isLiked: !isLiked,
+                likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
+              }
+            : post,
+        ),
+      );
+    } catch (error) {
+      emitErrorToast(error);
+    }
+  }, []);
 
   const openCommentsModal = useCallback((postId: string) => {
     setSelectedPostIdForComments(postId);
@@ -91,11 +87,11 @@ export const HomePage = () => {
         setPosts(resut);
         setShowLoader('SUCCESS');
       } catch (error) {
-        handleErrorWithToast(error, showToast);
+        emitErrorToast(error);
         setShowLoader('FAILED');
       }
     })();
-  }, [showToast]);
+  }, []);
 
   return (
     <div className={styles.container}>

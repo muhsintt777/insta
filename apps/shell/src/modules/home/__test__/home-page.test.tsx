@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { HomePage } from '../home-page';
 import { LikeService, PostService, type Post } from 'modules/posts';
-import { handleErrorWithToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 
 vi.mock('modules/posts/post-service', () => ({
   PostService: {
@@ -17,9 +17,8 @@ vi.mock('modules/posts/likes/like-service', () => ({
   },
 }));
 
-vi.mock('@insta/events', () => ({
-  handleErrorWithToast: vi.fn(),
-  useToast: () => ({ showToast: vi.fn() }),
+vi.mock('app/emit-error-toast', () => ({
+  emitErrorToast: vi.fn(),
 }));
 
 vi.mock('modules/posts/comments/comments-modal', () => ({
@@ -154,14 +153,14 @@ describe('HomePage', () => {
   });
 
   describe('error state', () => {
-    it('shows error message and calls handleErrorWithToast on failure', async () => {
+    it('shows error message and emits an error toast on failure', async () => {
       const mockError = new Error('Failed to load');
       (PostService.fetchPosts as Mock).mockRejectedValue(mockError);
 
       renderWithProviders(<HomePage />);
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(
+        expect(emitErrorToast).toHaveBeenCalledWith(
           mockError,
           expect.any(Function),
         );

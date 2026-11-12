@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { APP_ROUTES } from 'app/routes';
 import { FormField, FileInput } from '@insta/ui/input-fields';
 import { PrimaryButton } from '@insta/ui/buttons';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';
 import type { LoginParams } from '../auth-service';
@@ -18,7 +19,6 @@ interface SignupPageProps {
 
 export const SignupPage = ({ onSignIn }: SignupPageProps) => {
   const navigate = useNavigate();
-  const { showToast } = useToast();
   const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
 
   const {
@@ -52,15 +52,17 @@ export const SignupPage = ({ onSignIn }: SignupPageProps) => {
           email: data.email,
           password: data.password,
         });
-        showToast('success', 'Account created successfully');
+        EventBus.emit(MFE_EVENT_NAMES.toast.success, {
+          message: 'Account created successfully',
+        });
         navigate(APP_ROUTES.HOME);
       } catch (error) {
-        handleErrorWithToast(error, showToast);
+        emitErrorToast(error);
       } finally {
         setShowFormSubmitLoader(false);
       }
     },
-    [showToast, navigate, onSignIn],
+    [navigate, onSignIn],
   );
 
   return (

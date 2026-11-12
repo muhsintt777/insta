@@ -1,11 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { LoginPage } from '../login';
-import { handleErrorWithToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 
-vi.mock('@insta/events', () => ({
-  handleErrorWithToast: vi.fn(),
-  useToast: () => ({ showToast: vi.fn() }),
+vi.mock('app/emit-error-toast', () => ({
+  emitErrorToast: vi.fn(),
 }));
 
 const mockOnSignIn = vi.fn().mockResolvedValue(undefined);
@@ -155,7 +154,7 @@ describe('LoginPage', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(handleErrorWithToast).toHaveBeenCalledWith(
+        expect(emitErrorToast).toHaveBeenCalledWith(
           mockError,
           expect.any(Function),
         );

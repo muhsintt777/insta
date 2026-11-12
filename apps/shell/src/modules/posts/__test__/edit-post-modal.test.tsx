@@ -1,11 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
 import { EditPostModal } from '../edit-post-modal';
-import { handleErrorWithToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 
-vi.mock('@insta/events', () => ({
-  handleErrorWithToast: vi.fn(),
-  useToast: () => ({ showToast: vi.fn() }),
+vi.mock('app/emit-error-toast', () => ({
+  emitErrorToast: vi.fn(),
 }));
 
 describe('EditPostModal', () => {
@@ -145,7 +144,7 @@ describe('EditPostModal', () => {
     await user.click(screen.getByRole('button', { name: 'UPDATE' }));
 
     await waitFor(() => {
-      expect(handleErrorWithToast).toHaveBeenCalledWith(
+      expect(emitErrorToast).toHaveBeenCalledWith(
         mockError,
         expect.any(Function),
       );

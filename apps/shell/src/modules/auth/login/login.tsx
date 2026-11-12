@@ -5,7 +5,7 @@ import { AUTH_REGEX } from '../auth-validation';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { FormField } from '@insta/ui/input-fields';
 import { trimAllWhitespace } from '@insta/utils/string-utils';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 
@@ -26,7 +26,6 @@ interface PasswordInpType {
 
 export const LoginPage = ({ onSignIn }: LoginPageProps) => {
   const navigate = useNavigate();
-  const { showToast } = useToast();
 
   const [showLoader, setShowLoader] = useState(false);
   const [emailInp, setEmailInp] = useState<EmailInpType>({
@@ -73,7 +72,7 @@ export const LoginPage = ({ onSignIn }: LoginPageProps) => {
       });
       navigate('/', { replace: true });
     } catch (err) {
-      handleErrorWithToast(err, showToast);
+      emitErrorToast(err);
     } finally {
       setShowLoader(false);
     }

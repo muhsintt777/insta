@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FileInput, FormField } from '@insta/ui/input-fields';
 import { PrimaryModal, ModalHeader, ModalFooter } from '@insta/ui/modals';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import { PostService } from './post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
 import { POST_IMAGE_MAX_SIZE_MB } from './post-constants';
@@ -19,7 +19,6 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
   closeModal,
   onPostCreated,
 }) => {
-  const { showToast } = useToast();
   const [showPostLoader, setShowPostLoader] = useState(false);
   const {
     handleSubmit,
@@ -41,7 +40,7 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
       reset();
       closeModal();
     } catch (error) {
-      handleErrorWithToast(error, showToast);
+      emitErrorToast(error);
     } finally {
       setShowPostLoader(false);
     }

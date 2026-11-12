@@ -6,7 +6,7 @@ import { EditIcon } from '@insta/ui/icons';
 import { AppBar } from './components/app-bar/app-bar';
 import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { handleErrorWithToast, useToast } from '@insta/events';
+import { emitErrorToast } from 'app/emit-error-toast';
 import {
   CommentsModal,
   EditPostModal,
@@ -21,7 +21,6 @@ import type { EditPostParams, Post } from 'modules/posts';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
-  const { showToast } = useToast();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
 
@@ -47,29 +46,24 @@ export const ProfilePage = () => {
           }),
         );
       } catch (error) {
-        handleErrorWithToast(error, showToast);
+        emitErrorToast(error);
       }
     },
-    [dispatch, showToast],
+    [dispatch],
   );
 
-  const editPost = useCallback(
-    async (param: EditPostParams) => {
-      try {
-        await PostService.editPost(param.postId, param.caption);
-        setPosts((prevPosts) =>
-          prevPosts.map((post) =>
-            post.id === param.postId
-              ? { ...post, caption: param.caption }
-              : post,
-          ),
-        );
-      } catch (error) {
-        handleErrorWithToast(error, showToast);
-      }
-    },
-    [showToast],
-  );
+  const editPost = useCallback(async (param: EditPostParams) => {
+    try {
+      await PostService.editPost(param.postId, param.caption);
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === param.postId ? { ...post, caption: param.caption } : post,
+        ),
+      );
+    } catch (error) {
+      emitErrorToast(error);
+    }
+  }, []);
 
   const closeEditModal = useCallback(() => {
     setSelectedPostToEdit(null);
@@ -83,31 +77,28 @@ export const ProfilePage = () => {
     setShowUserEditModal((prev) => !prev);
   }, []);
 
-  const handleLike = useCallback(
-    async (postId: string, isLiked: boolean) => {
-      try {
-        if (isLiked) {
-          await LikeService.deleteLike(postId);
-        } else {
-          await LikeService.createLike(postId);
-        }
-        setPosts((prev) =>
-          prev.map((post) =>
-            post.id === postId
-              ? {
-                  ...post,
-                  isLiked: !isLiked,
-                  likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
-                }
-              : post,
-          ),
-        );
-      } catch (error) {
-        handleErrorWithToast(error, showToast);
+  const handleLike = useCallback(async (postId: string, isLiked: boolean) => {
+    try {
+      if (isLiked) {
+        await LikeService.deleteLike(postId);
+      } else {
+        await LikeService.createLike(postId);
       }
-    },
-    [showToast],
-  );
+      setPosts((prev) =>
+        prev.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                isLiked: !isLiked,
+                likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
+              }
+            : post,
+        ),
+      );
+    } catch (error) {
+      emitErrorToast(error);
+    }
+  }, []);
 
   const openCommentsModal = useCallback((postId: string) => {
     setSelectedPostIdForComments(postId);
@@ -142,12 +133,12 @@ export const ProfilePage = () => {
         const result = await PostService.fetchUserPosts();
         setPosts(result);
       } catch (error) {
-        handleErrorWithToast(error, showToast);
+        emitErrorToast(error);
       } finally {
         setPostLoader(false);
       }
     })();
-  }, [showToast]);
+  }, []);
 
   return (
     <div className={styles.container}>
