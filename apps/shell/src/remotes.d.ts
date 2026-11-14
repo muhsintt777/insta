@@ -1,4 +1,5 @@
-declare module 'friends/Friends' {
-  const Friends: import('react').ComponentType;
-  export default Friends;
+declare module 'friends/mount' {
+  export function mount(container: HTMLElement): {
+    unmount: () => void;
+  };
 }

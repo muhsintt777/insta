@@ -11,7 +11,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       dts: false,
       exposes: {
-        './Friends': './src/friends.tsx',
+        './mount': './src/mount.tsx',
       },
       shared: Object.keys(dependencies),
     }),
