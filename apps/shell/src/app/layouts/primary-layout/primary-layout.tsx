@@ -9,9 +9,7 @@ export const PrimaryLayout = () => {
         <Header />
       </div>
       <div className={styles.middle}>
-        <div className={styles.outlet}>
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );

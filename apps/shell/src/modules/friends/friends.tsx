@@ -35,7 +35,7 @@ export const Friends = () => {
       {mountState === 'error' && (
         <div role="alert">Could not load friends.</div>
       )}
-      <div ref={containerRef} />
+      <main ref={containerRef} />
     </>
   );
 };
