@@ -3,7 +3,13 @@ import react from '@vitejs/plugin-react-swc';
 import { federation } from '@module-federation/vite';
 import { dependencies } from './package.json';
 
-const sharedDependencies = Object.keys(dependencies);
+const sharedDependencies = Object.keys(dependencies).reduce(
+  (acc: Record<string, { singleton: boolean }>, dep) => {
+    acc[dep] = { singleton: true };
+    return acc;
+  },
+  {},
+);
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname, 'VITE_');
