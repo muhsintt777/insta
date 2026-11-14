@@ -109,21 +109,22 @@ Redux stores application state such as authenticated user details and the auth t
 
 ```bash
 pnpm install
-pnpm dev:all
+pnpm dev
 ```
 
-This starts the shell and the Friends remote. The shell is available at `http://localhost:5173`; the Friends remote runs at `http://localhost:5176`.
-Run `pnpm dev:stop` to stop the shell and Friends Vite servers if their starting terminal has already been closed.
+This starts the shell, Friends remote, and Chat remote. The shell is available at `http://localhost:5173`; Friends runs at `http://localhost:5174`, and Chat runs at `http://localhost:5175`.
+Run `pnpm stop` to stop the shell and remote Vite servers if their starting terminal has already been closed.
 
 ### Build and preview
 
 ```bash
-pnpm build
-pnpm preview
+pnpm build:shell
+pnpm build:friends
+pnpm build:chat
 ```
 
-`pnpm build` runs the TypeScript compiler before creating the Vite production bundle.
-Set `VITE_FRIENDS_REMOTE_URL` when building the shell for deployment. If unset, production builds expect the Friends remote at `/friends` on the same origin.
+Each build runs the TypeScript compiler before creating its Vite production bundle.
+Set `VITE_FRIENDS_REMOTE_URL` and `VITE_CHAT_REMOTE_URL` when building the shell for deployment. The production environment config points to `/friends` and `/chat` on the same origin.
 
 ## Quality Checks
 

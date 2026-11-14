@@ -22,6 +22,13 @@ export default defineConfig(({ mode }) => {
             entryGlobalName: 'insta_friends',
             shareScope: 'default',
           },
+          chat: {
+            type: 'module',
+            name: 'insta_chat',
+            entry: `${env.VITE_CHAT_REMOTE_URL}/remoteEntry.js`,
+            entryGlobalName: 'insta_chat',
+            shareScope: 'default',
+          },
         },
         shared: sharedDependencies,
       }),
