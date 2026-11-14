@@ -112,7 +112,7 @@ pnpm install
 pnpm dev
 ```
 
-This starts the shell, Friends remote, and Chat remote. The shell is available at `http://localhost:5173`; Friends runs at `http://localhost:5174`, and Chat runs at `http://localhost:5175`.
+This starts the shell, Friends remote, Chat remote, and Notifications remote. The shell is available at `http://localhost:5173`; Friends runs at `http://localhost:5174`, Chat at `http://localhost:5175`, and Notifications at `http://localhost:5176`.
 Run `pnpm stop` to stop the shell and remote Vite servers if their starting terminal has already been closed.
 
 ### Build and preview
@@ -121,10 +121,11 @@ Run `pnpm stop` to stop the shell and remote Vite servers if their starting term
 pnpm build:shell
 pnpm build:friends
 pnpm build:chat
+pnpm notifications:build
 ```
 
 Each build runs the TypeScript compiler before creating its Vite production bundle.
-Set `VITE_FRIENDS_REMOTE_URL` and `VITE_CHAT_REMOTE_URL` when building the shell for deployment. The production environment config points to `/friends` and `/chat` on the same origin.
+Set `VITE_FRIENDS_REMOTE_URL`, `VITE_CHAT_REMOTE_URL`, and `VITE_NOTIFICATIONS_REMOTE_URL` when building the shell for deployment. The production environment config points to `/friends`, `/chat`, and `/notifications` on the same origin.
 
 ## Quality Checks
 

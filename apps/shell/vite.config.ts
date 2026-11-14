@@ -35,6 +35,13 @@ export default defineConfig(({ mode }) => {
             entryGlobalName: 'insta_chat',
             shareScope: 'default',
           },
+          notifications: {
+            type: 'module',
+            name: 'insta_notifications',
+            entry: `${env.VITE_NOTIFICATIONS_REMOTE_URL}/remoteEntry.js`,
+            entryGlobalName: 'insta_notifications',
+            shareScope: 'default',
+          },
         },
         shared: sharedDependencies,
       }),

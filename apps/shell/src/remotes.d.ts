@@ -9,3 +9,9 @@ declare module 'chat/mount' {
     unmount: () => void;
   };
 }
+
+declare module 'notifications/mount' {
+  export function mount(container: HTMLElement): {
+    unmount: () => void;
+  };
+}
