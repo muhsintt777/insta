@@ -12,7 +12,7 @@ import { ProfilePage } from 'modules/user';
 import { Friends } from 'modules/friends';
 import { LoginPage, SignupPage, selectAuthStatus } from 'modules/auth';
 import { Chat } from 'modules/chat';
-import { HomePage } from 'modules/home';
+import { Feed } from 'modules/posts';
 import { colors } from '@insta/ui/styles';
 import { ProtectedRoute } from './protected-route';
 import { restoreSession, signIn } from './session-workflows';
@@ -47,7 +47,7 @@ export const App = () => {
         <Routes>
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<PrimaryLayout />}>
-              <Route index element={<HomePage />} />
+              <Route index element={<Feed />} />
               <Route path="friends" element={<Friends />} />
               <Route path="chat" element={<Chat />} />
               <Route path="notifications" element={<Notifications />} />

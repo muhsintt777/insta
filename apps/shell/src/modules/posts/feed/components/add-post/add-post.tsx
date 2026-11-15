@@ -1,8 +1,8 @@
-import styles from './add-postStyle.module.scss';
+import styles from './add-post.module.scss';
 import { FC, useState, memo } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { CreatePostModal } from 'modules/posts';
+import { CreatePostModal } from 'modules/posts/create-post-modal';
 import { selectUser, userActions } from 'modules/user';
 
 interface AddPostProps {

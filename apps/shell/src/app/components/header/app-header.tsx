@@ -19,7 +19,7 @@ import { signOut } from 'app/session-workflows';
 import { NavLink } from 'react-router-dom';
 
 const navigationItems = [
-  { label: 'Home', to: APP_ROUTES.HOME, Icon: HomeIcon },
+  { label: 'Feed', to: APP_ROUTES.HOME, Icon: HomeIcon },
   { label: 'Friends', to: APP_ROUTES.FRIENDS, Icon: FriendsIcon },
   { label: 'Messaging', to: APP_ROUTES.CHAT, Icon: ChatIcon },
   {

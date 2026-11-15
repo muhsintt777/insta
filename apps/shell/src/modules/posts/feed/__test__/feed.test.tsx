@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { screen, renderWithProviders, userEvent, waitFor } from 'test';
-import { HomePage } from '../home-page';
+import { Feed } from '../feed';
 import { LikeService, PostService, type Post } from 'modules/posts';
 import { emitErrorToast } from 'app/emit-error-toast';
 
@@ -102,7 +102,7 @@ const mockPosts: Post[] = [
   },
 ];
 
-describe('HomePage', () => {
+describe('Feed', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -113,7 +113,7 @@ describe('HomePage', () => {
         () => new Promise(() => {}), // Never resolves
       );
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       expect(screen.getAllByTestId('post-skeleton')).toHaveLength(2);
     });
@@ -123,7 +123,7 @@ describe('HomePage', () => {
     it('displays posts after loading', async () => {
       (PostService.fetchPosts as Mock).mockResolvedValue(mockPosts);
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(screen.getByTestId('post-post-1')).toBeInTheDocument();
@@ -136,7 +136,7 @@ describe('HomePage', () => {
     it('shows add post component', async () => {
       (PostService.fetchPosts as Mock).mockResolvedValue(mockPosts);
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       expect(screen.getByTestId('add-post')).toBeInTheDocument();
     });
@@ -144,7 +144,7 @@ describe('HomePage', () => {
     it('shows no posts message when empty', async () => {
       (PostService.fetchPosts as Mock).mockResolvedValue([]);
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(screen.getByText('No posts to display.')).toBeInTheDocument();
@@ -157,7 +157,7 @@ describe('HomePage', () => {
       const mockError = new Error('Failed to load');
       (PostService.fetchPosts as Mock).mockRejectedValue(mockError);
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(emitErrorToast).toHaveBeenCalledWith(
@@ -174,7 +174,7 @@ describe('HomePage', () => {
       (PostService.fetchPosts as Mock).mockResolvedValue(mockPosts);
       (LikeService.createLike as Mock).mockResolvedValue({});
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(screen.getByTestId('post-post-1')).toBeInTheDocument();
@@ -193,7 +193,7 @@ describe('HomePage', () => {
       (PostService.fetchPosts as Mock).mockResolvedValue(mockPosts);
       (LikeService.deleteLike as Mock).mockResolvedValue({});
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(screen.getByTestId('post-post-2')).toBeInTheDocument();
@@ -213,7 +213,7 @@ describe('HomePage', () => {
       const user = userEvent.setup();
       (PostService.fetchPosts as Mock).mockResolvedValue(mockPosts);
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(screen.getByTestId('post-post-1')).toBeInTheDocument();
@@ -233,7 +233,7 @@ describe('HomePage', () => {
       const user = userEvent.setup();
       (PostService.fetchPosts as Mock).mockResolvedValue(mockPosts);
 
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<Feed />);
 
       await waitFor(() => {
         expect(screen.getByTestId('post-post-1')).toBeInTheDocument();
