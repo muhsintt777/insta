@@ -1,5 +1,5 @@
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '@insta/utils';
+import { EventBus } from './event-bus';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { ConstructionIcon } from '@insta/ui/icons';
 

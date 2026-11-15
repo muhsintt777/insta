@@ -7,7 +7,7 @@ import { APP_ROUTES } from 'app/routes';
 import { FormField, FileInput } from '@insta/ui/input-fields';
 import { PrimaryButton } from '@insta/ui/buttons';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '@insta/utils';
+import { EventBus } from '../../../event-bus';
 import { emitErrorToast } from 'app/emit-error-toast';
 import { signupFormSchema, SignupFormSchema } from './signup-schema';
 import { AuthService } from '../auth-service';

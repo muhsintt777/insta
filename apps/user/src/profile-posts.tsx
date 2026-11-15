@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '@insta/utils';
+import { EventBus } from './event-bus';
 import type { Post } from '@insta/contracts';
 import { DateUtils } from '@insta/utils/date-utils';
 import { PostCard, PostCardSkeleton } from '@insta/ui/posts';

@@ -8,7 +8,7 @@ import { EditUserModal } from './edit-user-modal';
 import { ProfilePosts } from './profile-posts';
 import type { User } from './user-types';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '@insta/utils';
+import { EventBus } from './event-bus';
 
 interface ProfilePageProps {
   user: User;

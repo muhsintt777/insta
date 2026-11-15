@@ -657,10 +657,6 @@ importers:
         version: 1.6.1(@types/node@26.6.5)(happy-dom@20.14.6)(jsdom@27.4.0(supports-color@7.2.0))(sass@1.106.1)(supports-color@7.2.0)
 
   packages/utils:
-    dependencies:
-      '@insta/contracts':
-        specifier: workspace:*
-        version: link:../contracts
     devDependencies:
       '@vitest/coverage-v8':
         specifier: 'catalog:'

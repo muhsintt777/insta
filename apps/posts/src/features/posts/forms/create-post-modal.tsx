@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FileInput, FormField } from '@insta/ui/input-fields';
 import { PrimaryModal, ModalHeader, ModalFooter } from '@insta/ui/modals';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '@insta/utils';
+import { EventBus } from '../../../event-bus';
 import { emitErrorToast } from 'app/emit-error-toast';
 import { PostService } from 'features/posts/api/post-service';
 import { PostFormSchema, postFormSchema } from './post-validation';
