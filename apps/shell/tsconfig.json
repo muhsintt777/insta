@@ -5,7 +5,8 @@
     "paths": {
       "modules/*": ["./modules/*"],
       "app/*": ["./app/*"],
-      "@insta/events": ["../../../packages/events/src/index.ts"],
+      "@insta/contracts": ["../../../packages/contracts/src/index.ts"],
+      "@insta/utils": ["../../../packages/utils/src/index.ts"],
       "@insta/utils/*": ["../../../packages/utils/src/*"],
       "@insta/http": ["../../../packages/http/src/index.ts"],
       "test": ["../../../packages/test-utils/src/test"],

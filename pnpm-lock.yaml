@@ -277,15 +277,18 @@ importers:
 
   apps/friends:
     dependencies:
-      '@insta/events':
+      '@insta/contracts':
         specifier: workspace:*
-        version: link:../../packages/events
+        version: link:../../packages/contracts
       '@insta/http':
         specifier: workspace:*
         version: link:../../packages/http
       '@insta/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@insta/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -354,9 +357,6 @@ importers:
       '@insta/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@insta/events':
-        specifier: workspace:*
-        version: link:../../packages/events
       '@insta/http':
         specifier: workspace:*
         version: link:../../packages/http
@@ -403,9 +403,9 @@ importers:
       '@hookform/resolvers':
         specifier: 'catalog:'
         version: 3.10.0(react-hook-form@7.91.0(@types/react@18.3.31)(react@18.3.1))
-      '@insta/events':
+      '@insta/contracts':
         specifier: workspace:*
-        version: link:../../packages/events
+        version: link:../../packages/contracts
       '@insta/http':
         specifier: workspace:*
         version: link:../../packages/http
@@ -497,9 +497,6 @@ importers:
       '@insta/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@insta/events':
-        specifier: workspace:*
-        version: link:../../packages/events
       '@insta/http':
         specifier: workspace:*
         version: link:../../packages/http
@@ -545,12 +542,6 @@ importers:
         version: 7.3.7(@types/node@26.6.5)(sass@1.106.1)
 
   packages/contracts:
-    devDependencies:
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
-
-  packages/events:
     devDependencies:
       typescript:
         specifier: 'catalog:'
@@ -666,6 +657,10 @@ importers:
         version: 1.6.1(@types/node@26.6.5)(happy-dom@20.14.6)(jsdom@27.4.0(supports-color@7.2.0))(sass@1.106.1)(supports-color@7.2.0)
 
   packages/utils:
+    dependencies:
+      '@insta/contracts':
+        specifier: workspace:*
+        version: link:../contracts
     devDependencies:
       '@vitest/coverage-v8':
         specifier: 'catalog:'

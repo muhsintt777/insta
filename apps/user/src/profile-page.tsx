@@ -7,7 +7,8 @@ import { AppBar } from './components/app-bar/app-bar';
 import { EditUserModal } from './edit-user-modal';
 import { ProfilePosts } from './profile-posts';
 import type { User } from './user-types';
-import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { MFE_EVENT_NAMES } from '@insta/contracts';
+import { EventBus } from '@insta/utils';
 
 interface ProfilePageProps {
   user: User;

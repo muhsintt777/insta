@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { selectUser, userActions } from './user-slice';
-import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { MFE_EVENT_NAMES } from '@insta/contracts';
+import { EventBus } from '@insta/utils';
 
 type MountInstance = { unmount: () => void };
 

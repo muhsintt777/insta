@@ -1,7 +1,8 @@
 import styles from './feed.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
-import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { MFE_EVENT_NAMES } from '@insta/contracts';
+import { EventBus } from '@insta/utils';
 import { DateUtils } from '@insta/utils/date-utils';
 import { CommentsModal } from 'features/posts/comments/comments-modal';
 import { LikeService } from 'features/posts/api/like-service';

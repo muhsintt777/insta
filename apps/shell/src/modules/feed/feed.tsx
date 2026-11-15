@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { selectUser, userActions } from 'modules/user';
-import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { MFE_EVENT_NAMES } from '@insta/contracts';
+import { EventBus } from '@insta/utils';
 
 type MountState = 'loading' | 'ready' | 'error';
 

@@ -1,4 +1,4 @@
-import type { UserProfile } from '@insta/events';
+import type { UserProfile } from '@insta/contracts';
 
 export type User = UserProfile;
 

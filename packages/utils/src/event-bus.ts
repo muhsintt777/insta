@@ -1,4 +1,4 @@
-import type { MfeEventContracts, MfeEventName } from './contracts';
+import type { MfeEventContracts, MfeEventName } from '@insta/contracts';
 
 export class EventBus {
   static emit<EventName extends MfeEventName>(

@@ -1,6 +1,7 @@
 import styles from './profile-posts.module.scss';
 import { useCallback, useEffect, useState } from 'react';
-import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { MFE_EVENT_NAMES } from '@insta/contracts';
+import { EventBus } from '@insta/utils';
 import { DateUtils } from '@insta/utils/date-utils';
 import { CommentsModal } from 'features/posts/comments/comments-modal';
 import { EditPostModal } from 'features/posts/forms/edit-post-modal';
