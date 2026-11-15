@@ -15,3 +15,16 @@ declare module 'notifications/mount' {
     unmount: () => void;
   };
 }
+
+declare module 'posts/mount' {
+  export type PostsMountOptions =
+    | { surface: 'feed'; profileImage: string | null }
+    | { surface: 'profile' };
+
+  export function mount(
+    container: HTMLElement,
+    options: PostsMountOptions,
+  ): {
+    unmount: () => void;
+  };
+}

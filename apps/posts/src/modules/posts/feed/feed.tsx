@@ -1,5 +1,7 @@
 import styles from './feed.module.scss';
 import { useCallback, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
 import { CommentsModal } from 'modules/posts/comments/comments-modal';
 import { LikeService } from 'modules/posts/likes/like-service';
 import { PostCard, PostCardSkeleton } from 'modules/posts/components/post-card';
@@ -11,7 +13,11 @@ import type { Post } from 'modules/posts/post-types';
 
 type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';
 
-export const Feed = () => {
+interface FeedProps {
+  profileImage: string | null;
+}
+
+export const Feed: FC<FeedProps> = ({ profileImage }) => {
   const [showLoader, setShowLoader] = useState<FeedLoadStatus>('LOADING');
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPostIdForComments, setSelectedPostIdForComments] = useState<
@@ -90,9 +96,17 @@ export const Feed = () => {
     })();
   }, []);
 
+  useEffect(
+    () =>
+      EventBus.on(MFE_EVENT_NAMES.posts.created, () => {
+        void refetchPosts();
+      }),
+    [refetchPosts],
+  );
+
   return (
     <div className={styles.container}>
-      <AddPost onPostCreated={refetchPosts} />
+      <AddPost profileImage={profileImage} />
 
       {showLoader === 'LOADING' ? (
         <>

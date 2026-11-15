@@ -1,0 +1,32 @@
+{
+  "name": "@insta/posts",
+  "description": "The Insta Posts federated module.",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode dev",
+    "stop": "pkill -f \"$(pwd)/apps/posts/node_modules/[.]bin/[.][.]/vite/bin/vite[.]js\" && echo 'Stopped posts Vite server.' || echo 'No posts Vite server found.'",
+    "build": "tsc && vite build --mode prod",
+    "preview": "vite preview --mode prod"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "catalog:",
+    "@insta/events": "workspace:*",
+    "@insta/http": "workspace:*",
+    "@insta/ui": "workspace:*",
+    "@insta/utils": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react-swc": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

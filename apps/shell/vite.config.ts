@@ -42,6 +42,13 @@ export default defineConfig(({ mode }) => {
             entryGlobalName: 'insta_notifications',
             shareScope: 'default',
           },
+          posts: {
+            type: 'module',
+            name: 'insta_posts',
+            entry: `${env.VITE_POSTS_REMOTE_URL}/remoteEntry.js`,
+            entryGlobalName: 'insta_posts',
+            shareScope: 'default',
+          },
         },
         shared: sharedDependencies,
       }),

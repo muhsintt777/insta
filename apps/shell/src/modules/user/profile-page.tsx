@@ -1,143 +1,23 @@
 import styles from './profile-page.module.scss';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
+import { useAppSelector } from 'app/hooks/redux-hooks';
 import { EditIcon } from '@insta/ui/icons';
 import { AppBar } from './components/app-bar/app-bar';
 import { PrimaryIconButton } from '@insta/ui/buttons';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { emitErrorToast } from 'app/emit-error-toast';
-import {
-  CommentsModal,
-  EditPostModal,
-  LikeService,
-  PostCard,
-  PostCardSkeleton,
-  PostService,
-} from 'modules/posts';
-import { selectUser, userActions } from './user-slice';
+import { selectUser } from './user-slice';
 import { EditUserModal } from './edit-user-modal';
-import type { EditPostParams, Post } from 'modules/posts';
+import { ProfilePosts } from './profile-posts';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const userDetails = useAppSelector(selectUser).details!;
 
-  const [posts, setPosts] = useState<Post[]>([]);
   const [showUserEditModal, setShowUserEditModal] = useState(false);
-  const [postLoader, setPostLoader] = useState<boolean>(true);
-  const [selectedPostToEdit, setSelectedPostToEdit] =
-    useState<EditPostParams | null>(null);
-
-  const [selectedPostIdForComments, setSelectedPostIdForComments] = useState<
-    string | null
-  >(null);
-
-  const deletePost = useCallback(
-    async (postId: string) => {
-      try {
-        await PostService.deletePost(postId);
-        setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-        dispatch(
-          userActions.updateUserResourceCount({
-            type: 'decrement',
-            key: 'postCount',
-          }),
-        );
-      } catch (error) {
-        emitErrorToast(error);
-      }
-    },
-    [dispatch],
-  );
-
-  const editPost = useCallback(async (param: EditPostParams) => {
-    try {
-      await PostService.editPost(param.postId, param.caption);
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === param.postId ? { ...post, caption: param.caption } : post,
-        ),
-      );
-    } catch (error) {
-      emitErrorToast(error);
-    }
-  }, []);
-
-  const closeEditModal = useCallback(() => {
-    setSelectedPostToEdit(null);
-  }, []);
-
-  const openEditModal = useCallback((postId: string, caption: string) => {
-    setSelectedPostToEdit({ postId, caption });
-  }, []);
 
   const toggleUserEditModal = useCallback(() => {
     setShowUserEditModal((prev) => !prev);
-  }, []);
-
-  const handleLike = useCallback(async (postId: string, isLiked: boolean) => {
-    try {
-      if (isLiked) {
-        await LikeService.deleteLike(postId);
-      } else {
-        await LikeService.createLike(postId);
-      }
-      setPosts((prev) =>
-        prev.map((post) =>
-          post.id === postId
-            ? {
-                ...post,
-                isLiked: !isLiked,
-                likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
-              }
-            : post,
-        ),
-      );
-    } catch (error) {
-      emitErrorToast(error);
-    }
-  }, []);
-
-  const openCommentsModal = useCallback((postId: string) => {
-    setSelectedPostIdForComments(postId);
-  }, []);
-
-  const closeCommentsModal = useCallback(() => {
-    setSelectedPostIdForComments(null);
-  }, []);
-
-  const updateCommentCount = useCallback(
-    (postId: string, type: 'increment' | 'decrement') => {
-      setPosts((prev) =>
-        prev.map((post) => {
-          if (post.id !== postId) return post;
-
-          return {
-            ...post,
-            commentCount:
-              type === 'increment'
-                ? post.commentCount + 1
-                : post.commentCount - 1,
-          };
-        }),
-      );
-    },
-    [],
-  );
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await PostService.fetchUserPosts();
-        setPosts(result);
-      } catch (error) {
-        emitErrorToast(error);
-      } finally {
-        setPostLoader(false);
-      }
-    })();
   }, []);
 
   return (
@@ -161,52 +41,8 @@ export const ProfilePage = () => {
           </div>
         </div>
 
-        {postLoader ? (
-          <>
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-          </>
-        ) : posts.length === 0 ? (
-          <p className="info">No posts to display.</p>
-        ) : (
-          posts.map((post) => (
-            <PostCard
-              onComment={() => openCommentsModal(post.id)}
-              onLike={() => handleLike(post.id, post.isLiked)}
-              onEdit={() => openEditModal(post.id, post.caption)}
-              onDelete={() => deletePost(post.id)}
-              customStyles={{ marginBottom: '6px' }}
-              userProfileImage={post.creator.profileImage}
-              caption={post.caption}
-              commentCount={post.commentCount}
-              createdAt={post.createdAt}
-              image={post.image}
-              likeCount={post.likeCount}
-              fullname={post.creator.fullName}
-              isLiked={post.isLiked}
-              key={post.id}
-            />
-          ))
-        )}
+        <ProfilePosts />
       </div>
-      <EditPostModal
-        closeModal={closeEditModal}
-        currentCaption={selectedPostToEdit?.caption || ''}
-        isOpen={Boolean(selectedPostToEdit?.postId)}
-        postId={selectedPostToEdit?.postId || ''}
-        onSubmit={editPost}
-      />
-      <CommentsModal
-        onSubmit={() =>
-          updateCommentCount(selectedPostIdForComments!, 'increment')
-        }
-        closeModal={closeCommentsModal}
-        isOpen={Boolean(selectedPostIdForComments)}
-        postId={selectedPostIdForComments}
-        onDelete={() =>
-          updateCommentCount(selectedPostIdForComments!, 'decrement')
-        }
-      />
       <EditUserModal
         isOpen={showUserEditModal}
         closeModal={toggleUserEditModal}

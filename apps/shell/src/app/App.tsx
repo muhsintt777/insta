@@ -12,7 +12,7 @@ import { ProfilePage } from 'modules/user';
 import { Friends } from 'modules/friends';
 import { LoginPage, SignupPage, selectAuthStatus } from 'modules/auth';
 import { Chat } from 'modules/chat';
-import { Feed } from 'modules/posts';
+import { Feed } from 'modules/feed';
 import { colors } from '@insta/ui/styles';
 import { ProtectedRoute } from './protected-route';
 import { restoreSession, signIn } from './session-workflows';

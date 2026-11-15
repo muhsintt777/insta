@@ -6,7 +6,7 @@ vi.mock('@insta/ui/toasts', () => ({
   ToastNotification: () => <div data-testid="toast">Toast</div>,
 }));
 
-vi.mock('modules/posts', () => ({
+vi.mock('modules/feed', () => ({
   Feed: () => <div data-testid="feed-page">Feed</div>,
 }));
 

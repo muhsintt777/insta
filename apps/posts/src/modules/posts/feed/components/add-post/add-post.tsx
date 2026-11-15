@@ -1,18 +1,13 @@
 import styles from './add-post.module.scss';
 import { FC, useState, memo } from 'react';
-import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import { CustomAvatar } from '@insta/ui/avatars';
 import { CreatePostModal } from 'modules/posts/create-post-modal';
-import { selectUser, userActions } from 'modules/user';
 
 interface AddPostProps {
-  onPostCreated?: () => void;
+  profileImage: string | null;
 }
 
-const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
-  const userDetails = useAppSelector(selectUser).details!;
-  const dispatch = useAppDispatch();
-
+const AddPostComponent: FC<AddPostProps> = ({ profileImage }) => {
   const [showCreatePostModal, setShowCreatePostModal] =
     useState<boolean>(false);
 
@@ -20,19 +15,9 @@ const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
     setShowCreatePostModal(!showCreatePostModal);
   };
 
-  const handlePostCreated = () => {
-    dispatch(
-      userActions.updateUserResourceCount({
-        type: 'increment',
-        key: 'postCount',
-      }),
-    );
-    onPostCreated?.();
-  };
-
   return (
     <div className={styles.container}>
-      <CustomAvatar src={userDetails.profileImage} />
+      <CustomAvatar src={profileImage} />
       <div className={styles.clickableBox} onClick={toggleCreatePostModal}>
         <p>What's on your mind?</p>
       </div>
@@ -40,7 +25,6 @@ const AddPostComponent: FC<AddPostProps> = ({ onPostCreated }) => {
         <CreatePostModal
           isOpen={showCreatePostModal}
           closeModal={toggleCreatePostModal}
-          onPostCreated={handlePostCreated}
         />
       )}
     </div>

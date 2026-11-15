@@ -1,4 +1,8 @@
 export const MFE_EVENT_NAMES = {
+  posts: {
+    created: 'post:created',
+    deleted: 'post:deleted',
+  },
   toast: {
     success: 'toast:success',
     error: 'toast:error',
@@ -12,6 +16,8 @@ export interface ToastEventDetail {
 }
 
 export interface MfeEventContracts {
+  [MFE_EVENT_NAMES.posts.created]: undefined;
+  [MFE_EVENT_NAMES.posts.deleted]: undefined;
   [MFE_EVENT_NAMES.toast.success]: ToastEventDetail;
   [MFE_EVENT_NAMES.toast.error]: ToastEventDetail;
   [MFE_EVENT_NAMES.toast.info]: ToastEventDetail;
