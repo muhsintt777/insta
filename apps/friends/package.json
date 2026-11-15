@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@insta/events": "workspace:*",
+    "@insta/http": "workspace:*",
     "@insta/ui": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"

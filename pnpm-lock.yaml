@@ -243,6 +243,9 @@ importers:
 
   apps/chat:
     dependencies:
+      '@insta/http':
+        specifier: workspace:*
+        version: link:../../packages/http
       '@insta/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -277,6 +280,9 @@ importers:
       '@insta/events':
         specifier: workspace:*
         version: link:../../packages/events
+      '@insta/http':
+        specifier: workspace:*
+        version: link:../../packages/http
       '@insta/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -308,6 +314,9 @@ importers:
 
   apps/notifications:
     dependencies:
+      '@insta/http':
+        specifier: workspace:*
+        version: link:../../packages/http
       '@insta/ui':
         specifier: workspace:*
         version: link:../../packages/ui
