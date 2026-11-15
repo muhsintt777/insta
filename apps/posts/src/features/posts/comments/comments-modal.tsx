@@ -7,7 +7,7 @@ import { PrimaryButton } from '@insta/ui/buttons';
 import { TextInput } from '@insta/ui/input-fields';
 import { emitErrorToast } from 'app/emit-error-toast';
 import { CircleLoader } from '@insta/ui/loaders';
-import { CommentService } from './comment-service';
+import { CommentService } from 'features/posts/api/comment-service';
 import type { CommentDetails } from './comment-types';
 import { CommentCard } from './comment-card';
 import { commentFormSchema, CommentFormSchema } from './comment-validation';

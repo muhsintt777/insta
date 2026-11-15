@@ -1,41 +1,45 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FileInput, FormField } from '@insta/ui/input-fields';
+import { FormField } from '@insta/ui/input-fields';
 import { PrimaryModal, ModalHeader, ModalFooter } from '@insta/ui/modals';
-import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
 import { emitErrorToast } from 'app/emit-error-toast';
-import { PostService } from './post-service';
-import { PostFormSchema, postFormSchema } from './post-validation';
-import { POST_IMAGE_MAX_SIZE_MB } from './post-constants';
+import { EditPostFormSchema, editPostFormSchema } from './post-validation';
+import type { EditPostParams } from 'features/posts/types/post-types';
 
-interface CreatePostModalProps {
+interface EditPostModalProps {
   closeModal: () => void;
+  onSubmit?: (params: EditPostParams) => Promise<void>;
   isOpen: boolean;
+  postId: string;
+  currentCaption: string;
 }
 
-export const CreatePostModal: FC<CreatePostModalProps> = ({
+export const EditPostModal: FC<EditPostModalProps> = ({
   isOpen,
   closeModal,
+  onSubmit,
+  postId,
+  currentCaption,
 }) => {
   const [showPostLoader, setShowPostLoader] = useState(false);
+
   const {
     handleSubmit,
     control,
     formState: { errors },
     reset,
-  } = useForm<PostFormSchema>({
-    resolver: zodResolver(postFormSchema),
+  } = useForm<EditPostFormSchema>({
+    resolver: zodResolver(editPostFormSchema),
+    defaultValues: {
+      caption: '',
+    },
   });
 
-  const handlePostSubmit = async (data: PostFormSchema) => {
+  const handlePostSubmit = async (data: EditPostFormSchema) => {
     try {
       setShowPostLoader(true);
-      await PostService.createPost({
-        image: data.image,
-        caption: data.caption,
-      });
-      EventBus.emit(MFE_EVENT_NAMES.posts.created, undefined);
+      await onSubmit?.({ postId, caption: data.caption });
       reset();
       closeModal();
     } catch (error) {
@@ -45,10 +49,16 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
     }
   };
 
+  useEffect(() => {
+    if (isOpen && currentCaption) {
+      reset({ caption: currentCaption });
+    }
+  }, [isOpen, currentCaption, reset]);
+
   return (
     <PrimaryModal isOpen={isOpen}>
       <>
-        <ModalHeader title="CREATE POST" onClose={closeModal} />
+        <ModalHeader title="EDIT POST" onClose={closeModal} />
         <form
           onSubmit={handleSubmit(handlePostSubmit)}
           style={{
@@ -75,26 +85,11 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
               />
             )}
           />
-
-          <Controller
-            name="image"
-            control={control}
-            render={({ field }) => (
-              <FileInput
-                error={errors.image?.message || null}
-                label="Image"
-                name="image"
-                sizeLabelInMb={POST_IMAGE_MAX_SIZE_MB}
-                onChange={field.onChange}
-                value={field.value}
-              />
-            )}
-          />
         </form>
         <ModalFooter
           secondaryButton={{ onClick: closeModal, text: 'CANCEL' }}
           primaryButton={{
-            text: 'POST',
+            text: 'UPDATE',
             showLoader: showPostLoader,
             onClick: handleSubmit(handlePostSubmit),
           }}

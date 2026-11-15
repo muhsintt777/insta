@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: {
-      modules: '/src/modules',
+      features: '/src/features',
       app: '/src/app',
     },
   },

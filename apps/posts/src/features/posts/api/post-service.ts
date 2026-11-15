@@ -1,5 +1,5 @@
 import { http, HTTP_STATUS_CODES } from '@insta/http';
-import type { CreatePostParams, Post } from './post-types';
+import type { CreatePostParams, Post } from 'features/posts/types/post-types';
 
 export class PostService {
   static async fetchUserPosts() {

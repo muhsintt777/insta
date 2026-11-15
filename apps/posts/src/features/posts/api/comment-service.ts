@@ -1,5 +1,5 @@
 import { http } from '@insta/http';
-import type { CommentDetails } from './comment-types';
+import type { CommentDetails } from 'features/posts/comments/comment-types';
 
 export class CommentService {
   static async listPostComments(postId: string) {

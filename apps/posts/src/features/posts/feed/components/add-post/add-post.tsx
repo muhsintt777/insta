@@ -1,7 +1,7 @@
 import styles from './add-post.module.scss';
 import { FC, useState, memo } from 'react';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { CreatePostModal } from 'modules/posts/create-post-modal';
+import { CreatePostModal } from 'features/posts/forms/create-post-modal';
 
 interface AddPostProps {
   profileImage: string | null;

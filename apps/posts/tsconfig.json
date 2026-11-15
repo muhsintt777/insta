@@ -4,7 +4,7 @@
     "baseUrl": "./src",
     "types": ["vite/client"],
     "paths": {
-      "modules/*": ["./modules/*"],
+      "features/*": ["./features/*"],
       "app/*": ["./app/*"]
     }
   },

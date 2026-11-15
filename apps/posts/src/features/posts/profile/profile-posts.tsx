@@ -2,13 +2,13 @@ import styles from './profile-posts.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
 import { DateUtils } from '@insta/utils/date-utils';
-import { CommentsModal } from './comments/comments-modal';
-import { EditPostModal } from './edit-post-modal';
-import { LikeService } from './likes/like-service';
+import { CommentsModal } from 'features/posts/comments/comments-modal';
+import { EditPostModal } from 'features/posts/forms/edit-post-modal';
+import { LikeService } from 'features/posts/api/like-service';
 import { PostCard, PostCardSkeleton } from '@insta/ui/posts';
-import { PostService } from './post-service';
+import { PostService } from 'features/posts/api/post-service';
 import { emitErrorToast } from 'app/emit-error-toast';
-import type { EditPostParams, Post } from './post-types';
+import type { EditPostParams, Post } from 'features/posts/types/post-types';
 
 type ProfilePostsStatus = 'LOADING' | 'SUCCESS' | 'FAILED';
 

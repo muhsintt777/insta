@@ -3,14 +3,14 @@ import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
 import { DateUtils } from '@insta/utils/date-utils';
-import { CommentsModal } from 'modules/posts/comments/comments-modal';
-import { LikeService } from 'modules/posts/likes/like-service';
+import { CommentsModal } from 'features/posts/comments/comments-modal';
+import { LikeService } from 'features/posts/api/like-service';
 import { PostCard, PostCardSkeleton } from '@insta/ui/posts';
-import { PostService } from 'modules/posts/post-service';
+import { PostService } from 'features/posts/api/post-service';
 import { emitErrorToast } from 'app/emit-error-toast';
 import { AddPost } from './components/add-post/add-post';
 import { COMMON_ERROR_MESSAGE } from '@insta/http';
-import type { Post } from 'modules/posts/post-types';
+import type { Post } from 'features/posts/types/post-types';
 
 type FeedLoadStatus = 'LOADING' | 'SUCCESS' | 'FAILED';
 

@@ -1,8 +1,7 @@
 import '@insta/ui/styles.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Feed } from 'modules/posts/feed';
-import { ProfilePosts } from 'modules/posts/profile-posts';
+import { Feed, ProfilePosts } from 'features/posts';
 
 export type PostsMountOptions =
   | { surface: 'feed'; profileImage: string | null }
