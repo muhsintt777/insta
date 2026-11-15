@@ -1,17 +1,6 @@
-export interface User {
-  bio: string;
-  gender: string | null;
-  mobileNo: string | null;
-  email: string;
-  username: string;
-  fullName: string;
-  profileImage: string | null;
-  postCount: number;
-  friendsCount: number;
-  createdAt: string;
-  updatedAt: string;
-  id: string;
-}
+import type { UserProfile } from '@insta/events';
+
+export type User = UserProfile;
 
 export type EditUserProfileParams = Partial<Pick<User, 'fullName' | 'bio'>>;
 

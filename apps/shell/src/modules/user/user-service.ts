@@ -1,6 +1,6 @@
 import { http } from '@insta/http';
 import { HTTP_STATUS_CODES } from '@insta/http';
-import type { EditUserProfileParams, User } from './user-types';
+import type { User } from './user-types';
 
 export class UserService {
   static async fetchCurrentUser(): Promise<User> {
@@ -9,12 +9,5 @@ export class UserService {
       throw new Error('Failed to fetch user details');
     }
     return res.data.data as User;
-  }
-
-  static async editUserProfile(params: EditUserProfileParams) {
-    const res = await http.put('users/currentuser', params);
-    if (res.status !== HTTP_STATUS_CODES.OK) {
-      throw new Error('Failed to update user profile');
-    }
   }
 }

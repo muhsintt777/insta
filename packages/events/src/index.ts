@@ -4,4 +4,5 @@ export type {
   MfeEventContracts,
   MfeEventName,
   ToastEventDetail,
+  UserProfile,
 } from './contracts';

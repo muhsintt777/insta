@@ -49,6 +49,13 @@ export default defineConfig(({ mode }) => {
             entryGlobalName: 'insta_posts',
             shareScope: 'default',
           },
+          user: {
+            type: 'module',
+            name: 'insta_user',
+            entry: `${env.VITE_USER_REMOTE_URL}/remoteEntry.js`,
+            entryGlobalName: 'insta_user',
+            shareScope: 'default',
+          },
         },
         shared: sharedDependencies,
       }),

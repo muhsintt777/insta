@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
+    "@insta/contracts": "workspace:*",
     "@insta/events": "workspace:*",
     "@insta/http": "workspace:*",
     "@insta/ui": "workspace:*",

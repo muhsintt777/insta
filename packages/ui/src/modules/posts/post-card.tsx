@@ -19,8 +19,8 @@ export interface PostCardProps {
   customStyles?: CSSProperties;
   onDelete?: () => Promise<void>;
   onEdit?: () => void;
-  onLike: () => void;
-  onComment: () => void;
+  onLike?: () => void;
+  onComment?: () => void;
 }
 
 export const PostCard: FC<PostCardProps> = ({
@@ -103,16 +103,22 @@ export const PostCard: FC<PostCardProps> = ({
         <p>{caption}</p>
         <img src={image} alt="img" />
       </div>
-      <div className={styles.actions}>
-        <SecondaryButton onClick={onLike}>
-          {isLiked ? <LikedIcon /> : <LikeIcon />}
-          <span className={styles.count}>{likeCount}</span>
-        </SecondaryButton>
-        <SecondaryButton onClick={onComment}>
-          <CommentIcon />
-          <span className={styles.count}>{commentCount}</span>
-        </SecondaryButton>
-      </div>
+      {(onLike || onComment) && (
+        <div className={styles.actions}>
+          {onLike && (
+            <SecondaryButton onClick={onLike}>
+              {isLiked ? <LikedIcon /> : <LikeIcon />}
+              <span className={styles.count}>{likeCount}</span>
+            </SecondaryButton>
+          )}
+          {onComment && (
+            <SecondaryButton onClick={onComment}>
+              <CommentIcon />
+              <span className={styles.count}>{commentCount}</span>
+            </SecondaryButton>
+          )}
+        </div>
+      )}
 
       <CustomMenu
         anchorEl={menuAnchorEl}

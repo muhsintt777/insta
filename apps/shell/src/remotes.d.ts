@@ -28,3 +28,16 @@ declare module 'posts/mount' {
     unmount: () => void;
   };
 }
+
+declare module 'user/mount' {
+  import type { User } from 'modules/user';
+
+  export function mount(
+    container: HTMLElement,
+    options: {
+      user: User;
+    },
+  ): {
+    unmount: () => void;
+  };
+}

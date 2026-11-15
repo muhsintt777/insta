@@ -1,52 +1,71 @@
-import styles from './profile-page.module.scss';
-import { useCallback, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'app/hooks/redux-hooks';
-import { EditIcon } from '@insta/ui/icons';
-import { AppBar } from './components/app-bar/app-bar';
-import { PrimaryIconButton } from '@insta/ui/buttons';
-import { CustomAvatar } from '@insta/ui/avatars';
-import { selectUser } from './user-slice';
-import { EditUserModal } from './edit-user-modal';
-import { ProfilePosts } from './profile-posts';
+import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
+import { selectUser, userActions } from './user-slice';
+import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+
+type MountInstance = { unmount: () => void };
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
-  const userDetails = useAppSelector(selectUser).details!;
+  const dispatch = useAppDispatch();
+  const userDetails = useAppSelector(selectUser).details;
+  const userRef = useRef(userDetails);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mountRef = useRef<MountInstance>();
+  const [mountState, setMountState] = useState<'loading' | 'ready' | 'error'>(
+    'loading',
+  );
 
-  const [showUserEditModal, setShowUserEditModal] = useState(false);
+  userRef.current = userDetails;
 
-  const toggleUserEditModal = useCallback(() => {
-    setShowUserEditModal((prev) => !prev);
-  }, []);
+  useEffect(() => {
+    const unsubscribeUserUpdated = EventBus.on(
+      MFE_EVENT_NAMES.user.updated,
+      (user) => dispatch(userActions.setProfile(user)),
+    );
+    const unsubscribeNavigationBack = EventBus.on(
+      MFE_EVENT_NAMES.navigation.back,
+      () => navigate(-1),
+    );
+
+    const container = containerRef.current;
+    const user = userRef.current;
+    if (!container || !user) {
+      unsubscribeUserUpdated();
+      unsubscribeNavigationBack();
+      return;
+    }
+
+    let active = true;
+    import('user/mount')
+      .then(({ mount }) => {
+        if (!active) return;
+        mountRef.current = mount(container, {
+          user,
+        });
+        setMountState('ready');
+      })
+      .catch(() => {
+        if (active) setMountState('error');
+      });
+
+    return () => {
+      active = false;
+      unsubscribeUserUpdated();
+      unsubscribeNavigationBack();
+      mountRef.current?.unmount();
+      mountRef.current = undefined;
+    };
+  }, [dispatch, navigate]);
 
   return (
-    <div className={styles.container}>
-      <AppBar title="PROFILE" onBackClick={() => navigate(-1)} />
-      <div className={styles.body}>
-        <div className={styles.userDetailsSection}>
-          <CustomAvatar src={userDetails.profileImage} size="100px" />
-          <div className={styles.userDetails}>
-            <p className={styles.name}>{userDetails.fullName}</p>
-            <p className={styles.stats}>
-              {userDetails.postCount} posts | {userDetails.friendsCount} friends
-            </p>
-            {userDetails.bio && <p className={styles.bio}>{userDetails.bio}</p>}
-            {!userDetails.bio && <p className={styles.addBio}>Add bio...</p>}
-          </div>
-          <div className={styles.editIconWrap}>
-            <PrimaryIconButton onClick={toggleUserEditModal}>
-              <EditIcon />
-            </PrimaryIconButton>
-          </div>
-        </div>
-
-        <ProfilePosts />
-      </div>
-      <EditUserModal
-        isOpen={showUserEditModal}
-        closeModal={toggleUserEditModal}
-      />
-    </div>
+    <>
+      {mountState === 'loading' && <div role="status">Loading profile...</div>}
+      {mountState === 'error' && (
+        <div role="alert">Could not load profile.</div>
+      )}
+      <div ref={containerRef} />
+    </>
   );
 };
