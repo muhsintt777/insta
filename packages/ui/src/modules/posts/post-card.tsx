@@ -1,25 +1,12 @@
 import styles from './post-card.module.scss';
-import {
-  CSSProperties,
-  FC,
-  MouseEvent,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
-import {
-  CommentIcon,
-  LikeIcon,
-  LikedIcon,
-  VerticalDotIcon,
-} from '@insta/ui/icons';
-import { PrimaryIconButton } from '@insta/ui/buttons';
-import { CustomAvatar } from '@insta/ui/avatars';
-import { DateUtils } from '@insta/utils/date-utils';
-import { SecondaryButton } from '@insta/ui/buttons';
-import { CustomMenu } from '@insta/ui/menus';
+import { useCallback, useMemo, useState } from 'react';
+import type { CSSProperties, FC, MouseEvent } from 'react';
+import { CommentIcon, LikeIcon, LikedIcon, VerticalDotIcon } from '../../icons';
+import { PrimaryIconButton, SecondaryButton } from '../buttons';
+import { CustomAvatar } from '../avatar';
+import { CustomMenu } from '../menu';
 
-interface PostCardProps {
+export interface PostCardProps {
   id?: string;
   fullname: string;
   image: string;
@@ -28,7 +15,7 @@ interface PostCardProps {
   commentCount: number;
   userProfileImage: string | null;
   isLiked: boolean;
-  createdAt: string;
+  dateLabel: string;
   customStyles?: CSSProperties;
   onDelete?: () => Promise<void>;
   onEdit?: () => void;
@@ -40,7 +27,7 @@ export const PostCard: FC<PostCardProps> = ({
   id,
   caption,
   commentCount,
-  createdAt,
+  dateLabel,
   image,
   likeCount,
   customStyles,
@@ -58,14 +45,9 @@ export const PostCard: FC<PostCardProps> = ({
     () => Boolean(onDelete || onEdit),
     [onDelete, onEdit],
   );
-  const date = useMemo(
-    () => DateUtils.formatRelative(DateUtils.dateFromIsoString(createdAt)),
-    [createdAt],
-  );
-
   const handleMenuClick = useCallback(
-    (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-      setMenuAnchorEl(e.currentTarget);
+    (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+      setMenuAnchorEl(event.currentTarget);
     },
     [],
   );
@@ -107,7 +89,7 @@ export const PostCard: FC<PostCardProps> = ({
         <CustomAvatar src={userProfileImage} />
         <div>
           <p>{fullname}</p>
-          <p>{date}</p>
+          <p>{dateLabel}</p>
         </div>
         {enableOptions && (
           <div className={styles.iconButton}>
@@ -130,9 +112,6 @@ export const PostCard: FC<PostCardProps> = ({
           <CommentIcon />
           <span className={styles.count}>{commentCount}</span>
         </SecondaryButton>
-        {/* <SecondaryButton>
-          <ShareIcon />
-        </SecondaryButton> */}
       </div>
 
       <CustomMenu

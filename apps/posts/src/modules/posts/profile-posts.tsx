@@ -1,10 +1,11 @@
 import styles from './profile-posts.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { DateUtils } from '@insta/utils/date-utils';
 import { CommentsModal } from './comments/comments-modal';
 import { EditPostModal } from './edit-post-modal';
 import { LikeService } from './likes/like-service';
-import { PostCard, PostCardSkeleton } from './components/post-card';
+import { PostCard, PostCardSkeleton } from '@insta/ui/posts';
 import { PostService } from './post-service';
 import { emitErrorToast } from 'app/emit-error-toast';
 import type { EditPostParams, Post } from './post-types';
@@ -141,7 +142,9 @@ export const ProfilePosts = () => {
             likeCount={post.likeCount}
             userProfileImage={post.creator.profileImage}
             commentCount={post.commentCount}
-            createdAt={post.createdAt}
+            dateLabel={DateUtils.formatRelative(
+              DateUtils.dateFromIsoString(post.createdAt),
+            )}
             fullname={post.creator.fullName}
             isLiked={post.isLiked}
             customStyles={{ marginBottom: '6px' }}

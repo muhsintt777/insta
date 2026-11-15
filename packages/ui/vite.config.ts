@@ -36,6 +36,10 @@ export default defineConfig({
           packageRoot,
           'src/modules/toast/index.ts',
         ),
+        'modules/posts/index': resolve(
+          packageRoot,
+          'src/modules/posts/index.ts',
+        ),
       },
       formats: ['es'],
       fileName: (_format, entryName) => `${entryName}.js`,

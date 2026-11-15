@@ -51,6 +51,10 @@
       "types": "./dist/modules/toast/index.d.ts",
       "import": "./dist/modules/toast/index.js"
     },
+    "./posts": {
+      "types": "./dist/modules/posts/index.d.ts",
+      "import": "./dist/modules/posts/index.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./images/*": "./dist/images/*"
   },

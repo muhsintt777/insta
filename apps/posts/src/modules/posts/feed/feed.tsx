@@ -2,9 +2,10 @@ import styles from './feed.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { EventBus, MFE_EVENT_NAMES } from '@insta/events';
+import { DateUtils } from '@insta/utils/date-utils';
 import { CommentsModal } from 'modules/posts/comments/comments-modal';
 import { LikeService } from 'modules/posts/likes/like-service';
-import { PostCard, PostCardSkeleton } from 'modules/posts/components/post-card';
+import { PostCard, PostCardSkeleton } from '@insta/ui/posts';
 import { PostService } from 'modules/posts/post-service';
 import { emitErrorToast } from 'app/emit-error-toast';
 import { AddPost } from './components/add-post/add-post';
@@ -127,7 +128,9 @@ export const Feed: FC<FeedProps> = ({ profileImage }) => {
             likeCount={post.likeCount}
             userProfileImage={post.creator.profileImage}
             commentCount={post.commentCount}
-            createdAt={post.createdAt}
+            dateLabel={DateUtils.formatRelative(
+              DateUtils.dateFromIsoString(post.createdAt),
+            )}
             fullname={post.creator.fullName}
             isLiked={post.isLiked}
             onComment={() => openCommentsModal(post.id)}
