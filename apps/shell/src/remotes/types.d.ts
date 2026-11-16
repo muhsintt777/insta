@@ -30,7 +30,7 @@ declare module 'posts/mount' {
 }
 
 declare module 'user/mount' {
-  import type { User } from 'modules/user';
+  import type { User } from 'features/current-user';
 
   export function mount(
     container: HTMLElement,

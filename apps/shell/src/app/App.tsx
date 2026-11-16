@@ -7,16 +7,12 @@ import { ToastHost } from 'app/components/toast-host';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
-import { Notifications } from 'modules/notifications';
-import { ProfilePage } from 'modules/user';
-import { Friends } from 'modules/friends';
-import { LoginPage, SignupPage, selectAuthStatus } from 'modules/auth';
-import { Chat } from 'modules/chat';
-import { Feed } from 'modules/feed';
+import { LoginPage, SignupPage, selectAuthStatus } from 'features/auth';
+import type { LoginParams } from 'features/auth';
+import { Chat, Feed, Friends, Notifications, ProfilePage } from 'remotes';
 import { colors } from '@insta/ui/styles';
 import { ProtectedRoute } from './protected-route';
 import { restoreSession, signIn } from './session-workflows';
-import type { LoginParams } from 'modules/auth';
 
 export const App = () => {
   const dispatch = useAppDispatch();

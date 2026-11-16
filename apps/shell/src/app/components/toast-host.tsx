@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ToastNotification } from '@insta/ui/toasts';
 import { MFE_EVENT_NAMES, type ToastEventDetail } from '@insta/contracts';
-import { EventBus } from '../../event-bus';
+import { EventBus } from '../../shared/event-bus';
 import type { ToastSeverity } from '@insta/ui/toasts';
 
 export const ToastHost = () => {

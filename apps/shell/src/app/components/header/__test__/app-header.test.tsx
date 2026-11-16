@@ -3,7 +3,7 @@ import { screen, renderWithProviders, userEvent } from 'test';
 import { Header } from '../app-header';
 
 // Mock AuthService to avoid axios import chain
-vi.mock('modules/auth/auth-service', () => ({
+vi.mock('features/auth/auth-service', () => ({
   AuthService: {
     signout: vi.fn().mockResolvedValue(undefined),
   },

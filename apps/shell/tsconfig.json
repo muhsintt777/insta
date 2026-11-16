@@ -3,8 +3,10 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "modules/*": ["./modules/*"],
+      "features/*": ["./features/*"],
       "app/*": ["./app/*"],
+      "remotes": ["./remotes/index.ts"],
+      "remotes/*": ["./remotes/*"],
       "@insta/contracts": ["../../../packages/contracts/src/index.ts"],
       "@insta/utils": ["../../../packages/utils/src/index.ts"],
       "@insta/utils/*": ["../../../packages/utils/src/*"],

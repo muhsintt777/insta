@@ -3,7 +3,7 @@ export const APP_ROUTES = {
   FRIENDS: '/friends',
   CHAT: '/chat',
   NOTIFICATIONS: '/notifications',
-  PROFILE: '/profile',
+  USER: '/user',
 
   LOGIN: '/auth/login',
   SIGNUP: '/auth/signup',

@@ -16,12 +16,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      modules: path.resolve(__dirname, 'src/modules'),
+      features: path.resolve(__dirname, 'src/features'),
       app: path.resolve(__dirname, 'src/app'),
+      remotes: path.resolve(__dirname, 'src/remotes'),
       '@insta/utils': path.resolve(__dirname, '../../packages/utils/src'),
       'friends/Friends': path.resolve(
         __dirname,
-        'src/modules/friends/__test__/friends-remote-mock.tsx',
+        'src/remotes/__test__/friends-remote-mock.tsx',
       ),
       test: path.resolve(__dirname, '../../packages/test-utils/src/test'),
     },

@@ -1,6 +1,6 @@
 import { COMMON_ERROR_MESSAGE } from '@insta/http';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '../event-bus';
+import { EventBus } from '../shared/event-bus';
 
 export const emitErrorToast = (error: unknown) => {
   const message =

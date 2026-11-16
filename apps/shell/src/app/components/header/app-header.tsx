@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from '@insta/ui/images/app-logo.svg';
 import { CustomMenu } from '@insta/ui/menus';
 import { CustomAvatar } from '@insta/ui/avatars';
-import { selectUser } from 'modules/user';
-import { themeActions } from 'modules/theme';
+import { selectUser } from 'features/current-user';
+import { themeActions } from 'features/theme';
 import { emitErrorToast } from 'app/emit-error-toast';
 import {
   ChatIcon,
@@ -46,8 +46,8 @@ export const Header = memo(() => {
 
   const onProfileClick = useCallback(() => {
     handleClose();
-    if (pathname === APP_ROUTES.PROFILE) return;
-    navigate(APP_ROUTES.PROFILE);
+    if (pathname === APP_ROUTES.USER) return;
+    navigate(APP_ROUTES.USER);
   }, [handleClose, navigate, pathname]);
 
   const handleThemeSwitch = useCallback(() => {

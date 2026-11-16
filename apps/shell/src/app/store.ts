@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userReducer } from 'modules/user';
-import { authReducer } from 'modules/auth';
-import { getInitialTheme, themeReducer } from 'modules/theme';
+import { userReducer } from 'features/current-user';
+import { authReducer } from 'features/auth';
+import { getInitialTheme, themeReducer } from 'features/theme';
 
 export const store = configureStore({
   reducer: {

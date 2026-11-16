@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen, renderWithProviders, userEvent } from 'test';
-import { ProfilePage } from '../profile-page';
+import { ProfilePage } from '../user-profile';
 
 const mockNavigate = vi.fn();
 
