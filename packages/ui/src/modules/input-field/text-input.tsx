@@ -1,4 +1,4 @@
-import styles from './input-field.module.scss';
+import styles from './input-field.module.css';
 import { CSSProperties, FC, memo } from 'react';
 
 interface TextInputProps {

@@ -1,4 +1,4 @@
-import styles from './file-input.module.scss';
+import styles from './file-input.module.css';
 import { AddImageIcon } from '../../icons';
 import { CSSProperties, FC, useRef } from 'react';
 interface FileInputProps {

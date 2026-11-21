@@ -1,4 +1,4 @@
-import styles from './post-card.module.scss';
+import styles from './post-card.module.css';
 import { useCallback, useMemo, useState } from 'react';
 import type { CSSProperties, FC, MouseEvent } from 'react';
 import { CommentIcon, LikeIcon, LikedIcon, VerticalDotIcon } from '../../icons';

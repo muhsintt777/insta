@@ -1,4 +1,4 @@
-import styles from './form-field.module.scss';
+import styles from './form-field.module.css';
 import { ChangeEvent, CSSProperties, FC, useCallback } from 'react';
 
 interface TextInputProps {

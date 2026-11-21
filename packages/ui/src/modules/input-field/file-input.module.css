@@ -2,22 +2,22 @@
   display: flex;
   flex-direction: column;
   height: 180px;
+}
 
-  > label {
-    margin-bottom: 5px;
-    font-size: 0.75rem;
-  }
+.container > label {
+  margin-bottom: 5px;
+  font-size: 0.75rem;
+}
 
-  > input {
-    display: none;
-  }
+.container > input {
+  display: none;
+}
 
-  > p {
-    margin-top: 5px;
-    font-size: 0.65rem;
-    color: var(--clr-fnt-error);
-    transition: all 0.2s;
-  }
+.container > p {
+  margin-top: 5px;
+  font-size: 0.65rem;
+  color: var(--clr-fnt-error);
+  transition: all 0.2s;
 }
 
 .previewContainer {

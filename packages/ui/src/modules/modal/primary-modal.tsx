@@ -1,4 +1,4 @@
-import styles from './primary-modal.module.scss';
+import styles from './primary-modal.module.css';
 import { FC, ReactElement } from 'react';
 import { Modal } from '@mui/material';
 import { PrimaryButton, PrimaryIconButton, SecondaryButton } from '../buttons';

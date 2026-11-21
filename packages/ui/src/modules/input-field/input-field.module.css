@@ -23,15 +23,15 @@
   background-color: var(--clr-bg-secondary);
   transition: border-color 0.2s;
   color: var(--clr-fnt-primary);
+}
 
-  &::placeholder {
-    font-size: 10px;
-    color: var(--clr-fnt-secondary);
-  }
+.input::placeholder {
+  font-size: 10px;
+  color: var(--clr-fnt-secondary);
+}
 
-  &:focus {
-    border-color: var(--clr-border);
-  }
+.input:focus {
+  border-color: var(--clr-border);
 }
 
 .error {

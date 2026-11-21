@@ -18,11 +18,11 @@
   padding: 0px 10px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--clr-border);
+}
 
-  > h1 {
-    text-transform: uppercase;
-    color: var(--clr-fnt-primary);
-  }
+.header > h1 {
+  text-transform: uppercase;
+  color: var(--clr-fnt-primary);
 }
 
 .footer {
