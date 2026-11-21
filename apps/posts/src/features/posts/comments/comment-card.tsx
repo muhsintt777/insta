@@ -1,4 +1,4 @@
-import styles from './comment-card.module.scss';
+import styles from './comment-card.module.css';
 import {
   CSSProperties,
   FC,

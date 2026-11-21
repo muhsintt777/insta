@@ -1,4 +1,4 @@
-import styles from './comments-modal.module.scss';
+import styles from './comments-modal.module.css';
 import { FC, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

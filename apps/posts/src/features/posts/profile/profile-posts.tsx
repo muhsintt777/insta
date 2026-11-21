@@ -1,4 +1,4 @@
-import styles from './profile-posts.module.scss';
+import styles from './profile-posts.module.css';
 import { useCallback, useEffect, useState } from 'react';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
 import { EventBus } from '../../../event-bus';

@@ -1,4 +1,4 @@
-import styles from './feed.module.scss';
+import styles from './feed.module.css';
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { MFE_EVENT_NAMES } from '@insta/contracts';

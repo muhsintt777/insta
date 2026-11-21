@@ -16,18 +16,18 @@
 .authorName {
   display: flex;
   align-items: center;
+}
 
-  > span:first-child {
-    flex: 1;
-    font-size: 12px;
-    font-weight: 500;
-  }
+.authorName > span:first-child {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 500;
+}
 
-  > .date {
-    font-size: 10px;
-    color: var(--clr-fnt-secondary);
-    margin-right: 4px;
-  }
+.authorName > .date {
+  font-size: 10px;
+  color: var(--clr-fnt-secondary);
+  margin-right: 4px;
 }
 
 .commentText {

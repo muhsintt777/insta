@@ -14,9 +14,9 @@
   border-radius: 4px;
   background-color: var(--clr-bg-secondary);
   cursor: pointer;
+}
 
-  > p {
-    font-size: 12px;
-    color: var(--clr-fnt-secondary);
-  }
+.clickableBox > p {
+  font-size: 12px;
+  color: var(--clr-fnt-secondary);
 }
