@@ -9,6 +9,12 @@ export const MFE_EVENT_NAMES = {
   navigation: {
     back: 'navigation:back',
   },
+  auth: {
+    navigationRequested: 'auth:navigation:requested',
+    navigationSync: 'shell:auth:navigation:sync',
+    sessionEstablished: 'auth:session:established',
+    sessionChanged: 'auth:session:changed',
+  },
   toast: {
     success: 'toast:success',
     error: 'toast:error',
@@ -16,6 +22,38 @@ export const MFE_EVENT_NAMES = {
     warning: 'toast:warning',
   },
 } as const;
+
+export type AuthRoute = '/login' | '/signup';
+export type AuthSessionStatus =
+  | 'LOADING'
+  | 'AUTHENTICATED'
+  | 'UNAUTHENTICATED'
+  | 'FAILED';
+
+export type AuthLoginParams =
+  | { email: string; password: string }
+  | { username: string; password: string };
+
+export interface AuthSignupParams {
+  email: string;
+  password: string;
+  fullName: string;
+  username: string;
+  profileImage?: File;
+}
+
+export interface AuthNavigationRequest {
+  path: AuthRoute;
+  intent: 'push' | 'replace';
+}
+
+export interface AuthNavigationSync {
+  path: AuthRoute;
+}
+
+export interface AuthSessionChange {
+  status: AuthSessionStatus;
+}
 
 export interface UserProfile {
   bio: string;
@@ -41,6 +79,10 @@ export interface MfeEventContracts {
   [MFE_EVENT_NAMES.posts.deleted]: undefined;
   [MFE_EVENT_NAMES.user.updated]: UserProfile;
   [MFE_EVENT_NAMES.navigation.back]: undefined;
+  [MFE_EVENT_NAMES.auth.navigationRequested]: AuthNavigationRequest;
+  [MFE_EVENT_NAMES.auth.navigationSync]: AuthNavigationSync;
+  [MFE_EVENT_NAMES.auth.sessionEstablished]: undefined;
+  [MFE_EVENT_NAMES.auth.sessionChanged]: AuthSessionChange;
   [MFE_EVENT_NAMES.toast.success]: ToastEventDetail;
   [MFE_EVENT_NAMES.toast.error]: ToastEventDetail;
   [MFE_EVENT_NAMES.toast.info]: ToastEventDetail;

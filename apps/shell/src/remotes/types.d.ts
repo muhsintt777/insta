@@ -1,3 +1,19 @@
+declare module 'auth/mount' {
+  import type { AuthRoute, AuthSessionStatus } from '@insta/contracts';
+
+  export interface AuthMountOptions {
+    initialPath: AuthRoute;
+    initialSessionStatus: AuthSessionStatus;
+  }
+
+  export function mount(
+    container: HTMLElement,
+    options: AuthMountOptions,
+  ): {
+    unmount: () => void;
+  };
+}
+
 declare module 'friends/mount' {
   export function mount(container: HTMLElement): {
     unmount: () => void;

@@ -1,27 +1,19 @@
-import styles from './signup-page.module.scss';
-import { useCallback, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { APP_ROUTES } from 'app/routes';
-import { FormField, FileInput } from '@insta/ui/input-fields';
-import { PrimaryButton } from '@insta/ui/buttons';
 import { MFE_EVENT_NAMES } from '@insta/contracts';
-import { EventBus } from '../../../shared/event-bus';
-import { emitErrorToast } from 'app/emit-error-toast';
-import { signupFormSchema, SignupFormSchema } from './signup-schema';
+import { PrimaryButton } from '@insta/ui/buttons';
+import { FileInput, FormField } from '@insta/ui/input-fields';
+import { useCallback, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { AuthService } from '../auth-service';
-import type { LoginParams } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
+import { getErrorMessage } from '../error-message';
+import { EventBus } from '../event-bus';
+import { signupFormSchema, type SignupFormSchema } from './signup-schema';
+import styles from './signup-page.module.scss';
 
-interface SignupPageProps {
-  onSignIn: (credentials: LoginParams) => Promise<void>;
-}
-
-export const SignupPage = ({ onSignIn }: SignupPageProps) => {
-  const navigate = useNavigate();
+export const SignupPage = () => {
   const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
-
   const {
     handleSubmit,
     control,
@@ -38,33 +30,30 @@ export const SignupPage = ({ onSignIn }: SignupPageProps) => {
     },
   });
 
-  const onSubmit = useCallback(
-    async (data: SignupFormSchema) => {
-      try {
-        setShowFormSubmitLoader(true);
-        await AuthService.createUser({
-          fullName: data.fullName,
-          username: data.username,
-          email: data.email,
-          password: data.password,
-          profileImage: data.profileImage || undefined,
-        });
-        await onSignIn({
-          email: data.email,
-          password: data.password,
-        });
-        EventBus.emit(MFE_EVENT_NAMES.toast.success, {
-          message: 'Account created successfully',
-        });
-        navigate(APP_ROUTES.HOME);
-      } catch (error) {
-        emitErrorToast(error);
-      } finally {
-        setShowFormSubmitLoader(false);
-      }
-    },
-    [navigate, onSignIn],
-  );
+  const onSubmit = useCallback(async (data: SignupFormSchema) => {
+    try {
+      setShowFormSubmitLoader(true);
+      const credentials = {
+        fullName: data.fullName,
+        username: data.username,
+        email: data.email,
+        password: data.password,
+        profileImage: data.profileImage || undefined,
+      };
+      await AuthService.createUser(credentials);
+      await AuthService.login(credentials);
+      EventBus.emit(MFE_EVENT_NAMES.auth.sessionEstablished, undefined);
+      EventBus.emit(MFE_EVENT_NAMES.toast.success, {
+        message: 'Account created successfully',
+      });
+    } catch (error) {
+      EventBus.emit(MFE_EVENT_NAMES.toast.error, {
+        message: getErrorMessage(error),
+      });
+    } finally {
+      setShowFormSubmitLoader(false);
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -144,7 +133,6 @@ export const SignupPage = ({ onSignIn }: SignupPageProps) => {
               />
             )}
           />
-
           <div className={styles.rowFields}>
             <Controller
               name="password"
@@ -164,7 +152,6 @@ export const SignupPage = ({ onSignIn }: SignupPageProps) => {
                 />
               )}
             />
-
             <Controller
               name="confirmPassword"
               control={control}
@@ -190,7 +177,7 @@ export const SignupPage = ({ onSignIn }: SignupPageProps) => {
             showLoader={showFormSubmitLoader}
           />
           <p className={styles.loginLink}>
-            Already have an account? <Link to={APP_ROUTES.LOGIN}>Login</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </p>
         </form>
       </div>

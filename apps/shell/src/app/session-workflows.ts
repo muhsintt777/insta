@@ -1,21 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserService, userActions } from 'features/current-user';
 import { AuthService, authActions } from 'features/auth';
-import type { LoginParams } from 'features/auth';
 
 const loadCurrentUser = async (dispatch: (action: unknown) => unknown) => {
   const user = await UserService.fetchCurrentUser();
   dispatch(userActions.setProfile(user));
 };
 
-export const signIn = async (
+export const establishSession = async (
   dispatch: (action: unknown) => unknown,
-  credentials: LoginParams,
 ) => {
   dispatch(authActions.sessionLoading());
   try {
-    const token = await AuthService.login(credentials);
-    dispatch(authActions.setToken(token));
     await loadCurrentUser(dispatch);
     dispatch(authActions.sessionAuthenticated());
   } catch (error) {
@@ -31,8 +27,7 @@ export const restoreSession = createAsyncThunk(
     dispatch(authActions.sessionLoading());
 
     try {
-      const token = await AuthService.refreshAuth();
-      dispatch(authActions.setToken(token));
+      await AuthService.refreshAuth();
       await loadCurrentUser(dispatch);
       dispatch(authActions.sessionAuthenticated());
     } catch (error) {
@@ -49,10 +44,6 @@ export const signOut = async (dispatch: (action: unknown) => unknown) => {
   dispatch(userActions.clearProfile());
 };
 
-export const refreshAuthToken = async (
-  dispatch: (action: unknown) => unknown,
-) => {
-  const token = await AuthService.refreshAuth();
-  dispatch(authActions.setToken(token));
-  return token;
+export const refreshSession = async () => {
+  await AuthService.refreshAuth();
 };

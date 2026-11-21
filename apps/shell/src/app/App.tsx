@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks/redux-hooks';
 import appLogo from '@insta/ui/images/app-logo.svg';
 import { DotLoader } from '@insta/ui/loaders';
@@ -7,25 +7,40 @@ import { ToastHost } from 'app/components/toast-host';
 import { PrimaryLayout } from 'app/layouts/primary-layout/primary-layout';
 import { AuthLayout } from 'app/layouts/auth-layout/auth-layout';
 import { SecondaryLayout } from 'app/layouts/secondary-layout';
-import { LoginPage, SignupPage, selectAuthStatus } from 'features/auth';
-import type { LoginParams } from 'features/auth';
-import { Chat, Feed, Friends, Notifications, ProfilePage } from 'remotes';
+import { selectAuthStatus } from 'features/auth';
+import { Auth, Chat, Feed, Friends, Notifications, ProfilePage } from 'remotes';
 import { colors } from '@insta/ui/styles';
+import { MFE_EVENT_NAMES } from '@insta/contracts';
+import { EventBus } from '../shared/event-bus';
+import { emitErrorToast } from './emit-error-toast';
 import { ProtectedRoute } from './protected-route';
-import { restoreSession, signIn } from './session-workflows';
+import { establishSession, restoreSession } from './session-workflows';
 
 export const App = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(selectAuthStatus);
   const apiRef = useRef({ restoreSession: false });
-  const handleSignIn = (credentials: LoginParams) =>
-    signIn(dispatch, credentials);
 
   useEffect(() => {
     if (apiRef.current.restoreSession) return;
     dispatch(restoreSession());
     apiRef.current.restoreSession = true;
   }, [dispatch]);
+
+  useEffect(() => {
+    return EventBus.on(MFE_EVENT_NAMES.auth.sessionEstablished, () => {
+      void establishSession(dispatch)
+        .then(() => navigate('/', { replace: true }))
+        .catch(emitErrorToast);
+    });
+  }, [dispatch, navigate]);
+
+  useEffect(() => {
+    EventBus.emit(MFE_EVENT_NAMES.auth.sessionChanged, {
+      status: authStatus,
+    });
+  }, [authStatus]);
 
   return (
     <>
@@ -55,14 +70,7 @@ export const App = () => {
           </Route>
 
           <Route path="/auth" element={<AuthLayout />}>
-            <Route
-              path="login"
-              element={<LoginPage onSignIn={handleSignIn} />}
-            />
-            <Route
-              path="signup"
-              element={<SignupPage onSignIn={handleSignIn} />}
-            />
+            <Route path="*" element={<Auth />} />
           </Route>
 
           <Route path="*" element={<p>page not found</p>} />

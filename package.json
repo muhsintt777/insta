@@ -3,8 +3,10 @@
   "description": "A social media application built with React, Redux Toolkit, React Router, and Material-UI.",
   "private": true,
   "scripts": {
-    "dev": "pnpm --parallel --filter @insta/shell --filter @insta/friends --filter @insta/chat --filter @insta/notifications --filter @insta/posts --filter @insta/user dev",
-    "stop": "pnpm --parallel --filter @insta/shell --filter @insta/friends --filter @insta/chat --filter @insta/notifications --filter @insta/posts --filter @insta/user stop",
+    "dev": "pnpm --parallel --filter @insta/shell --filter @insta/auth --filter @insta/friends --filter @insta/chat --filter @insta/notifications --filter @insta/posts --filter @insta/user dev",
+    "stop": "pnpm --parallel --filter @insta/shell --filter @insta/auth --filter @insta/friends --filter @insta/chat --filter @insta/notifications --filter @insta/posts --filter @insta/user stop",
+    "auth:dev": "pnpm --filter @insta/auth dev",
+    "auth:build": "pnpm --filter @insta/auth build",
     "shell:build": "pnpm --filter @insta/shell build",
     "shell:test:watch": "pnpm --filter @insta/shell test:watch",
     "friends:dev": "pnpm --filter @insta/friends dev",

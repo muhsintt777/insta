@@ -112,20 +112,23 @@ pnpm install
 pnpm dev
 ```
 
-This starts the shell and all remotes. The shell is available at `http://localhost:5173`; Friends runs at `http://localhost:5174`, Chat at `http://localhost:5175`, Notifications at `http://localhost:5176`, Posts at `http://localhost:5177`, and User at `http://localhost:5178`.
+This starts the shell and all remotes. The shell is available at `http://localhost:5173`; Friends runs at `http://localhost:5174`, Chat at `http://localhost:5175`, Notifications at `http://localhost:5176`, Posts at `http://localhost:5177`, User at `http://localhost:5178`, and Auth at `http://localhost:5179`.
 Run `pnpm stop` to stop the shell and remote Vite servers if their starting terminal has already been closed.
 
 ### Build and preview
 
 ```bash
-pnpm build:shell
-pnpm build:friends
-pnpm build:chat
+pnpm shell:build
+pnpm auth:build
+pnpm friends:build
+pnpm chat:build
 pnpm notifications:build
+pnpm posts:build
+pnpm user:build
 ```
 
 Each build runs the TypeScript compiler before creating its Vite production bundle.
-For deployment, set `VITE_FRIENDS_REMOTE_URL`, `VITE_CHAT_REMOTE_URL`, `VITE_NOTIFICATIONS_REMOTE_URL`, `VITE_POSTS_REMOTE_URL`, and `VITE_USER_REMOTE_URL` when building the shell. Set `VITE_POSTS_REMOTE_URL` when building the User remote. The production environment points to `/friends`, `/chat`, `/notifications`, `/posts`, and `/user` on the same origin. Development uses the documented local ports by default.
+For deployment, set `VITE_AUTH_REMOTE_URL`, `VITE_FRIENDS_REMOTE_URL`, `VITE_CHAT_REMOTE_URL`, `VITE_NOTIFICATIONS_REMOTE_URL`, `VITE_POSTS_REMOTE_URL`, and `VITE_USER_REMOTE_URL` when building the shell. Set `VITE_POSTS_REMOTE_URL` when building the User remote. The production environment points to `/auth`, `/friends`, `/chat`, `/notifications`, `/posts`, and `/user` on the same origin. Development uses the documented local ports by default.
 
 ## Quality Checks
 

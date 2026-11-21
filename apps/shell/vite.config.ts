@@ -21,6 +21,13 @@ export default defineConfig(({ mode }) => {
         name: 'insta_shell',
         dts: false,
         remotes: {
+          auth: {
+            type: 'module',
+            name: 'insta_auth',
+            entry: `${env.VITE_AUTH_REMOTE_URL}/remoteEntry.js`,
+            entryGlobalName: 'insta_auth',
+            shareScope: 'default',
+          },
           friends: {
             type: 'module',
             name: 'insta_friends',

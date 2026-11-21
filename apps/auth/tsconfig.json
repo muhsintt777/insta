@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "types": ["vite/client"],
+    "paths": {
+      "@insta/contracts": ["../../../packages/contracts/src/index.ts"],
+      "@insta/http": ["../../../packages/http/src/index.ts"],
+      "@insta/utils": ["../../../packages/utils/src/index.ts"],
+      "@insta/utils/*": ["../../../packages/utils/src/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,18 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { AuthSessionStatus } from '@insta/contracts';
+import { createSlice } from '@reduxjs/toolkit';
 
-export type AuthStatus =
-  | 'LOADING'
-  | 'AUTHENTICATED'
-  | 'UNAUTHENTICATED'
-  | 'FAILED';
+export type AuthStatus = AuthSessionStatus;
 
 export interface AuthState {
-  token: string | null;
   status: AuthStatus;
 }
 
 const initialState: AuthState = {
-  token: null,
   status: 'LOADING',
 };
 
@@ -27,18 +22,10 @@ const authSlice = createSlice({
       state.status = 'AUTHENTICATED';
     },
     sessionUnauthenticated: (state) => {
-      state.token = null;
       state.status = 'UNAUTHENTICATED';
     },
     sessionFailed: (state) => {
-      state.token = null;
       state.status = 'FAILED';
-    },
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
-    },
-    clearToken: (state) => {
-      state.token = null;
     },
   },
 });

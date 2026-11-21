@@ -1,3 +1,4 @@
+export { Auth } from './auth';
 export { Chat } from './chat';
 export { Feed } from './feed';
 export { Friends } from './friends';
