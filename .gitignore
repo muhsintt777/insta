@@ -3,8 +3,9 @@ node_modules
 coverage
 build
 dist
+*.tsbuildinfo
 
-# ENV
+# env
 .env
 .env.dev
 .env.prod
@@ -15,7 +16,7 @@ dist
 .firebaserc
 .firebase.json
 
-# Logs
+# logs
 logs
 *.log
 npm-debug.log*
