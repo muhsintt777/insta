@@ -12,6 +12,11 @@ const sharedDependencies = Object.keys(dependencies).reduce(
 );
 
 export default defineConfig({
+  css: {
+    modules: {
+      generateScopedName: 'notifications_[local]_[hash:base36:5]',
+    },
+  },
   plugins: [
     react(),
     federation({

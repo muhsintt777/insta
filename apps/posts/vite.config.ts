@@ -13,6 +13,11 @@ const sharedDependencies = Object.keys(dependencies).reduce(
 
 export default defineConfig(({ mode }) => ({
   base: mode === 'prod' ? '/posts/' : '/',
+  css: {
+    modules: {
+      generateScopedName: 'posts_[local]_[hash:base36:5]',
+    },
+  },
   plugins: [
     react(),
     federation({

@@ -15,6 +15,11 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname, 'VITE_');
 
   return {
+    css: {
+      modules: {
+        generateScopedName: 'shell_[local]_[hash:base36:5]',
+      },
+    },
     plugins: [
       react(),
       federation({

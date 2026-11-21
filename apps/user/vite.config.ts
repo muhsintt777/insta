@@ -13,6 +13,11 @@ const sharedDependencies = Object.keys(dependencies).reduce(
 
 export default defineConfig({
   base: '/',
+  css: {
+    modules: {
+      generateScopedName: 'user_[local]_[hash:base36:5]',
+    },
+  },
   plugins: [
     react(),
     federation({
