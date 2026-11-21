@@ -1,4 +1,4 @@
-import styles from './edit-user-modal.module.scss';
+import styles from './edit-user-modal.module.css';
 import { ModalFooter, ModalHeader, PrimaryModal } from '@insta/ui/modals';
 import { FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';

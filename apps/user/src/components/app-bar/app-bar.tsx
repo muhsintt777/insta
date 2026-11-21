@@ -1,4 +1,4 @@
-import styles from './app-bar.module.scss';
+import styles from './app-bar.module.css';
 import { CSSProperties, FC } from 'react';
 import { BackIcon } from '@insta/ui/icons';
 import { PrimaryIconButton } from '@insta/ui/buttons';

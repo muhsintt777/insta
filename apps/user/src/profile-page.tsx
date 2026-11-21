@@ -1,4 +1,4 @@
-import styles from './profile-page.module.scss';
+import styles from './profile-page.module.css';
 import { useCallback, useRef, useState } from 'react';
 import { EditIcon } from '@insta/ui/icons';
 import { PrimaryIconButton } from '@insta/ui/buttons';

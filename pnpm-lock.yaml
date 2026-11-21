@@ -577,9 +577,6 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: 'catalog:'
         version: 4.3.3(vite@7.3.7(@types/node@26.6.5)(sass@1.106.1))
-      sass:
-        specifier: 'catalog:'
-        version: 1.106.1
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
