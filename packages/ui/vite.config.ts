@@ -46,8 +46,7 @@ export default defineConfig({
       cssFileName: 'styles',
     },
     rollupOptions: {
-      external: (id) =>
-        id === 'react' || id.startsWith('react/') || id.endsWith('.module.css'),
+      external: (id) => id === 'react' || id.startsWith('react/'),
     },
   },
 });
