@@ -1,5 +1,5 @@
 import { memo, type FC } from 'react';
-import styles from './auth-header.module.scss';
+import styles from './auth-header.module.css';
 
 interface AuthHeaderProps {
   title: string;

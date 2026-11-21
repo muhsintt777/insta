@@ -37,12 +37,12 @@
   color: var(--clr-grey);
   font-size: 12px;
   font-weight: 400;
+}
 
-  > a {
-    color: var(--clr-primary);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-  }
+.loginLink > a {
+  color: var(--clr-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }

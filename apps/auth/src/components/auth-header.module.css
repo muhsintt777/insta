@@ -5,8 +5,8 @@
   height: 100%;
   background-color: var(--clr-bg-primary);
   border-radius: 8px;
+}
 
-  h1 {
-    margin-left: 16px;
-  }
+.container h1 {
+  margin-left: 16px;
 }

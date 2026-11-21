@@ -9,7 +9,7 @@ import { AuthService } from '../auth-service';
 import { AuthHeader } from '../components/auth-header';
 import { getErrorMessage } from '../error-message';
 import { EventBus } from '../event-bus';
-import styles from './loginStyle.module.scss';
+import styles from './loginStyle.module.css';
 
 interface InputState {
   value: string;

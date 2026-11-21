@@ -10,7 +10,7 @@ import { AuthHeader } from '../components/auth-header';
 import { getErrorMessage } from '../error-message';
 import { EventBus } from '../event-bus';
 import { signupFormSchema, type SignupFormSchema } from './signup-schema';
-import styles from './signup-page.module.scss';
+import styles from './signup-page.module.css';
 
 export const SignupPage = () => {
   const [showFormSubmitLoader, setShowFormSubmitLoader] = useState(false);
