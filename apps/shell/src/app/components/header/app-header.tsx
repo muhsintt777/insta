@@ -1,4 +1,4 @@
-import styles from './app-header.module.scss';
+import styles from './app-header.module.css';
 import { memo, MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { APP_ROUTES } from 'app/routes';

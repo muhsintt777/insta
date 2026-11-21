@@ -18,8 +18,8 @@
   "dependencies": {
     "@insta/contracts": "workspace:*",
     "@insta/http": "workspace:*",
-    "@insta/utils": "workspace:*",
     "@insta/ui": "workspace:*",
+    "@insta/utils": "workspace:*",
     "@reduxjs/toolkit": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
@@ -40,7 +40,6 @@
     "happy-dom": "catalog:",
     "jsdom": "catalog:",
     "msw": "catalog:",
-    "sass": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
